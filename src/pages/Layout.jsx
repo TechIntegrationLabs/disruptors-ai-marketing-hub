@@ -59,6 +59,12 @@ export default function Layout({ children, currentPageName }) {
       setInitialLoad(false);
     } else {
       sessionStorage.setItem('hasLoaded', 'true');
+      // Ensure loading completes after a short delay if stuck
+      const timeout = setTimeout(() => {
+        setShowLoading(false);
+        setInitialLoad(false);
+      }, 4000);
+      return () => clearTimeout(timeout);
     }
   }, []);
 
