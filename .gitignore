@@ -26,3 +26,7 @@ dist-ssr
 .env
 # Local Netlify folder
 .netlify
+
+# Include Cursor MCP configuration (but exclude .env)
+!.cursor/
+!.cursor/mcp.json
