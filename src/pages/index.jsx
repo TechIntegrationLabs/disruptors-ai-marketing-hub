@@ -1,78 +1,78 @@
 import Layout from "./Layout.jsx";
 
-import Home from "./Home";
+import Home from "./Home.jsx";
 
-import assessment from "./assessment";
+import Assessment from "./assessment.jsx";
 
-import calculator from "./calculator";
+import Calculator from "./calculator.jsx";
 
-import NotFound from "./404";
+import NotFound from "./404.jsx";
 
-import WorkSaasContentEngine from "./work-saas-content-engine";
+import WorkSaasContentEngine from "./work-saas-content-engine.jsx";
 
-import ResourcesAiSuitcaseTermsDecoded from "./resources-ai-suitcase-terms-decoded";
+import ResourcesAiSuitcaseTermsDecoded from "./resources-ai-suitcase-terms-decoded.jsx";
 
-import solutions from "./solutions";
+import Solutions from "./solutions.jsx";
 
-import work from "./work";
+import Work from "./work.jsx";
 
-import about from "./about";
+import About from "./about.jsx";
 
-import resources from "./resources";
+import Resources from "./resources.jsx";
 
-import contact from "./contact";
+import Contact from "./contact.jsx";
 
-import privacy from "./privacy";
+import Privacy from "./privacy.jsx";
 
-import terms from "./terms";
+import Terms from "./terms.jsx";
 
-import blog from "./blog";
+import Blog from "./blog.jsx";
 
-import BlogDetail from "./blog-detail";
+import BlogDetail from "./blog-detail.jsx";
 
-import WorkTradeworxUsa from "./work-tradeworx-usa";
+import WorkTradeworxUsa from "./work-tradeworx-usa.jsx";
 
-import WorkTimberViewFinancial from "./work-timber-view-financial";
+import WorkTimberViewFinancial from "./work-timber-view-financial.jsx";
 
-import WorkTheWellnessWay from "./work-the-wellness-way";
+import WorkTheWellnessWay from "./work-the-wellness-way.jsx";
 
-import WorkSoundCorrections from "./work-sound-corrections";
+import WorkSoundCorrections from "./work-sound-corrections.jsx";
 
-import WorkSegpro from "./work-segpro";
+import WorkSegpro from "./work-segpro.jsx";
 
-import WorkNeuroMastery from "./work-neuro-mastery";
+import WorkNeuroMastery from "./work-neuro-mastery.jsx";
 
-import WorkMuscleWorks from "./work-muscle-works";
+import WorkMuscleWorks from "./work-muscle-works.jsx";
 
-import WorkGranitePaving from "./work-granite-paving";
+import WorkGranitePaving from "./work-granite-paving.jsx";
 
-import WorkAutoTrimUtah from "./work-auto-trim-utah";
+import WorkAutoTrimUtah from "./work-auto-trim-utah.jsx";
 
-import BookStrategySession from "./book-strategy-session";
+import BookStrategySession from "./book-strategy-session.jsx";
 
-import SolutionsAiAutomation from "./solutions-ai-automation";
+import SolutionsAiAutomation from "./solutions-ai-automation.jsx";
 
-import SolutionsSocialMedia from "./solutions-social-media";
+import SolutionsSocialMedia from "./solutions-social-media.jsx";
 
-import SolutionsSeoGeo from "./solutions-seo-geo";
+import SolutionsSeoGeo from "./solutions-seo-geo.jsx";
 
-import SolutionsLeadGeneration from "./solutions-lead-generation";
+import SolutionsLeadGeneration from "./solutions-lead-generation.jsx";
 
-import SolutionsPaidAdvertising from "./solutions-paid-advertising";
+import SolutionsPaidAdvertising from "./solutions-paid-advertising.jsx";
 
-import SolutionsPodcasting from "./solutions-podcasting";
+import SolutionsPodcasting from "./solutions-podcasting.jsx";
 
-import SolutionsCustomApps from "./solutions-custom-apps";
+import SolutionsCustomApps from "./solutions-custom-apps.jsx";
 
-import SolutionsCrmManagement from "./solutions-crm-management";
+import SolutionsCrmManagement from "./solutions-crm-management.jsx";
 
-import SolutionsFractionalCmo from "./solutions-fractional-cmo";
+import SolutionsFractionalCmo from "./solutions-fractional-cmo.jsx";
 
-import podcast from "./podcast";
+import Podcast from "./podcast.jsx";
 
-import gallery from "./gallery";
+import Gallery from "./gallery.jsx";
 
-import faq from "./faq";
+import Faq from "./faq.jsx";
 
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
@@ -80,9 +80,9 @@ const PAGES = {
     
     Home: Home,
     
-    assessment: assessment,
+    assessment: Assessment,
     
-    calculator: calculator,
+    calculator: Calculator,
     
     "404": NotFound,
     
@@ -90,21 +90,21 @@ const PAGES = {
     
     "resources-ai-suitcase-terms-decoded": ResourcesAiSuitcaseTermsDecoded,
     
-    solutions: solutions,
+    solutions: Solutions,
     
-    work: work,
+    work: Work,
     
-    about: about,
+    about: About,
     
-    resources: resources,
+    resources: Resources,
     
-    contact: contact,
+    contact: Contact,
     
-    privacy: privacy,
+    privacy: Privacy,
     
-    terms: terms,
+    terms: Terms,
     
-    blog: blog,
+    blog: Blog,
     
     "blog-detail": BlogDetail,
     
@@ -146,11 +146,11 @@ const PAGES = {
     
     "solutions-fractional-cmo": SolutionsFractionalCmo,
     
-    podcast: podcast,
+    podcast: Podcast,
     
-    gallery: gallery,
+    gallery: Gallery,
     
-    faq: faq,
+    faq: Faq,
     
 }
 
@@ -252,7 +252,10 @@ function PagesContent() {
                 <Route path="/gallery" element={<Gallery />} />
                 
                 <Route path="/faq" element={<Faq />} />
-                
+
+                {/* Catch-all route for 404 pages */}
+                <Route path="*" element={<NotFound />} />
+
             </Routes>
         </Layout>
     );
