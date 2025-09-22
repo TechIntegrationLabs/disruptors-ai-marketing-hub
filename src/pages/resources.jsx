@@ -5,8 +5,8 @@ import { createPageUrl } from '@/utils';
 import { ArrowRight, BookOpen, Bot, FileText, Search, Star } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import DualCTABlock from '../components/shared/DualCTABlock';
-import GeometricSeparator from '../components/shared/GeometricSeparator';
+import DualCTABlock from "@/components/shared/DualCTABlock";
+import GeometricSeparator from "@/components/shared/WavySeparator";
 
 const aiEmployees = [
   {

@@ -6,7 +6,7 @@ import { createPageUrl } from "@/utils";
 import { Menu, X, ArrowRight, Twitter, Youtube, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import LoadingScreen from "./components/shared/LoadingScreen";
+import LoadingScreen from "@/components/shared/LoadingScreen";
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
