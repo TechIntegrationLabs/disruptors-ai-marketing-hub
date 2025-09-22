@@ -181,9 +181,9 @@ function PagesContent() {
                 
                 <Route path="/Home" element={<Home />} />
                 
-                <Route path="/assessment" element={<assessment />} />
+                <Route path="/assessment" element={<Assessment />} />
                 
-                <Route path="/calculator" element={<calculator />} />
+                <Route path="/calculator" element={<Calculator />} />
                 
                 <Route path="/404" element={<NotFound />} />
                 
@@ -191,21 +191,21 @@ function PagesContent() {
                 
                 <Route path="/resources-ai-suitcase-terms-decoded" element={<ResourcesAiSuitcaseTermsDecoded />} />
                 
-                <Route path="/solutions" element={<solutions />} />
+                <Route path="/solutions" element={<Solutions />} />
                 
-                <Route path="/work" element={<work />} />
+                <Route path="/work" element={<Work />} />
                 
-                <Route path="/about" element={<about />} />
+                <Route path="/about" element={<About />} />
                 
-                <Route path="/resources" element={<resources />} />
+                <Route path="/resources" element={<Resources />} />
                 
-                <Route path="/contact" element={<contact />} />
+                <Route path="/contact" element={<Contact />} />
                 
-                <Route path="/privacy" element={<privacy />} />
+                <Route path="/privacy" element={<Privacy />} />
                 
-                <Route path="/terms" element={<terms />} />
+                <Route path="/terms" element={<Terms />} />
                 
-                <Route path="/blog" element={<blog />} />
+                <Route path="/blog" element={<Blog />} />
                 
                 <Route path="/blog-detail" element={<BlogDetail />} />
                 
@@ -247,11 +247,11 @@ function PagesContent() {
                 
                 <Route path="/solutions-fractional-cmo" element={<SolutionsFractionalCmo />} />
                 
-                <Route path="/podcast" element={<podcast />} />
+                <Route path="/podcast" element={<Podcast />} />
                 
-                <Route path="/gallery" element={<gallery />} />
+                <Route path="/gallery" element={<Gallery />} />
                 
-                <Route path="/faq" element={<faq />} />
+                <Route path="/faq" element={<Faq />} />
                 
             </Routes>
         </Layout>
