@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
 import { ArrowRight, Calendar, User } from 'lucide-react';
 import DualCTABlock from "@/components/shared/DualCTABlock";
 import GeometricSeparator from "@/components/shared/WavySeparator";

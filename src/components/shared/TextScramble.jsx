@@ -6,7 +6,6 @@ export default function TextScramble({ children, className = "", onHover = false
   const [displayText, setDisplayText] = useState(children);
   const [isScrambling, setIsScrambling] = useState(false);
   const originalText = useRef(children);
-  const scrambleTimeoutRef = useRef();
 
   useEffect(() => {
     originalText.current = children;

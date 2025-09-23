@@ -7,6 +7,9 @@ import { Menu, X, ArrowRight, Twitter, Youtube, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import LoadingScreen from "@/components/shared/LoadingScreen";
+import MatrixLogin from "@/components/admin/MatrixLogin";
+import DisruptorsAdmin from "@/components/admin/DisruptorsAdmin";
+import { useSecretAccess } from "@/hooks/useSecretAccess";
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
@@ -14,6 +17,20 @@ export default function Layout({ children, currentPageName }) {
   const [showLoading, setShowLoading] = React.useState(true);
   const [initialLoad, setInitialLoad] = React.useState(true);
   const [scrolled, setScrolled] = React.useState(false);
+
+  // Secret admin access hook
+  const {
+    showMatrixLogin,
+    isAdminAuthenticated,
+    adminUser,
+    handleLogoClick,
+    handleLoginSuccess,
+    handleLogout,
+    handleCloseMatrix,
+    clickCount,
+    isTimerActive,
+    REQUIRED_CLICKS
+  } = useSecretAccess();
 
   const navItems = [
     { name: "Work", path: "work" },
@@ -95,7 +112,20 @@ export default function Layout({ children, currentPageName }) {
             <LoadingScreen onComplete={handleLoadingComplete} />
           )}
 
-          <header className={`fixed top-0 left-0 right-0 z-50 text-white ${
+          {/* Admin Interface - Show instead of normal content when authenticated */}
+          {isAdminAuthenticated && (
+            <DisruptorsAdmin username={adminUser} onLogout={handleLogout} />
+          )}
+
+          {/* Matrix Login Modal */}
+          {showMatrixLogin && (
+            <MatrixLogin onLogin={handleLoginSuccess} onClose={handleCloseMatrix} />
+          )}
+
+          {/* Only show normal site content if not in admin mode */}
+          {!isAdminAuthenticated && (
+            <>
+              <header className={`fixed top-0 left-0 right-0 z-50 text-white ${
             isHomePage 
               ? `transition-all duration-500 ease-in-out ${scrolled ? 'bg-black/70 backdrop-blur-md' : 'bg-black/30 backdrop-blur-sm'}`
               : 'bg-black/70 backdrop-blur-md'
@@ -107,15 +137,30 @@ export default function Layout({ children, currentPageName }) {
                   : 'h-20'
               }`}>
                 <Link to={createPageUrl('')}>
-                  <img 
-                    src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/brand/logos/logo-menu.png" 
-                    alt="Disruptors Media Logo" 
-                    className={`object-contain w-auto ${
-                      isHomePage 
-                        ? `transition-all duration-500 ease-in-out ${scrolled ? 'h-10' : 'h-12'}`
-                        : 'h-10'
-                    }`}
-                  />
+                  <div
+                    onClick={handleLogoClick}
+                    className="relative cursor-pointer"
+                  >
+                    <img
+                      src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/brand/logos/logo-menu.png"
+                      alt="Disruptors Media Logo"
+                      className={`object-contain w-auto transition-all duration-500 ease-in-out ${
+                        isHomePage
+                          ? `${scrolled ? 'h-10' : 'h-12'}`
+                          : 'h-10'
+                      } ${isTimerActive ? 'animate-pulse' : ''}`}
+                    />
+
+                    {/* Secret Access Progress Indicator */}
+                    {isTimerActive && (
+                      <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gray-600 rounded">
+                        <div
+                          className="h-full bg-green-400 rounded transition-all duration-200"
+                          style={{ width: `${(clickCount / REQUIRED_CLICKS) * 100}%` }}
+                        />
+                      </div>
+                    )}
+                  </div>
                 </Link>
 
                 <nav className="hidden lg:flex items-center space-x-8">
@@ -237,6 +282,8 @@ export default function Layout({ children, currentPageName }) {
 
             </div>
           </footer>
+            </>
+          )}
         </div>
     </div>
   );

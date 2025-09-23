@@ -55,7 +55,7 @@ export default function TwoColumnLayout({
         </div>
       </div>
       
-      <style jsx>{`
+      <style>{`
         .image-shape-1 {
           clip-path: polygon(0% 20%, 100% 0%, 100% 70%, 20% 100%, 0% 80%);
           border-radius: 20px;

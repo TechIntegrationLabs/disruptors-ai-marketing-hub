@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
-import { Button } from '@/components/ui/button';
 import { TeamMember } from '@/api/entities';
 import { Linkedin } from 'lucide-react';
 import TwoColumnLayout from '../components/shared/TwoColumnLayout';

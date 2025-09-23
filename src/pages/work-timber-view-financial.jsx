@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, TrendingUp, Clock, Users, ArrowRight, Target, Globe, Zap } from 'lucide-react';
+import { ArrowRight, Target, Globe, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const caseData = {

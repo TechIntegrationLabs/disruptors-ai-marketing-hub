@@ -6,8 +6,24 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
   { ignores: ['dist'] },
+  // Node.js config files
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['*.config.js', 'test-connection.js'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: { ...globals.node },
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+    },
+  },
+  // React source files
+  {
+    files: ['src/**/*.{js,jsx}'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -29,6 +45,9 @@ export default [
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
       'react/jsx-no-target-blank': 'off',
+      'react/prop-types': 'off', // Disable prop-types since using React 18 JSX transform
+      'react/no-unescaped-entities': 'off', // Allow unescaped entities
+      'no-unused-vars': ['error', { 'vars': 'all', 'args': 'after-used', 'ignoreRestSiblings': false, 'varsIgnorePattern': '^React$' }],
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },

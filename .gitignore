@@ -30,3 +30,7 @@ dist-ssr
 # Include Cursor MCP configuration (but exclude .env)
 !.cursor/
 !.cursor/mcp.json
+
+# MCP configuration files (may contain secrets)
+mcp.json
+mcp_secrets

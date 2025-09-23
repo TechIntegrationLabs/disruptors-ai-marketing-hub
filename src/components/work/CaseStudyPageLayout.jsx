@@ -1,10 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { Star, Quote } from 'lucide-react';
+import { Quote } from 'lucide-react';
 import DualCTABlock from '../shared/DualCTABlock';
 
 export default function CaseStudyPageLayout({

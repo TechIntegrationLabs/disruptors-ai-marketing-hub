@@ -1,11 +1,10 @@
 
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const caseData = {
   client: 'SaaS Content Engine',
   goal: 'Scaled content production by 300% and reduced cost-per-article by 70%.',
-  heroMedia: '[PLACEHOLDER HERO IMAGE: SaaS dashboard graphic]',
+  heroMedia: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737507200/saas-content-engine-dashboard.webp',
   // metrics property removed as per request ("Stats removed")
   challenge: <p>A B2B SaaS client struggled to produce high-quality, technical content at the volume needed to compete in organic search. Their small marketing team was bottlenecked by research, writing, and review cycles, leading to a sparse content calendar and slow growth.</p>,
   approach: <p>We designed and implemented a "Content Engine" powered by AI. This system used fine-tuned language models for initial drafting, automated research agents to gather data and sources, and a streamlined human-in-the-loop workflow for editing and approval. We integrated this with their existing CMS for one-click publishing.</p>,
@@ -24,10 +23,12 @@ export default function WorkSaaSContentEngine() {
           <p className="text-xl sm:text-2xl text-indigo-600 font-semibold mb-8">{caseData.goal}</p>
           {caseData.heroMedia && (
             <div className="mt-10 overflow-hidden rounded-lg shadow-xl">
-              {/* Render heroMedia as a placeholder div as it's a string placeholder */}
-              <div className="bg-gray-200 flex items-center justify-center p-8 h-64 text-gray-600 text-lg">
-                {caseData.heroMedia}
-              </div>
+              <img
+                src={caseData.heroMedia}
+                alt="SaaS Content Engine Dashboard - Analytics and content management interface showing 300% increase in content production and 70% cost reduction"
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
             </div>
           )}
         </div>

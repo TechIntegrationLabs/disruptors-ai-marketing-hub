@@ -4,7 +4,6 @@ import { Resource } from '@/api/entities';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, User, Tag } from 'lucide-react';
 import DualCTABlock from '../components/shared/DualCTABlock';
-import Placeholder from '../components/shared/Placeholder';
 
 export default function BlogDetail() {
     const [post, setPost] = useState(null);
