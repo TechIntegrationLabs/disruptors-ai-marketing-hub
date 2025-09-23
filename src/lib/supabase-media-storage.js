@@ -1,18 +1,11 @@
 /**
  * Supabase Media Storage Integration
  * Handles storing and retrieving AI-generated media with full metadata
+ * Client-side version using browser-compatible Cloudinary client
  */
 
 import { supabase } from './supabase-client.js';
-import { v2 as cloudinary } from 'cloudinary';
-
-// Configure Cloudinary
-cloudinary.config({
-  cloud_name: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
-  api_key: import.meta.env.VITE_CLOUDINARY_API_KEY,
-  api_secret: import.meta.env.VITE_CLOUDINARY_API_SECRET,
-  secure: true
-});
+import { cloudinaryClient } from './cloudinary-client.js';
 
 class SupabaseMediaStorage {
   constructor() {
@@ -103,40 +96,36 @@ class SupabaseMediaStorage {
   }
 
   /**
-   * Upload media to Cloudinary with optimization
+   * Upload media to Cloudinary via backend API
    */
   async uploadToCloudinary(sourceUrl, type, prompt) {
     try {
       const uploadOptions = {
         folder: 'disruptors-ai/generated',
-        public_id: this.generatePublicId(type, prompt),
-        resource_type: type === 'video' ? 'video' : type === 'audio' ? 'video' : 'image',
-        quality: 'auto:good',
-        fetch_format: 'auto'
+        publicId: this.generatePublicId(type, prompt),
+        type: type
       };
 
-      // Type-specific optimizations
-      if (type === 'image') {
-        uploadOptions.transformation = [
-          { quality: 'auto:good' },
-          { fetch_format: 'auto' },
-          { flags: 'progressive' }
-        ];
-      } else if (type === 'video') {
-        uploadOptions.video_codec = 'h264';
-        uploadOptions.audio_codec = 'aac';
-      }
+      console.log('Uploading to Cloudinary via API:', { sourceUrl, uploadOptions });
 
-      console.log('Uploading to Cloudinary:', { sourceUrl, uploadOptions });
-
-      const result = await cloudinary.uploader.upload(sourceUrl, uploadOptions);
+      // Upload through backend API to avoid exposing secrets
+      const result = await cloudinaryClient.uploadFromUrl(sourceUrl, uploadOptions);
 
       console.log('Cloudinary upload successful:', result);
       return result;
 
     } catch (error) {
       console.error('Cloudinary upload failed:', error);
-      throw new Error(`Cloudinary upload failed: ${error.message}`);
+
+      // Fallback: store the original URL without Cloudinary
+      return {
+        secure_url: sourceUrl,
+        public_id: this.generatePublicId(type, prompt),
+        bytes: null,
+        width: null,
+        height: null,
+        format: 'unknown'
+      };
     }
   }
 
