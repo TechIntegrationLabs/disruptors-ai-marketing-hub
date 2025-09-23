@@ -16,25 +16,26 @@ export default defineConfig({
   },
   define: {
     global: 'globalThis',
+    'process.env': {}
   },
   optimizeDeps: {
     exclude: ['cloudinary'],
+    include: ['@google/generative-ai', 'openai', 'replicate'],
     esbuildOptions: {
       loader: {
         '.js': 'jsx',
       },
       define: {
-        global: 'globalThis'
+        global: 'globalThis',
+        'process.env': '{}'
       }
     },
   },
   build: {
     rollupOptions: {
-      external: ['url', 'fs', 'path'],
-      output: {
-        globals: {
-          'url': 'URL',
-        }
+      external: (id) => {
+        // Don't externalize these in the browser build
+        return false;
       }
     }
   }
