@@ -14,11 +14,28 @@ export default defineConfig({
     },
     extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.json']
   },
+  define: {
+    global: 'globalThis',
+  },
   optimizeDeps: {
+    exclude: ['cloudinary'],
     esbuildOptions: {
       loader: {
         '.js': 'jsx',
       },
+      define: {
+        global: 'globalThis'
+      }
     },
   },
+  build: {
+    rollupOptions: {
+      external: ['url', 'fs', 'path'],
+      output: {
+        globals: {
+          'url': 'URL',
+        }
+      }
+    }
+  }
 }) 
