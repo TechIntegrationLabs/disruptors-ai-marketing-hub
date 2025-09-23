@@ -1,5 +1,4 @@
 import React from 'react';
-import Placeholder from '../shared/Placeholder';
 
 export default function ClientLogoMarquee() {
   const logos = Array(12).fill(0).map((_, i) => `[PLACEHOLDER LOGO ${i + 1}]`);

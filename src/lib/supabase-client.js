@@ -5,7 +5,11 @@ const getEnvVar = (key, defaultValue) => {
   if (typeof import.meta !== 'undefined' && import.meta.env) {
     return import.meta.env[key] || defaultValue
   }
-  return process.env[key] || defaultValue
+  // For Node.js environments
+  if (typeof globalThis !== 'undefined' && globalThis.process && globalThis.process.env) {
+    return globalThis.process.env[key] || defaultValue
+  }
+  return defaultValue
 }
 
 const supabaseUrl = getEnvVar('VITE_SUPABASE_URL', 'http://127.0.0.1:54321')

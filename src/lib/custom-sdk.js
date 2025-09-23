@@ -6,7 +6,11 @@ const getEnvVar = (key, defaultValue) => {
   if (typeof import.meta !== "undefined" && import.meta.env) {
     return import.meta.env[key] || defaultValue;
   }
-  return process.env[key] || defaultValue;
+  // For Node.js environments
+  if (typeof globalThis !== "undefined" && globalThis.process && globalThis.process.env) {
+    return globalThis.process.env[key] || defaultValue;
+  }
+  return defaultValue;
 };
 
 // Create service role client for admin operations (bypasses RLS)

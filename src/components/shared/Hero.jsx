@@ -10,7 +10,7 @@ export default function Hero({
       {/* Background Video */}
       <div className="absolute inset-0 z-0 opacity-40">
         <video
-          src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758170556/dm-abt_ypkipj.mp4"
+          src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4"
           autoPlay
           loop
           muted

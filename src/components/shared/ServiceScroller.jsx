@@ -8,47 +8,56 @@ const services = [
   {
     title: "AI Automation",
     hook: "Automate repetitive tasks and workflows",
-    link: "solutions-ai-automation"
+    link: "solutions-ai-automation",
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/ai-automation-service.jpg"
   },
   {
     title: "Social Media Marketing",
     hook: "Build and engage your community",
-    link: "solutions-social-media"
+    link: "solutions-social-media",
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/social-media-marketing-service.jpg"
   },
   {
     title: "SEO & GEO",
     hook: "Get found by your ideal customers",
-    link: "solutions-seo-geo"
+    link: "solutions-seo-geo",
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/seo-geo-service.jpg"
   },
   {
     title: "Lead Generation",
     hook: "Fill your pipeline with qualified prospects",
-    link: "solutions-lead-generation"
+    link: "solutions-lead-generation",
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/lead-generation-service.jpg"
   },
   {
     title: "Paid Advertising",
     hook: "Maximize ROI across all channels",
-    link: "solutions-paid-advertising"
+    link: "solutions-paid-advertising",
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/paid-advertising-service.jpg"
   },
   {
     title: "Podcasting",
     hook: "Build authority through audio content",
-    link: "solutions-podcasting"
+    link: "solutions-podcasting",
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/podcasting-service.jpg"
   },
   {
     title: "Custom Apps",
     hook: "Tailored solutions for your needs",
-    link: "solutions-custom-apps"
+    link: "solutions-custom-apps",
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/custom-apps-service.jpg"
   },
   {
     title: "CRM Management",
     hook: "Organize and nurture your relationships",
-    link: "solutions-crm-management"
+    link: "solutions-crm-management",
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/crm-management-service.jpg"
   },
   {
     title: "Fractional CMO",
     hook: "Strategic marketing leadership",
-    link: "solutions-fractional-cmo"
+    link: "solutions-fractional-cmo",
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/fractional-cmo-service.jpg"
   }
 ];
 
@@ -88,9 +97,22 @@ export default function ServiceScroller({
                   >
                     <div className="service-card-shape bg-white/90 backdrop-blur-md shadow-lg border border-gray-200/50 hover:border-indigo-500/50 hover:shadow-2xl transition-all duration-300 p-8 h-full flex flex-col justify-between">
                       <div>
-                        <div className="service-image-shape bg-gradient-to-br from-indigo-100 to-indigo-200 mb-6 flex flex-col items-center justify-center">
-                          <div className="text-2xl text-indigo-600 font-bold">
-                            {service.title.split(' ').map(word => word[0]).join('')}
+                        <div className="service-image-shape mb-6 relative overflow-hidden">
+                          <img
+                            src={service.image}
+                            alt={`${service.title} service illustration`}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            onError={(e) => {
+                              // Fallback to gradient background with initials if image fails to load
+                              e.target.style.display = 'none';
+                              e.target.nextElementSibling.style.display = 'flex';
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-br from-indigo-100 to-indigo-200 hidden items-center justify-center">
+                            <div className="text-2xl text-indigo-600 font-bold">
+                              {service.title.split(' ').map(word => word[0]).join('')}
+                            </div>
                           </div>
                         </div>
                         <h3 className="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors duration-300 mb-2">
@@ -109,7 +131,7 @@ export default function ServiceScroller({
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .scrollbar-hide {
           -ms-overflow-style: none;
           scrollbar-width: none;

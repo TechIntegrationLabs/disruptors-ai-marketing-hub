@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
-import { ArrowRight, BookOpen, Bot, FileText, Search, Star } from 'lucide-react';
+import { ArrowRight, Bot, Search, Star } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import DualCTABlock from "@/components/shared/DualCTABlock";
