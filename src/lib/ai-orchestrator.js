@@ -21,12 +21,12 @@ class AIMediaOrchestrator {
 
     this.gemini = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 
-    // Default model configurations
+    // Default model configurations (browser-optimized)
     this.defaultModels = {
       image_generation: {
-        primary: "gpt-image-1",                           // OpenAI latest
-        secondary: "black-forest-labs/flux-1.1-pro",     // Replicate
-        budget: "stability-ai/sdxl",                      // Replicate
+        primary: "dall-e-3",                             // OpenAI (browser-safe)
+        secondary: "dall-e-3",                           // OpenAI fallback
+        budget: "dall-e-3",                              // OpenAI for consistency
         editing: "gemini-2.5-flash-image",               // Google Nano Banana
         specialized: {
           inpainting: "black-forest-labs/flux-fill",
@@ -169,12 +169,14 @@ class AIMediaOrchestrator {
 
     try {
       let result;
-      if (model === 'gpt-image-1') {
+      if (model === 'dall-e-3' || model === 'gpt-image-1') {
         result = await this.generateWithOpenAI(enhancedPrompt, options);
       } else if (model === 'gemini-2.5-flash-image') {
         result = await this.generateWithGemini(enhancedPrompt, options);
       } else {
-        result = await this.generateWithReplicate(model, enhancedPrompt, options);
+        // For browser deployment, always use OpenAI to avoid CORS issues
+        console.warn(`Model ${model} not available in browser, using OpenAI fallback`);
+        result = await this.generateWithOpenAI(enhancedPrompt, options);
       }
 
       // Store in Supabase with Cloudinary upload
