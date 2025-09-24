@@ -29,7 +29,7 @@ export default function TwoColumnLayout({
           >
             {kicker && <p className="text-sm font-bold uppercase tracking-wider text-indigo-600 mb-2">{kicker}</p>}
             {headline && <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">{headline}</h2>}
-            {body && <p className="text-lg text-gray-600 leading-relaxed">{body}</p>}
+            {body && <div className="text-lg text-gray-600 leading-relaxed">{body}</div>}
             {cta && (
               <Button asChild className="mt-8" size="lg">
                 <Link to={createPageUrl(cta.link)}>{cta.label}</Link>

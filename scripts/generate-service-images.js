@@ -27,8 +27,8 @@ const __dirname = path.dirname(__filename);
 const CONFIG = {
   replicate: {
     apiUrl: 'https://api.replicate.com/v1/predictions',
-    model: 'black-forest-labs/flux-schnell',
-    version: 'latest'
+    model: 'black-forest-labs/flux-1.1-pro',
+    version: null  // Use latest version from model
   },
   image: {
     width: 640,
@@ -137,14 +137,14 @@ class ServiceImageGenerator {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          version: CONFIG.replicate.version,
+          model: CONFIG.replicate.model,
           input: {
             prompt: service.prompt,
             width: CONFIG.image.width,
             height: CONFIG.image.height,
             num_outputs: 1,
             guidance_scale: 7.5,
-            num_inference_steps: 50,
+            num_inference_steps: 28,
             seed: Math.floor(Math.random() * 1000000)
           }
         })

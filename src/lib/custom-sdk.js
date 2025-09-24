@@ -144,6 +144,13 @@ export class CustomEntity {
         );
         return [];
       }
+      // Handle authentication errors gracefully
+      if (error.message && error.message.includes("Invalid API key")) {
+        console.warn(
+          `Authentication failed for ${this.tableName}, using placeholder/demo mode`
+        );
+        return [];
+      }
       throw error;
     }
     return this.mapResultFields(data) || [];
@@ -194,6 +201,13 @@ export class CustomEntity {
       ) {
         console.warn(
           `Table ${this.tableName} does not exist, returning empty array`
+        );
+        return [];
+      }
+      // Handle authentication errors gracefully
+      if (error.message && error.message.includes("Invalid API key")) {
+        console.warn(
+          `Authentication failed for ${this.tableName}, using placeholder/demo mode`
         );
         return [];
       }

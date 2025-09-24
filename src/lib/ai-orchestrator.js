@@ -203,9 +203,13 @@ class AIMediaOrchestrator {
 
     } catch (error) {
       console.error(`Failed to generate with ${model}, trying fallback:`, error);
-      // Fallback to secondary model
-      const fallbackModel = this.defaultModels.image_generation.secondary;
-      const fallbackResult = await this.generateWithReplicate(fallbackModel, enhancedPrompt, options);
+      // If original was Replicate and failed due to CORS, use OpenAI instead
+      if (error.message && error.message.includes('Browser-based Replicate generation not supported')) {
+        const fallbackResult = await this.generateWithOpenAI(enhancedPrompt, options);
+        return fallbackResult;
+      }
+      // Fallback to secondary model (but avoid Replicate in browser)
+      const fallbackResult = await this.generateWithOpenAI(enhancedPrompt, options);
 
       // Try to store fallback result too
       try {
@@ -340,20 +344,29 @@ class AIMediaOrchestrator {
    * Replicate Generation (Images, Videos, Audio)
    */
   async generateWithReplicate(model, prompt, options = {}) {
-    const input = this.buildReplicateInput(model, prompt, options);
+    try {
+      const input = this.buildReplicateInput(model, prompt, options);
 
-    const output = await this.replicate.run(model, { input });
+      const output = await this.replicate.run(model, { input });
 
-    return {
-      url: Array.isArray(output) ? output[0] : output,
-      provider: 'replicate',
-      model: model,
-      cost: this.calculateCost('replicate', this.getMediaType(model), options),
-      metadata: {
-        prompt: prompt,
-        input: input
+      return {
+        url: Array.isArray(output) ? output[0] : output,
+        provider: 'replicate',
+        model: model,
+        cost: this.calculateCost('replicate', this.getMediaType(model), options),
+        metadata: {
+          prompt: prompt,
+          input: input
+        }
+      };
+    } catch (error) {
+      // Handle CORS errors for browser-based usage
+      if (error.message && error.message.includes('Failed to fetch')) {
+        console.warn('Replicate API not available in browser due to CORS policy. Use server-side proxy for production.');
+        throw new Error('Browser-based Replicate generation not supported. Please use OpenAI or Gemini models.');
       }
-    };
+      throw error;
+    }
   }
 
   /**

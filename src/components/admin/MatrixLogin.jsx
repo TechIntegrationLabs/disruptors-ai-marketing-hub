@@ -263,7 +263,7 @@ const MatrixLogin = ({ onLogin, onClose }) => {
       </div>
 
       {/* Custom Styles */}
-      <style jsx>{`
+      <style>{`
         @keyframes scanlines {
           0% { transform: translateY(0); }
           100% { transform: translateY(4px); }
