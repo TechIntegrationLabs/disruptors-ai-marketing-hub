@@ -33,7 +33,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: (id) => {
+      external: () => {
         // Don't externalize these in the browser build
         return false;
       }
