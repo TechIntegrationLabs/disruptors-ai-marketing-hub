@@ -163,3 +163,25 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 **UI & Styling**: `tailwindcss@^3.4.17`, `@radix-ui/*` (20+ packages), `framer-motion@^12.4.7`
 **Data & API**: `@supabase/supabase-js@^2.57.4`, `@base44/sdk@^0.1.2`
 **AI Services**: `openai@^5.23.0`, `@google/generative-ai@^0.24.1`, `replicate@^1.2.0`
+
+## Important Development Notes
+
+### Testing and Quality Assurance
+- **No test framework** is configured - verify functionality through manual browser testing
+- **Linting**: Always run `npm run lint` before commits (ESLint with React rules)
+- **Error Debugging**: Check browser console and network tab for client-side issues
+
+### Data Layer Architecture
+- **Use `src/lib/custom-sdk.js`** for ALL data operations - provides Base44-compatible API over Supabase
+- **Dual client setup**: Service role for admin operations, regular for user operations
+- **Environment variables**: All client-accessible config uses `VITE_` prefix
+
+### Automation and Workflow
+- **Auto-commit system**: `npm run dev:auto` enables intelligent auto-commits during development
+- **Scripts directory**: Contains automation for changelog management, deployment setup, and integration management
+- **Deployment**: Netlify with `_redirects` file handling SPA routing, CSP headers configured
+
+### Component Development Standards
+- **Follow Radix UI patterns**: Reference `src/components/ui/` for consistent shadcn/ui implementation
+- **File organization**: Domain-specific components in feature directories (`home/`, `work/`, `solutions/`)
+- **Animation patterns**: Use Framer Motion for transitions, following existing component patterns
