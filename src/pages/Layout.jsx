@@ -142,7 +142,7 @@ export default function Layout({ children, currentPageName }) {
                     className="relative cursor-pointer"
                   >
                     <img
-                      src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/brand/logos/logo-menu.png"
+                      src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758752837/logo_a4toul.png"
                       alt="Disruptors Media Logo"
                       className={`object-contain w-auto transition-all duration-500 ease-in-out ${
                         isHomePage

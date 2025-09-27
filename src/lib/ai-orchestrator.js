@@ -24,17 +24,17 @@ class AIMediaOrchestrator {
     // Default model configurations (browser-optimized)
     this.defaultModels = {
       image_generation: {
-        primary: "dall-e-3",                             // OpenAI (browser-safe)
-        secondary: "dall-e-3",                           // OpenAI fallback
-        budget: "dall-e-3",                              // OpenAI for consistency
-        editing: "gemini-2.5-flash-image",               // Google Nano Banana
+        primary: "gpt-image-1",                          // OpenAI GPT Image (latest)
+        secondary: "gemini-2.5-flash-image",             // Google Gemini fallback
+        budget: "gemini-2.5-flash-image",                // Google for budget option
+        editing: "gpt-image-1",                          // OpenAI for editing
         specialized: {
-          inpainting: "black-forest-labs/flux-fill",
-          structural: "black-forest-labs/flux-canny",
-          depth_guided: "black-forest-labs/flux-depth",
-          image_conditioned: "black-forest-labs/flux-redux",
-          text_rendering: "qwen/qwen-image",
-          professional_creative: "hidream/hidream-models"
+          inpainting: "gpt-image-1",
+          structural: "gpt-image-1",
+          depth_guided: "gpt-image-1",
+          image_conditioned: "gpt-image-1",
+          text_rendering: "gpt-image-1",
+          professional_creative: "gpt-image-1"
         }
       },
       video_generation: {
@@ -169,12 +169,12 @@ class AIMediaOrchestrator {
 
     try {
       let result;
-      if (model === 'dall-e-3' || model === 'gpt-image-1') {
+      if (model === 'gpt-image-1') {
         result = await this.generateWithOpenAI(enhancedPrompt, options);
       } else if (model === 'gemini-2.5-flash-image') {
         result = await this.generateWithGemini(enhancedPrompt, options);
       } else {
-        // For browser deployment, always use OpenAI to avoid CORS issues
+        // For browser deployment, always use OpenAI or Gemini to avoid CORS issues
         console.warn(`Model ${model} not available in browser, using OpenAI fallback`);
         result = await this.generateWithOpenAI(enhancedPrompt, options);
       }
@@ -298,18 +298,18 @@ class AIMediaOrchestrator {
    */
   async generateWithOpenAI(prompt, options = {}) {
     const response = await this.openai.images.generate({
-      model: "dall-e-3", // Will be updated to gpt-image-1 when available
+      model: "gpt-image-1",
       prompt: prompt,
       n: 1,
       size: `${options.width || 1024}x${options.height || 1024}`,
-      quality: options.quality === 'premium' ? 'hd' : 'standard',
-      style: options.style || 'natural'
+      quality: options.quality === 'premium' ? 'high' : 'medium',
+      response_format: 'b64_json'
     });
 
     return {
-      url: response.data[0].url,
+      url: `data:image/png;base64,${response.data[0].b64_json}`,
       provider: 'openai',
-      model: 'dall-e-3',
+      model: 'gpt-image-1',
       cost: this.calculateCost('openai', 'image', options),
       metadata: {
         prompt: prompt,

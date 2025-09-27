@@ -30,6 +30,8 @@ import Blog from "./blog.jsx";
 
 import BlogDetail from "./blog-detail.jsx";
 
+import BlogManagement from "./blog-management.jsx";
+
 import WorkTradeworxUsa from "./work-tradeworx-usa.jsx";
 
 import WorkTimberViewFinancial from "./work-timber-view-financial.jsx";
@@ -105,8 +107,10 @@ const PAGES = {
     terms: Terms,
     
     blog: Blog,
-    
+
     "blog-detail": BlogDetail,
+
+    "blog-management": BlogManagement,
     
     "work-tradeworx-usa": WorkTradeworxUsa,
     
@@ -208,6 +212,8 @@ function PagesContent() {
                 <Route path="/blog" element={<Blog />} />
                 
                 <Route path="/blog-detail" element={<BlogDetail />} />
+
+                <Route path="/blog-management" element={<BlogManagement />} />
                 
                 <Route path="/work-tradeworx-usa" element={<WorkTradeworxUsa />} />
                 

@@ -18,9 +18,12 @@ import {
   User
 } from 'lucide-react';
 import AIMediaGenerator from '@/components/shared/AIMediaGenerator';
+import MarketingImageBatchGenerator from './MarketingImageBatchGenerator';
+import AIBatchPlanner from './AIBatchPlanner';
 
 const DisruptorsAdmin = ({ username, onLogout }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [customBatchPlan, setCustomBatchPlan] = useState(null);
   const [systemStats, setSystemStats] = useState({
     uptime: '47:23:12',
     connections: 12,
@@ -44,6 +47,13 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
       icon: Image,
       description: 'Generate images, videos, and audio using AI',
       color: 'from-purple-500 to-blue-500'
+    },
+    {
+      id: 'batch',
+      label: 'Marketing Images',
+      icon: Zap,
+      description: 'Batch generate all marketing website images',
+      color: 'from-cyan-500 to-purple-500'
     },
     {
       id: 'database',
@@ -175,7 +185,7 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
         <Tabs defaultValue="media" className="w-full">
 
           {/* Tab Navigation */}
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-black/50 border border-green-400/30 mb-8">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 bg-black/50 border border-green-400/30 mb-8">
             {adminTabs.map((tab) => {
               const IconComponent = tab.icon;
               return (
@@ -209,6 +219,43 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
               </CardHeader>
               <CardContent>
                 <AIMediaGenerator />
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Marketing Batch Generator Tab */}
+          <TabsContent value="batch" className="space-y-6">
+            <Card className="bg-black/50 border-green-400/30">
+              <CardHeader>
+                <div className="flex items-center space-x-2">
+                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${adminTabs[1].color} flex items-center justify-center`}>
+                    <Zap className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-green-400">AI-Powered Batch Generation</CardTitle>
+                    <CardDescription className="text-green-400/60">
+                      Plan and generate custom image batches using natural language and site intelligence
+                    </CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <Tabs defaultValue="planner" className="w-full">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="planner">AI Batch Planner</TabsTrigger>
+                    <TabsTrigger value="generator">
+                      {customBatchPlan ? 'Custom Generator' : 'Default Generator'}
+                    </TabsTrigger>
+                  </TabsList>
+
+                  <TabsContent value="planner" className="mt-6">
+                    <AIBatchPlanner onGenerateBatch={setCustomBatchPlan} />
+                  </TabsContent>
+
+                  <TabsContent value="generator" className="mt-6">
+                    <MarketingImageBatchGenerator customPlan={customBatchPlan} />
+                  </TabsContent>
+                </Tabs>
               </CardContent>
             </Card>
           </TabsContent>
