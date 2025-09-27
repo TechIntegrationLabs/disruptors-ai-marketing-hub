@@ -30,10 +30,7 @@ const AIMediaGenerator = () => {
     image: [
       { value: 'auto', label: 'Auto Select (Recommended)', icon: Sparkles },
       { value: 'gpt-image-1', label: 'OpenAI GPT-Image-1', icon: Crown, description: 'Latest & Premium' },
-      { value: 'dall-e-3', label: 'OpenAI DALL-E 3', icon: Zap, description: 'Reliable' },
-      { value: 'gemini-2.5-flash-image', label: 'Google Nano Banana', icon: Image, description: 'Editing & Composition' },
-      { value: 'flux-1.1-pro', label: 'Replicate FLUX Pro', icon: Crown, description: 'State-of-the-art' },
-      { value: 'sdxl', label: 'Replicate SDXL', icon: Image, description: 'Budget-friendly' }
+      { value: 'gemini-2.5-flash-image', label: 'Google Gemini 2.5 Flash', icon: Image, description: 'Fast & Efficient' }
     ],
     video: [
       { value: 'auto', label: 'Auto Select (Recommended)', icon: Sparkles },
