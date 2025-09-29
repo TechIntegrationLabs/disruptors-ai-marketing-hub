@@ -49,9 +49,9 @@ function testCostCalculation() {
 
   try {
     const testCases = [
-      { size: '1024x1024', quality: 'standard', expected: 0.02 },
-      { size: '1536x1024', quality: 'standard', expected: 0.03 },
-      { size: '1024x1024', quality: 'hd', inputFidelity: 'high', expected: 0.19 }
+      { size: '1024x1024', quality: 'medium', expected: 0.02 },
+      { size: '1536x1024', quality: 'medium', expected: 0.03 },
+      { size: '1024x1024', quality: 'high', inputFidelity: 'high', expected: 0.19 }
     ];
 
     let allPassed = true;
@@ -117,7 +117,7 @@ async function testImageGeneration() {
     const buffer = await openaiGenerate({
       prompt,
       size: '1024x1024',
-      quality: 'standard'
+      quality: 'medium'
     });
 
     console.log('   ✅ Image generated successfully');

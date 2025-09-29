@@ -57,36 +57,57 @@ function getClient() {
  * @param {Object} params - Generation parameters
  * @param {string} params.prompt - Image description
  * @param {string} [params.size='1024x1024'] - Image size (1024x1024, 1536x1024, 1024x1536)
- * @param {string} [params.quality='standard'] - Quality level (standard, hd)
+ * @param {string} [params.quality='medium'] - Quality level (low, medium, high, auto)
  * @param {string} [params.inputFidelity='medium'] - Fidelity level (low, medium, high) - use high for logos/faces
  * @returns {Promise<Buffer>} PNG image as Buffer
  */
 export async function openaiGenerate({
   prompt,
   size = '1024x1024',
-  quality = 'standard',
+  quality = 'medium',
   inputFidelity = 'medium'
 }) {
   validateModel(MODEL_ID);
   const client = getClient();
 
   try {
-    const response = await client.images.generate({
+    // Build request parameters - gpt-image-1 uses different parameters than DALL-E
+    const requestParams = {
       model: MODEL_ID,
       prompt,
       size,
       quality,
-      input_fidelity: inputFidelity,
-      n: 1,
-      response_format: 'b64_json' // Get base64 for server-side processing
-    });
+      n: 1
+    };
 
-    const b64 = response.data[0].b64_json;
-    if (!b64) {
-      throw new Error('No image data returned from OpenAI');
+    // Note: input_fidelity and response_format are not currently supported in gpt-image-1
+    // Keep parameter for future compatibility
+    if (inputFidelity) {
+      console.log(`Note: input_fidelity="${inputFidelity}" requested but not currently supported by API`);
     }
 
-    return Buffer.from(b64, 'base64');
+    const response = await client.images.generate(requestParams);
+
+    console.log('Response data keys:', Object.keys(response.data[0]));
+
+    // Try to get URL or b64_json from response
+    const imageData = response.data[0];
+
+    if (imageData.url) {
+      // Fetch image from URL
+      const imageResponse = await fetch(imageData.url);
+      if (!imageResponse.ok) {
+        throw new Error(`Failed to fetch generated image: ${imageResponse.statusText}`);
+      }
+      const arrayBuffer = await imageResponse.arrayBuffer();
+      return Buffer.from(arrayBuffer);
+    } else if (imageData.b64_json) {
+      // Return base64 decoded data
+      return Buffer.from(imageData.b64_json, 'base64');
+    } else {
+      console.error('Full response:', JSON.stringify(response, null, 2));
+      throw new Error('No image URL or b64_json returned from OpenAI');
+    }
   } catch (error) {
     console.error('OpenAI gpt-image-1 generation error:', error);
     throw error;
@@ -120,10 +141,13 @@ export async function openaiEdit({
       prompt,
       image: fs.createReadStream(imagePath),
       size,
-      input_fidelity: inputFidelity,
-      n: 1,
-      response_format: 'b64_json'
+      n: 1
     };
+
+    // Note: input_fidelity and response_format are not currently supported in gpt-image-1
+    if (inputFidelity) {
+      console.log(`Note: input_fidelity="${inputFidelity}" requested but not currently supported by API`);
+    }
 
     // Add mask if provided
     if (maskPath) {
@@ -132,12 +156,20 @@ export async function openaiEdit({
 
     const response = await client.images.edits(requestParams);
 
-    const b64 = response.data[0].b64_json;
-    if (!b64) {
-      throw new Error('No image data returned from OpenAI edit');
+    // Get URL from response and fetch image data
+    const imageUrl = response.data[0].url;
+    if (!imageUrl) {
+      throw new Error('No image URL returned from OpenAI edit');
     }
 
-    return Buffer.from(b64, 'base64');
+    // Fetch image as buffer
+    const imageResponse = await fetch(imageUrl);
+    if (!imageResponse.ok) {
+      throw new Error(`Failed to fetch edited image: ${imageResponse.statusText}`);
+    }
+
+    const arrayBuffer = await imageResponse.arrayBuffer();
+    return Buffer.from(arrayBuffer);
   } catch (error) {
     console.error('OpenAI gpt-image-1 edit error:', error);
     throw error;
@@ -158,7 +190,7 @@ export function getModelInfo() {
       'c2pa-metadata'
     ],
     sizes: ['1024x1024', '1536x1024', '1024x1536'],
-    qualities: ['standard', 'hd'],
+    qualities: ['low', 'medium', 'high', 'auto'],
     inputFidelityLevels: ['low', 'medium', 'high'],
     pricing: {
       '1024x1024': 0.02,
@@ -181,7 +213,7 @@ export function getModelInfo() {
  * @returns {number} Estimated cost in USD
  */
 export function calculateCost({ size, quality, inputFidelity }) {
-  if (inputFidelity === 'high' && quality === 'hd') {
+  if (inputFidelity === 'high' && quality === 'high') {
     return 0.19;
   }
   if (size === '1536x1024' || size === '1024x1536') {
