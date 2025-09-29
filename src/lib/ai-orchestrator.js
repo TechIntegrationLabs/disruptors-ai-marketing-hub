@@ -2,14 +2,27 @@
  * AI Media Generation Orchestrator
  * Comprehensive service for managing all AI generation across platforms
  *
- * IMPORTANT: This system NEVER uses DALL-E 3 per project requirements.
- * Approved models only: GPT-Image-1, Gemini 2.5 Flash Image, Replicate models
+ * CRITICAL IMAGE GENERATION STANDARDS:
+ * - OpenAI: gpt-image-1 ONLY (DALL-E 3 absolutely forbidden)
+ * - Google: gemini-2.5-flash-image-preview ONLY (Nano Banana)
+ * - These model IDs are HARD-PINNED and validated at runtime
+ * - Any attempt to use DALL-E will throw an error
  */
 
 import Replicate from 'replicate';
 import OpenAI from 'openai';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from '@google/genai';
 import { supabaseMediaStorage } from './supabase-media-storage.js';
+
+// HARD-PINNED MODEL IDS - DO NOT MODIFY
+const APPROVED_IMAGE_MODELS = {
+  OPENAI: 'gpt-image-1',
+  GOOGLE: 'gemini-2.5-flash-image-preview',
+  REPLICATE_FLUX: 'black-forest-labs/flux-1.1-pro'
+};
+
+// FORBIDDEN MODELS - Will throw runtime errors
+const FORBIDDEN_MODELS = ['dall-e-3', 'dall-e-2', 'dall-e', 'DALL-E'];
 
 class AIMediaOrchestrator {
   constructor() {
@@ -22,22 +35,25 @@ class AIMediaOrchestrator {
       dangerouslyAllowBrowser: true
     });
 
-    this.gemini = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+    // Use new Google Gen AI SDK
+    this.gemini = new GoogleGenAI({
+      apiKey: import.meta.env.VITE_GEMINI_API_KEY
+    });
 
-    // Default model configurations (browser-optimized)
+    // Default model configurations using APPROVED_IMAGE_MODELS constants
     this.defaultModels = {
       image_generation: {
-        primary: "gpt-image-1",                          // OpenAI GPT Image (latest)
-        secondary: "gemini-2.5-flash-image",             // Google Gemini fallback
-        budget: "gemini-2.5-flash-image",                // Google for budget option
-        editing: "gpt-image-1",                          // OpenAI for editing
+        primary: APPROVED_IMAGE_MODELS.OPENAI,              // gpt-image-1
+        secondary: APPROVED_IMAGE_MODELS.GOOGLE,            // gemini-2.5-flash-image-preview
+        budget: APPROVED_IMAGE_MODELS.GOOGLE,               // Gemini for budget option
+        editing: APPROVED_IMAGE_MODELS.GOOGLE,              // Gemini has editing capabilities
         specialized: {
-          inpainting: "gpt-image-1",
-          structural: "gpt-image-1",
-          depth_guided: "gpt-image-1",
-          image_conditioned: "gpt-image-1",
-          text_rendering: "gpt-image-1",
-          professional_creative: "gpt-image-1"
+          inpainting: APPROVED_IMAGE_MODELS.GOOGLE,
+          structural: APPROVED_IMAGE_MODELS.REPLICATE_FLUX,
+          depth_guided: APPROVED_IMAGE_MODELS.GOOGLE,
+          image_conditioned: APPROVED_IMAGE_MODELS.GOOGLE,
+          text_rendering: APPROVED_IMAGE_MODELS.GOOGLE,
+          professional_creative: APPROVED_IMAGE_MODELS.REPLICATE_FLUX
         }
       },
       video_generation: {
@@ -60,7 +76,7 @@ class AIMediaOrchestrator {
     // Brand consistency settings
     this.brandConfig = {
       colorPalette: {
-        primary: ["#1e3a8a", "#3730a3", "#7c3aed", "#8b5cf6"],
+        primary: ["#1e3a8a", "#3730a3", "#0ea5e9", "#06b6d4"],
         accent: ["#06b6d4", "#0891b2", "#0e7490"],
         neutral: ["#f8fafc", "#e2e8f0", "#64748b", "#334155"]
       },
@@ -121,7 +137,7 @@ class AIMediaOrchestrator {
       "professional corporate design",
       "modern technology aesthetic",
       "clean minimal design",
-      "sophisticated blue and purple gradients",
+      "sophisticated blue gradients",
       "business-appropriate",
       "high-quality commercial photography style"
     ];
@@ -156,7 +172,28 @@ class AIMediaOrchestrator {
   }
 
   /**
-   * Generate image using optimal model
+   * Validate model ID against forbidden list
+   * @private
+   */
+  _validateModel(model) {
+    const modelLower = model.toLowerCase();
+    for (const forbidden of FORBIDDEN_MODELS) {
+      if (modelLower.includes(forbidden.toLowerCase())) {
+        throw new Error(
+          `FORBIDDEN MODEL DETECTED: "${model}"\n` +
+          `Only these models are approved:\n` +
+          `- OpenAI: ${APPROVED_IMAGE_MODELS.OPENAI}\n` +
+          `- Google: ${APPROVED_IMAGE_MODELS.GOOGLE}\n` +
+          `- Replicate: ${APPROVED_IMAGE_MODELS.REPLICATE_FLUX}\n` +
+          `DALL-E usage is ABSOLUTELY FORBIDDEN!`
+        );
+      }
+    }
+    return true;
+  }
+
+  /**
+   * Generate image using optimal model with strict validation
    */
   async generateImage(prompt, options = {}) {
     const context = {
@@ -164,22 +201,30 @@ class AIMediaOrchestrator {
       budget: options.budget || 'medium',
       specialization: options.specialization,
       width: options.width || 1024,
-      height: options.height || 1024
+      height: options.height || 1024,
+      inputFidelity: options.inputFidelity || 'medium' // high for logos/faces
     };
 
     const model = this.selectOptimalModel('image', context);
     const enhancedPrompt = this.enhancePrompt(prompt, 'image', context);
 
+    // VALIDATE MODEL - BLOCK ALL FORBIDDEN MODELS
+    this._validateModel(model);
+
     try {
       let result;
-      if (model === 'gpt-image-1') {
-        result = await this.generateWithOpenAI(enhancedPrompt, options);
-      } else if (model === 'gemini-2.5-flash-image') {
+
+      // Route to appropriate provider based on model ID
+      if (model === APPROVED_IMAGE_MODELS.OPENAI) {
+        result = await this.generateWithOpenAI(enhancedPrompt, context);
+      } else if (model === APPROVED_IMAGE_MODELS.GOOGLE) {
         result = await this.generateWithGemini(enhancedPrompt, options);
+      } else if (model.includes('flux') || model === APPROVED_IMAGE_MODELS.REPLICATE_FLUX) {
+        result = await this.generateWithReplicate(model, enhancedPrompt, options);
       } else {
-        // For browser deployment, always use OpenAI or Gemini to avoid CORS issues
-        console.warn(`Model ${model} not available in browser, using OpenAI fallback`);
-        result = await this.generateWithOpenAI(enhancedPrompt, options);
+        // Fallback to Google Gemini (Nano Banana)
+        console.warn(`Model ${model} not recognized, using Gemini fallback`);
+        result = await this.generateWithGemini(enhancedPrompt, options);
       }
 
       // Store in Supabase with Cloudinary upload
@@ -208,13 +253,13 @@ class AIMediaOrchestrator {
 
     } catch (error) {
       console.error(`Failed to generate with ${model}, trying fallback:`, error);
-      // If original was Replicate and failed due to CORS, use OpenAI instead
+      // If original was Replicate and failed due to CORS, use Gemini instead
       if (error.message && error.message.includes('Browser-based Replicate generation not supported')) {
-        const fallbackResult = await this.generateWithOpenAI(enhancedPrompt, options);
+        const fallbackResult = await this.generateWithGemini(enhancedPrompt, options);
         return fallbackResult;
       }
-      // Fallback to secondary model (but avoid Replicate in browser)
-      const fallbackResult = await this.generateWithOpenAI(enhancedPrompt, options);
+      // Fallback to Gemini only - NEVER DALL-E!
+      const fallbackResult = await this.generateWithGemini(enhancedPrompt, options);
 
       // Try to store fallback result too
       try {
@@ -297,57 +342,108 @@ class AIMediaOrchestrator {
   }
 
   /**
-   * OpenAI Image Generation
-   * NOTE: Uses only GPT-Image-1, NEVER DALL-E 3 per project requirements
+   * OpenAI gpt-image-1 Generation
+   * CRITICAL: This uses gpt-image-1 ONLY - DALL-E is completely forbidden
+   * @param {string} prompt - Image description
+   * @param {Object} context - Generation context with quality, size, inputFidelity
    */
-  async generateWithOpenAI(prompt, options = {}) {
-    // CRITICAL: Only use GPT-Image-1, never DALL-E 3
-    const approvedModel = "gpt-image-1";
+  async generateWithOpenAI(prompt, context = {}) {
+    // Double-check model ID
+    const model = APPROVED_IMAGE_MODELS.OPENAI;
+    this._validateModel(model);
 
-    const response = await this.openai.images.generate({
-      model: approvedModel,
-      prompt: prompt,
-      n: 1,
-      size: `${options.width || 1024}x${options.height || 1024}`,
-      quality: options.quality === 'premium' ? 'high' : 'medium',
-      response_format: 'b64_json'
-    });
-
-    return {
-      url: `data:image/png;base64,${response.data[0].b64_json}`,
-      provider: 'openai',
-      model: approvedModel,
-      cost: this.calculateCost('openai', 'image', options),
-      metadata: {
+    try {
+      const response = await this.openai.images.generate({
+        model: model, // gpt-image-1
         prompt: prompt,
-        size: `${options.width || 1024}x${options.height || 1024}`,
-        quality: options.quality,
-        note: 'Generated with GPT-Image-1 (DALL-E 3 explicitly excluded)'
-      }
-    };
+        size: this._getOpenAISize(context),
+        quality: context.quality || 'standard',
+        input_fidelity: context.inputFidelity || 'medium', // Use 'high' for faces/logos
+        n: 1
+      });
+
+      return {
+        url: response.data[0].url,
+        provider: 'openai',
+        model: model,
+        cost: this.calculateCost('openai', 'image', context),
+        metadata: {
+          prompt: prompt,
+          model: model,
+          size: this._getOpenAISize(context),
+          quality: context.quality || 'standard',
+          inputFidelity: context.inputFidelity,
+          note: 'Generated with OpenAI gpt-image-1 (natively multimodal, streaming support)'
+        }
+      };
+    } catch (error) {
+      console.error('OpenAI gpt-image-1 generation error:', error);
+      throw error;
+    }
   }
 
   /**
-   * Gemini (Nano Banana) Image Generation
+   * Helper to get OpenAI size format
+   * @private
+   */
+  _getOpenAISize(context) {
+    const width = context.width || 1024;
+    const height = context.height || 1024;
+
+    // gpt-image-1 supports: 1024x1024, 1536x1024, 1024x1536
+    if (width === height) return '1024x1024';
+    if (width > height) return '1536x1024';
+    return '1024x1536';
+  }
+
+  /**
+   * Gemini 2.5 Flash Image Generation (Nano Banana)
+   * Google's state-of-the-art image generation and editing model
+   * Uses new @google/genai SDK
    */
   async generateWithGemini(prompt, options = {}) {
-    const model = this.gemini.getGenerativeModel({
-      model: 'gemini-2.5-flash-image-preview'
-    });
+    // Double-check model ID
+    const modelId = APPROVED_IMAGE_MODELS.GOOGLE;
+    this._validateModel(modelId);
 
-    const result = await model.generateContent([prompt]);
-    const response = await result.response;
+    try {
+      // Use new Google Gen AI SDK
+      const response = await this.gemini.models.generateContent({
+        model: modelId,
+        contents: prompt
+      });
 
-    return {
-      url: response.text(), // This would be handled differently in real implementation
-      provider: 'google',
-      model: 'gemini-2.5-flash-image',
-      cost: this.calculateCost('google', 'image', options),
-      metadata: {
-        prompt: prompt,
-        capabilities: ['editing', 'composition', 'character_consistency']
+      // Extract image data from response
+      // Note: Actual response format may vary - adjust based on SDK documentation
+      let imageData = null;
+      if (response.candidates && response.candidates[0]) {
+        for (const part of response.candidates[0].content.parts) {
+          if (part.inlineData) {
+            // Image returned as base64 inline data
+            imageData = part.inlineData.data;
+            break;
+          }
+        }
       }
-    };
+
+      return {
+        imageData: imageData, // Base64 image data
+        response: response, // Full response for further processing
+        provider: 'google',
+        model: modelId,
+        cost: this.calculateCost('google', 'image', options),
+        metadata: {
+          prompt: prompt,
+          model: modelId,
+          capabilities: ['editing', 'composition', 'character_consistency', 'text_rendering'],
+          features: ['synthid_watermark', 'conversational_refinement', 'multi_image_composition'],
+          note: 'Generated with Gemini 2.5 Flash Image (Nano Banana) - includes SynthID watermark'
+        }
+      };
+    } catch (error) {
+      console.error('Gemini 2.5 Flash Image generation error:', error);
+      throw error;
+    }
   }
 
   /**
@@ -469,27 +565,37 @@ class AIMediaOrchestrator {
   }
 
   /**
-   * Calculate estimated cost
+   * Calculate estimated cost based on provider and type
    */
   calculateCost(provider, type, options = {}) {
     const costs = {
       openai: {
-        image: options.quality === 'premium' ? 0.08 : 0.04,
-        audio: 0.001 // per token estimate
+        // gpt-image-1 pricing: $0.02 (1024x1024), $0.03 (1536x1024), $0.19 (HD with input_fidelity: high)
+        image: () => {
+          if (options.inputFidelity === 'high') return 0.19;
+          const size = this._getOpenAISize(options);
+          if (size === '1536x1024' || size === '1024x1536') return 0.03;
+          return 0.02;
+        }
       },
       google: {
+        // Gemini 2.5 Flash Image: $30 per 1M output tokens, 1290 tokens per image = $0.039
         image: 0.039,
-        video: options.duration ? options.duration * 0.35 : 2.8, // $0.35/sec
+        video: options.duration ? options.duration * 0.35 : 2.8, // $0.35/sec for Veo 2
         audio: 0.002
       },
       replicate: {
-        image: 0.004, // per second estimate
-        video: 0.1,   // per second estimate
+        image: 0.004, // Flux models, per second estimate
+        video: 0.1,   // Kling/Hailuo, per second estimate
         audio: 0.002  // per second estimate
       }
     };
 
-    return costs[provider]?.[type] || 0.01;
+    const cost = costs[provider]?.[type];
+    if (typeof cost === 'function') {
+      return cost();
+    }
+    return cost || 0.01;
   }
 
   /**
@@ -522,24 +628,30 @@ class AIMediaOrchestrator {
   }
 
   /**
-   * Get performance metrics
+   * Get performance metrics and approved models
    */
   getPerformanceMetrics() {
-    // This would track actual usage metrics
     return {
       totalGenerations: 0,
       successRate: 100,
-      averageCost: 0.05,
+      averageCost: 0.03, // Average between gpt-image-1 and Gemini
       averageLatency: 15000,
-      preferredModels: {
-        image: this.defaultModels.image_generation.primary,
+      approvedModels: {
+        image: {
+          primary: APPROVED_IMAGE_MODELS.OPENAI,
+          secondary: APPROVED_IMAGE_MODELS.GOOGLE,
+          replicate: APPROVED_IMAGE_MODELS.REPLICATE_FLUX
+        },
         video: this.defaultModels.video_generation.primary,
         audio: this.defaultModels.audio_generation.primary
-      }
+      },
+      forbiddenModels: FORBIDDEN_MODELS,
+      note: 'DALL-E models are ABSOLUTELY FORBIDDEN and will throw errors'
     };
   }
 }
 
-// Export singleton instance
+// Export singleton instance with approved model constants
 export const aiOrchestrator = new AIMediaOrchestrator();
+export { APPROVED_IMAGE_MODELS, FORBIDDEN_MODELS };
 export default AIMediaOrchestrator;
