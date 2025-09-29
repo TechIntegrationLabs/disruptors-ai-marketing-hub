@@ -90,7 +90,6 @@ async function generateIcon(iconSpec) {
       model: 'gpt-image-1',
       prompt: iconSpec.prompt,
       size: '1024x1024',
-      quality: 'standard',
       n: 1
     });
 
