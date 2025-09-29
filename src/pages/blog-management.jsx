@@ -9,6 +9,7 @@ import { pullBlogDataFromSheets, pushBlogDataToSheets, initializeGoogleSheetsInt
 import { testGoogleSheetsConnection } from '@/utils/test-google-sheets';
 import { runFullDiagnostics } from '@/utils/google-sheets-diagnostics';
 import ColumnMappingConfig from '@/components/shared/ColumnMappingConfig';
+import { customClient } from '@/lib/custom-sdk';
 
 const initialBlogData = [
   {
@@ -451,6 +452,142 @@ export default function BlogManagement() {
     }
   };
 
+  // Send to Supabase with intelligent field mapping
+  const handleSendToSupabase = async () => {
+    setIsLoading(true);
+    setStatusMessage('Sending blog posts to Supabase...');
+
+    try {
+      let successCount = 0;
+      let errorCount = 0;
+      const errors = [];
+
+      for (const post of blogData) {
+        try {
+          // Map blog management fields to Supabase posts table schema
+          const supabasePost = {
+            // Required fields
+            title: post.title || 'Untitled Post',
+            slug: post.slug || post.title?.toLowerCase()
+              .replace(/[^a-z0-9\s-]/g, '')
+              .replace(/\s+/g, '-')
+              .replace(/-+/g, '-')
+              .trim() || `post-${Date.now()}`,
+
+            // Content fields
+            excerpt: post.excerpt || '',
+            content: post.content || '',
+            content_type: 'blog', // Default to blog type
+
+            // Media fields
+            featured_image: post.image || post.imageUrl || null,
+            gallery_images: post.gallery_images || null, // Array of image URLs
+
+            // Author (will need to link to actual user ID in production)
+            author_id: null, // TODO: Map author name to user ID
+
+            // Categorization
+            category: post.category || null,
+            tags: post.tags ? (typeof post.tags === 'string' ? post.tags.split(',').map(t => t.trim()) : post.tags) : null,
+
+            // Publishing
+            is_published: post.status === 'Published',
+            is_featured: false, // Can be enhanced later
+            published_at: post.publishDate && post.status === 'Published'
+              ? new Date(post.publishDate).toISOString()
+              : null,
+
+            // SEO fields (auto-generate if missing)
+            seo_title: post.seo_title || post.title || null,
+            seo_description: post.metaDescription || post.excerpt?.substring(0, 160) || null,
+            seo_keywords: post.seo_keywords || (post.tags ? (typeof post.tags === 'string' ? post.tags.split(',').map(t => t.trim()) : post.tags) : null),
+
+            // Metadata
+            read_time_minutes: post.read_time_minutes || (post.content ? Math.ceil(post.content.split(/\s+/).length / 200) : null)
+          };
+
+          // Check if post with this slug already exists
+          const existingPosts = await customClient.entities.Post.filter({ slug: supabasePost.slug });
+
+          if (existingPosts && existingPosts.length > 0) {
+            // Update existing post
+            await customClient.entities.Post.update(existingPosts[0].id, supabasePost);
+            console.log(`✅ Updated post: "${supabasePost.title}"`);
+          } else {
+            // Create new post
+            await customClient.entities.Post.create(supabasePost);
+            console.log(`✅ Created post: "${supabasePost.title}"`);
+          }
+
+          successCount++;
+        } catch (error) {
+          errorCount++;
+          errors.push({ post: post.title, error: error.message });
+          console.error(`❌ Error saving post "${post.title}":`, error);
+        }
+      }
+
+      if (errorCount === 0) {
+        setStatusMessage(`✅ Successfully sent ${successCount} blog posts to Supabase!`);
+      } else {
+        setStatusMessage(`⚠️ Sent ${successCount} posts successfully, ${errorCount} failed. Check console for details.`);
+        console.error('Failed posts:', errors);
+      }
+    } catch (error) {
+      console.error('Error sending to Supabase:', error);
+      setStatusMessage(`❌ Error sending to Supabase: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+      setTimeout(() => setStatusMessage(''), 8000);
+    }
+  };
+
+  // Pull from Supabase
+  const handlePullFromSupabase = async () => {
+    setIsLoading(true);
+    setStatusMessage('Pulling blog posts from Supabase...');
+
+    try {
+      // Fetch all posts from Supabase
+      const supabasePosts = await customClient.entities.Post.list('-created_at');
+
+      if (supabasePosts && supabasePosts.length > 0) {
+        // Map Supabase posts back to blog management format
+        const mappedPosts = supabasePosts.map((post, index) => ({
+          id: index + 1, // Local ID for management
+          supabaseId: post.id, // Store Supabase ID for updates
+          title: post.title,
+          excerpt: post.excerpt,
+          author: post.author_id ? 'User ' + post.author_id.substring(0, 8) : '', // Placeholder
+          date: post.created_at ? new Date(post.created_at).toISOString().split('T')[0] : '',
+          image: post.featured_image || '',
+          imageUrl: post.featured_image || '',
+          category: post.category || '',
+          slug: post.slug,
+          status: post.is_published ? 'Published' : 'Draft',
+          content: post.content || '',
+          tags: Array.isArray(post.tags) ? post.tags.join(', ') : post.tags || '',
+          metaDescription: post.seo_description || '',
+          publishDate: post.published_at ? new Date(post.published_at).toISOString().split('T')[0] : '',
+          seo_title: post.seo_title || '',
+          seo_keywords: Array.isArray(post.seo_keywords) ? post.seo_keywords.join(', ') : post.seo_keywords || '',
+          read_time_minutes: post.read_time_minutes || null
+        }));
+
+        setBlogData(mappedPosts);
+        setStatusMessage(`✅ Successfully pulled ${mappedPosts.length} blog posts from Supabase!`);
+      } else {
+        setStatusMessage('ℹ️ No blog posts found in Supabase.');
+      }
+    } catch (error) {
+      console.error('Error pulling from Supabase:', error);
+      setStatusMessage(`❌ Error pulling from Supabase: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+      setTimeout(() => setStatusMessage(''), 8000);
+    }
+  };
+
   // Cleanup event listeners on unmount
   useEffect(() => {
     return () => {
@@ -486,12 +623,28 @@ export default function BlogManagement() {
             <div className="flex flex-col gap-3">
               <div className="flex gap-3 flex-wrap">
                 <Button
+                  onClick={handleSendToSupabase}
+                  disabled={isLoading}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-lg"
+                >
+                  <Send className="w-4 h-4 mr-2" />
+                  Send to Supabase
+                </Button>
+                <Button
+                  onClick={handlePullFromSupabase}
+                  disabled={isLoading}
+                  className="bg-teal-600 hover:bg-teal-700 text-white"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Pull from Supabase
+                </Button>
+                <Button
                   onClick={handleTestConnection}
                   disabled={isLoading}
                   className="bg-purple-600 hover:bg-purple-700 text-white"
                 >
                   <TestTube className="w-4 h-4 mr-2" />
-                  Test Connection
+                  Test Sheets
                 </Button>
                 <Button
                   onClick={handlePullFromGoogleSheets}
