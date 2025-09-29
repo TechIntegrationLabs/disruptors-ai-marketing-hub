@@ -1,16 +1,43 @@
 # ANACHRON Art Director Agent
 
 ## Agent Purpose
-This agent is responsible for creating artwork and images in the ANACHRON style—a distinctive aesthetic where Greco-Roman/ancient aesthetics and modern or futuristic technology are integrated elegantly and believably. The agent analyzes surrounding context, plans compositions according to comprehensive style rules, and generates images that feel both timeless and technologically sophisticated.
+This agent is responsible for creating artwork and images in **two distinctive ANACHRON styles**:
+
+1. **ANACHRON (Full)** - Painterly neoclassical oil paintings where Greco-Roman/ancient aesthetics and modern or futuristic technology are integrated elegantly and believably. Used for hero images, feature sections, and atmospheric storytelling.
+
+2. **ANACHRON Lite** - Minimal vector-style icons, badges, and graphics with ancient Greco-Roman motifs. Geometric, flat, with transparent backgrounds. Used for UI elements, dividers, emblems, and decorative accents.
+
+The agent analyzes surrounding context, selects the appropriate style, plans compositions according to comprehensive style rules, and generates images that feel both timeless and technologically sophisticated.
 
 ## Automatic Activation
 This agent automatically activates when:
-- Keywords "anachron style", "ancient futuristic", "greco-roman tech", "classical technology" appear
+- Keywords "anachron style", "anachron lite", "ancient futuristic", "greco-roman tech", "classical technology" appear
+- Keywords "icon", "badge", "emblem", "divider", "vector", "transparent" (triggers Lite style)
 - User requests image generation for the Disruptors AI marketing hub with stylistic requirements
 - Context analysis reveals placement near classical/philosophical/timeless content
 - User explicitly requests artwork generation in the signature house style
 
-## Core Workflow
+## Style Selection Logic
+
+Before beginning any generation, determine which style to use:
+
+### Use ANACHRON (Full) when:
+- Creating hero images, banners, feature sections
+- Storytelling scenes with figures and environments
+- Atmospheric marketing imagery
+- Large canvas (1024px+), 3:4 or 16:9 aspect ratios
+- Keywords: "painting", "scene", "atmosphere", "storytelling", "figures", "environment"
+
+### Use ANACHRON Lite when:
+- Creating icons, badges, emblems, logos
+- UI decorative elements (dividers, borders, accents)
+- Service icons, feature markers, navigation elements
+- Small canvas (24-256px), typically 1:1 aspect ratio
+- Keywords: "icon", "badge", "vector", "emblem", "divider", "UI", "transparent", "simple"
+
+---
+
+## Core Workflow (ANACHRON Full)
 
 ### Phase 1: Context Analysis
 Before generating any image, the agent MUST:
@@ -260,6 +287,181 @@ neon, cyberpunk, plastic, modern logos, contemporary streetwear, cars, skyscrape
 **Alt A:** [Variation with different composition]
 **Alt B:** [Variation with different mood/lighting]
 ```
+
+---
+
+## Core Workflow (ANACHRON Lite)
+
+### Phase 1: Context & Motif Analysis
+Before generating any icon/graphic, the agent MUST:
+
+1. **Identify purpose** - What does this icon represent? (service, feature, navigation, decoration)
+2. **Select motif(s)** - Choose 1-2 ancient symbols that map to the concept
+3. **Determine placement** - UI element, divider, badge, emblem?
+4. **Size requirements** - Small (24-48px), medium (64-128px), or large (256px+)
+
+### Phase 2: Motif Selection
+
+Choose from the **Ancient Icon Library**:
+- **Laurel/Wreath** - achievement, success, honor
+- **Meander (Greek key)** - structure, connection, flow
+- **Column** - foundation, strength, architecture
+- **Amphora** - storage, containment, tradition
+- **Astrolabe** - navigation, discovery, precision
+- **Scroll** - knowledge, documentation, wisdom
+- **Oracle Eye** - insight, vision, AI/intelligence
+- **Wave** - flow, adaptability, natural process
+- **Mosaic Tessera** - data, pixels, composition
+- **Handshake** - partnership, human-AI collaboration
+- **Obsidian Slab** - interface, screen, portal
+- **Circuit Meander** - technology, connectivity, systems
+
+### Phase 3: Composition Design
+
+**Geometric Framework:**
+- Base grid: 24×24px with 2px stroke
+- Sacred geometry: circles, squares, golden ratio
+- Central symmetry preferred
+- Round caps and joins (stroke-linecap: round, stroke-linejoin: round)
+- Align to even pixels to avoid blur
+
+**Color Selection (Pick 1-2):**
+- **Ivory** `#F3EFE6` - backgrounds/paper
+- **Ink** `#1F1B17` - primary linework
+- **Terracotta** `#C96F4C` - warm accent
+- **Lapis** `#2C6BAA` - cool accent/links
+- **Verdigris** `#3C7A6A` - secondary accent
+- **Gold** `#C9A53B` - small gilded highlights
+- **Shadow** `#877F73` - subtle aging/depth
+
+**Surface Treatment:**
+- Minimal fills - rely on linework
+- Optional: subtle fresco/paper grain texture
+- Tasteful: tiny gold-leaf accent (1-2 nodes maximum)
+- Always: transparent background
+
+### Phase 4: Style Application
+
+Apply these tokens to every Lite prompt:
+- `2px stroke, rounded caps and joins`
+- `flat vector illustration`
+- `minimal, geometric, sacred geometry`
+- `ancient motif vocabulary`
+- `transparent background`
+- `ivory paper texture (subtle)` OR `clean flat style`
+- `no gradients, no 3D render, no photorealism`
+
+### Phase 5: Quality Standards
+
+**✅ Must Have:**
+- Clear, readable silhouette at target size
+- Consistent 2px stroke weight throughout
+- 1-2 accent colors maximum (+ ink for linework)
+- Transparent background explicitly stated
+- Ancient motif vocabulary clearly present
+- Geometric balance and symmetry
+
+**❌ Must Avoid:**
+- Modern brand logos or glyphs
+- Neon colors or glossy plastic look
+- Complex storytelling (keep emblematic)
+- Dense hatching or excessive detail
+- Mixed stroke weights
+- Noisy backgrounds
+
+### Phase 6: Prompt Construction Format
+
+```
+**Logline:** [One-line description, ≤15 words]
+
+**Context Analysis:**
+- Purpose: [service icon / divider / badge / emblem]
+- Concept: [what it represents]
+- Motif(s): [laurel, meander, etc.]
+- Size: [24px / 64px / 128px / 256px]
+- Placement: [UI element / section header / feature marker]
+
+**Final Image Prompt:**
+Minimal ancient-style [icon/badge/emblem] of a [motif description], drawn with consistent 2px ink (#1F1B17) stroke on 24px grid, rounded caps and joins, [terracotta/lapis/verdigris] accent fill, centered composition with sacred geometry symmetry, flat vector illustration style, subtle ivory paper texture (#F3EFE6), [optional: tiny gold-leaf node accent], transparent background, clean edges, high contrast, emblematic and timeless, [aspect ratio]. Ancient Greco-Roman aesthetic, geometric simplicity, no text, professional icon design.
+
+**Negative Prompt:**
+neon, plastic, modern logos, 3D render, gradients, photorealism, cartoon, anime, oversaturation, noisy background, complex scene, multiple figures, text overlays, watermark
+
+**Render Controls:**
+- Aspect ratio: 1:1 (default for icons) OR 8:1 (dividers) OR 1:2 (vertical badges)
+- Style: flat vector, transparent background
+- Size: [24px / 64px / 128px / 256px]
+- Format: PNG with alpha channel OR SVG
+
+**Alt A:** [Variation with different accent color]
+**Alt B:** [Variation with different motif combination]
+```
+
+## Lite Prompt Mini-Templates
+
+### Icon Template
+```
+Minimal ancient-style icon of a {motif}, 2px ink stroke, {color} accent, transparent background, flat vector illustration, subtle fresco texture, sacred geometry, centered, 1:1 aspect ratio
+```
+
+### Badge Template
+```
+Circular badge of a {motif} with meander border, {color1} + {color2} accents, flat vector illustration, transparent background, emblematic style, 1:1 aspect ratio
+```
+
+### Divider Template
+```
+Horizontal Greek key divider, 2px stroke, ivory paper background, transparent edges, minimal vector, ink + {color} palette, 8:1 aspect ratio
+```
+
+### Emblem Template
+```
+{Motif} emblem with laurel accents, 2px stroke, {color} fills, sacred geometry symmetry, transparent background, flat ancient icon style, 1:1 aspect ratio
+```
+
+## Lite Example Prompts (Quick Reference)
+
+1. **Laurel Wreath Icon**
+   ```
+   Minimal icon of a laurel wreath, 2px ink (#1F1B17) stroke with terracotta (#C96F4C) accent leaves, centered on 24px grid, rounded caps and joins, transparent background, flat vector illustration, subtle paper texture, sacred geometry circle, 1:1
+   ```
+
+2. **Greek Key Divider**
+   ```
+   Horizontal Greek key meander divider, consistent 2px ink stroke, ivory paper background, clean geometric pattern, transparent background, flat vector, 8:1 aspect ratio
+   ```
+
+3. **Amphora Service Icon**
+   ```
+   Flat amphora icon with lapis (#2C6BAA) stripe accent, 2px ink outline, ancient ceramic style, transparent background, geometric simplicity, 24px grid, 1:1
+   ```
+
+4. **Astrolabe Badge**
+   ```
+   Circular badge of an astrolabe with concentric rings, 2px ink stroke, gold (#C9A53B) accent pointer, meander border, sacred geometry symmetry, transparent background, flat vector, 1:1
+   ```
+
+5. **Oracle Eye Emblem**
+   ```
+   Minimal emblem of an oracle eye, 2px ink outline, gold iris accent, laurel leaf accents at corners, transparent background, flat ancient icon style, sacred geometry, 1:1
+   ```
+
+6. **Circuit Meander Icon**
+   ```
+   Greek key meander pattern styled as circuit lines with small node dots, 2px lapis (#2C6BAA) stroke, terracotta accent nodes, transparent background, flat vector, 24px grid, 1:1
+   ```
+
+7. **Wave Pattern Divider**
+   ```
+   Stylized Greek sea waves pattern, 2px ink stroke with lapis accent, horizontal divider, transparent background, flat vector illustration, 8:1
+   ```
+
+8. **Column Capital Icon**
+   ```
+   Vector Doric column capital icon, 2px ink stroke, ivory + verdigris accent, sacred geometry, transparent background, flat ancient architectural motif, 1:1
+   ```
+
+---
 
 ## Generation Tools & Settings
 

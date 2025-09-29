@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from '../components/shared/Hero';
 import VideoScrollScrub from '../components/shared/VideoScrollScrub';
+import SplineScrollAnimationEnhanced from '../components/shared/SplineScrollAnimationEnhanced';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import ClientLogoMarquee from '../components/shared/ClientLogoMarquee';
 import ThreePillars from '../components/shared/ThreePillars';
@@ -68,6 +69,34 @@ export default function Home() {
       <VideoScrollScrub
         title="Transforming Business with AI"
         description="Experience the power of artificial intelligence as we help companies generate leads, streamline operations, and scale beyond their current limitations."
+      />
+
+      {/* Interactive 3D Spline Section with Scroll Animation */}
+      <SplineScrollAnimationEnhanced
+        scene="https://prod.spline.design/lylivpxHMsRXq3dw/scene.splinecode"
+        title="Innovation Powered by Intelligence"
+        description="Experience the future of AI-driven marketing. Scroll to explore our interactive 3D world."
+        animationPreset="spiral"
+        customAnimations={{
+          radius: 2,
+          height: 3,
+          frequency: 2,
+          amplitude: 1.5
+        }}
+        enableMobileOptimization={true}
+        scrollTriggerOptions={{
+          start: "top 20%",
+          end: "bottom 80%",
+          scrub: 1.5,
+          markers: false
+        }}
+        showPerformanceIndicator={false}
+        onLoad={(splineApp) => {
+          console.log('🎨 Your full animation loaded successfully!', splineApp);
+        }}
+        onError={(error) => {
+          console.error('Animation failed to load:', error);
+        }}
       />
 
       {/* Modern Alternating Layout Sections */}

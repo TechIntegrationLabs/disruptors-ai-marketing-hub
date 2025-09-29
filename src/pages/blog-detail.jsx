@@ -91,7 +91,26 @@ export default function BlogDetail() {
 
                         {/* Post Body */}
                         <div
-                            className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-a:text-indigo-600"
+                            className="prose prose-lg prose-indigo max-w-none
+                                prose-headings:text-gray-900 prose-headings:font-bold
+                                prose-h1:text-4xl prose-h1:mb-6
+                                prose-h2:text-3xl prose-h2:mt-10 prose-h2:mb-4
+                                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-3
+                                prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4
+                                prose-a:text-indigo-600 prose-a:no-underline hover:prose-a:underline
+                                prose-strong:text-gray-900 prose-strong:font-semibold
+                                prose-em:text-gray-700 prose-em:italic
+                                prose-blockquote:border-l-4 prose-blockquote:border-indigo-500 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-gray-700
+                                prose-code:bg-gray-100 prose-code:text-indigo-600 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
+                                prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto
+                                prose-ul:list-disc prose-ul:ml-6 prose-ul:mb-4
+                                prose-ol:list-decimal prose-ol:ml-6 prose-ol:mb-4
+                                prose-li:mb-2
+                                prose-img:rounded-lg prose-img:shadow-md prose-img:my-8
+                                prose-table:border-collapse prose-table:w-full
+                                prose-th:bg-gray-100 prose-th:p-3 prose-th:text-left prose-th:font-semibold
+                                prose-td:border prose-td:border-gray-200 prose-td:p-3
+                                prose-hr:my-8 prose-hr:border-gray-300"
                             dangerouslySetInnerHTML={{ __html: post.content }}
                         />
                     </div>

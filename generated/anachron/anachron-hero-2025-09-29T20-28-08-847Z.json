@@ -1,0 +1,31 @@
+{
+  "timestamp": "2025-09-29T20:28:08.854Z",
+  "context": {
+    "page": "Homepage Hero",
+    "section": "Hero Banner",
+    "theme": "AI-Powered Marketing + Strategic Growth",
+    "purpose": "Discovery & Innovation"
+  },
+  "blueprint": {
+    "logline": "Philosophers consult mosaic analytics wall for strategic growth",
+    "era": "Greek seaside stoa",
+    "subject": "Five strategists in collaborative discussion",
+    "techMotif": "Mosaic HUD with Greek key circuits",
+    "lighting": "Golden hour Mediterranean",
+    "camera": "Wide architectural panorama",
+    "medium": "Neoclassical academic oil painting",
+    "palette": "Azure + terracotta + ivory + gold + cyan"
+  },
+  "generation": {
+    "model": "gpt-image-1",
+    "provider": "openai",
+    "size": "1536x1024",
+    "quality": "high",
+    "aspectRatio": "16:9"
+  },
+  "prompt": "neoclassical academic oil painting, wide panoramic view of an ancient Greek seaside stoa with towering marble columns, five Hellenistic figures in rich terracotta, ivory, and russet togas stand in animated strategic discussion before a colossal mosaic wall (12 feet wide) embedded in weathered colonnade architecture; the mosaic is composed of thousands of tiny tesserae forming a glowing interface—intricate Greek key meander patterns function as circuit paths, displaying abstract data flows and growth analytics in soft cyan and gold light; figures gesture expressively with clean five-fingered hands pointing at mosaic sections, examining patterns, consulting scrolls and wax tablets; golden hour Mediterranean sunlight streams through columns casting dramatic shadows and volumetric god-rays, while the mosaic's glow creates cool reflections on marble floors and faces; azure Aegean Sea stretches to horizon in background with gentle bokeh effect; marble architecture shows salt stains, tool marks, weathered stucco with flaked pigment revealing ancient plaster, bronze bezels around mosaic display green verdigris patina; scrolls, wooden styluses, and geometric instruments rest on nearby stone table; strong anatomical realism with contrapposto poses conveying wisdom and collaboration, detailed Hellenistic drapery with heavy fabric folds, expressive scholarly faces showing curiosity and strategic thinking; fine craquelure across entire painting surface suggesting centuries-old academic masterpiece, subtle varnish sheen catching light; color harmony of cool azure blues vs warm terracotta and gold leaf accents; ultra detailed, cinematic depth of field, volumetric lighting, respectful dignified tone treating technology as sacred instrument of knowledge and strategy",
+  "imageUrl": "base64_data",
+  "filepath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\generated\\anachron\\anachron-hero-2025-09-29T20-28-08-847Z.png",
+  "hasBase64": true,
+  "hasUrl": false
+}

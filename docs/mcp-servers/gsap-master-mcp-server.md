@@ -174,3 +174,6 @@ MIT License - Use it anywhere, anytime, for any project!
 
 **Transform Claude into your personal GSAP animation expert today!** 🎯⚡
 
+
+
+

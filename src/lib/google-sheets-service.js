@@ -12,6 +12,11 @@ import {
   DEFAULT_COLUMN_MAPPING
 } from './column-mapping-adapter.js';
 
+import {
+  fetchGoogleDocContent,
+  isGoogleDocsUrl
+} from './google-docs-service.js';
+
 const GOOGLE_SHEETS_ID = '1KWGeHUOjKtYINSqeneEF8U9hKjEs3U1UTUPaff6OWpA';
 const API_KEY = import.meta.env.VITE_GOOGLE_SHEETS_API_KEY;
 // Try multiple common sheet names, starting with the known one
@@ -144,14 +149,61 @@ export function convertBlogPostsToSheetsData(blogPosts) {
 }
 
 /**
- * Pull blog data from Google Sheets
+ * Pull blog data from Google Sheets with automatic Google Docs content fetching
+ * @param {boolean} fetchDocsContent - Whether to auto-fetch content from Google Docs URLs (default: true)
  * @returns {Promise<Array>} Array of blog post objects
  */
-export async function pullBlogDataFromSheets() {
+export async function pullBlogDataFromSheets(fetchDocsContent = true) {
   try {
     const rows = await fetchGoogleSheetsData();
     const blogPosts = convertSheetsDataToBlogPosts(rows);
+
     console.log(`Successfully pulled ${blogPosts.length} blog posts from Google Sheets`);
+
+    // Auto-fetch Google Docs content if enabled
+    if (fetchDocsContent) {
+      console.log('Checking for Google Docs URLs in content fields...');
+
+      const postsWithDocs = [];
+      for (let i = 0; i < blogPosts.length; i++) {
+        const post = blogPosts[i];
+
+        // Check if content field contains a Google Docs URL
+        if (post.content && isGoogleDocsUrl(post.content)) {
+          postsWithDocs.push({ index: i, post, docUrl: post.content });
+        }
+      }
+
+      if (postsWithDocs.length > 0) {
+        console.log(`Found ${postsWithDocs.length} posts with Google Docs URLs. Fetching content...`);
+
+        for (const { index, post, docUrl } of postsWithDocs) {
+          try {
+            console.log(`Fetching content for "${post.title || 'Untitled'}"...`);
+            const docData = await fetchGoogleDocContent(docUrl);
+
+            // Update the post with fetched content
+            blogPosts[index].content = docData.content;
+
+            // Update read time if not already set
+            if (!blogPosts[index].readTime || blogPosts[index].readTime === '') {
+              blogPosts[index].readTime = docData.metadata.readTime;
+            }
+
+            console.log(`✓ Successfully fetched content for "${post.title || 'Untitled'}" (${docData.metadata.wordCount} words)`);
+          } catch (error) {
+            console.error(`✗ Failed to fetch content for "${post.title || 'Untitled'}":`, error.message);
+            // Keep the URL as content if fetch fails
+            blogPosts[index].content = `<p><em>Content could not be loaded from: ${docUrl}</em></p><p>Error: ${error.message}</p>`;
+          }
+        }
+
+        console.log(`Completed fetching Google Docs content. ${postsWithDocs.length} documents processed.`);
+      } else {
+        console.log('No Google Docs URLs found in content fields.');
+      }
+    }
+
     return blogPosts;
   } catch (error) {
     console.error('Error pulling blog data from Google Sheets:', error);

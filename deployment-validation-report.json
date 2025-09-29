@@ -1,0 +1,741 @@
+{
+  "timestamp": "2025-09-29T20:00:57.440Z",
+  "deploymentUrl": "https://disruptors-ai-marketing-hub.netlify.app",
+  "summary": {
+    "totalPages": 14,
+    "passed": 14,
+    "failed": 0,
+    "warnings": 2
+  },
+  "pages": [
+    {
+      "name": "Home",
+      "path": "/",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/",
+      "required": true,
+      "status": "passed",
+      "loadTime": 3668,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "domContentLoaded": 0.5,
+        "loadComplete": 0.19999999552965164,
+        "domInteractive": 268.70000000298023
+      },
+      "title": "Base44 APP"
+    },
+    {
+      "name": "About",
+      "path": "/about",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/about",
+      "required": true,
+      "status": "passed",
+      "loadTime": 1630,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [
+        "5 broken images detected"
+      ],
+      "metrics": {
+        "domContentLoaded": 0.29999999701976776,
+        "loadComplete": 2.899999998509884,
+        "domInteractive": 161.19999999552965
+      },
+      "title": "Base44 APP"
+    },
+    {
+      "name": "Contact",
+      "path": "/contact",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/contact",
+      "required": true,
+      "status": "passed",
+      "loadTime": 715,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "domContentLoaded": 0.3999999985098839,
+        "loadComplete": 3.100000001490116,
+        "domInteractive": 108.09999999403954
+      },
+      "title": "Base44 APP"
+    },
+    {
+      "name": "Work",
+      "path": "/work",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/work",
+      "required": true,
+      "status": "passed",
+      "loadTime": 1078,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "domContentLoaded": 0.20000000298023224,
+        "loadComplete": 3.7999999970197678,
+        "domInteractive": 173.70000000298023
+      },
+      "title": "Base44 APP"
+    },
+    {
+      "name": "Solutions",
+      "path": "/solutions",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/solutions",
+      "required": true,
+      "status": "passed",
+      "loadTime": 706,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "domContentLoaded": 0.20000000298023224,
+        "loadComplete": 0.5,
+        "domInteractive": 111.89999999850988
+      },
+      "title": "Base44 APP"
+    },
+    {
+      "name": "Blog",
+      "path": "/blog",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/blog",
+      "required": true,
+      "status": "passed",
+      "loadTime": 696,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "domContentLoaded": 0.19999999552965164,
+        "loadComplete": 4,
+        "domInteractive": 114.10000000149012
+      },
+      "title": "Base44 APP"
+    },
+    {
+      "name": "AI Automation Solution",
+      "path": "/solutions-ai-automation",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/solutions-ai-automation",
+      "required": true,
+      "status": "passed",
+      "loadTime": 1109,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "domContentLoaded": 0.30000000447034836,
+        "loadComplete": 3.2999999970197678,
+        "domInteractive": 106.29999999701977
+      },
+      "title": "Base44 APP"
+    },
+    {
+      "name": "Social Media Solution",
+      "path": "/solutions-social-media",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/solutions-social-media",
+      "required": false,
+      "status": "passed",
+      "loadTime": 1155,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "domContentLoaded": 0.19999999552965164,
+        "loadComplete": 3.100000001490116,
+        "domInteractive": 107.29999999701977
+      },
+      "title": "Base44 APP"
+    },
+    {
+      "name": "SEO & Geo Solution",
+      "path": "/solutions-seo-geo",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/solutions-seo-geo",
+      "required": false,
+      "status": "passed",
+      "loadTime": 1556,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "domContentLoaded": 0.20000000298023224,
+        "loadComplete": 2.7999999970197678,
+        "domInteractive": 107.60000000149012
+      },
+      "title": "Base44 APP"
+    },
+    {
+      "name": "Lead Generation Solution",
+      "path": "/solutions-lead-generation",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/solutions-lead-generation",
+      "required": false,
+      "status": "passed",
+      "loadTime": 1580,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "domContentLoaded": 0.20000000298023224,
+        "loadComplete": 0.5,
+        "domInteractive": 114.20000000298023
+      },
+      "title": "Base44 APP"
+    },
+    {
+      "name": "Work - SaaS Content Engine",
+      "path": "/work-saas-content-engine",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/work-saas-content-engine",
+      "required": false,
+      "status": "passed",
+      "loadTime": 2015,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [
+        "1 broken images detected"
+      ],
+      "metrics": {
+        "domContentLoaded": 0.30000000447034836,
+        "loadComplete": 3,
+        "domInteractive": 191.70000000298023
+      },
+      "title": "Base44 APP"
+    },
+    {
+      "name": "Resources",
+      "path": "/resources",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/resources",
+      "required": false,
+      "status": "passed",
+      "loadTime": 818,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "domContentLoaded": 0.20000000298023224,
+        "loadComplete": 2.899999998509884,
+        "domInteractive": 107.60000000149012
+      },
+      "title": "Base44 APP"
+    },
+    {
+      "name": "Assessment",
+      "path": "/assessment",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/assessment",
+      "required": false,
+      "status": "passed",
+      "loadTime": 643,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "domContentLoaded": 0.20000000298023224,
+        "loadComplete": 2.9000000059604645,
+        "domInteractive": 110.19999999552965
+      },
+      "title": "Base44 APP"
+    },
+    {
+      "name": "Calculator",
+      "path": "/calculator",
+      "url": "https://disruptors-ai-marketing-hub.netlify.app/calculator",
+      "required": false,
+      "status": "passed",
+      "loadTime": 641,
+      "statusCode": 200,
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "domContentLoaded": 0.30000000447034836,
+        "loadComplete": 0.7000000029802322,
+        "domInteractive": 109.79999999701977
+      },
+      "title": "Base44 APP"
+    }
+  ],
+  "consoleErrors": [
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/team_member?select=*&order=created_at.asc' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/team_member?select=*&order=created_at.asc. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "location": {
+        "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/james-wilson.jpg",
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "location": {
+        "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/emma-thompson.jpg",
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "location": {
+        "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/will-stevens.jpg",
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "location": {
+        "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/marcus-rodriguez.jpg",
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "location": {
+        "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/sarah-chen.jpg",
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/resource?select=*&type=eq.Article&status=eq.Published&order=created_at.asc' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/resource?select=*&type=eq.Article&status=eq.Published&order=created_at.asc. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Filter error for resource: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 48134
+      }
+    },
+    {
+      "text": "Error fetching blog posts: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9055,
+        "columnNumber": 27830
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "location": {
+        "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737507200/saas-content-engine-dashboard.webp",
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Refused to connect to 'http://127.0.0.1:54321/rest/v1/users?select=id&limit=1' because it violates the following Content Security Policy directive: \"connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co\".\n",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Fetch API cannot load http://127.0.0.1:54321/rest/v1/users?select=id&limit=1. Refused to connect because it violates the document's Content Security Policy.",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 450,
+        "columnNumber": 0
+      }
+    },
+    {
+      "text": "Service role client initialization failed: {message: TypeError: Failed to fetch, details: TypeError: Failed to fetch\n    at https://disrupto…b.netlify.app/assets/index-8NTX7r25.js:451:22553), hint: , code: }",
+      "location": {
+        "url": "https://disruptors-ai-marketing-hub.netlify.app/assets/index-8NTX7r25.js",
+        "lineNumber": 9037,
+        "columnNumber": 46146
+      }
+    },
+    {
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "location": {
+        "url": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/v1/disruptors-media/hero-poster.jpg",
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "networkErrors": [
+    {
+      "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4",
+      "failure": "net::ERR_ABORTED"
+    },
+    {
+      "url": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759116522/full-animation_online-video-cutter.com_zzpok1.mp4",
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "performance": {
+    "averageLoadTime": 1286
+  },
+  "recommendations": [
+    "Fix 58 console errors in production",
+    "Fix 3 network request failures"
+  ]
+}

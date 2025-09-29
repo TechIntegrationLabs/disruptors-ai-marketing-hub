@@ -19,13 +19,14 @@ export const INTERNAL_FIELDS = [
 ];
 
 // Default column mapping - can be customized
+// NOTE: Publish Date should map to column P in the Google Sheet
 export const DEFAULT_COLUMN_MAPPING = {
   // Internal field -> Google Sheet column header (will be auto-detected)
   title: 'Title',
   author: 'Author',
   category: 'Category',
   status: 'Status',
-  publishDate: 'Publish Date',
+  publishDate: 'P', // Column P for publish dates as specified
   excerpt: 'Excerpt',
   tags: 'Tags',
   slug: 'Slug',
@@ -72,11 +73,11 @@ export function autoDetectColumnMapping(sheetsHeaders) {
 
   // Special mappings for common variations
   const specialMappings = {
-    publishDate: ['date', 'published', 'publish', 'created', 'created_at', 'timestamp'],
+    publishDate: ['date', 'published', 'publish', 'created', 'created_at', 'timestamp', 'p', 'column p'],
     metaDescription: ['meta', 'description', 'seo', 'meta_desc'],
     image: ['image', 'img', 'photo', 'picture', 'thumbnail'],
     excerpt: ['excerpt', 'summary', 'description', 'preview'],
-    content: ['content', 'body', 'text', 'post', 'article']
+    content: ['content', 'body', 'text', 'post', 'article', 'doc', 'document']
   };
 
   INTERNAL_FIELDS.forEach(field => {

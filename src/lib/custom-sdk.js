@@ -13,12 +13,35 @@ const getEnvVar = (key, defaultValue) => {
   return defaultValue;
 };
 
+// Detect environment mode
+const isDevelopment = typeof import.meta !== 'undefined' && import.meta.env
+  ? import.meta.env.MODE === 'development' || import.meta.env.DEV
+  : false;
+
+// Localhost defaults for development only
+const LOCALHOST_URL = 'http://127.0.0.1:54321';
+const LOCALHOST_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU';
+
 // Create service role client for admin operations (bypasses RLS)
-const supabaseUrl = getEnvVar("VITE_SUPABASE_URL", "http://127.0.0.1:54321");
+const supabaseUrl = getEnvVar("VITE_SUPABASE_URL", isDevelopment ? LOCALHOST_URL : "");
 const supabaseServiceKey = getEnvVar(
   "VITE_SUPABASE_SERVICE_ROLE_KEY",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU"
+  isDevelopment ? LOCALHOST_SERVICE_KEY : ""
 );
+
+// Production safety check for service role key
+if (!supabaseUrl || !supabaseServiceKey) {
+  const errorMessage = 'CRITICAL: Missing Supabase service role configuration. Please set VITE_SUPABASE_URL and VITE_SUPABASE_SERVICE_ROLE_KEY environment variables.';
+  console.error(errorMessage);
+  console.error('Current mode:', isDevelopment ? 'development' : 'production');
+  console.error('VITE_SUPABASE_URL:', supabaseUrl || 'NOT SET');
+  console.error('VITE_SUPABASE_SERVICE_ROLE_KEY:', supabaseServiceKey ? 'SET' : 'NOT SET');
+
+  if (!isDevelopment) {
+    throw new Error(errorMessage);
+  }
+}
+
 const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
   auth: {
     autoRefreshToken: false,

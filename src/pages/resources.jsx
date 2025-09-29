@@ -163,7 +163,7 @@ export default function Resources() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-8 sm:p-12 text-white text-center"
+            className="bg-gradient-to-r from-blue-600 to-teal-600 rounded-3xl p-8 sm:p-12 text-white text-center"
           >
             <div className="flex items-center justify-center gap-2 mb-4">
               <Star className="w-6 h-6 text-yellow-400" />

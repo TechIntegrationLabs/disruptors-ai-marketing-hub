@@ -1,0 +1,21 @@
+{
+  "service": "AI Automation",
+  "slug": "ai-automation",
+  "model": "gpt-image-1",
+  "provider": "openai",
+  "prompt": "Professional AI automation dashboard interface in a sleek modern tech workspace.\n\nVisual elements:\n- Robotic process automation visualization with flowing data streams\n- Connected workflow diagram nodes with glowing connections\n- Automated task management system with real-time metrics\n- Multiple screens showing synchronized processes\n- Futuristic command center aesthetic\n\nColor scheme: Deep blue (#1e3a8a), royal blue (#3730a3), vibrant purple (#7c3aed), soft purple (#8b5cf6) gradients\n\nStyle: Clean minimalist design, high-tech professional look, commercial photography quality, dramatic lighting, depth of field, ultra-sharp details, modern glass surfaces, holographic interface elements\n\nTechnical: 8K resolution quality, cinematic composition, professional color grading, photorealistic rendering",
+  "parameters": {
+    "size": "1024x1024",
+    "quality": "high",
+    "inputFidelity": "medium"
+  },
+  "cost": 0.02,
+  "generatedAt": "2025-09-29T20:03:20.156Z",
+  "generationTime": 62125,
+  "notes": [
+    "Generated with OpenAI gpt-image-1",
+    "Includes C2PA metadata for authenticity",
+    "Optimized for commercial use"
+  ],
+  "imagePath": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub\\public\\images\\services\\ai-automation-gpt-1759176200156.png"
+}

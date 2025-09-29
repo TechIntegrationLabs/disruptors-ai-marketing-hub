@@ -76,6 +76,14 @@ import Gallery from "./gallery.jsx";
 
 import Faq from "./faq.jsx";
 
+import ScrollAnimationDemo from "../components/examples/ScrollAnimationExamples.jsx";
+
+import FullAnimationDemo from "./full-animation-demo.jsx";
+
+import SplineDemo from "./spline-demo.jsx";
+
+import VideoScrubDemo from "./video-scrub-demo.jsx";
+
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 const PAGES = {
@@ -155,7 +163,15 @@ const PAGES = {
     gallery: Gallery,
     
     faq: Faq,
-    
+
+    "animations-demo": ScrollAnimationDemo,
+
+    "full-animation": FullAnimationDemo,
+
+    "spline-demo": SplineDemo,
+
+    "video-scrub-demo": VideoScrubDemo,
+
 }
 
 function _getCurrentPage(url) {
@@ -258,6 +274,14 @@ function PagesContent() {
                 <Route path="/gallery" element={<Gallery />} />
                 
                 <Route path="/faq" element={<Faq />} />
+
+                <Route path="/animations-demo" element={<ScrollAnimationDemo />} />
+
+                <Route path="/full-animation" element={<FullAnimationDemo />} />
+
+                <Route path="/spline-demo" element={<SplineDemo />} />
+
+                <Route path="/video-scrub-demo" element={<VideoScrubDemo />} />
 
                 {/* Catch-all route for 404 pages */}
                 <Route path="*" element={<NotFound />} />

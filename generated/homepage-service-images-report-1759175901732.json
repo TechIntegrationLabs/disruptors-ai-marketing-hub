@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2025-09-29T19:58:21.732Z",
+  "successful": 0,
+  "failed": 2,
+  "total": 2,
+  "totalCost": 0,
+  "results": [
+    {
+      "service": "AI Automation",
+      "success": false,
+      "model": "gpt-image-1",
+      "cost": 0,
+      "imagePath": null,
+      "error": "400 Unknown parameter: 'response_format'."
+    },
+    {
+      "service": "Lead Generation",
+      "success": false,
+      "model": "gpt-image-1",
+      "cost": 0,
+      "imagePath": null,
+      "error": "400 Unknown parameter: 'response_format'."
+    }
+  ]
+}

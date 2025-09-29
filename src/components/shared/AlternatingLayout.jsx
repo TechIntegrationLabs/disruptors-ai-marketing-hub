@@ -106,7 +106,7 @@ export default function AlternatingLayout({ sections = [] }) {
                   <div className="relative group">
                     {/* Modern geometric clip-path container */}
                     <div className={`relative overflow-hidden ${getShapeClass(index)} transition-transform duration-700 group-hover:scale-[1.02]`}>
-                      <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-teal-600/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       {section.image ? (
                         <img
                           src={section.image}
@@ -115,7 +115,7 @@ export default function AlternatingLayout({ sections = [] }) {
                           loading="lazy"
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                        <div className="w-full h-full bg-gradient-to-br from-blue-500 to-teal-600 flex items-center justify-center">
                           <div className="text-white text-center">
                             <div className="w-24 h-24 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
                               <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
@@ -142,7 +142,7 @@ export default function AlternatingLayout({ sections = [] }) {
                       }}
                     />
                     <motion.div
-                      className="absolute -bottom-8 -left-8 w-32 h-32 bg-purple-500 rounded-full opacity-15 blur-3xl"
+                      className="absolute -bottom-8 -left-8 w-32 h-32 bg-teal-500 rounded-full opacity-15 blur-3xl"
                       animate={{
                         y: [0, 10, 0],
                         scale: [1, 0.9, 1]

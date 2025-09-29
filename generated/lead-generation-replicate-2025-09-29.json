@@ -1,0 +1,108 @@
+{
+  "timestamp": "2025-09-29T14:16:56.250Z",
+  "generator": "Lead Generation Replicate Multi-Model Generator",
+  "service": {
+    "id": "lead-generation",
+    "title": "AI-Powered Lead Generation",
+    "concept": "Intelligent Conversion Funnel with AI Analytics",
+    "basePrompt": "AI-powered lead generation system visualization with smart conversion funnel interface, automated prospect qualification dashboard, AI-driven lead scoring metrics floating in 3D space, machine learning analytics for lead quality prediction, intelligent customer journey mapping, automated nurturing sequence display, AI chatbot integration for lead capture, prospect flow through AI-enhanced conversion stages, sophisticated blue to purple gradient background using colors #1e3a8a, #3730a3, #7c3aed, #8b5cf6, professional corporate design, clean minimalist composition, sophisticated lighting with soft shadows, high-end SaaS aesthetic, modern geometric elements, floating interface components, strategic negative space, commercial photography quality, award-winning design, high resolution, 8k quality, professional business illustration, modern tech aesthetic, suitable for marketing website service card"
+  },
+  "approach": "Multi-model Replicate comparison for optimal quality",
+  "models": [
+    {
+      "name": "Flux Pro",
+      "model": "black-forest-labs/flux-pro",
+      "description": "High-quality professional imagery"
+    },
+    {
+      "name": "Flux Dev",
+      "model": "black-forest-labs/flux-dev",
+      "description": "Developer-focused model with good prompt adherence"
+    },
+    {
+      "name": "SDXL",
+      "model": "stability-ai/sdxl:39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b",
+      "description": "Stable Diffusion XL for reliable results"
+    }
+  ],
+  "brandColors": "#1e3a8a, #3730a3, #7c3aed, #8b5cf6",
+  "results": [
+    {
+      "provider": "Replicate",
+      "model": "Flux Pro",
+      "modelId": "black-forest-labs/flux-pro",
+      "error": "Request to https://api.replicate.com/v1/models/black-forest-labs/flux-pro/predictions failed with status 422 Unprocessable Entity: {\"detail\":\"- input.width: Must be less than or equal to 1440\\n\",\"status\":422,\"title\":\"Input validation failed\",\"invalid_fields\":[{\"type\":\"number_lte\",\"field\":\"input.width\",\"description\":\"Must be less than or equal to 1440\"}]}\n.",
+      "timestamp": "2025-09-29T14:16:27.318Z",
+      "success": false,
+      "description": "High-quality professional imagery"
+    },
+    {
+      "provider": "Replicate",
+      "model": "Flux Dev",
+      "modelId": "black-forest-labs/flux-dev",
+      "imageUrl": {},
+      "prompt": "AI-powered lead generation system visualization with smart conversion funnel interface, automated prospect qualification dashboard, AI-driven lead scoring metrics floating in 3D space, machine learning analytics for lead quality prediction, intelligent customer journey mapping, automated nurturing sequence display, AI chatbot integration for lead capture, prospect flow through AI-enhanced conversion stages, sophisticated blue to purple gradient background using colors #1e3a8a, #3730a3, #7c3aed, #8b5cf6, professional corporate design, clean minimalist composition, sophisticated lighting with soft shadows, high-end SaaS aesthetic, modern geometric elements, floating interface components, strategic negative space, commercial photography quality, award-winning design, high resolution, 8k quality, professional business illustration, modern tech aesthetic, suitable for marketing website service card",
+      "input": {
+        "prompt": "AI-powered lead generation system visualization with smart conversion funnel interface, automated prospect qualification dashboard, AI-driven lead scoring metrics floating in 3D space, machine learning analytics for lead quality prediction, intelligent customer journey mapping, automated nurturing sequence display, AI chatbot integration for lead capture, prospect flow through AI-enhanced conversion stages, sophisticated blue to purple gradient background using colors #1e3a8a, #3730a3, #7c3aed, #8b5cf6, professional corporate design, clean minimalist composition, sophisticated lighting with soft shadows, high-end SaaS aesthetic, modern geometric elements, floating interface components, strategic negative space, commercial photography quality, award-winning design, high resolution, 8k quality, professional business illustration, modern tech aesthetic, suitable for marketing website service card",
+        "width": 1536,
+        "height": 1024,
+        "num_outputs": 1,
+        "guidance_scale": 7.5,
+        "num_inference_steps": 50
+      },
+      "timestamp": "2025-09-29T14:16:35.336Z",
+      "size": "1536x1024",
+      "success": true,
+      "description": "Developer-focused model with good prompt adherence"
+    },
+    {
+      "provider": "Replicate",
+      "model": "SDXL",
+      "modelId": "stability-ai/sdxl:39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b",
+      "imageUrl": {},
+      "prompt": "AI-powered lead generation system visualization with smart conversion funnel interface, automated prospect qualification dashboard, AI-driven lead scoring metrics floating in 3D space, machine learning analytics for lead quality prediction, intelligent customer journey mapping, automated nurturing sequence display, AI chatbot integration for lead capture, prospect flow through AI-enhanced conversion stages, sophisticated blue to purple gradient background using colors #1e3a8a, #3730a3, #7c3aed, #8b5cf6, professional corporate design, clean minimalist composition, sophisticated lighting with soft shadows, high-end SaaS aesthetic, modern geometric elements, floating interface components, strategic negative space, commercial photography quality, award-winning design, high resolution, 8k quality, professional business illustration, modern tech aesthetic, suitable for marketing website service card",
+      "input": {
+        "prompt": "AI-powered lead generation system visualization with smart conversion funnel interface, automated prospect qualification dashboard, AI-driven lead scoring metrics floating in 3D space, machine learning analytics for lead quality prediction, intelligent customer journey mapping, automated nurturing sequence display, AI chatbot integration for lead capture, prospect flow through AI-enhanced conversion stages, sophisticated blue to purple gradient background using colors #1e3a8a, #3730a3, #7c3aed, #8b5cf6, professional corporate design, clean minimalist composition, sophisticated lighting with soft shadows, high-end SaaS aesthetic, modern geometric elements, floating interface components, strategic negative space, commercial photography quality, award-winning design, high resolution, 8k quality, professional business illustration, modern tech aesthetic, suitable for marketing website service card",
+        "width": 1536,
+        "height": 1024,
+        "num_outputs": 1,
+        "guidance_scale": 7.5,
+        "num_inference_steps": 50,
+        "scheduler": "K_EULER"
+      },
+      "timestamp": "2025-09-29T14:16:51.235Z",
+      "size": "1536x1024",
+      "success": true,
+      "description": "Stable Diffusion XL for reliable results"
+    }
+  ],
+  "summary": {
+    "totalModels": 3,
+    "successful": 2,
+    "failed": 1,
+    "successRate": 67
+  },
+  "recommendations": [
+    {
+      "model": "Flux Dev",
+      "strengths": [
+        "Good balance of quality and speed",
+        "Developer-friendly",
+        "Consistent results"
+      ],
+      "useCase": "Good alternative with faster generation",
+      "imageUrl": {}
+    },
+    {
+      "model": "SDXL",
+      "strengths": [
+        "Stable and reliable",
+        "Good for corporate imagery",
+        "Predictable results"
+      ],
+      "useCase": "Reliable fallback option",
+      "imageUrl": {}
+    }
+  ],
+  "serviceCardCode": "// Service card data for AI-Powered Lead Generation\nconst leadGenerationService = {\n  title: \"AI-Powered Lead Generation\",\n  hook: \"Transform prospects into qualified leads with AI\",\n  description: \"Intelligent lead scoring, automated nurturing sequences, and AI-powered qualification systems that maximize conversion rates.\",\n  link: \"solutions-lead-generation\",\n  image: \"https://replicate.delivery/xezq/v3Cam8FVKs6wBB9eAOb3QWeqPeer8Gtr7pQ3beesvjRpwGhWF/out-0.webp\",\n  features: [\n    \"AI-powered lead scoring\",\n    \"Automated qualification systems\",\n    \"Smart nurturing sequences\",\n    \"Conversion rate optimization\",\n    \"Intelligent prospect routing\",\n    \"Predictive analytics\"\n  ],\n  cta: \"Start Generating Leads\"\n};\n\n// ServiceScroller integration\nconst services = [\n  // ... other services\n  {\n    title: \"AI-Powered Lead Generation\",\n    hook: \"Transform prospects into qualified leads with AI\",\n    link: \"solutions-lead-generation\",\n    image: \"https://replicate.delivery/xezq/v3Cam8FVKs6wBB9eAOb3QWeqPeer8Gtr7pQ3beesvjRpwGhWF/out-0.webp\"\n  }\n  // ... other services\n];"
+}

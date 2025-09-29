@@ -1,0 +1,168 @@
+{
+  "metadata": {
+    "test_type": "CORRECTED Google Gemini vs OpenAI Image Generation Comparison",
+    "theme": "Ancient Art meets Futuristic Tech Concept Art",
+    "timestamp": "2025-09-29T18:11:22.979Z",
+    "corrected_models": [
+      "google/gemini-2.5-flash-image",
+      "dall-e-3"
+    ],
+    "previous_issues_fixed": [
+      "Used correct Replicate model ID for Google Gemini",
+      "Used dall-e-3 instead of non-existent gpt-image-1",
+      "Removed invalid response_format parameter",
+      "Used proper aspect_ratio parameter for Gemini"
+    ]
+  },
+  "test_results": {
+    "google": {
+      "provider": "Google",
+      "model": "Gemini 2.5 Flash Image",
+      "model_id": "google/gemini-2.5-flash-image",
+      "access_method": "Replicate API",
+      "success": false,
+      "error": "Prediction failed: Client error '404 Not Found' for url 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+      "generation_time_ms": 945,
+      "note": "Failed - check Replicate token and model availability"
+    },
+    "openai": {
+      "provider": "OpenAI",
+      "model": "DALL-E 3",
+      "model_id": "dall-e-3",
+      "access_method": "Direct OpenAI API",
+      "success": true,
+      "url": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-29eEWIe1z7taG5O3axwEgRRd/user-3kK5LhonY1HCCrtgoMDiYwAY/img-v6UG1nSv7W79JpnWLU0D9PGs.png?st=2025-09-29T17%3A11%3A22Z&se=2025-09-29T19%3A11%3A22Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=f1dafa11-a0c2-4092-91d4-10981fbda051&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-29T13%3A27%3A20Z&ske=2025-09-30T13%3A27%3A20Z&sks=b&skv=2024-08-04&sig=pxMKtZltcGoJwgpWm7bENneQ69D/HiBvSNdm7yvDBpY%3D",
+      "generation_time_ms": 17882,
+      "cost_estimate": 0.04,
+      "prompt_used": "ancient art meets futuristic tech concept art: Egyptian hieroglyphics seamlessly integrated with holographic displays, ancient stone tablets with glowing circuit patterns, mystical symbols transforming into digital code, Renaissance-style portraits with cyberpunk augmentations, classical marble statues enhanced with neon fiber optics, ancient scrolls displaying AI neural networks, temple architecture merged with sleek modern tech interfaces, professional commercial quality, high resolution 4K, award-winning concept art, dramatic lighting, perfect composition, cinematic quality, highly detailed",
+      "parameters": {
+        "width": 1024,
+        "height": 1024,
+        "quality": "standard",
+        "style": "vivid"
+      },
+      "capabilities": [
+        "Direct browser API access",
+        "Flexible quality options (standard/hd)",
+        "Style control (vivid/natural)",
+        "Image variations",
+        "Inpainting and outpainting",
+        "Higher resolution support"
+      ],
+      "limitations": [
+        "GPT-Image-1 not yet publicly available",
+        "Using DALL-E 3 instead of specified GPT-Image-1",
+        "Cost scales with quality settings"
+      ],
+      "note": "Using DALL-E 3 (GPT-Image-1 limited access only)"
+    }
+  },
+  "analysis": {
+    "corrected_test_summary": {
+      "theme": "Ancient Art meets Futuristic Tech Concept Art",
+      "corrected_models": {
+        "google": "google/gemini-2.5-flash-image (Replicate)",
+        "openai": "dall-e-3 (Direct API)"
+      },
+      "test_date": "2025-09-29T18:11:22.977Z",
+      "success_rate": {
+        "google": false,
+        "openai": true,
+        "overall": true
+      }
+    },
+    "model_comparison_corrected": {
+      "google_gemini_25_flash": {
+        "model": "Gemini 2.5 Flash Image",
+        "model_id": "google/gemini-2.5-flash-image",
+        "status": "Failed",
+        "access_method": "Replicate proxy",
+        "release_date": "2025-08-26",
+        "generation_time": 945,
+        "cost": "$0.039 per image (fixed)",
+        "key_features": [
+          "State-of-the-art Google image generation model",
+          "Native image generation and editing",
+          "Multi-image fusion capabilities",
+          "Character and style consistency",
+          "Conversational editing with natural language",
+          "SynthID digital watermarking for AI identification",
+          "Fast inference optimized for creative workflows"
+        ],
+        "technical_specs": {
+          "Release Date": "August 26, 2025",
+          "Nickname": "nano-banana",
+          "Pricing": "$30.00 per 1M output tokens",
+          "Output Tokens per Image": "1290 tokens",
+          "Cost per Image": "$0.039"
+        }
+      },
+      "openai_dalle_3": {
+        "model": "DALL-E 3",
+        "model_id": "dall-e-3",
+        "status": "Available",
+        "access_method": "Direct OpenAI API",
+        "generation_time": 17882,
+        "cost": "$0.04 per image",
+        "key_features": [
+          "Direct browser API access",
+          "High-quality image generation",
+          "Flexible quality settings (standard/hd)",
+          "Style control (vivid/natural)",
+          "Image variations and editing",
+          "Inpainting and outpainting",
+          "Multiple resolution support"
+        ],
+        "project_note": "Using DALL-E 3 as GPT-Image-1 not publicly available",
+        "technical_specs": {
+          "Quality Options": "standard ($0.04) or hd ($0.08)",
+          "Style Options": "vivid or natural",
+          "Sizes": "1024x1024, 1024x1792, 1792x1024",
+          "Public Availability": "Generally available"
+        }
+      }
+    },
+    "comparison_results": {
+      "performance": {
+        "speed": "Unable to compare - one or both failed",
+        "reliability": {
+          "google": "Failed: Prediction failed: Client error '404 Not Found' for url 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+          "openai": "Working"
+        }
+      },
+      "accessibility": {
+        "google": "Requires Replicate account and token",
+        "openai": "Direct API access with OpenAI account"
+      },
+      "cost_comparison": {
+        "google": "Fixed $0.039 per image",
+        "openai": "Variable: $0.04 (standard) or $0.08 (hd)"
+      }
+    },
+    "recommendations": {
+      "immediate_use": "OpenAI DALL-E 3 - reliable and directly accessible",
+      "model_selection_strategy": [
+        "Google Gemini 2.5 Flash Image for advanced editing features",
+        "OpenAI DALL-E 3 for reliable direct access",
+        "Use AI orchestrator for intelligent fallback",
+        "Monitor GPT-Image-1 availability for future use"
+      ],
+      "project_specific": [
+        "GPT-Image-1 not yet publicly available",
+        "DALL-E 3 used as temporary alternative",
+        "Google model accessible via Replicate proxy",
+        "Both models support high-quality concept art generation"
+      ]
+    }
+  },
+  "raw_prompts": {
+    "base_prompt": "ancient art meets futuristic tech concept art: Egyptian hieroglyphics seamlessly integrated with holographic displays, ancient stone tablets with glowing circuit patterns, mystical symbols transforming into digital code, Renaissance-style portraits with cyberpunk augmentations, classical marble statues enhanced with neon fiber optics, ancient scrolls displaying AI neural networks, temple architecture merged with sleek modern tech interfaces",
+    "enhanced_prompt": "ancient art meets futuristic tech concept art: Egyptian hieroglyphics seamlessly integrated with holographic displays, ancient stone tablets with glowing circuit patterns, mystical symbols transforming into digital code, Renaissance-style portraits with cyberpunk augmentations, classical marble statues enhanced with neon fiber optics, ancient scrolls displaying AI neural networks, temple architecture merged with sleek modern tech interfaces, professional commercial quality, high resolution 4K, award-winning concept art, dramatic lighting, perfect composition, cinematic quality, highly detailed",
+    "test_parameters": {
+      "width": 1024,
+      "height": 1024,
+      "quality": "standard",
+      "style": "vivid"
+    }
+  }
+}

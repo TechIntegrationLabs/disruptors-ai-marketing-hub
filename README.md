@@ -109,12 +109,23 @@ VITE_SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 # GitHub Integration
 GITHUB_PERSONAL_ACCESS_TOKEN=your_github_token
 
+# Supabase MCP Server
+SUPABASE_ACCESS_TOKEN=your_supabase_access_token
+
 # Deployment Services
 NETLIFY_AUTH_TOKEN=your_netlify_token
 CLOUDINARY_CLOUD_NAME=your_cloudinary_name
 CLOUDINARY_API_KEY=your_cloudinary_key
 CLOUDINARY_API_SECRET=your_cloudinary_secret
 ```
+
+The project includes comprehensive MCP server integration for AI-assisted development:
+- **Supabase MCP Server**: Database operations, project management, and development tools
+- **GitHub MCP Server**: Repository management and code collaboration
+- **Netlify MCP Server**: Deployment and hosting management
+- **Cloudinary MCP Server**: Media management and optimization
+
+See [MCP Servers Documentation](docs/mcp-servers.md) for complete setup and configuration details.
 
 ### AI Generation Services
 ```bash

@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "test_type": "Google Gemini vs OpenAI Image Generation Comparison",
+    "theme": "Ancient Art meets Futuristic Tech Concept Art",
+    "timestamp": "2025-09-29T18:08:28.071Z",
+    "models_tested": [
+      "Google Gemini 2.5 Flash Image",
+      "OpenAI GPT-Image-1"
+    ]
+  },
+  "test_results": {
+    "google": {
+      "provider": "Google",
+      "model": "Gemini 2.5 Flash Image",
+      "access_method": "Replicate",
+      "success": false,
+      "error": "Prediction failed: Client error '404 Not Found' for url 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404",
+      "generation_time_ms": 945,
+      "note": "Failed - check API keys and Replicate access"
+    },
+    "openai": {
+      "provider": "OpenAI",
+      "model": "GPT-Image-1",
+      "access_method": "Direct API",
+      "success": false,
+      "error": "400 Unknown parameter: 'response_format'.",
+      "generation_time_ms": 539,
+      "note": "Failed - check API key and model availability"
+    }
+  },
+  "analysis": {
+    "test_summary": {
+      "theme": "Ancient Art meets Futuristic Tech Concept Art",
+      "models_tested": [
+        "Google Gemini 2.5 Flash Image (via Replicate)",
+        "OpenAI GPT-Image-1 (Direct API)"
+      ],
+      "test_date": "2025-09-29T18:08:28.070Z",
+      "success_rate": {
+        "google": false,
+        "openai": false,
+        "overall": false
+      }
+    },
+    "model_comparison": {
+      "google_gemini": {
+        "model": "Gemini 2.5 Flash Image",
+        "status": "Failed",
+        "access_method": "Replicate proxy",
+        "generation_time": 945,
+        "cost": "$0.039 per image",
+        "key_features": [
+          "State-of-the-art image generation (Aug 2025)",
+          "Multi-image fusion capabilities",
+          "Character consistency for storytelling",
+          "Conversational editing with natural language",
+          "SynthID digital watermarking",
+          "Fast conversational workflows"
+        ],
+        "limitations": [
+          "Requires Replicate for browser access",
+          "No direct Gemini API image generation yet",
+          "Fixed pricing model"
+        ]
+      },
+      "openai_gpt_image": {
+        "model": "GPT-Image-1",
+        "status": "Failed",
+        "access_method": "Direct OpenAI API",
+        "generation_time": 539,
+        "cost": "N/A",
+        "key_features": [
+          "Direct browser API access",
+          "Flexible quality settings (standard/premium)",
+          "Base64 and URL response formats",
+          "Established workflow integration",
+          "DALL-E 3 explicitly excluded per project requirements"
+        ],
+        "limitations": [
+          "Limited to GPT-Image-1 model only",
+          "Cost scales with quality settings",
+          "Model restrictions per project guidelines"
+        ]
+      }
+    },
+    "accessibility_comparison": {
+      "browser_compatibility": {
+        "google": "Requires Replicate proxy (CORS limitations)",
+        "openai": "Direct browser access available"
+      },
+      "api_complexity": {
+        "google": "Simple via Replicate, complex via direct API",
+        "openai": "Direct and straightforward"
+      },
+      "cost_structure": {
+        "google": "Fixed $0.039 per image",
+        "openai": "Variable ($0.04 standard, $0.08 premium)"
+      }
+    },
+    "recommendations": {
+      "immediate_use": "API key configuration needed",
+      "future_consideration": "Google Gemini 2.5 Flash Image for advanced features when direct API becomes available",
+      "current_best_option": "Both models failed - check API configuration",
+      "integration_strategy": [
+        "Use AI orchestrator for intelligent model selection",
+        "Implement Replicate for Google models access",
+        "Maintain OpenAI as reliable fallback",
+        "Monitor Google direct API availability"
+      ]
+    }
+  },
+  "raw_prompts": {
+    "base_prompt": "ancient art meets futuristic tech concept art: Egyptian hieroglyphics seamlessly integrated with holographic displays, ancient stone tablets with glowing circuit patterns, mystical symbols transforming into digital code, Renaissance-style portraits with cyberpunk augmentations, classical marble statues enhanced with neon fiber optics, ancient scrolls displaying AI neural networks, temple architecture merged with sleek modern tech interfaces",
+    "enhanced_prompt": "ancient art meets futuristic tech concept art: Egyptian hieroglyphics seamlessly integrated with holographic displays, ancient stone tablets with glowing circuit patterns, mystical symbols transforming into digital code, Renaissance-style portraits with cyberpunk augmentations, classical marble statues enhanced with neon fiber optics, ancient scrolls displaying AI neural networks, temple architecture merged with sleek modern tech interfaces, professional commercial quality, high resolution 4K, award-winning concept art, dramatic lighting, perfect composition, cinematic quality. Avoid: low quality, blurry, amateur, pixelated, distorted",
+    "test_parameters": {
+      "width": 1024,
+      "height": 1024,
+      "quality": "standard",
+      "steps": 50,
+      "guidance": 7.5
+    }
+  }
+}

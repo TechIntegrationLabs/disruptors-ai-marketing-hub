@@ -9,49 +9,49 @@ const services = [
     title: "AI Automation",
     hook: "Automate repetitive tasks and workflows",
     link: "solutions-ai-automation",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737704/disruptors-ai/services/ai-automation.png"
+    image: "/generated/ai-automation-openai-1759158077281.png"
   },
   {
     title: "Social Media Marketing",
     hook: "Build and engage your community",
     link: "solutions-social-media-marketing",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737727/disruptors-ai/services/social-media-marketing.png"
+    image: "/generated/social-media-marketing-openai-1759158140830.png"
   },
   {
     title: "SEO & GEO",
     hook: "Get found by your ideal customers",
     link: "solutions-seo-geo",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737751/disruptors-ai/services/seo-geo.png"
+    image: "/generated/seo-geo-openai-1759158210281.png"
   },
   {
     title: "Lead Generation",
     hook: "Fill your pipeline with qualified prospects",
     link: "solutions-lead-generation",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737775/disruptors-ai/services/lead-generation.png"
+    image: "/generated/lead-generation-openai-1759158290259.png"
   },
   {
     title: "Paid Advertising",
     hook: "Maximize ROI across all channels",
     link: "solutions-paid-advertising",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737805/disruptors-ai/services/paid-advertising.png"
+    image: "/generated/paid-advertising-openai-1759158359154.png"
   },
   {
     title: "Podcasting",
     hook: "Build authority through audio content",
     link: "solutions-podcasting",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737828/disruptors-ai/services/podcasting.png"
+    image: "/generated/podcasting-openai-1759158435195.png"
   },
   {
     title: "Custom Apps",
     hook: "Tailored solutions for your needs",
     link: "solutions-custom-apps",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737855/disruptors-ai/services/custom-apps.png"
+    image: "/generated/custom-apps-openai-1759158501846.png"
   },
   {
     title: "CRM Management",
     hook: "Organize and nurture your relationships",
     link: "solutions-crm-management",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737880/disruptors-ai/services/crm-management.png"
+    image: "/generated/crm-management-openai-1759158571561.png"
   },
   {
     title: "Fractional CMO",
@@ -95,7 +95,7 @@ export default function ServiceScroller({
                     to={createPageUrl(service.link)}
                     className="block group h-full"
                   >
-                    <div className="service-card-shape bg-white/90 backdrop-blur-md shadow-lg border border-gray-200/50 hover:border-indigo-500/50 hover:shadow-2xl transition-all duration-300 p-8 h-full flex flex-col justify-between">
+                    <div className="service-card-shape bg-white/90 backdrop-blur-md shadow-lg border border-gray-200/50 hover:border-blue-500/50 hover:shadow-2xl transition-all duration-300 p-8 h-full flex flex-col justify-between">
                       <div>
                         <div className="service-image-shape mb-6 relative overflow-hidden">
                           <img
@@ -109,13 +109,13 @@ export default function ServiceScroller({
                               e.target.nextElementSibling.style.display = 'flex';
                             }}
                           />
-                          <div className="absolute inset-0 bg-gradient-to-br from-indigo-100 to-indigo-200 hidden items-center justify-center">
-                            <div className="text-2xl text-indigo-600 font-bold">
+                          <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-blue-200 hidden items-center justify-center">
+                            <div className="text-2xl text-blue-600 font-bold">
                               {service.title.split(' ').map(word => word[0]).join('')}
                             </div>
                           </div>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors duration-300 mb-2">
+                        <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 mb-2">
                           {service.title}
                         </h3>
                         <p className="text-gray-600">

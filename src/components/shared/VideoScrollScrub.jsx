@@ -27,7 +27,7 @@ gsap.registerPlugin(ScrollTrigger);
  * @param {Object} props.scrollTriggerOptions - Custom ScrollTrigger configuration
  */
 const VideoScrollScrub = ({
-  videoSrc = "https://res.cloudinary.com/dvcvxhzmt/video/upload/f_auto,q_auto/v1/disruptors-media/hero-video.mp4",
+  videoSrc = "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759116522/full-animation_online-video-cutter.com_zzpok1.mp4",
   poster = "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/v1/disruptors-media/hero-poster.jpg",
   title = "AI-Powered Marketing Innovation",
   description = "Discover how we transform businesses with cutting-edge AI solutions",
@@ -62,6 +62,12 @@ const VideoScrollScrub = ({
 
     // Wait for video metadata to load
     const handleLoadedMetadata = () => {
+      console.log('✅ Video metadata loaded:', {
+        duration: video.duration,
+        videoSrc,
+        readyState: video.readyState
+      });
+
       // Set initial frame to first frame
       video.currentTime = 0;
 
@@ -71,10 +77,17 @@ const VideoScrollScrub = ({
         start: "top bottom",
         end: "bottom top",
         scrub: 1, // Smooth scrubbing with 1-second lag
+        markers: true, // DEBUG: Show scroll trigger markers
         onUpdate: (self) => {
           // Calculate video progress based on scroll progress
           const progress = self.progress;
           const targetTime = progress * video.duration;
+
+          console.log('🎬 Scrubbing video:', {
+            progress: progress.toFixed(2),
+            targetTime: targetTime.toFixed(2),
+            currentTime: video.currentTime.toFixed(2)
+          });
 
           // Use requestVideoFrameCallback for frame-accurate updates when available
           if ('requestVideoFrameCallback' in video) {
@@ -167,55 +180,55 @@ const VideoScrollScrub = ({
   return (
     <section
       ref={containerRef}
-      className={`relative w-full h-screen overflow-hidden bg-black ${className}`}
+      className={`relative w-full h-screen overflow-hidden bg-black flex items-center justify-center ${className}`}
       role="region"
       aria-label="Video showcase section"
     >
-      {/* Video Element */}
-      <video
-        ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
-        poster={poster}
-        muted
-        playsInline
-        preload="metadata"
-        aria-label={title}
-      >
-        <source src={videoSrc} type="video/mp4" />
-        <p className="text-white text-center p-8">
-          Your browser does not support the video tag.
-          <img src={poster} alt={title} className="w-full h-full object-cover" />
-        </p>
-      </video>
-
-      {/* Overlay Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none" />
-
-      {/* Content Overlay */}
-      <div
-        ref={textRef}
-        className="absolute inset-0 flex items-center justify-center text-center px-4 sm:px-6 lg:px-8"
-      >
-        <div className="max-w-4xl">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            {title}
-          </h2>
-          <p className="text-xl sm:text-2xl text-gray-200 font-light max-w-3xl mx-auto leading-relaxed">
-            {description}
+      {/* Video Container - constrained to 85% width */}
+      <div className="relative w-[85%] h-full overflow-hidden">
+        {/* Video Element */}
+        <video
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover"
+          poster={poster}
+          muted
+          playsInline
+          preload="metadata"
+          aria-label={title}
+        >
+          <source src={videoSrc} type="video/mp4" />
+          <p className="text-white text-center p-8">
+            Your browser does not support the video tag.
+            <img src={poster} alt={title} className="w-full h-full object-cover" />
           </p>
+        </video>
+
+        {/* Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none" />
+
+        {/* Content Overlay */}
+        <div
+          ref={textRef}
+          className="absolute inset-0 flex items-center justify-center text-center px-4 sm:px-6 lg:px-8"
+        >
+          <div className="max-w-4xl">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              {title}
+            </h2>
+            <p className="text-xl sm:text-2xl text-gray-200 font-light max-w-3xl mx-auto leading-relaxed">
+              {description}
+            </p>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white opacity-70">
+          <div className="flex flex-col items-center space-y-2">
+            <span className="text-sm font-medium tracking-wide uppercase">Scroll to explore</span>
+            <div className="w-px h-12 bg-white/50 animate-pulse" />
+          </div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white opacity-70">
-        <div className="flex flex-col items-center space-y-2">
-          <span className="text-sm font-medium tracking-wide uppercase">Scroll to explore</span>
-          <div className="w-px h-12 bg-white/50 animate-pulse" />
-        </div>
-      </div>
-
-      {/* Performance Optimization: Preload hint for video */}
-      <link rel="preload" as="video" href={videoSrc} />
     </section>
   );
 };

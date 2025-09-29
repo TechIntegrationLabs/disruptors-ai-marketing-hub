@@ -260,3 +260,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 The GSAP Master MCP Server is your gateway to professional-grade animations that will make your projects stand out. Start with simple animations and gradually work your way up to complex, production-ready animation systems.
 
+
+
+

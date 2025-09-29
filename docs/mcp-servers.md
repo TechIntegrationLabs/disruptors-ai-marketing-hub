@@ -284,16 +284,29 @@ This document provides a comprehensive overview of all Model Context Protocol (M
 **Purpose**: Backend-as-a-Service with PostgreSQL
 
 **Capabilities**:
-- Database operations (CRUD)
-- Real-time subscriptions
-- Authentication management
-- File storage operations
+- Database operations (CRUD, migrations, schema management)
+- Project and organization management
+- Edge Functions deployment and management
+- Storage bucket operations
+- Real-time subscriptions and authentication
+- Documentation search and debugging tools
+- Development branch management (paid plans)
+- TypeScript type generation from schema
 
 **Use Cases**:
 - Application backend development
+- Database schema design and migration
+- Serverless function deployment
 - User authentication systems
 - Real-time applications
 - Data analytics and reporting
+- Development workflow automation
+
+**Security Features**:
+- Read-only mode for safe operations
+- Project scoping to limit access
+- Feature groups for granular control
+- Prompt injection protection
 
 ### Airtable
 **Package**: `airtable-mcp-server`
