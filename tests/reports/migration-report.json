@@ -1,0 +1,33 @@
+{
+  "migration_date": "2025-09-29T20:34:45.580Z",
+  "total_records_processed": 25,
+  "successful_migrations": 0,
+  "failed_migrations": 25,
+  "success_rate": "0.0%",
+  "results": {
+    "team_members": {
+      "successCount": 0,
+      "errorCount": 5
+    },
+    "services": {
+      "successCount": 0,
+      "errorCount": 9
+    },
+    "case_studies": {
+      "successCount": 0,
+      "errorCount": 1
+    },
+    "settings": {
+      "successCount": 0,
+      "errorCount": 7
+    },
+    "testimonials": {
+      "successCount": 0,
+      "errorCount": 2
+    },
+    "posts": {
+      "successCount": 0,
+      "errorCount": 1
+    }
+  }
+}
