@@ -12,7 +12,6 @@
 import Replicate from 'replicate';
 import OpenAI from 'openai';
 import { GoogleGenAI } from '@google/genai';
-import { supabaseMediaStorage } from './supabase-media-storage.js';
 
 // HARD-PINNED MODEL IDS - DO NOT MODIFY
 const APPROVED_IMAGE_MODELS = {
@@ -76,15 +75,15 @@ class AIMediaOrchestrator {
     // Brand consistency settings
     this.brandConfig = {
       colorPalette: {
-        primary: ["#1e3a8a", "#3730a3", "#0ea5e9", "#06b6d4"],
-        accent: ["#06b6d4", "#0891b2", "#0e7490"],
-        neutral: ["#f8fafc", "#e2e8f0", "#64748b", "#334155"]
+        primary: ["#111827", "#1f2937", "#374151"], // gray-900, gray-800, gray-700
+        accent: ["#d4af37", "#c9a53b", "#b8960a"], // gold accents (logo)
+        neutral: ["#ffffff", "#f9fafb", "#f3f4f6", "#e5e7eb"] // white, gray-50, gray-100, gray-200
       },
       designPrinciples: {
-        style: "Professional, modern, technology-focused",
-        aesthetic: "Clean minimal design with sophisticated gradients",
+        style: "Professional, modern, technology-focused with timeless elegance",
+        aesthetic: "Dark sophisticated design with premium gold accents, clean minimal",
         typography: "Clear, readable, corporate-friendly",
-        imagery: "High-tech, AI-forward, business-professional"
+        imagery: "High-tech, AI-forward, business-professional with premium feel"
       }
     };
   }
@@ -227,8 +226,9 @@ class AIMediaOrchestrator {
         result = await this.generateWithGemini(enhancedPrompt, options);
       }
 
-      // Store in Supabase with Cloudinary upload
+      // Store in Supabase with Cloudinary upload (dynamically import for code splitting)
       try {
+        const { supabaseMediaStorage } = await import('./supabase-media-storage.js');
         const storedMedia = await supabaseMediaStorage.storeGeneratedMedia(
           {
             type: 'image',
@@ -261,8 +261,9 @@ class AIMediaOrchestrator {
       // Fallback to Gemini only - NEVER DALL-E!
       const fallbackResult = await this.generateWithGemini(enhancedPrompt, options);
 
-      // Try to store fallback result too
+      // Try to store fallback result too (dynamically import for code splitting)
       try {
+        const { supabaseMediaStorage } = await import('./supabase-media-storage.js');
         const storedMedia = await supabaseMediaStorage.storeGeneratedMedia(
           {
             type: 'image',

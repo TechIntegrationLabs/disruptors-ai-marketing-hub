@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>ANACHRON Lite Icon Demo</title>
+<style>
+:root{
+  --ivory:#F3EFE6; --ink:#1F1B17; --terracotta:#C96F4C;
+  --lapis:#2C6BAA; --verdigris:#3C7A6A; --gold:#C9A53B; --shadow:#877F73;
+}
+body{background:var(--ivory); color:var(--ink); font-family:system-ui, sans-serif; padding:24px;}
+.grid{display:grid; grid-template-columns:repeat(8,80px); gap:24px; align-items:center; justify-items:center;}
+svg.icon{width:64px;height:64px; stroke:var(--ink); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; fill:none; filter:url(#paper);}
+.badge{display:inline-flex; align-items:center; gap:12px; padding:12px 16px; border:2px solid var(--ink); border-radius:12px; background:#fff5; backdrop-filter:blur(2px);}
+</style>
+</head>
+<body>
+<h1>ANACHRON Lite — Icon Demo</h1>
+<object type="image/svg+xml" data="ancient_icon_grid.svg" width="800" height="600"></object>
+<p class="badge">
+  <svg class="icon" viewBox="0 0 24 24"><use href="ancient_icon_grid.svg#icon-astrolabe"/></svg>
+  Astrolabe
+</p>
+</body>
+</html>

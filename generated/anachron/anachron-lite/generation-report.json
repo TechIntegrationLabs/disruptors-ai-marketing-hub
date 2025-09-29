@@ -1,0 +1,91 @@
+{
+  "summary": {
+    "total": 9,
+    "successful": 0,
+    "failed": 9,
+    "generatedAt": "2025-09-29T23:39:16.824Z"
+  },
+  "results": [
+    {
+      "service": "AI Automation",
+      "id": "ai-automation",
+      "success": false,
+      "filename": "icon-ai-automation-256px.png",
+      "outputPath": null,
+      "metadataPath": null,
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "service": "Social Media Marketing",
+      "id": "social-media",
+      "success": false,
+      "filename": "icon-social-media-256px.png",
+      "outputPath": null,
+      "metadataPath": null,
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "service": "SEO & GEO",
+      "id": "seo-geo",
+      "success": false,
+      "filename": "icon-seo-geo-256px.png",
+      "outputPath": null,
+      "metadataPath": null,
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "service": "Lead Generation",
+      "id": "lead-generation",
+      "success": false,
+      "filename": "icon-lead-generation-256px.png",
+      "outputPath": null,
+      "metadataPath": null,
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "service": "Paid Advertising",
+      "id": "paid-advertising",
+      "success": false,
+      "filename": "icon-paid-advertising-256px.png",
+      "outputPath": null,
+      "metadataPath": null,
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "service": "Podcasting",
+      "id": "podcasting",
+      "success": false,
+      "filename": "icon-podcasting-256px.png",
+      "outputPath": null,
+      "metadataPath": null,
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "service": "Custom Apps",
+      "id": "custom-apps",
+      "success": false,
+      "filename": "icon-custom-apps-256px.png",
+      "outputPath": null,
+      "metadataPath": null,
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "service": "CRM Management",
+      "id": "crm-management",
+      "success": false,
+      "filename": "icon-crm-management-256px.png",
+      "outputPath": null,
+      "metadataPath": null,
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    },
+    {
+      "service": "Fractional CMO",
+      "id": "fractional-cmo",
+      "success": false,
+      "filename": "icon-fractional-cmo-256px.png",
+      "outputPath": null,
+      "metadataPath": null,
+      "error": "400 Invalid value: 'standard'. Supported values are: 'low', 'medium', 'high', and 'auto'."
+    }
+  ]
+}

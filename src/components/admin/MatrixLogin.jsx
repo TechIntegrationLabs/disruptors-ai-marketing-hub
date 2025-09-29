@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
-import { supabaseMediaStorage } from '@/lib/supabase-media-storage';
 
 const MatrixLogin = ({ onLogin, onClose }) => {
   const [stage, setStage] = useState('loading'); // loading, username, password, success, denied
@@ -117,7 +116,8 @@ const MatrixLogin = ({ onLogin, onClose }) => {
       setStage('success');
 
       try {
-        // Create admin session in Supabase
+        // Create admin session in Supabase (dynamically import for code splitting)
+        const { supabaseMediaStorage } = await import('@/lib/supabase-media-storage');
         const sessionData = await supabaseMediaStorage.createAdminSession(
           username,
           null, // IP will be detected server-side

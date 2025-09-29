@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:auto": "concurrently \"npm run dev\" \"npm run auto-commit:watch\"",
+    "dev:orchestrated": "concurrently \"npm run dev\" \"npm run orchestrator:watch\"",
     "dev:safe": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -13,6 +14,9 @@
     "auto-commit": "node scripts/auto-commit.js commit",
     "auto-commit:watch": "node scripts/auto-commit.js watch",
     "auto-commit:status": "node scripts/auto-commit.js status",
+    "orchestrator:watch": "node scripts/orchestrator-integration.js watch",
+    "orchestrator:trigger": "node scripts/orchestrator-integration.js trigger",
+    "orchestrator:status": "node scripts/orchestrator-integration.js status",
     "changelog:add": "node scripts/changelog-manager.js add",
     "changelog:flush": "node scripts/changelog-manager.js flush",
     "changelog:release": "node scripts/changelog-manager.js release",

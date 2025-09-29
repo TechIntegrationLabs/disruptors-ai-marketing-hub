@@ -1,90 +1,73 @@
+import { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Layout from "./Layout.jsx";
 
+// Loading component for lazy-loaded routes
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="text-center">
+      <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+      <p className="text-gray-600">Loading...</p>
+    </div>
+  </div>
+);
+
+// Lazy load all pages for optimal performance
+// Home page loaded immediately for faster initial render
 import Home from "./Home.jsx";
 
-import Assessment from "./assessment.jsx";
+// Core pages - lazy loaded
+const Assessment = lazy(() => import('./assessment.jsx'));
+const Calculator = lazy(() => import('./calculator.jsx'));
+const NotFound = lazy(() => import('./404.jsx'));
+const Solutions = lazy(() => import('./solutions.jsx'));
+const Work = lazy(() => import('./work.jsx'));
+const About = lazy(() => import('./about.jsx'));
+const Resources = lazy(() => import('./resources.jsx'));
+const Contact = lazy(() => import('./contact.jsx'));
+const Privacy = lazy(() => import('./privacy.jsx'));
+const Terms = lazy(() => import('./terms.jsx'));
 
-import Calculator from "./calculator.jsx";
+// Blog system - lazy loaded
+const Blog = lazy(() => import('./blog.jsx'));
+const BlogDetail = lazy(() => import('./blog-detail.jsx'));
+const BlogManagement = lazy(() => import('./blog-management.jsx'));
 
-import NotFound from "./404.jsx";
+// Work case studies - lazy loaded
+const WorkSaasContentEngine = lazy(() => import('./work-saas-content-engine.jsx'));
+const WorkTradeworxUsa = lazy(() => import('./work-tradeworx-usa.jsx'));
+const WorkTimberViewFinancial = lazy(() => import('./work-timber-view-financial.jsx'));
+const WorkTheWellnessWay = lazy(() => import('./work-the-wellness-way.jsx'));
+const WorkSoundCorrections = lazy(() => import('./work-sound-corrections.jsx'));
+const WorkSegpro = lazy(() => import('./work-segpro.jsx'));
+const WorkNeuroMastery = lazy(() => import('./work-neuro-mastery.jsx'));
+const WorkMuscleWorks = lazy(() => import('./work-muscle-works.jsx'));
+const WorkGranitePaving = lazy(() => import('./work-granite-paving.jsx'));
+const WorkAutoTrimUtah = lazy(() => import('./work-auto-trim-utah.jsx'));
 
-import WorkSaasContentEngine from "./work-saas-content-engine.jsx";
+// Solutions pages - lazy loaded
+const SolutionsAiAutomation = lazy(() => import('./solutions-ai-automation.jsx'));
+const SolutionsSocialMedia = lazy(() => import('./solutions-social-media.jsx'));
+const SolutionsSeoGeo = lazy(() => import('./solutions-seo-geo.jsx'));
+const SolutionsLeadGeneration = lazy(() => import('./solutions-lead-generation.jsx'));
+const SolutionsPaidAdvertising = lazy(() => import('./solutions-paid-advertising.jsx'));
+const SolutionsPodcasting = lazy(() => import('./solutions-podcasting.jsx'));
+const SolutionsCustomApps = lazy(() => import('./solutions-custom-apps.jsx'));
+const SolutionsCrmManagement = lazy(() => import('./solutions-crm-management.jsx'));
+const SolutionsFractionalCmo = lazy(() => import('./solutions-fractional-cmo.jsx'));
 
-import ResourcesAiSuitcaseTermsDecoded from "./resources-ai-suitcase-terms-decoded.jsx";
+// Additional pages - lazy loaded
+const BookStrategySession = lazy(() => import('./book-strategy-session.jsx'));
+const Podcast = lazy(() => import('./podcast.jsx'));
+const Gallery = lazy(() => import('./gallery.jsx'));
+const Faq = lazy(() => import('./faq.jsx'));
+const ResourcesAiSuitcaseTermsDecoded = lazy(() => import('./resources-ai-suitcase-terms-decoded.jsx'));
 
-import Solutions from "./solutions.jsx";
-
-import Work from "./work.jsx";
-
-import About from "./about.jsx";
-
-import Resources from "./resources.jsx";
-
-import Contact from "./contact.jsx";
-
-import Privacy from "./privacy.jsx";
-
-import Terms from "./terms.jsx";
-
-import Blog from "./blog.jsx";
-
-import BlogDetail from "./blog-detail.jsx";
-
-import BlogManagement from "./blog-management.jsx";
-
-import WorkTradeworxUsa from "./work-tradeworx-usa.jsx";
-
-import WorkTimberViewFinancial from "./work-timber-view-financial.jsx";
-
-import WorkTheWellnessWay from "./work-the-wellness-way.jsx";
-
-import WorkSoundCorrections from "./work-sound-corrections.jsx";
-
-import WorkSegpro from "./work-segpro.jsx";
-
-import WorkNeuroMastery from "./work-neuro-mastery.jsx";
-
-import WorkMuscleWorks from "./work-muscle-works.jsx";
-
-import WorkGranitePaving from "./work-granite-paving.jsx";
-
-import WorkAutoTrimUtah from "./work-auto-trim-utah.jsx";
-
-import BookStrategySession from "./book-strategy-session.jsx";
-
-import SolutionsAiAutomation from "./solutions-ai-automation.jsx";
-
-import SolutionsSocialMedia from "./solutions-social-media.jsx";
-
-import SolutionsSeoGeo from "./solutions-seo-geo.jsx";
-
-import SolutionsLeadGeneration from "./solutions-lead-generation.jsx";
-
-import SolutionsPaidAdvertising from "./solutions-paid-advertising.jsx";
-
-import SolutionsPodcasting from "./solutions-podcasting.jsx";
-
-import SolutionsCustomApps from "./solutions-custom-apps.jsx";
-
-import SolutionsCrmManagement from "./solutions-crm-management.jsx";
-
-import SolutionsFractionalCmo from "./solutions-fractional-cmo.jsx";
-
-import Podcast from "./podcast.jsx";
-
-import Gallery from "./gallery.jsx";
-
-import Faq from "./faq.jsx";
-
-import ScrollAnimationDemo from "../components/examples/ScrollAnimationExamples.jsx";
-
-import FullAnimationDemo from "./full-animation-demo.jsx";
-
-import SplineDemo from "./spline-demo.jsx";
-
-import VideoScrubDemo from "./video-scrub-demo.jsx";
-
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+// Demo pages with 3D/animations - lazy loaded (saves 1.98 MB physics bundle)
+const ScrollAnimationDemo = lazy(() => import('../components/examples/ScrollAnimationExamples.jsx'));
+const FullAnimationDemo = lazy(() => import('./full-animation-demo.jsx'));
+const SplineDemo = lazy(() => import('./spline-demo.jsx'));
+const VideoScrubDemo = lazy(() => import('./video-scrub-demo.jsx'));
 
 const PAGES = {
     
@@ -191,15 +174,16 @@ function _getCurrentPage(url) {
 function PagesContent() {
     const location = useLocation();
     const currentPage = _getCurrentPage(location.pathname);
-    
+
     return (
         <Layout currentPageName={currentPage}>
-            <Routes>            
-                
-                    <Route path="/" element={<Home />} />
-                
-                
-                <Route path="/Home" element={<Home />} />
+            <Suspense fallback={<PageLoader />}>
+                <Routes>
+
+                        <Route path="/" element={<Home />} />
+
+
+                    <Route path="/Home" element={<Home />} />
                 
                 <Route path="/assessment" element={<Assessment />} />
                 
@@ -287,6 +271,7 @@ function PagesContent() {
                 <Route path="*" element={<NotFound />} />
 
             </Routes>
+            </Suspense>
         </Layout>
     );
 }
