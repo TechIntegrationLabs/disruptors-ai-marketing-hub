@@ -4,15 +4,37 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
+### Core Development
 - **Development server**: `npm run dev` - Starts Vite development server
 - **Auto-commit dev**: `npm run dev:auto` - Development with intelligent auto-commit system
 - **Safe development**: `npm run dev:safe` - Development without automation
 - **Build**: `npm run build` - Creates production build using Vite
 - **Lint**: `npm run lint` - Runs ESLint on the codebase
 - **Preview**: `npm run preview` - Preview production build locally
+
+### AI Image Generation
 - **Generate service images**: `npm run generate:service-images` - Generate AI service images
 - **Test image setup**: `npm run test:image-setup` - Test image generation setup
 - **Integration examples**: `npm run integrate:service-images` - Integration examples
+
+### MCP Server Management
+- **Start orchestrator**: `npm run mcp:start` - Start MCP orchestrator
+- **Check status**: `npm run mcp:status` - Check MCP server status
+- **Health check**: `npm run mcp:health` - Run health checks on all MCP servers
+- **Monitor**: `npm run mcp:monitor` - Start continuous monitoring
+- **Optimize**: `npm run mcp:optimize` - Optimize MCP configuration
+- **Analyze**: `npm run mcp:analyze` - Analyze MCP usage patterns
+- **Security audit**: `npm run mcp:security` - Run security audit
+- **Performance**: `npm run mcp:performance` - Performance analysis
+
+### Changelog Management
+- **Add entry**: `npm run changelog:add` - Add changelog entry
+- **Flush**: `npm run changelog:flush` - Flush pending entries
+- **Release**: `npm run changelog:release` - Create release from changelog
+- **Status**: `npm run changelog:status` - Check changelog status
+
+### Database Setup
+- **Setup database**: `npm run db:setup` - Initialize database schema and configuration
 
 ## Project Architecture
 
@@ -31,9 +53,14 @@ The application implements a distinctive routing architecture managed in `src/pa
 ### Component Architecture (49 UI + 15 Shared + Domain-Specific)
 
 - **UI Components** (`src/components/ui/`): 49 Radix UI-based design system components following shadcn/ui patterns
-- **Shared Components** (`src/components/shared/`): Reusable business components (Hero, ServiceScroller, AIMediaGenerator, etc.)
+- **Shared Components** (`src/components/shared/`): Reusable business components including:
+  - Hero, ServiceScroller, AIMediaGenerator for content
+  - AlternatingLayout, VideoScrollScrub for layouts
+  - SplineViewer, SplineScrollAnimation for 3D integration
 - **Admin Components** (`src/components/admin/`): Secure admin interface with MatrixLogin and secret access patterns
 - **Domain Components**: Organized by feature (`home/`, `work/`, `solutions/`)
+- **Animation Utilities** (`src/utils/splineAnimations.js`): GSAP + Spline integration helpers
+- **Performance Hooks** (`src/hooks/useSplinePerformance.js`): 3D performance monitoring
 
 ### Dual API Integration Architecture
 
@@ -47,23 +74,35 @@ The application implements a distinctive routing architecture managed in `src/pa
 **Supabase Integration** (`src/lib/supabase-client.js`):
 - Environment-aware configuration with automatic fallback to local instance
 - Dual client setup: service role for admin operations, regular for user operations
+- MCP Server Integration: Direct database operations through Supabase MCP server for enhanced development workflow
 
 ### AI Generation Orchestrator
 
 **Multi-Provider System** (`src/lib/ai-orchestrator.js`):
-- **OpenAI**: GPT-Image-1 (DALL-E 3 explicitly excluded), Realtime API
-- **Google**: Gemini 2.5 Flash Image, Veo 2/3 video generation
-- **Replicate**: Flux models, SDXL, Kling AI, ElevenLabs integration
+- **OpenAI**: gpt-image-1 ONLY (natively multimodal, streaming, C2PA metadata, input fidelity control)
+- **Google**: gemini-2.5-flash-image-preview (Nano Banana) with editing, composition, SynthID watermarking
+- **Replicate**: Flux 1.1 Pro, SDXL models for specialized use cases
+- **🚫 CRITICAL**: DALL-E is ABSOLUTELY FORBIDDEN - runtime validation blocks all DALL-E models
+- **Model Validation**: All image generation validates against hard-pinned approved model list
 - **Intelligent Model Selection**: Context-aware selection based on quality, budget, specialization
 - **Brand Consistency**: Automatic enforcement of brand guidelines across generations
 
 ### MCP (Model Context Protocol) Ecosystem
 
-Extensive integration with 20+ MCP servers across:
+Extensive integration with 23+ MCP servers across:
 - **Development**: GitHub, filesystem, memory, sequential thinking
+- **Database**: Supabase MCP server for direct database operations, project management, and enhanced development tools
+- **Animation**: GSAP Master MCP server for AI-powered animation generation with surgical precision
+- **3D Graphics**: Spline MCP server for programmatic control of 3D scenes, objects, materials, and animations
 - **Web Automation**: Firecrawl, Playwright, Puppeteer
 - **Cloud Services**: Vercel, Netlify, DigitalOcean, Railway, Cloudinary
 - **AI & Content**: Replicate, Nano Banana (Gemini), Figma workflow
+
+**MCP Orchestration** (`scripts/mcp-orchestrator.js`):
+- Centralized management of all MCP server connections
+- Health monitoring and automatic recovery
+- Performance optimization and usage analytics
+- Security auditing and configuration validation
 
 ### Admin Access System
 
@@ -77,9 +116,12 @@ Extensive integration with 20+ MCP servers across:
 
 - **Framework**: React 18 with Vite, React Router DOM v7.2.0
 - **Styling**: Tailwind CSS with custom design tokens, Radix UI primitives
-- **Animation**: Framer Motion for interactions and page transitions
+- **Animation**:
+  - Framer Motion for interactions and page transitions
+  - GSAP 3.13.0 for advanced scroll-based and timeline animations
+  - Spline 3D (`@splinetool/react-spline`) for 3D interactive content
 - **Database**: Supabase with custom SDK wrapper
-- **AI Services**: OpenAI, Google Gemini, Replicate, ElevenLabs integration
+- **AI Services**: OpenAI gpt-image-1, Google Gemini 2.5 Flash Image, Replicate, ElevenLabs integration
 - **Deployment**: Netlify with SPA routing, CSP headers, optimized caching
 
 ### File Organization & Patterns
@@ -110,16 +152,21 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 VITE_SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 
 # AI Generation Services
-VITE_OPENAI_API_KEY=your_openai_key
-VITE_GEMINI_API_KEY=your_gemini_key
+VITE_OPENAI_API_KEY=your_openai_key          # gpt-image-1 ONLY (NOT DALL-E)
+VITE_GEMINI_API_KEY=your_gemini_key          # gemini-2.5-flash-image-preview (Nano Banana)
 VITE_REPLICATE_API_TOKEN=your_replicate_token
 VITE_ELEVENLABS_API_KEY=your_elevenlabs_key
+
+# CRITICAL: Only approved models - DALL-E usage will throw runtime errors
+# - OpenAI: gpt-image-1
+# - Google: gemini-2.5-flash-image-preview
 ```
 
 #### MCP Integration
 ```bash
 # Development Workflow
 GITHUB_PERSONAL_ACCESS_TOKEN=your_github_token
+SUPABASE_ACCESS_TOKEN=your_supabase_access_token
 NETLIFY_AUTH_TOKEN=your_netlify_token
 CLOUDINARY_CLOUD_NAME=your_cloudinary_name
 CLOUDINARY_API_KEY=your_cloudinary_key
@@ -161,6 +208,7 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 
 **Core Framework**: `react@^18.2.0`, `react-router-dom@^7.2.0`, `vite@^6.1.0`
 **UI & Styling**: `tailwindcss@^3.4.17`, `@radix-ui/*` (20+ packages), `framer-motion@^12.4.7`
+**Animation**: `gsap@^3.13.0`, `@splinetool/react-spline@^4.1.0`, `@splinetool/runtime@^1.10.71`
 **Data & API**: `@supabase/supabase-js@^2.57.4`, `@base44/sdk@^0.1.2`
 **AI Services**: `openai@^5.23.0`, `@google/generative-ai@^0.24.1`, `replicate@^1.2.0`
 
@@ -184,4 +232,36 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 ### Component Development Standards
 - **Follow Radix UI patterns**: Reference `src/components/ui/` for consistent shadcn/ui implementation
 - **File organization**: Domain-specific components in feature directories (`home/`, `work/`, `solutions/`)
-- **Animation patterns**: Use Framer Motion for transitions, following existing component patterns
+- **Animation patterns**:
+  - Use Framer Motion for page transitions and UI interactions
+  - Use GSAP for scroll-triggered animations, timelines, and complex sequences
+  - Use Spline for 3D interactive content with GSAP integration via `splineAnimations.js`
+  - Monitor 3D performance with `useSplinePerformance` hook
+
+### Git Workflow
+- **Main branch**: `master` (not main)
+- **Feature branches**: Use descriptive branch names (e.g., `update1`, `feature-name`)
+- **Auto-commit**: Enabled via `npm run dev:auto` with intelligent change detection
+- **Commit patterns**: Auto-commits track changes systematically with semantic messages
+
+### GSAP Master MCP Server
+The project includes the GSAP Master MCP Server for AI-powered animation generation:
+- **AI Animation Creator**: Generate animations from natural language descriptions
+- **API Expert**: Complete GSAP documentation and best practices
+- **Setup Generator**: One-command setup for various frameworks
+- **Debugger**: AI-powered animation troubleshooting
+- **Performance Optimizer**: 60fps optimization for desktop and mobile
+- **Production Patterns**: Battle-tested animation systems
+
+See `docs/GSAP_MASTER_SETUP_GUIDE.md` for detailed usage instructions.
+
+### Spline MCP Server
+The project includes a comprehensive Spline MCP Server for 3D scene management:
+- **100+ Tools**: Object, material, scene, event, action, lighting, camera tools
+- **Runtime Integration**: Generate React, Next.js, and vanilla JS code
+- **Animation Control**: Programmatic animations and scroll triggers
+- **Scene Export**: GLB, GLTF, FBX, OBJ format support
+- **Performance Monitoring**: Real-time stats and optimization tools
+- **GSAP Integration**: Seamless coordination with GSAP animations
+
+See `docs/mcp-servers/spline-mcp-server.md` for detailed usage instructions.
