@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from '../components/shared/Hero';
-import TwoColumnLayout from '../components/shared/TwoColumnLayout';
+import VideoScrollScrub from '../components/shared/VideoScrollScrub';
+import AlternatingLayout from '../components/shared/AlternatingLayout';
 import ClientLogoMarquee from '../components/shared/ClientLogoMarquee';
 import ThreePillars from '../components/shared/ThreePillars';
 import ReviewsCarousel from '../components/shared/ReviewsCarousel';
@@ -8,63 +9,89 @@ import ServiceScroller from '../components/shared/ServiceScroller';
 import DualCTABlock from '../components/shared/DualCTABlock';
 
 export default function Home() {
+  const alternatingData = [
+    {
+      kicker: "REVOLUTION",
+      headline: "Transform Your Business with AI",
+      body: "We combine deep marketing expertise with cutting-edge AI systems to create flexible growth strategies that scale your business beyond current limitations.",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=80",
+      imageAlt: "AI Technology Transformation",
+      backgroundColor: "bg-white",
+      cta: {
+        label: "Start Your Transformation",
+        link: "book-strategy-session"
+      }
+    },
+    {
+      kicker: "PARTNERSHIP",
+      headline: "More Than an Agency. Your Growth Partner.",
+      body: "We help companies generate leads, streamline operations, and scale using AI-powered systems—all with complete transparency so you stay in control of your growth journey.",
+      image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/what-we-do-abt.png",
+      imageAlt: "Growth Partnership Visualization",
+      backgroundColor: "bg-gray-50"
+    },
+    {
+      kicker: "INNOVATION",
+      headline: "Cutting-Edge AI Solutions",
+      body: "From automated lead generation to intelligent customer insights, we deploy the latest AI technologies to give your business a competitive edge in the digital marketplace.",
+      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80",
+      imageAlt: "AI Innovation Technology",
+      backgroundColor: "bg-gray-900"
+    },
+    {
+      kicker: "RESULTS",
+      headline: "Proven Success Stories",
+      body: "Our clients see average growth increases of 300% within the first 6 months. We don't just promise results—we deliver measurable outcomes that transform businesses.",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2426&q=80",
+      imageAlt: "Business Growth Analytics",
+      backgroundColor: "bg-white"
+    },
+    {
+      kicker: "MISSION",
+      headline: "Your Partner in AI Excellence",
+      body: "Technology should free you from repetitive tasks. We leverage AI to eliminate monotony so you can focus on what only you can do: connect with the people you serve and grow your impact.",
+      image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/hand-robot.png",
+      imageAlt: "Human-AI Partnership",
+      backgroundColor: "bg-gray-900",
+      cta: {
+        label: "Partner With Us",
+        link: "book-strategy-session"
+      }
+    }
+  ];
+
   return (
     <div className="text-gray-800">
       <Hero />
 
-      {/* 1.1 Black Bar Statement */}
-      <section className="py-16 sm:py-20 text-center">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-lg sm:text-2xl font-medium text-gray-700">
-                We combine deep marketing expertise with cutting-edge AI systems to create flexible growth strategies tailored to your business needs.
-            </p>
-        </div>
-      </section>
-
-      {/* 1.2 "More than a Marketing Agency..." */}
-      <TwoColumnLayout
-        kicker="Just Added"
-        headline="More than a Marketing Agency. Your Growth Partner."
-        body="We help companies generate leads, streamline operations, and scale using AI-powered systems—all with transparency so you are in control."
-        rightContent={
-          <img src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/what-we-do-abt.png" alt="Growth Partner Graphic" className="w-full h-full object-contain"/>
-        }
+      {/* Video Scroll Scrub Section */}
+      <VideoScrollScrub
+        title="Transforming Business with AI"
+        description="Experience the power of artificial intelligence as we help companies generate leads, streamline operations, and scale beyond their current limitations."
       />
 
-      {/* 1.3 Client Logos Marquee */}
-      <div className="relative py-12 bg-black">
+      {/* Modern Alternating Layout Sections */}
+      <AlternatingLayout sections={alternatingData} />
+
+      {/* Client Logos Marquee */}
+      <div className="relative py-16 bg-black">
         <ClientLogoMarquee />
       </div>
 
-      {/* 1.4 Our Approach (3 Pillars) */}
+      {/* Our Approach (3 Pillars) */}
       <section className="relative bg-gray-800 text-white py-24 sm:py-32">
         <ThreePillars />
       </section>
 
-      {/* 1.5 Reviews */}
+      {/* Reviews */}
       <ReviewsCarousel />
 
-      {/* 1.6 Services / Solutions */}
-      <div className="relative py-12">
+      {/* Services / Solutions */}
+      <div className="relative py-16">
         <ServiceScroller />
       </div>
-      
-      {/* 1.7 Mission (2-Column, Image Left) */}
-      <TwoColumnLayout
-        reversed
-        kicker="Our Mission"
-        headline="To Be Your Partner In AI."
-        body="The purpose of ALL technologies (AI included) is to free humankind from menial, repetitive tasks. We leverage AI to free you from monotony so you can focus on what ONLY YOU can do: connect with the people you serve."
-        leftContent={
-           <img src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/hand-robot.png" alt="AI Partnership Graphic" className="w-full h-full object-contain"/>
-        }
-        cta={{
-          label: 'Work With Us',
-          link: 'book-strategy-session'
-        }}
-      />
 
-      {/* 1.8 CTA Block */}
+      {/* CTA Block */}
        <section className="relative bg-gray-800 text-white py-20">
          <DualCTABlock />
        </section>

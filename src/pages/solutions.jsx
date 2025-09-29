@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Cpu, Share2, Search, Filter, DollarSign, Mic, AppWindow, Users, Briefcase, ArrowRight } from 'lucide-react';
+import AlternatingLayout from '../components/shared/AlternatingLayout';
 import DualCTABlock from '../components/shared/DualCTABlock';
 
 const services = [
@@ -44,24 +45,21 @@ const ServiceCard = ({ service, index }) => {
 };
 
 export default function Solutions() {
+  const solutionsHeroData = [
+    {
+      kicker: "SOLUTIONS",
+      headline: "AI-Powered Marketing Solutions",
+      body: "A complete suite of AI-powered marketing and automation services designed to drive growth, efficiency, and real business results. From automation to custom apps, we help you leverage technology to scale without losing your human touch.",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2426&q=80",
+      imageAlt: "Business solutions and strategy",
+      backgroundColor: "bg-white"
+    }
+  ];
+
   return (
     <div>
-      {/* Hero Section */}
-      <section className="py-24 sm:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="bg-white/80 backdrop-blur-md rounded-3xl p-8 max-w-3xl mx-auto"
-            >
-                <h1 className="text-4xl sm:text-6xl font-bold text-gray-900 tracking-tight mb-6">Our Solutions</h1>
-                <p className="text-lg sm:text-xl text-gray-600">
-                    A complete suite of AI-powered marketing and automation services designed to drive growth, efficiency, and real business results.
-                </p>
-            </motion.div>
-        </div>
-      </section>
+      {/* Enhanced Hero Section */}
+      <AlternatingLayout sections={solutionsHeroData} />
 
       {/* Services Grid */}
       <section className="pb-24 sm:pb-32">

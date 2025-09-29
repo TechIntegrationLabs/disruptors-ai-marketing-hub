@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Simple Service Images Generator using OpenAI DALL-E 3
+ * Simple Service Images Generator using OpenAI GPT-Image-1 (NEVER DALL-E 3)
  * More reliable than the Replicate version, generates directly to Cloudinary
  */
 
@@ -90,7 +90,7 @@ class SimpleServiceGenerator {
 
     try {
       const response = await this.openai.images.generate({
-        model: "dall-e-3",
+        model: "gpt-image-1", // NEVER use DALL-E 3
         prompt: service.prompt,
         n: 1,
         size: "1792x1024",  // 16:9 aspect ratio
@@ -145,7 +145,7 @@ class SimpleServiceGenerator {
   }
 
   async generateAll() {
-    console.log('🚀 Starting service image generation with DALL-E 3...\n');
+    console.log('🚀 Starting service image generation with GPT-Image-1 (DALL-E 3 excluded)...\n');
 
     const results = [];
 
@@ -216,7 +216,7 @@ async function main() {
     const generator = new SimpleServiceGenerator();
 
     console.log('🔧 Configuration:');
-    console.log(`  - Model: DALL-E 3`);
+    console.log(`  - Model: GPT-Image-1 (DALL-E 3 explicitly excluded)`);
     console.log(`  - Size: 1792x1024 (16:9 aspect ratio)`);
     console.log(`  - Services: ${SERVICES.length}`);
     console.log(`  - Target size: 640x360\n`);

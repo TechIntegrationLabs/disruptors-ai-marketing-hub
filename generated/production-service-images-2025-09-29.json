@@ -1,0 +1,160 @@
+{
+  "timestamp": "2025-09-29T01:06:44.589Z",
+  "config": {
+    "replicate": {
+      "apiUrl": "https://api.replicate.com/v1/predictions",
+      "model": "stability-ai/sdxl:39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b"
+    },
+    "image": {
+      "width": 640,
+      "height": 360,
+      "format": "jpg",
+      "quality": 90
+    },
+    "cloudinary": {
+      "folder": "disruptors-ai/services",
+      "transformation": {
+        "quality": "auto:good",
+        "format": "jpg"
+      }
+    }
+  },
+  "model_used": "stability-ai/sdxl:39ed52f2a78e934b3ba6e2a89f5b1c712de7dfea535525255b1aa35c5565e08b",
+  "services": [
+    {
+      "id": "ai-automation",
+      "title": "AI Automation",
+      "description": "Automate repetitive tasks and workflows",
+      "link": "solutions-ai-automation",
+      "prompt": "Professional AI automation dashboard interface, sleek robotic process automation visualization, workflow diagrams with connected nodes, automated task management system, modern tech workspace, sophisticated blue and purple gradients (#1e3a8a, #3730a3, #7c3aed, #8b5cf6), futuristic digital interface elements, clean minimalist design, high-tech aesthetic, commercial photography style, professional corporate design, 640x360 aspect ratio"
+    },
+    {
+      "id": "social-media-marketing",
+      "title": "Social Media Marketing",
+      "description": "Build and engage your community",
+      "link": "solutions-social-media",
+      "prompt": "Modern social media management dashboard, multiple platform analytics display, engagement metrics charts and graphs, content calendar interface, social media icons and notifications, growth analytics, vibrant blue and purple color scheme (#1e3a8a, #3730a3, #7c3aed, #8b5cf6), professional workspace setup, clean UI design, commercial quality, modern technology aesthetic, 640x360 aspect ratio"
+    },
+    {
+      "id": "seo-geo",
+      "title": "SEO & GEO",
+      "description": "Get found by your ideal customers",
+      "link": "solutions-seo-geo",
+      "prompt": "SEO analytics dashboard with ranking charts, local search results visualization, geographic targeting maps interface, keyword optimization analytics, search engine metrics display, location pins on map interface, blue and purple tech aesthetic (#1e3a8a, #3730a3, #7c3aed, #8b5cf6), modern dashboard design, professional analytics workspace, commercial photography style, 640x360 aspect ratio"
+    },
+    {
+      "id": "lead-generation",
+      "title": "Lead Generation",
+      "description": "Fill your pipeline with qualified prospects",
+      "link": "solutions-lead-generation",
+      "prompt": "Lead generation funnel visualization, conversion metrics dashboard display, customer journey mapping interface, sales pipeline visualization, lead scoring charts and analytics, CRM data visualization, professional blue and purple gradient (#1e3a8a, #3730a3, #7c3aed, #8b5cf6), modern business analytics workspace, clean dashboard design, commercial quality, 640x360 aspect ratio"
+    },
+    {
+      "id": "paid-advertising",
+      "title": "Paid Advertising",
+      "description": "Maximize ROI across all channels",
+      "link": "solutions-paid-advertising",
+      "prompt": "PPC campaign dashboard interface, advertising platform analytics, ROI charts and performance metrics, ad performance analytics display, cost-per-click visualization, multiple advertising channels interface, professional blue and purple design (#1e3a8a, #3730a3, #7c3aed, #8b5cf6), modern advertising workspace, clean analytics interface, commercial photography style, 640x360 aspect ratio"
+    },
+    {
+      "id": "podcasting",
+      "title": "Podcasting",
+      "description": "Build authority through audio content",
+      "link": "solutions-podcasting",
+      "prompt": "Professional podcast studio setup, audio waveforms visualization, recording equipment and professional microphone, podcast analytics dashboard, sound wave graphics interface, broadcasting control panel, modern studio lighting, blue and purple tech aesthetic (#1e3a8a, #3730a3, #7c3aed, #8b5cf6), professional audio workspace, commercial quality design, 640x360 aspect ratio"
+    },
+    {
+      "id": "custom-apps",
+      "title": "Custom Apps",
+      "description": "Tailored solutions for your needs",
+      "link": "solutions-custom-apps",
+      "prompt": "Mobile app development workspace, code editor interface display, app prototypes and wireframes, development tools dashboard, programming environment setup, multiple device mockups, blue and purple gradient background (#1e3a8a, #3730a3, #7c3aed, #8b5cf6), modern development setup, clean tech aesthetic, commercial photography style, 640x360 aspect ratio"
+    },
+    {
+      "id": "crm-management",
+      "title": "CRM Management",
+      "description": "Organize and nurture your relationships",
+      "link": "solutions-crm-management",
+      "prompt": "CRM dashboard interface display, customer relationship management system, contact database visualization, sales pipeline management interface, customer data analytics charts, relationship mapping interface, professional blue and purple design (#1e3a8a, #3730a3, #7c3aed, #8b5cf6), modern business software, clean dashboard layout, commercial quality, 640x360 aspect ratio"
+    },
+    {
+      "id": "fractional-cmo",
+      "title": "Fractional CMO",
+      "description": "Strategic marketing leadership",
+      "link": "solutions-fractional-cmo",
+      "prompt": "Strategic marketing planning dashboard, executive analytics interface, growth metrics visualization, marketing strategy charts and KPIs, business consulting workspace, performance analytics display, professional leadership aesthetic, blue and purple gradient (#1e3a8a, #3730a3, #7c3aed, #8b5cf6), modern executive dashboard, commercial photography style, 640x360 aspect ratio"
+    }
+  ],
+  "results": [
+    {
+      "serviceId": "ai-automation",
+      "title": "AI Automation",
+      "description": "Automate repetitive tasks and workflows",
+      "link": "solutions-ai-automation",
+      "error": "Replicate API error: 402 - {\"title\":\"Insufficient credit\",\"detail\":\"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.\",\"status\":402}\n"
+    },
+    {
+      "serviceId": "social-media-marketing",
+      "title": "Social Media Marketing",
+      "description": "Build and engage your community",
+      "link": "solutions-social-media",
+      "error": "Replicate API error: 402 - {\"title\":\"Insufficient credit\",\"detail\":\"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.\",\"status\":402}\n"
+    },
+    {
+      "serviceId": "seo-geo",
+      "title": "SEO & GEO",
+      "description": "Get found by your ideal customers",
+      "link": "solutions-seo-geo",
+      "error": "Replicate API error: 402 - {\"title\":\"Insufficient credit\",\"detail\":\"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.\",\"status\":402}\n"
+    },
+    {
+      "serviceId": "lead-generation",
+      "title": "Lead Generation",
+      "description": "Fill your pipeline with qualified prospects",
+      "link": "solutions-lead-generation",
+      "error": "Replicate API error: 402 - {\"title\":\"Insufficient credit\",\"detail\":\"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.\",\"status\":402}\n"
+    },
+    {
+      "serviceId": "paid-advertising",
+      "title": "Paid Advertising",
+      "description": "Maximize ROI across all channels",
+      "link": "solutions-paid-advertising",
+      "error": "Replicate API error: 402 - {\"title\":\"Insufficient credit\",\"detail\":\"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.\",\"status\":402}\n"
+    },
+    {
+      "serviceId": "podcasting",
+      "title": "Podcasting",
+      "description": "Build authority through audio content",
+      "link": "solutions-podcasting",
+      "error": "Replicate API error: 402 - {\"title\":\"Insufficient credit\",\"detail\":\"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.\",\"status\":402}\n"
+    },
+    {
+      "serviceId": "custom-apps",
+      "title": "Custom Apps",
+      "description": "Tailored solutions for your needs",
+      "link": "solutions-custom-apps",
+      "error": "Replicate API error: 402 - {\"title\":\"Insufficient credit\",\"detail\":\"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.\",\"status\":402}\n"
+    },
+    {
+      "serviceId": "crm-management",
+      "title": "CRM Management",
+      "description": "Organize and nurture your relationships",
+      "link": "solutions-crm-management",
+      "error": "Replicate API error: 402 - {\"title\":\"Insufficient credit\",\"detail\":\"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.\",\"status\":402}\n"
+    },
+    {
+      "serviceId": "fractional-cmo",
+      "title": "Fractional CMO",
+      "description": "Strategic marketing leadership",
+      "link": "solutions-fractional-cmo",
+      "error": "Replicate API error: 402 - {\"title\":\"Insufficient credit\",\"detail\":\"You have insufficient credit to run this model. Go to https://replicate.com/account/billing#billing to purchase credit. Once you purchase credit, please wait a few minutes before trying again.\",\"status\":402}\n"
+    }
+  ],
+  "component_code": "const services = [\n\n];",
+  "summary": {
+    "total": 9,
+    "successful": 0,
+    "failed": 9,
+    "success_rate": 0
+  }
+}

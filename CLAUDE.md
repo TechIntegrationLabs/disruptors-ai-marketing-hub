@@ -51,7 +51,7 @@ The application implements a distinctive routing architecture managed in `src/pa
 ### AI Generation Orchestrator
 
 **Multi-Provider System** (`src/lib/ai-orchestrator.js`):
-- **OpenAI**: DALL-E 3, GPT-Image-1, Realtime API
+- **OpenAI**: GPT-Image-1 (DALL-E 3 explicitly excluded), Realtime API
 - **Google**: Gemini 2.5 Flash Image, Veo 2/3 video generation
 - **Replicate**: Flux models, SDXL, Kling AI, ElevenLabs integration
 - **Intelligent Model Selection**: Context-aware selection based on quality, budget, specialization

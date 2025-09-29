@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, User } from 'lucide-react';
+import AlternatingLayout from '../components/shared/AlternatingLayout';
 import DualCTABlock from "@/components/shared/DualCTABlock";
 import GeometricSeparator from "@/components/shared/WavySeparator";
 
@@ -66,24 +67,21 @@ const PostCard = ({ post, isFeatured = false }) => (
 
 
 export default function Blog() {
+  const blogHeroData = [
+    {
+      kicker: "INSIGHTS",
+      headline: "The Disruptors Blog",
+      body: "Actionable insights, proven strategies, and a behind-the-scenes look at how we build AI-powered growth systems. Discover the latest trends, case studies, and expert advice to transform your business with AI.",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80",
+      imageAlt: "Content creation and blogging",
+      backgroundColor: "bg-white"
+    }
+  ];
+
   return (
     <div>
-      {/* Hero Section */}
-      <section className="py-24 sm:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="bg-white/80 backdrop-blur-md rounded-3xl p-8 max-w-3xl mx-auto"
-            >
-                <h1 className="text-4xl sm:text-6xl font-bold text-gray-900 tracking-tight mb-6">The Disruptors Blog</h1>
-                <p className="text-lg sm:text-xl text-gray-600">
-                  Actionable insights, proven strategies, and a behind-the-scenes look at how we build AI-powered growth systems.
-                </p>
-            </motion.div>
-        </div>
-      </section>
+      {/* Enhanced Hero Section */}
+      <AlternatingLayout sections={blogHeroData} />
 
       {/* Blog Grid */}
       <section className="pb-24 sm:pb-32">

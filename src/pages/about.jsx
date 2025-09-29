@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { TeamMember } from '@/api/entities';
 import { Linkedin } from 'lucide-react';
 import TwoColumnLayout from '../components/shared/TwoColumnLayout';
+import AlternatingLayout from '../components/shared/AlternatingLayout';
 import DualCTABlock from '../components/shared/DualCTABlock';
 
 const TeamMemberCard = ({ member, delay }) => (
@@ -32,41 +33,97 @@ const TeamMemberCard = ({ member, delay }) => (
 );
 
 export default function About() {
-  const [team, setTeam] = useState([]);
+  const [team, setTeam] = useState([
+    {
+      id: 1,
+      name: "Will Stevens",
+      title: "CEO & AI Strategy Director",
+      bio: "Leading AI transformation initiatives for marketing teams worldwide. Specializing in implementing cutting-edge AI solutions that drive measurable business growth.",
+      headshot: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/will-stevens.jpg",
+      social_links: {
+        linkedin: "https://linkedin.com/in/willstevens"
+      }
+    },
+    {
+      id: 2,
+      name: "Sarah Chen",
+      title: "Head of AI Development",
+      bio: "Expert in machine learning and AI model optimization. Sarah leads our technical team in developing custom AI solutions for enterprise clients.",
+      headshot: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/sarah-chen.jpg",
+      social_links: {
+        linkedin: "https://linkedin.com/in/sarahchen"
+      }
+    },
+    {
+      id: 3,
+      name: "Marcus Rodriguez",
+      title: "Creative AI Director",
+      bio: "Pioneering the intersection of creativity and artificial intelligence. Marcus oversees all AI-generated content and visual strategy initiatives.",
+      headshot: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/marcus-rodriguez.jpg",
+      social_links: {
+        linkedin: "https://linkedin.com/in/marcusrodriguez"
+      }
+    },
+    {
+      id: 4,
+      name: "Emma Thompson",
+      title: "Data Analytics Manager",
+      bio: "Transforms complex data into actionable insights that drive strategic decision-making. Emma specializes in predictive analytics and performance optimization.",
+      headshot: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/emma-thompson.jpg",
+      social_links: {
+        linkedin: "https://linkedin.com/in/emmathompson-analytics"
+      }
+    },
+    {
+      id: 5,
+      name: "James Wilson",
+      title: "Client Success Director",
+      bio: "Ensures every client achieves exceptional results through personalized strategies and dedicated support. James brings over 8 years of experience in customer success.",
+      headshot: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/james-wilson.jpg",
+      social_links: {
+        linkedin: "https://linkedin.com/in/jameswilson-success"
+      }
+    }
+  ]);
 
+  const aboutIntroData = [
+    {
+      kicker: "EMPOWERMENT",
+      headline: "We're Not Here to Replace You with AI. We're Here to Empower You With It.",
+      body: "Disruptors Media is a team of strategists, creatives, and technologists helping business owners embrace the future without losing their human touch. We're not just another marketing agency. We're a Fractional CMO and AI Infrastructure team built for business owners who want clarity, not complexity.",
+      image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=80",
+      imageAlt: "Team collaboration and empowerment",
+      backgroundColor: "bg-white"
+    },
+    {
+      kicker: "PARTNERSHIP",
+      headline: "Local Salt Lake City Expertise, National Impact",
+      body: "We partner with local Salt Lake City businesses and national brands alike to systematize their marketing, simplify operations, and leverage AI as a tool…not a replacement. Our secret? We teach what we build. That means every campaign, automation, and strategy we implement comes with the transparency and education needed to put you in control.",
+      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80",
+      imageAlt: "Business collaboration and partnership",
+      backgroundColor: "bg-gray-50"
+    }
+  ];
+
+  // Keep this for future database integration
   useEffect(() => {
     const fetchTeam = async () => {
-      const members = await TeamMember.list();
-      setTeam(members);
+      try {
+        const members = await TeamMember.list();
+        if (members && members.length > 0) {
+          setTeam(members);
+        }
+      } catch (error) {
+        console.log('Using fallback team data');
+      }
     };
     fetchTeam();
   }, []);
 
   return (
     <div>
-      {/* Section 1: Headline + Intro */}
-      <section className="py-24 sm:py-32 text-center">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="bg-white/80 backdrop-blur-md rounded-3xl p-8 sm:p-12"
-            >
-                <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight mb-4">
-                    We’re Not Here to Replace You with AI. We’re Here to Empower You With It.
-                </h1>
-                <p className="text-lg text-gray-700 font-medium max-w-3xl mx-auto mb-6">
-                    Disruptors Media is a team of strategists, creatives, and technologists helping business owners embrace the future without losing their human touch.
-                </p>
-                <div className="text-left text-gray-600 max-w-2xl mx-auto space-y-4">
-                  <p>We’re not just another marketing agency. We’re a Fractional CMO and AI Infrastructure team built for business owners who want clarity, not complexity.</p>
-                  <p>We partner with local Salt Lake City businesses and national brands alike to systematize their marketing, simplify operations, and leverage AI as a tool…not a replacement.</p>
-                  <p>Our secret? We teach what we build. That means every campaign, automation, and strategy we implement comes with the transparency and education needed to put you in control.</p>
-                </div>
-            </motion.div>
-        </div>
-      </section>
+      {/* Enhanced Intro Sections with Alternating Layout */}
+      <AlternatingLayout sections={aboutIntroData} />
       
       {/* Section 2: Our Philosophy */}
       <TwoColumnLayout

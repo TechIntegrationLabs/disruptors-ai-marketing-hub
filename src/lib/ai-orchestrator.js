@@ -1,6 +1,9 @@
 /**
  * AI Media Generation Orchestrator
  * Comprehensive service for managing all AI generation across platforms
+ *
+ * IMPORTANT: This system NEVER uses DALL-E 3 per project requirements.
+ * Approved models only: GPT-Image-1, Gemini 2.5 Flash Image, Replicate models
  */
 
 import Replicate from 'replicate';
@@ -295,10 +298,14 @@ class AIMediaOrchestrator {
 
   /**
    * OpenAI Image Generation
+   * NOTE: Uses only GPT-Image-1, NEVER DALL-E 3 per project requirements
    */
   async generateWithOpenAI(prompt, options = {}) {
+    // CRITICAL: Only use GPT-Image-1, never DALL-E 3
+    const approvedModel = "gpt-image-1";
+
     const response = await this.openai.images.generate({
-      model: "gpt-image-1",
+      model: approvedModel,
       prompt: prompt,
       n: 1,
       size: `${options.width || 1024}x${options.height || 1024}`,
@@ -309,12 +316,13 @@ class AIMediaOrchestrator {
     return {
       url: `data:image/png;base64,${response.data[0].b64_json}`,
       provider: 'openai',
-      model: 'gpt-image-1',
+      model: approvedModel,
       cost: this.calculateCost('openai', 'image', options),
       metadata: {
         prompt: prompt,
         size: `${options.width || 1024}x${options.height || 1024}`,
-        quality: options.quality
+        quality: options.quality,
+        note: 'Generated with GPT-Image-1 (DALL-E 3 explicitly excluded)'
       }
     };
   }
