@@ -241,6 +241,26 @@ This document provides a comprehensive overview of all Model Context Protocol (M
 - Design system maintenance
 - Team collaboration
 
+### GSAP Master
+**Package**: `bruzethegreat-gsap-master-mcp-server`
+**Purpose**: Advanced animation creation and GSAP expertise
+
+**Capabilities**:
+- AI-powered animation creation from natural language
+- Complete GSAP API documentation and examples
+- Framework-specific setup generators (React, Vue, etc.)
+- Performance optimization and debugging
+- Production-ready animation patterns
+- All GSAP plugins now 100% FREE (thanks to Webflow!)
+
+**Use Cases**:
+- Professional animation implementation
+- Interactive UI components
+- Scroll-based animations and parallax effects
+- Text effects and character reveals
+- SVG animations and morphing
+- Complex animation sequences and timelines
+
 ### Nano Banana
 **Package**: `nano-banana-mcp`
 **Purpose**: AI-powered content generation with Gemini
