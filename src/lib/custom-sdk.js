@@ -144,6 +144,13 @@ export class CustomEntity {
         );
         return [];
       }
+      // Handle authentication errors gracefully
+      if (error.message && error.message.includes("Invalid API key")) {
+        console.warn(
+          `Authentication failed for ${this.tableName}, using placeholder/demo mode`
+        );
+        return [];
+      }
       throw error;
     }
     return this.mapResultFields(data) || [];
@@ -194,6 +201,13 @@ export class CustomEntity {
       ) {
         console.warn(
           `Table ${this.tableName} does not exist, returning empty array`
+        );
+        return [];
+      }
+      // Handle authentication errors gracefully
+      if (error.message && error.message.includes("Invalid API key")) {
+        console.warn(
+          `Authentication failed for ${this.tableName}, using placeholder/demo mode`
         );
         return [];
       }
@@ -873,11 +887,11 @@ export function createCustomClient() {
         GenerateImage: async ({ prompt }) => {
           console.warn("GenerateImage called with prompt:", prompt);
 
-          // TODO: Replace with actual AI image generation (DALL-E, Stability AI, etc.)
-          // Example with OpenAI DALL-E:
+          // TODO: Replace with actual AI image generation (GPT-Image, Gemini, etc.)
+          // Example with OpenAI GPT-Image:
           // const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
           // const response = await openai.images.generate({
-          //   model: "dall-e-3",
+          //   model: "gpt-image-1",
           //   prompt: prompt,
           //   size: "1024x1024",
           //   quality: "standard",

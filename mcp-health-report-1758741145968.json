@@ -1,0 +1,237 @@
+{
+  "timestamp": "2025-09-24T19:12:25.599Z",
+  "environment": {
+    "nodeVersion": "v22.19.0",
+    "platform": "win32",
+    "workingDirectory": "C:\\Users\\Will\\OneDrive\\Documents\\Projects\\dm4\\disruptors-ai-marketing-hub"
+  },
+  "mcpServers": {
+    "development": {
+      "configured": 5,
+      "total": 5,
+      "servers": [
+        "github",
+        "filesystem",
+        "memory",
+        "sequential-thinking",
+        "fetch"
+      ],
+      "status": "configured"
+    },
+    "deployment": {
+      "configured": 4,
+      "total": 4,
+      "servers": [
+        "vercel",
+        "netlify",
+        "digitalocean",
+        "railway"
+      ],
+      "status": "configured"
+    },
+    "ai": {
+      "configured": 3,
+      "total": 3,
+      "servers": [
+        "replicate",
+        "nano-banana",
+        "openai-image"
+      ],
+      "status": "configured"
+    },
+    "media": {
+      "configured": 2,
+      "total": 2,
+      "servers": [
+        "cloudinary",
+        "figma"
+      ],
+      "status": "configured"
+    },
+    "data": {
+      "configured": 2,
+      "total": 2,
+      "servers": [
+        "supabase",
+        "airtable"
+      ],
+      "status": "configured"
+    },
+    "automation": {
+      "configured": 4,
+      "total": 4,
+      "servers": [
+        "n8n-mcp",
+        "playwright",
+        "puppeteer",
+        "firecrawl"
+      ],
+      "status": "configured"
+    },
+    "marketing": {
+      "configured": 1,
+      "total": 1,
+      "servers": [
+        "gohighlevel"
+      ],
+      "status": "configured"
+    },
+    "research": {
+      "configured": 2,
+      "total": 2,
+      "servers": [
+        "dataforseo",
+        "apify"
+      ],
+      "status": "configured"
+    },
+    "configuration": {
+      "status": "success",
+      "totalServers": 23,
+      "message": "Successfully validated 23 MCP server configurations"
+    }
+  },
+  "integrations": {
+    "github": {
+      "status": "token_placeholder",
+      "configured": true,
+      "hasValidToken": false,
+      "message": "Using placeholder token - needs actual token"
+    },
+    "netlify": {
+      "status": "configured",
+      "configured": true,
+      "hasValidToken": true,
+      "message": "Netlify integration configured",
+      "spaRouting": true
+    },
+    "cloudinary": {
+      "status": "connected",
+      "configured": true,
+      "cloudName": "dvcvxhzmt",
+      "connectionTest": "success",
+      "message": "Cloudinary connection verified"
+    },
+    "supabase": {
+      "status": "configured",
+      "mcpConfigured": true,
+      "projectRef": "ubqxflzuvxowigbjmqfb",
+      "hasAccessToken": true,
+      "clientConfigured": true,
+      "message": "Supabase MCP server and client configured"
+    },
+    "aiServices": {
+      "openai": {
+        "status": "needs_token",
+        "mcpConfigured": true,
+        "tokenStatus": "placeholder",
+        "message": "openai needs valid API key"
+      },
+      "replicate": {
+        "status": "configured",
+        "mcpConfigured": true,
+        "tokenStatus": "configured",
+        "message": "replicate properly configured"
+      },
+      "gemini": {
+        "status": "configured",
+        "mcpConfigured": true,
+        "tokenStatus": "configured",
+        "message": "gemini properly configured"
+      },
+      "orchestrator": {
+        "configured": true,
+        "message": "AI orchestrator module available"
+      }
+    },
+    "workflows": {
+      "ai-image-storage": {
+        "description": "AI image generation → Cloudinary storage → Supabase metadata",
+        "requiredServices": [
+          "openai-image",
+          "replicate",
+          "cloudinary",
+          "supabase"
+        ],
+        "configuredServices": [
+          "openai-image",
+          "replicate",
+          "cloudinary",
+          "supabase"
+        ],
+        "completeness": 100,
+        "status": "complete"
+      },
+      "deployment-pipeline": {
+        "description": "GitHub repository → Netlify deployment",
+        "requiredServices": [
+          "github",
+          "netlify"
+        ],
+        "configuredServices": [
+          "github",
+          "netlify"
+        ],
+        "completeness": 100,
+        "status": "complete"
+      },
+      "content-generation": {
+        "description": "AI content generation → Database storage",
+        "requiredServices": [
+          "nano-banana",
+          "replicate",
+          "supabase"
+        ],
+        "configuredServices": [
+          "nano-banana",
+          "replicate",
+          "supabase"
+        ],
+        "completeness": 100,
+        "status": "complete"
+      },
+      "web-automation": {
+        "description": "Web scraping and automation workflows",
+        "requiredServices": [
+          "firecrawl",
+          "playwright",
+          "puppeteer"
+        ],
+        "configuredServices": [
+          "firecrawl",
+          "playwright",
+          "puppeteer"
+        ],
+        "completeness": 100,
+        "status": "complete"
+      }
+    }
+  },
+  "recommendations": [
+    {
+      "service": "GitHub",
+      "priority": "high",
+      "issue": "Placeholder token detected",
+      "solution": "Replace GITHUB_PERSONAL_ACCESS_TOKEN with actual token from https://github.com/settings/tokens"
+    },
+    {
+      "service": "Openai",
+      "priority": "medium",
+      "issue": "Placeholder API key detected",
+      "solution": "Replace with actual API key for openai service"
+    },
+    {
+      "service": "Performance",
+      "priority": "low",
+      "issue": "Multiple AI services configured",
+      "solution": "Consider implementing intelligent model selection and cost optimization"
+    },
+    {
+      "service": "Security",
+      "priority": "medium",
+      "issue": "MCP configuration contains sensitive tokens",
+      "solution": "Ensure mcp.json is not committed to public repositories"
+    }
+  ],
+  "status": "warning"
+}

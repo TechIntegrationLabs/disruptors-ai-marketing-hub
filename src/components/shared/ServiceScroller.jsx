@@ -9,55 +9,55 @@ const services = [
     title: "AI Automation",
     hook: "Automate repetitive tasks and workflows",
     link: "solutions-ai-automation",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/ai-automation-service.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737704/disruptors-ai/services/ai-automation.png"
   },
   {
     title: "Social Media Marketing",
     hook: "Build and engage your community",
-    link: "solutions-social-media",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/social-media-marketing-service.jpg"
+    link: "solutions-social-media-marketing",
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737727/disruptors-ai/services/social-media-marketing.png"
   },
   {
     title: "SEO & GEO",
     hook: "Get found by your ideal customers",
     link: "solutions-seo-geo",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/seo-geo-service.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737751/disruptors-ai/services/seo-geo.png"
   },
   {
     title: "Lead Generation",
     hook: "Fill your pipeline with qualified prospects",
     link: "solutions-lead-generation",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/lead-generation-service.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737775/disruptors-ai/services/lead-generation.png"
   },
   {
     title: "Paid Advertising",
     hook: "Maximize ROI across all channels",
     link: "solutions-paid-advertising",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/paid-advertising-service.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737805/disruptors-ai/services/paid-advertising.png"
   },
   {
     title: "Podcasting",
     hook: "Build authority through audio content",
     link: "solutions-podcasting",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/podcasting-service.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737828/disruptors-ai/services/podcasting.png"
   },
   {
     title: "Custom Apps",
     hook: "Tailored solutions for your needs",
     link: "solutions-custom-apps",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/custom-apps-service.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737855/disruptors-ai/services/custom-apps.png"
   },
   {
     title: "CRM Management",
     hook: "Organize and nurture your relationships",
     link: "solutions-crm-management",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/crm-management-service.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737880/disruptors-ai/services/crm-management.png"
   },
   {
     title: "Fractional CMO",
     hook: "Strategic marketing leadership",
     link: "solutions-fractional-cmo",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/services/fractional-cmo-service.jpg"
+    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737907/disruptors-ai/services/fractional-cmo.png"
   }
 ];
 

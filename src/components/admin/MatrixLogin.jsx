@@ -13,18 +13,42 @@ const MatrixLogin = ({ onLogin, onClose }) => {
   const audioRef = useRef(null);
   const inputRef = useRef(null);
 
+  const digitalMarketingFacts = [
+    'AI-powered chatbots handle 85% of customer interactions without human intervention',
+    'Personalized email campaigns driven by AI see 760% increase in revenue',
+    'Machine learning algorithms can predict customer lifetime value with 95% accuracy',
+    'AI content generation tools produce 300% more content in half the time',
+    'Programmatic advertising powered by AI reaches the right audience 87% more effectively',
+    'Voice search optimization is crucial as 58% of consumers use voice search daily',
+    'AI-driven dynamic pricing increases profits by up to 25% in real-time',
+    'Predictive analytics help marketers identify high-value leads 3x faster',
+    'Computer vision AI can analyze brand sentiment from social media images',
+    'Neural networks process 2.5 quintillion bytes of marketing data daily',
+    'AI recommendation engines drive 35% of Amazon\'s total revenue',
+    'Marketing automation with AI increases qualified leads by 451%',
+    'Real-time personalization powered by AI boosts conversion rates by 202%',
+    'AI fraud detection prevents $28 billion in ad spend waste annually',
+    'Sentiment analysis AI processes 500 million social posts per day'
+  ];
+
+  const getRandomFact = () => {
+    return digitalMarketingFacts[Math.floor(Math.random() * digitalMarketingFacts.length)];
+  };
+
   const matrixLines = [
     'INITIALIZING SECURE CONNECTION...',
     'BYPASSING FIREWALL...',
     'ACCESSING DISRUPTORS NEURAL NETWORK...',
     'CONNECTION ESTABLISHED',
     '',
-    'WELCOME TO THE MATRIX',
+    `DID YOU KNOW: ${getRandomFact()}`,
+    '',
+    'WELCOME TO THE SYSTEM',
     '',
     'STATE YOUR IDENTITY:'
   ];
 
-  const typewriterSpeed = 50;
+  const typewriterSpeed = 3;
   const cursorBlinkSpeed = 500;
 
   // Cursor blinking effect
@@ -155,8 +179,8 @@ const MatrixLogin = ({ onLogin, onClose }) => {
 
       {/* Retro CRT Effect Overlay */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="w-full h-full bg-gradient-to-b from-transparent via-green-500/5 to-transparent animate-pulse"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-500/3 to-transparent animate-pulse"></div>
+        <div className="w-full h-full bg-gradient-to-b from-transparent via-green-900/3 to-transparent animate-pulse"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-900/2 to-transparent animate-pulse"></div>
       </div>
 
       {/* Scanlines Effect */}
@@ -186,7 +210,7 @@ const MatrixLogin = ({ onLogin, onClose }) => {
 
       {/* Terminal Interface */}
       <div className="relative z-10 h-full flex items-center justify-center p-8">
-        <div className="w-full max-w-4xl bg-black/80 border border-green-400 rounded-lg shadow-2xl shadow-green-400/20 backdrop-blur-sm">
+        <div className="w-full max-w-4xl bg-black/60 border border-green-400 rounded-lg shadow-2xl shadow-green-400/20 backdrop-blur-sm">
 
           {/* Terminal Header */}
           <div className="flex items-center justify-between p-4 border-b border-green-400/30 bg-green-400/10">
@@ -200,7 +224,7 @@ const MatrixLogin = ({ onLogin, onClose }) => {
           </div>
 
           {/* Terminal Content */}
-          <div className="p-6 min-h-[500px] font-mono text-green-400 bg-black/90">
+          <div className="p-6 min-h-[500px] font-mono text-green-400 bg-black/70">
 
             {/* Matrix Output */}
             <div className="whitespace-pre-wrap leading-relaxed text-sm">
@@ -263,7 +287,7 @@ const MatrixLogin = ({ onLogin, onClose }) => {
       </div>
 
       {/* Custom Styles */}
-      <style jsx>{`
+      <style>{`
         @keyframes scanlines {
           0% { transform: translateY(0); }
           100% { transform: translateY(4px); }
