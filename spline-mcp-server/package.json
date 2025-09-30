@@ -1,0 +1,28 @@
+{
+  "name": "spline-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for Spline.design - Control 3D objects, materials, states, and events",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:simple": "node super-simple-server.js"
+  },
+  "keywords": [
+    "spline",
+    "webhook",
+    "3d",
+    "design"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.18.2",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2",
+    "yargs": "^17.7.2",
+    "zod": "^3.22.4"
+  }
+}
