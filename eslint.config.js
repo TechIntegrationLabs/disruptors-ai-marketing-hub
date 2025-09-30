@@ -48,6 +48,7 @@ export default [
       'react/prop-types': 'off', // Disable prop-types since using React 18 JSX transform
       'react/no-unescaped-entities': 'off', // Allow unescaped entities
       'no-unused-vars': ['error', { 'vars': 'all', 'args': 'after-used', 'ignoreRestSiblings': false, 'varsIgnorePattern': '^React$' }],
+      'quotes': ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }], // Prevent apostrophe issues in single-quoted strings
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
