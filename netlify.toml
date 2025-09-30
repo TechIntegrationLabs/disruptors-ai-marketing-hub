@@ -26,7 +26,7 @@
       font-src 'self' https://fonts.gstatic.com;
       img-src 'self' data: blob: https: http:;
       media-src 'self' blob: https: http:;
-      connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com wss://*.supabase.co;
+      connect-src 'self' https://*.supabase.co https://api.openai.com https://api.replicate.com https://api.elevenlabs.io https://generativelanguage.googleapis.com https://res.cloudinary.com https://prod.spline.design wss://*.supabase.co;
       frame-src 'self' https://www.youtube.com https://player.vimeo.com;
       worker-src 'self' blob:;
       object-src 'none';

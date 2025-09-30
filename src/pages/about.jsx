@@ -33,58 +33,8 @@ const TeamMemberCard = ({ member, delay }) => (
 );
 
 export default function About() {
-  const [team, setTeam] = useState([
-    {
-      id: 1,
-      name: "Will Stevens",
-      title: "CEO & AI Strategy Director",
-      bio: "Leading AI transformation initiatives for marketing teams worldwide. Specializing in implementing cutting-edge AI solutions that drive measurable business growth.",
-      headshot: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/will-stevens.jpg",
-      social_links: {
-        linkedin: "https://linkedin.com/in/willstevens"
-      }
-    },
-    {
-      id: 2,
-      name: "Sarah Chen",
-      title: "Head of AI Development",
-      bio: "Expert in machine learning and AI model optimization. Sarah leads our technical team in developing custom AI solutions for enterprise clients.",
-      headshot: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/sarah-chen.jpg",
-      social_links: {
-        linkedin: "https://linkedin.com/in/sarahchen"
-      }
-    },
-    {
-      id: 3,
-      name: "Marcus Rodriguez",
-      title: "Creative AI Director",
-      bio: "Pioneering the intersection of creativity and artificial intelligence. Marcus oversees all AI-generated content and visual strategy initiatives.",
-      headshot: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/marcus-rodriguez.jpg",
-      social_links: {
-        linkedin: "https://linkedin.com/in/marcusrodriguez"
-      }
-    },
-    {
-      id: 4,
-      name: "Emma Thompson",
-      title: "Data Analytics Manager",
-      bio: "Transforms complex data into actionable insights that drive strategic decision-making. Emma specializes in predictive analytics and performance optimization.",
-      headshot: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/emma-thompson.jpg",
-      social_links: {
-        linkedin: "https://linkedin.com/in/emmathompson-analytics"
-      }
-    },
-    {
-      id: 5,
-      name: "James Wilson",
-      title: "Client Success Director",
-      bio: "Ensures every client achieves exceptional results through personalized strategies and dedicated support. James brings over 8 years of experience in customer success.",
-      headshot: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/team/james-wilson.jpg",
-      social_links: {
-        linkedin: "https://linkedin.com/in/jameswilson-success"
-      }
-    }
-  ]);
+  const [team, setTeam] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const aboutIntroData = [
     {
@@ -105,16 +55,19 @@ export default function About() {
     }
   ];
 
-  // Keep this for future database integration
   useEffect(() => {
     const fetchTeam = async () => {
       try {
-        const members = await TeamMember.list();
-        if (members && members.length > 0) {
-          setTeam(members);
-        }
+        setLoading(true);
+        // Fetch team members sorted by display_order
+        const members = await TeamMember.list('display_order');
+        // Filter only active members
+        const activeMembers = members.filter(member => member.is_active);
+        setTeam(activeMembers);
       } catch (error) {
-        console.log('Using fallback team data');
+        console.error('Error fetching team members:', error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchTeam();
@@ -122,6 +75,29 @@ export default function About() {
 
   return (
     <div>
+      {/* Hero Video Section */}
+      <section className="relative w-full bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative w-full rounded-2xl overflow-hidden shadow-2xl"
+          >
+            <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+              <video
+                className="absolute top-0 left-0 w-full h-full object-cover"
+                controls
+                poster="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1757280802/dm-abt_rwm0ng.jpg"
+              >
+                <source src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1757280802/dm-abt_rwm0ng.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Enhanced Intro Sections with Alternating Layout */}
       <AlternatingLayout sections={aboutIntroData} />
       
@@ -172,7 +148,12 @@ export default function About() {
             </div>
           </motion.div>
           
-          {team.length > 0 ? (
+          {loading ? (
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl p-12 text-center max-w-md mx-auto">
+              <div className="text-4xl mb-4">⏳</div>
+              <p className="text-gray-600">Loading team members...</p>
+            </div>
+          ) : team.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {team.map((member, index) => (
                 <TeamMemberCard key={member.id} member={member} delay={index * 0.1} />
@@ -181,10 +162,7 @@ export default function About() {
           ) : (
             <div className="bg-white/80 backdrop-blur-md rounded-3xl p-12 text-center max-w-md mx-auto">
               <div className="text-4xl mb-4">👥</div>
-              <p className="text-gray-600">Loading team members...</p>
-              <p className="text-xs font-mono text-gray-400 mt-2">
-                [PLACEHOLDER: Team member cards will display here when data is loaded]
-              </p>
+              <p className="text-gray-600">No team members available at this time.</p>
             </div>
           )}
         </div>

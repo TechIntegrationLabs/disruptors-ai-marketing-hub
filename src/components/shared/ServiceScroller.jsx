@@ -9,55 +9,55 @@ const services = [
     title: "AI Automation",
     hook: "Automate repetitive tasks and workflows",
     link: "solutions-ai-automation",
-    image: "/generated/ai-automation-openai-1759158077281.png"
+    image: "/generated/anachron-lite/ai-automation-icon-anachron-lite.png"
   },
   {
     title: "Social Media Marketing",
     hook: "Build and engage your community",
     link: "solutions-social-media-marketing",
-    image: "/generated/social-media-marketing-openai-1759158140830.png"
+    image: "/generated/anachron-lite/social-media-marketing-icon-anachron-lite.png"
   },
   {
     title: "SEO & GEO",
     hook: "Get found by your ideal customers",
     link: "solutions-seo-geo",
-    image: "/generated/seo-geo-openai-1759158210281.png"
+    image: "/generated/anachron-lite/seo-geo-icon-anachron-lite.png"
   },
   {
     title: "Lead Generation",
     hook: "Fill your pipeline with qualified prospects",
     link: "solutions-lead-generation",
-    image: "/generated/lead-generation-openai-1759158290259.png"
+    image: "/generated/anachron-lite/lead-generation-icon-anachron-lite.png"
   },
   {
     title: "Paid Advertising",
     hook: "Maximize ROI across all channels",
     link: "solutions-paid-advertising",
-    image: "/generated/paid-advertising-openai-1759158359154.png"
+    image: "/generated/anachron-lite/paid-advertising-icon-anachron-lite.png"
   },
   {
     title: "Podcasting",
     hook: "Build authority through audio content",
     link: "solutions-podcasting",
-    image: "/generated/podcasting-openai-1759158435195.png"
+    image: "/generated/anachron-lite/podcasting-icon-anachron-lite.png"
   },
   {
     title: "Custom Apps",
     hook: "Tailored solutions for your needs",
     link: "solutions-custom-apps",
-    image: "/generated/custom-apps-openai-1759158501846.png"
+    image: "/generated/anachron-lite/custom-apps-icon-anachron-lite.png"
   },
   {
     title: "CRM Management",
     hook: "Organize and nurture your relationships",
     link: "solutions-crm-management",
-    image: "/generated/crm-management-openai-1759158571561.png"
+    image: "/generated/anachron-lite/crm-management-icon-anachron-lite.png"
   },
   {
     title: "Fractional CMO",
     hook: "Strategic marketing leadership",
     link: "solutions-fractional-cmo",
-    image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758737907/disruptors-ai/services/fractional-cmo.png"
+    image: "/generated/anachron-lite/fractional-cmo-icon-anachron-lite.png"
   }
 ];
 
@@ -95,13 +95,14 @@ export default function ServiceScroller({
                     to={createPageUrl(service.link)}
                     className="block group h-full"
                   >
-                    <div className="service-card-shape bg-white/90 backdrop-blur-md shadow-lg border border-gray-200/50 hover:border-blue-500/50 hover:shadow-2xl transition-all duration-300 p-8 h-full flex flex-col justify-between">
+                    <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 hover:border-blue-500/50 hover:shadow-2xl transition-all duration-300 p-8 h-full flex flex-col justify-between">
                       <div>
-                        <div className="service-image-shape mb-6 relative overflow-hidden">
+                        <div className="mb-6 relative overflow-hidden rounded-lg p-6 flex items-center justify-center" style={{ aspectRatio: '1/1' }}>
                           <img
                             src={service.image}
                             alt={`${service.title} service illustration`}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-contain"
+                            style={{ imageRendering: 'crisp-edges' }}
                             loading="lazy"
                             onError={(e) => {
                               // Fallback to gradient background with initials if image fails to load
@@ -138,16 +139,6 @@ export default function ServiceScroller({
         }
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
-        }
-        
-        .service-card-shape {
-          clip-path: polygon(0% 0%, 90% 0%, 100% 10%, 100% 100%, 10% 100%, 0% 90%);
-          border-radius: 20px;
-        }
-        
-        .service-image-shape {
-          clip-path: polygon(30% 0%, 100% 0%, 70% 100%, 0% 100%);
-          aspect-ratio: 16/9;
         }
       `}</style>
     </section>

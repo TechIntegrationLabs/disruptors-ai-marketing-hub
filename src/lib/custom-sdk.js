@@ -715,6 +715,19 @@ export class UserEntity extends CustomEntity {
  * @returns {string} Table name in snake_case
  */
 function entityNameToTableName(entityName) {
+  // Special mappings for entities that don't follow standard naming
+  const specialMappings = {
+    'TeamMember': 'team_members',
+    'CaseStudy': 'case_study',
+    // Add other special mappings as needed
+  };
+
+  // Check if there's a special mapping
+  if (specialMappings[entityName]) {
+    return specialMappings[entityName];
+  }
+
+  // Default conversion: PascalCase to snake_case
   return entityName
     .replace(/([A-Z])/g, "_$1")
     .toLowerCase()

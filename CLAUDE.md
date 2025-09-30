@@ -198,11 +198,21 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 ### Deployment Configuration
 
 - **Platform**: Netlify with automatic Git deployment
+- **Site ID**: `cheerful-custard-2e6fc5`
+- **Primary Domain**: https://dm4.wjwelsh.com
+- **Netlify Domain**: https://master--cheerful-custard-2e6fc5.netlify.app
+- **Admin Dashboard**: https://app.netlify.com/projects/cheerful-custard-2e6fc5
 - **Build Command**: `npm run build`
 - **Publish Directory**: `dist`
 - **SPA Routing**: Handled by `_redirects` file
 - **Security**: CSP headers, XSS protection, frame options
 - **Environment**: Node.js 18, optimized caching
+- **MCP Integration**: Netlify MCP server (`@netlify/mcp@latest`) configured in `mcp.json:114-123`
+  - Deploy with full context (branch, logs, config)
+  - Manage environment variables and secrets
+  - Install/configure extensions (Supabase, Auth0, Cloudinary)
+  - Access real-time deploy logs and diagnostics
+  - Configure domains and access controls
 
 ### Key Dependencies
 
@@ -265,3 +275,40 @@ The project includes a comprehensive Spline MCP Server for 3D scene management:
 - **GSAP Integration**: Seamless coordination with GSAP animations
 
 See `docs/mcp-servers/spline-mcp-server.md` for detailed usage instructions.
+### ANACHRON Lite Icon Generation System
+
+**Style Guide for AI-Generated Service Icons**
+
+ANACHRON Lite is a minimal vector icon system for service graphics. Use this system prompt when generating or regenerating service icons:
+
+#### Core Requirements
+- **Style**: Simple flat vector icons, extremely minimal
+- **Stroke**: 2px black outline only
+- **Geometry**: Basic geometric shapes (circles, triangles, squares, lines)
+- **Accent**: Single accent color per icon from approved palette
+- **Background**: White (will be converted to transparent via post-processing)
+- **Format**: 1024×1024 PNG, centered composition
+
+#### Approved Color Palette (Accents Only)
+- **Lapis Blue** `#2C6BAA` - Technology, automation, data
+- **Terracotta** `#C96F4C` - Communication, media, social
+- **Verdigris Green** `#3C7A6A` - Growth, environment, discovery
+- **Muted Gold** `#C9A53B` - Premium, strategy, leadership
+
+#### Negative Constraints
+Avoid: textures, patterns, gradients, shadows, 3D effects, shading, ornate details, complex compositions, realistic rendering, photographic elements
+
+#### Generation Workflow
+1. Generate icons using Replicate Flux 1.1 Pro with simple vector prompts
+2. Post-process with `scripts/make-backgrounds-transparent.js` to convert white to transparent
+3. Verify RGBA format and file size (target: 300-900KB)
+
+#### Example Prompts
+```
+Simple flat vector icon: [single shape description], 2px black stroke, 
+minimal geometric design, [color] accent color [hex], white background, 
+extremely simple, clean lines, centered, icon style, no details, no texture
+```
+
+**Models**: Replicate Flux 1.1 Pro (approved)
+**Scripts**: `scripts/generate-anachron-lite-replicate.js`, `scripts/make-backgrounds-transparent.js`
