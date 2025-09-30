@@ -113,7 +113,64 @@ export default function Blog() {
   return (
     <div>
       {/* Enhanced Hero Section */}
-      <AlternatingLayout sections={blogHeroData} />
+      <section className="bg-gray-900 text-white py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Text Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-6"
+            >
+              <p className="text-base font-bold uppercase tracking-widest text-indigo-300">
+                INSIGHTS
+              </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                The Disruptors Blog
+              </h1>
+              <p className="text-xl sm:text-2xl leading-relaxed text-gray-100">
+                Actionable insights, proven strategies, and a behind-the-scenes look at how we build AI-powered growth systems. Discover the latest trends, case studies, and expert advice to transform your business with AI.
+              </p>
+            </motion.div>
+
+            {/* Video Content - Larger */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+              onMouseEnter={(e) => {
+                const video = e.currentTarget.querySelector('video');
+                if (video) {
+                  video.currentTime = 0;
+                  video.playbackRate = 0.75;
+                  video.play().catch(err => console.log('Video play failed:', err));
+                }
+              }}
+              onMouseLeave={(e) => {
+                const video = e.currentTarget.querySelector('video');
+                if (video) {
+                  video.pause();
+                  video.currentTime = 0;
+                }
+              }}
+            >
+              <div className="rounded-3xl overflow-hidden shadow-2xl aspect-video">
+                <video
+                  src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759270235/social_u4455988764_a_michealangelo_painting_of_a_decorated_and_rugge_cdd91916-0689-4b4c-8aa1-419f07eed4f4_0_eo3dgk.mp4"
+                  className="w-full h-full object-cover"
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  aria-label="Content creation and blogging"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* Blog Grid */}
       <section className="pb-24 sm:pb-32">
