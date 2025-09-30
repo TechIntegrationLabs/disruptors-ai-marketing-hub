@@ -41,7 +41,7 @@ export default function Home() {
       kicker: "RESULTS",
       headline: "Proven Success Stories",
       body: "Our clients see average growth increases of 300% within the first 6 months. We don't just promise results—we deliver measurable outcomes that transform businesses.",
-      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/dmsite/portfolio/social_u4455988764_A_harbor_scene_h7hqe5.mp4",
+      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759116522/full-animation_online-video-cutter.com_zzpok1.mp4",
       imageAlt: "Business Growth Analytics",
       backgroundColor: "bg-gray-950 text-white"
     },

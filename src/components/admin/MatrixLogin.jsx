@@ -36,18 +36,13 @@ const MatrixLogin = ({ onLogin, onClose }) => {
 
   const matrixLines = [
     'INITIALIZING SECURE CONNECTION...',
-    'BYPASSING FIREWALL...',
     'ACCESSING DISRUPTORS NEURAL NETWORK...',
     'CONNECTION ESTABLISHED',
-    '',
-    `DID YOU KNOW: ${getRandomFact()}`,
-    '',
-    'WELCOME TO THE SYSTEM',
     '',
     'STATE YOUR IDENTITY:'
   ];
 
-  const typewriterSpeed = 3;
+  const typewriterSpeed = 0.5; // Ultra-fast typing for 0.3s total animation
   const cursorBlinkSpeed = 500;
 
   // Cursor blinking effect
@@ -79,7 +74,7 @@ const MatrixLogin = ({ onLogin, onClose }) => {
             setCurrentText(fullText);
             lineIndex++;
             charIndex = 0;
-            setTimeout(typeMatrix, lineIndex === matrixLines.length - 1 ? 1000 : 200);
+            setTimeout(typeMatrix, 10); // Minimal delay between lines
           }
         } else {
           setStage('username');
@@ -87,11 +82,11 @@ const MatrixLogin = ({ onLogin, onClose }) => {
             if (inputRef.current) {
               inputRef.current.focus();
             }
-          }, 100);
+          }, 50);
         }
       };
 
-      setTimeout(typeMatrix, 1000);
+      setTimeout(typeMatrix, 100); // Start almost immediately
     }
   }, [stage]);
 

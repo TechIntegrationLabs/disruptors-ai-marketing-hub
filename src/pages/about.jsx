@@ -41,16 +41,16 @@ export default function About() {
       kicker: "EMPOWERMENT",
       headline: "We're Not Here to Replace You with AI. We're Here to Empower You With It.",
       body: "Disruptors Media is a team of strategists, creatives, and technologists helping business owners embrace the future without losing their human touch. We're not just another marketing agency. We're a Fractional CMO and AI Infrastructure team built for business owners who want clarity, not complexity.",
-      image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=80",
-      imageAlt: "Team collaboration and empowerment",
+      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4",
+      imageAlt: "AI empowerment visualization",
       backgroundColor: "bg-gray-900 text-white backdrop-blur-md"
     },
     {
       kicker: "PARTNERSHIP",
       headline: "Local Salt Lake City Expertise, National Impact",
       body: "We partner with local Salt Lake City businesses and national brands alike to systematize their marketing, simplify operations, and leverage AI as a tool…not a replacement. Our secret? We teach what we build. That means every campaign, automation, and strategy we implement comes with the transparency and education needed to put you in control.",
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80",
-      imageAlt: "Business collaboration and partnership",
+      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
+      imageAlt: "Partnership and collaboration visualization",
       backgroundColor: "bg-gray-800 text-white backdrop-blur-sm"
     }
   ];

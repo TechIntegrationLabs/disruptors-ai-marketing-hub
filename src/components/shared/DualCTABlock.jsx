@@ -27,7 +27,7 @@ export default function DualCTABlock({
             <Button asChild size="lg" className="text-lg px-8 py-3 bg-white text-gray-900 hover:bg-gray-200">
               <Link to={createPageUrl(cta1_link)}>{cta1_text}</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3 border-white/50 text-white hover:bg-white hover:text-gray-900">
+            <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3 bg-transparent border-white/50 text-black hover:bg-white hover:text-gray-900">
               <Link to={createPageUrl(cta2_link)}>{cta2_text}</Link>
             </Button>
           </div>

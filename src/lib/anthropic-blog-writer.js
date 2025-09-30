@@ -221,18 +221,25 @@ Write the article now following all the requirements in the system prompt.`;
 }
 
 /**
- * Batch generates articles for multiple blog posts
+ * Batch generates articles for multiple blog posts with detailed status updates
  * @param {Array} posts - Array of blog post objects
  * @param {Function} onProgress - Progress callback (postIndex, total, result)
+ * @param {Function} onStatusUpdate - Detailed status callback (postId, status, message)
  * @returns {Promise<Array>} Results for each post
  */
-export async function batchGenerateArticles(posts, onProgress) {
+export async function batchGenerateArticles(posts, onProgress, onStatusUpdate) {
   const results = [];
 
   for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
+    const postId = post.id;
 
     try {
+      // Status: Extracting keywords
+      if (onStatusUpdate) {
+        onStatusUpdate(postId, 'extracting', 'Extracting keywords from post data...');
+      }
+
       // Extract keywords from SEO keywords or tags
       const keywords = post.seo_keywords || post.tags || '';
       const keywordArray = typeof keywords === 'string'
@@ -241,6 +248,18 @@ export async function batchGenerateArticles(posts, onProgress) {
 
       const primaryKeyword = keywordArray[0] || post.title;
       const secondaryKeyword = keywordArray[1] || keywordArray[0] || post.category;
+
+      // Status: Preparing API request
+      if (onStatusUpdate) {
+        onStatusUpdate(postId, 'preparing', `Preparing AI request with keywords: ${primaryKeyword}, ${secondaryKeyword}`);
+      }
+
+      await new Promise(resolve => setTimeout(resolve, 500)); // Brief pause for UI update
+
+      // Status: Calling Anthropic API
+      if (onStatusUpdate) {
+        onStatusUpdate(postId, 'generating', 'Calling Anthropic API (Claude Sonnet 4.5)...');
+      }
 
       // Generate article
       const content = await generateBlogArticle({
@@ -251,24 +270,47 @@ export async function batchGenerateArticles(posts, onProgress) {
         primaryLocation: post.location || ''
       });
 
+      // Status: Processing response
+      if (onStatusUpdate) {
+        onStatusUpdate(postId, 'processing', 'Processing AI response and validating content...');
+      }
+
+      await new Promise(resolve => setTimeout(resolve, 500)); // Brief pause for UI update
+
+      // Status: Complete
+      const wordCount = content.split(/\s+/).length;
+      if (onStatusUpdate) {
+        onStatusUpdate(postId, 'complete', `✅ Generated ${wordCount} words successfully!`);
+      }
+
       results.push({
         postId: post.id,
         success: true,
         content,
-        title: post.title
+        title: post.title,
+        wordCount
       });
 
       // Call progress callback
       if (onProgress) {
-        onProgress(i + 1, posts.length, { success: true, title: post.title });
+        onProgress(i + 1, posts.length, { success: true, title: post.title, wordCount });
       }
 
       // Rate limiting: wait 2 seconds between requests to avoid API limits
       if (i < posts.length - 1) {
+        if (onStatusUpdate) {
+          onStatusUpdate(postId, 'waiting', 'Rate limiting: waiting 2 seconds before next request...');
+        }
         await new Promise(resolve => setTimeout(resolve, 2000));
       }
     } catch (error) {
       console.error(`Failed to generate article for "${post.title}":`, error);
+
+      // Status: Error
+      if (onStatusUpdate) {
+        onStatusUpdate(postId, 'error', `❌ Error: ${error.message}`);
+      }
+
       results.push({
         postId: post.id,
         success: false,

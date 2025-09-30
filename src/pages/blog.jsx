@@ -5,7 +5,7 @@ import { ArrowRight, Calendar, User, Loader2 } from 'lucide-react';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import DualCTABlock from "@/components/shared/DualCTABlock";
 import GeometricSeparator from "@/components/shared/WavySeparator";
-import { Resource } from '@/api/entities';
+import { customClient } from '@/lib/custom-sdk';
 
 const PostCard = ({ post, isFeatured = false }) => {
   const formatDate = (dateString) => {
@@ -83,23 +83,36 @@ export default function Blog() {
     const fetchBlogPosts = async () => {
       try {
         setLoading(true);
-        // Fetch all published articles from Supabase
-        const articles = await Resource.filter({
-          type: 'Article',
-          status: 'Published'
+        // Fetch all published posts from Supabase posts table
+        const allPosts = await customClient.entities.Post.filter({
+          is_published: true
         });
 
         // Sort by publish date (newest first)
-        const sortedArticles = (articles || []).sort((a, b) => {
-          const dateA = new Date(a.publish_date || a.publishDate || 0);
-          const dateB = new Date(b.publish_date || b.publishDate || 0);
+        const sortedPosts = (allPosts || []).sort((a, b) => {
+          const dateA = new Date(a.published_at || a.created_at || 0);
+          const dateB = new Date(b.published_at || b.created_at || 0);
           return dateB - dateA;
         });
 
-        setPosts(sortedArticles);
-        console.log(`Loaded ${sortedArticles.length} published blog posts from Supabase`);
+        // Map to expected format
+        const mappedPosts = sortedPosts.map(post => ({
+          id: post.id,
+          title: post.title,
+          slug: post.slug,
+          excerpt: post.excerpt,
+          category: post.category,
+          author: post.author_id ? `User ${post.author_id.substring(0, 8)}` : 'Disruptors Team',
+          publishDate: post.published_at || post.created_at,
+          image: post.featured_image,
+          content: post.content,
+          tags: post.tags
+        }));
+
+        setPosts(mappedPosts);
+        console.log(`✅ Loaded ${mappedPosts.length} published blog posts from Supabase`);
       } catch (err) {
-        console.error('Error fetching blog posts:', err);
+        console.error('❌ Error fetching blog posts:', err);
         setError('Failed to load blog posts. Please try again later.');
       } finally {
         setLoading(false);

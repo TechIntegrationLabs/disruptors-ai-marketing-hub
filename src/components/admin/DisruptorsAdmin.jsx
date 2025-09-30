@@ -6,26 +6,21 @@ import { Button } from '@/components/ui/button';
 import {
   Terminal,
   Image,
-  Video,
-  Volume2,
   Database,
-  Settings,
   Activity,
   Zap,
-  Shield,
-  Code,
   LogOut,
-  User
+  User,
+  FileText
 } from 'lucide-react';
-import AIMediaGenerator from '@/components/shared/AIMediaGenerator';
-import MarketingImageBatchGenerator from './MarketingImageBatchGenerator';
-import AIBatchPlanner from './AIBatchPlanner';
 import DataManager from './DataManager';
+import IntelligentMediaStudio from './IntelligentMediaStudio';
+import SEOKeywordResearch from './SEOKeywordResearch';
+import AdminBlogManager from './AdminBlogManager';
 
 const DisruptorsAdmin = ({ username, onLogout }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [customBatchPlan, setCustomBatchPlan] = useState(null);
-  const [systemStats, setSystemStats] = useState({
+  const [systemStats] = useState({
     uptime: '47:23:12',
     connections: 12,
     requests: 1547,
@@ -50,18 +45,25 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
       color: 'from-green-500 to-teal-500'
     },
     {
-      id: 'media',
-      label: 'AI Media Generator',
-      icon: Image,
-      description: 'Generate images, videos, and audio using AI',
-      color: 'from-purple-500 to-blue-500'
+      id: 'blog',
+      label: 'Blog Manager',
+      icon: FileText,
+      description: 'AI-powered blog content management system',
+      color: 'from-indigo-500 to-purple-500'
     },
     {
-      id: 'batch',
-      label: 'Marketing Images',
+      id: 'media',
+      label: 'Intelligent Media Studio',
+      icon: Image,
+      description: 'AI-powered media generation with context awareness',
+      color: 'from-purple-500 to-pink-500'
+    },
+    {
+      id: 'seo',
+      label: 'SEO Keywords',
       icon: Zap,
-      description: 'Batch generate all marketing website images',
-      color: 'from-cyan-500 to-purple-500'
+      description: 'Keyword research with DataForSEO',
+      color: 'from-blue-500 to-cyan-500'
     },
     {
       id: 'analytics',
@@ -96,86 +98,86 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
         />
       </div>
 
-      {/* Header */}
-      <div className="relative z-10 border-b border-green-400/30 bg-black/90 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+      {/* Compact Header */}
+      <div className="relative z-10 border-b border-green-400/30 bg-black/95 backdrop-blur-sm">
+        <div className="max-w-full mx-auto px-4 py-2">
           <div className="flex items-center justify-between">
 
-            {/* Logo and Title */}
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-green-400 flex items-center justify-center text-black font-bold text-xl">
+            {/* Logo and Title - Compact */}
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-green-400 flex items-center justify-center text-black font-bold text-sm">
                 D
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-green-400">DISRUPTORS NEURAL NETWORK</h1>
-                <p className="text-green-400/60 text-sm">ADMINISTRATIVE INTERFACE v3.0.1</p>
+                <h1 className="text-lg font-bold text-green-400">DISRUPTORS NEURAL NETWORK</h1>
+                <p className="text-green-400/80 text-xs">ADMIN v3.0.1</p>
               </div>
             </div>
 
-            {/* User Info and Controls */}
-            <div className="flex items-center space-x-6">
+            {/* User Info and Controls - Compact */}
+            <div className="flex items-center space-x-4">
 
-              {/* System Status */}
-              <div className="hidden md:flex items-center space-x-4 text-sm">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              {/* System Status - Compact */}
+              <div className="hidden lg:flex items-center space-x-3 text-xs text-green-400">
+                <div className="flex items-center space-x-1">
+                  <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                   <span>ONLINE</span>
                 </div>
                 <div>LOAD: {systemStats.neural_load}%</div>
                 <div>{currentTime.toLocaleTimeString()}</div>
               </div>
 
-              {/* User Badge */}
-              <div className="flex items-center space-x-2 bg-green-400/10 border border-green-400/30 rounded px-3 py-1">
-                <User className="w-4 h-4" />
-                <span className="text-sm">{username}</span>
-                <Badge variant="outline" className="border-green-400 text-green-400 text-xs">
+              {/* User Badge - Compact */}
+              <div className="flex items-center space-x-2 bg-green-400/10 border border-green-400/30 rounded px-2 py-1">
+                <User className="w-3 h-3" />
+                <span className="text-xs text-green-400">{username}</span>
+                <Badge variant="outline" className="border-green-400 text-green-400 text-[10px] px-1 py-0">
                   ADMIN
                 </Badge>
               </div>
 
-              {/* Logout */}
+              {/* Logout - Compact */}
               <Button
                 onClick={onLogout}
                 variant="outline"
                 size="sm"
-                className="border-red-400 text-red-400 hover:bg-red-400/20"
+                className="border-red-400 text-red-400 hover:bg-red-400/20 h-7 px-2 text-xs"
               >
-                <LogOut className="w-4 h-4 mr-2" />
-                DISCONNECT
+                <LogOut className="w-3 h-3 mr-1" />
+                EXIT
               </Button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-8">
+      {/* Main Content - Maximized Space */}
+      <div className="relative z-10 w-full mx-auto px-4 py-3 pb-8 xl:pb-6">
 
-        {/* Welcome Banner */}
-        <Card className="mb-8 bg-green-400/5 border-green-400/30">
-          <CardContent className="p-6">
+        {/* Compact Welcome Banner */}
+        <Card className="mb-3 bg-green-400/5 border-green-400/30">
+          <CardContent className="p-3">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-xl font-bold text-green-400 mb-2">
-                  WELCOME BACK, {username.toUpperCase()}
+                <h2 className="text-sm font-bold text-green-400 mb-0.5">
+                  WELCOME, {username.toUpperCase()}
                 </h2>
-                <p className="text-green-400/70">
-                  Neural network synchronized. All systems operational. Ready for command input.
+                <p className="text-xs text-green-400">
+                  All systems operational
                 </p>
               </div>
-              <div className="flex items-center space-x-4 text-sm">
+              <div className="hidden md:flex items-center space-x-4 text-xs">
                 <div className="text-center">
                   <div className="text-green-400 font-bold">{systemStats.connections}</div>
-                  <div className="text-green-400/60">CONNECTIONS</div>
+                  <div className="text-green-400/80">CONNECTIONS</div>
                 </div>
                 <div className="text-center">
                   <div className="text-green-400 font-bold">{systemStats.requests}</div>
-                  <div className="text-green-400/60">REQUESTS</div>
+                  <div className="text-green-400/80">REQUESTS</div>
                 </div>
                 <div className="text-center">
                   <div className="text-green-400 font-bold">{systemStats.storage}</div>
-                  <div className="text-green-400/60">STORAGE</div>
+                  <div className="text-green-400/80">STORAGE</div>
                 </div>
               </div>
             </div>
@@ -185,134 +187,90 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
         {/* Admin Tabs */}
         <Tabs defaultValue="database" className="w-full">
 
-          {/* Tab Navigation */}
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 bg-black/50 border border-green-400/30 mb-8">
+          {/* Compact Tab Navigation */}
+          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 gap-1 bg-black/70 border border-green-400/30 mb-3 p-1">
             {adminTabs.map((tab) => {
               const IconComponent = tab.icon;
               return (
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id}
-                  className="flex items-center space-x-2 data-[state=active]:bg-green-400/20 data-[state=active]:text-green-400 text-green-400/60"
+                  className="flex items-center justify-center space-x-1 data-[state=active]:bg-green-400/20 data-[state=active]:text-green-400 text-green-400 hover:text-green-300 transition-colors py-1.5 text-xs"
                 >
-                  <IconComponent className="w-4 h-4" />
-                  <span className="hidden sm:inline">{tab.label}</span>
+                  <IconComponent className="w-3.5 h-3.5" />
+                  <span className="hidden lg:inline">{tab.label}</span>
                 </TabsTrigger>
               );
             })}
           </TabsList>
 
-          {/* AI Media Generator Tab */}
-          <TabsContent value="media" className="space-y-6">
-            <Card className="bg-black/50 border-green-400/30">
-              <CardHeader>
-                <div className="flex items-center space-x-2">
-                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${adminTabs[0].color} flex items-center justify-center`}>
-                    <Image className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-green-400">Neural Media Generator</CardTitle>
-                    <CardDescription className="text-green-400/60">
-                      Advanced AI content creation using quantum neural networks
-                    </CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <AIMediaGenerator />
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Marketing Batch Generator Tab */}
-          <TabsContent value="batch" className="space-y-6">
-            <Card className="bg-black/50 border-green-400/30">
-              <CardHeader>
-                <div className="flex items-center space-x-2">
-                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${adminTabs[1].color} flex items-center justify-center`}>
-                    <Zap className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-green-400">AI-Powered Batch Generation</CardTitle>
-                    <CardDescription className="text-green-400/60">
-                      Plan and generate custom image batches using natural language and site intelligence
-                    </CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <Tabs defaultValue="planner" className="w-full">
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="planner">AI Batch Planner</TabsTrigger>
-                    <TabsTrigger value="generator">
-                      {customBatchPlan ? 'Custom Generator' : 'Default Generator'}
-                    </TabsTrigger>
-                  </TabsList>
-
-                  <TabsContent value="planner" className="mt-6">
-                    <AIBatchPlanner onGenerateBatch={setCustomBatchPlan} />
-                  </TabsContent>
-
-                  <TabsContent value="generator" className="mt-6">
-                    <MarketingImageBatchGenerator customPlan={customBatchPlan} />
-                  </TabsContent>
-                </Tabs>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
           {/* Database Tab - Data Manager */}
-          <TabsContent value="database" className="space-y-6">
+          <TabsContent value="database" className="space-y-3">
             <DataManager />
           </TabsContent>
 
+          {/* Blog Manager Tab */}
+          <TabsContent value="blog" className="space-y-3">
+            <AdminBlogManager />
+          </TabsContent>
+
+          {/* Intelligent Media Studio Tab */}
+          <TabsContent value="media" className="space-y-3">
+            <IntelligentMediaStudio />
+          </TabsContent>
+
+          {/* SEO Keywords Tab */}
+          <TabsContent value="seo" className="space-y-3">
+            <SEOKeywordResearch />
+          </TabsContent>
+
           {/* Analytics Tab */}
-          <TabsContent value="analytics" className="space-y-6">
-            <Card className="bg-black/50 border-green-400/30">
-              <CardHeader>
+          <TabsContent value="analytics" className="space-y-3">
+            <Card className="bg-black/70 border-green-400/30">
+              <CardHeader className="p-3">
                 <div className="flex items-center space-x-2">
-                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${adminTabs[2].color} flex items-center justify-center`}>
-                    <Activity className="w-4 h-4 text-white" />
+                  <div className={`w-6 h-6 rounded bg-gradient-to-r ${adminTabs[3].color} flex items-center justify-center`}>
+                    <Activity className="w-3 h-3 text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-green-400">System Analytics Matrix</CardTitle>
-                    <CardDescription className="text-green-400/60">
-                      Real-time neural network performance monitoring
+                    <CardTitle className="text-green-400 text-sm">System Analytics</CardTitle>
+                    <CardDescription className="text-green-400/80 text-xs">
+                      Performance monitoring
                     </CardDescription>
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
-                <div className="text-center py-12 text-green-400/60">
-                  <Activity className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                  <p>ANALYTICS INTERFACE</p>
-                  <p className="text-sm">Neural patterns analyzing...</p>
+              <CardContent className="p-3">
+                <div className="text-center py-8 text-green-400">
+                  <Activity className="w-12 h-12 mx-auto mb-3 opacity-50" />
+                  <p className="text-sm font-mono">ANALYTICS INTERFACE</p>
+                  <p className="text-xs text-green-400/80">Coming soon...</p>
                 </div>
               </CardContent>
             </Card>
           </TabsContent>
 
           {/* Terminal Tab */}
-          <TabsContent value="terminal" className="space-y-6">
-            <Card className="bg-black/50 border-green-400/30">
-              <CardHeader>
+          <TabsContent value="terminal" className="space-y-3">
+            <Card className="bg-black/70 border-green-400/30">
+              <CardHeader className="p-3">
                 <div className="flex items-center space-x-2">
-                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${adminTabs[3].color} flex items-center justify-center`}>
-                    <Terminal className="w-4 h-4 text-white" />
+                  <div className={`w-6 h-6 rounded bg-gradient-to-r ${adminTabs[4].color} flex items-center justify-center`}>
+                    <Terminal className="w-3 h-3 text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-green-400">Command Center Terminal</CardTitle>
-                    <CardDescription className="text-green-400/60">
-                      Direct neural network command interface
+                    <CardTitle className="text-green-400 text-sm">Command Center</CardTitle>
+                    <CardDescription className="text-green-400/80 text-xs">
+                      Direct command interface
                     </CardDescription>
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
-                <div className="text-center py-12 text-green-400/60">
-                  <Terminal className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                  <p>TERMINAL INTERFACE</p>
-                  <p className="text-sm">Awaiting quantum initialization...</p>
+              <CardContent className="p-3">
+                <div className="text-center py-8 text-green-400">
+                  <Terminal className="w-12 h-12 mx-auto mb-3 opacity-50" />
+                  <p className="text-sm font-mono">TERMINAL INTERFACE</p>
+                  <p className="text-xs text-green-400/80">Coming soon...</p>
                 </div>
               </CardContent>
             </Card>
@@ -321,18 +279,16 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
         </Tabs>
       </div>
 
-      {/* Footer Status Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-black/90 border-t border-green-400/30 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 py-2">
-          <div className="flex items-center justify-between text-xs text-green-400/60">
-            <div className="flex items-center space-x-4">
-              <span>NEURAL_NET_STATUS: OPTIMAL</span>
-              <span>QUANTUM_SYNC: ACTIVE</span>
+      {/* Minimal Footer Status - Only on large screens */}
+      <div className="hidden xl:block fixed bottom-0 left-0 right-0 bg-black/95 border-t border-green-400/30">
+        <div className="max-w-full mx-auto px-4 py-1">
+          <div className="flex items-center justify-between text-[10px] text-green-400/80">
+            <div className="flex items-center space-x-3">
+              <span>STATUS: OPTIMAL</span>
               <span>UPTIME: {systemStats.uptime}</span>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3">
               <span>CPU: {systemStats.neural_load}%</span>
-              <span>MEM: {((parseFloat(systemStats.storage) / 100) * 100).toFixed(1)}%</span>
               <span>NET: SECURE</span>
             </div>
           </div>
@@ -346,7 +302,7 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
           box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00;
         }
 
-        /* Subtle scan line animation */
+        /* Subtle scan line animation - less intrusive */
         @keyframes matrix-scan {
           0% { transform: translateY(-100%); }
           100% { transform: translateY(100vh); }
@@ -357,11 +313,18 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
           top: 0;
           left: 0;
           right: 0;
-          height: 2px;
-          background: linear-gradient(90deg, transparent, #00ff00, transparent);
-          animation: matrix-scan 3s linear infinite;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.3), transparent);
+          animation: matrix-scan 4s linear infinite;
           pointer-events: none;
           z-index: 100;
+          opacity: 0.5;
+        }
+
+        /* Better text rendering */
+        * {
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
         }
       `}</style>
 

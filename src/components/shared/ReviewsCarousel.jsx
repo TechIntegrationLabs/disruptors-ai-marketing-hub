@@ -57,7 +57,7 @@ export default function ReviewsCarousel({
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white drop-shadow-lg tracking-tight">{title}</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-black tracking-tight">{title}</h2>
         </motion.div>
 
         <div className="relative min-h-[300px]">
@@ -74,20 +74,20 @@ export default function ReviewsCarousel({
                 <div>
                   <div className="flex justify-center mb-6">
                     {[...Array(5)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className={`w-5 h-5 ${i < reviews[currentIndex].rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} 
+                      <Star
+                        key={i}
+                        className={`w-5 h-5 ${i < reviews[currentIndex].rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
                       />
                     ))}
                   </div>
-                  
-                  <blockquote className="text-lg sm:text-xl text-gray-100 font-medium leading-relaxed mb-8 max-w-2xl mx-auto">
+
+                  <blockquote className="text-lg sm:text-xl text-black font-medium leading-relaxed mb-8 max-w-2xl mx-auto">
                     "{reviews[currentIndex].quote}"
                   </blockquote>
 
                   <div className="flex flex-col items-center">
-                    <div className="font-semibold text-white">{reviews[currentIndex].name}</div>
-                    <div className="text-gray-200">{reviews[currentIndex].role}, {reviews[currentIndex].company}</div>
+                    <div className="font-semibold text-black">{reviews[currentIndex].name}</div>
+                    <div className="text-gray-800">{reviews[currentIndex].role}, {reviews[currentIndex].company}</div>
                   </div>
                 </div>
               ) : (

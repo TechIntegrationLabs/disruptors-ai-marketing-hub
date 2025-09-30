@@ -11,6 +11,7 @@ import { runFullDiagnostics } from '@/utils/google-sheets-diagnostics';
 import ColumnMappingConfig from '@/components/shared/ColumnMappingConfig';
 import { customClient } from '@/lib/custom-sdk';
 import { batchGenerateArticles } from '@/lib/anthropic-blog-writer';
+import GenerationQueue from '@/components/admin/GenerationQueue';
 
 const initialBlogData = [
   {
@@ -161,6 +162,8 @@ export default function BlogManagement() {
   const [resizeData, setResizeData] = useState({ columnKey: null, startX: 0, startWidth: 0 });
   const [isGeneratingArticles, setIsGeneratingArticles] = useState(false);
   const [generationProgress, setGenerationProgress] = useState({ current: 0, total: 0 });
+  const [queueItems, setQueueItems] = useState([]);
+  const [showQueue, setShowQueue] = useState(false);
 
   const handleCellChange = (rowId, columnKey, newValue) => {
     setBlogData(prev => prev.map(row =>
@@ -602,7 +605,7 @@ export default function BlogManagement() {
     }
   };
 
-  // Write Articles using Anthropic API
+  // Write Articles using Anthropic API with detailed queue tracking
   const handleWriteArticles = async () => {
     if (!import.meta.env.VITE_ANTHROPIC_API_KEY) {
       setStatusMessage('❌ VITE_ANTHROPIC_API_KEY not configured. Please add it to your .env file.');
@@ -630,16 +633,37 @@ export default function BlogManagement() {
 
     if (!confirmGenerate) return;
 
+    // Initialize queue
+    const initialQueue = postsToGenerate.map(post => ({
+      post,
+      status: 'pending',
+      message: 'Waiting to start...'
+    }));
+
+    setQueueItems(initialQueue);
+    setShowQueue(true);
     setIsGeneratingArticles(true);
     setIsLoading(true);
     setGenerationProgress({ current: 0, total: postsToGenerate.length });
-    setStatusMessage(`🤖 Generating articles for ${postsToGenerate.length} posts...`);
+    setStatusMessage(`🤖 Starting article generation for ${postsToGenerate.length} posts...`);
 
     try {
-      const results = await batchGenerateArticles(postsToGenerate, (current, total, result) => {
-        setGenerationProgress({ current, total });
-        setStatusMessage(`🤖 Generating articles: ${current}/${total} - ${result.title}`);
-      });
+      const results = await batchGenerateArticles(
+        postsToGenerate,
+        // Progress callback
+        (current, total, result) => {
+          setGenerationProgress({ current, total });
+          setStatusMessage(`🤖 Generating articles: ${current}/${total} - ${result.title}`);
+        },
+        // Status update callback
+        (postId, status, message) => {
+          setQueueItems(prev => prev.map(item =>
+            item.post.id === postId
+              ? { ...item, status, message }
+              : item
+          ));
+        }
+      );
 
       // Update blog data with generated content
       const updatedBlogData = blogData.map(post => {
@@ -672,8 +696,8 @@ export default function BlogManagement() {
     } finally {
       setIsGeneratingArticles(false);
       setIsLoading(false);
-      setGenerationProgress({ current: 0, total: 0 });
       setTimeout(() => setStatusMessage(''), 10000);
+      // Keep queue visible for review
     }
   };
 
@@ -897,6 +921,34 @@ export default function BlogManagement() {
             </div>
           </div>
         </motion.div>
+
+        {/* Generation Queue - Shown during article generation */}
+        {showQueue && queueItems.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            className="mb-8 relative"
+          >
+            {/* Close button - only show when generation is complete */}
+            {!isGeneratingArticles && (
+              <button
+                onClick={() => setShowQueue(false)}
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white hover:bg-gray-100 border border-gray-200 shadow-sm transition-colors"
+                title="Close queue"
+              >
+                <X className="w-4 h-4 text-gray-600" />
+              </button>
+            )}
+
+            <GenerationQueue
+              queueItems={queueItems}
+              currentIndex={generationProgress.current}
+              totalPosts={generationProgress.total}
+            />
+          </motion.div>
+        )}
 
         {/* Spreadsheet Table */}
         <motion.div

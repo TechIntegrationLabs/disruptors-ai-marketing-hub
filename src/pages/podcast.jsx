@@ -40,10 +40,6 @@ export default function Podcast() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <Mic className="w-8 h-8 text-yellow-400" />
-                <span className="text-yellow-400 font-semibold text-lg">PODCAST PRODUCTION</span>
-              </div>
               <h1 className="text-5xl sm:text-6xl font-bold mb-6">
                 Professional Podcast Production
               </h1>
@@ -54,7 +50,7 @@ export default function Podcast() {
                 <Button asChild size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 font-semibold">
                   <Link to={createPageUrl('book-strategy-session')}>Start Your Podcast</Link>
                 </Button>
-                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-black">
+                <Button variant="outline" size="lg" className="border-white text-white bg-transparent hover:bg-white hover:text-black">
                   View Our Work
                 </Button>
               </div>
@@ -66,13 +62,11 @@ export default function Podcast() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
-                <img 
-                  src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/content/podcast/podcast-new-lg.jpg"
-                  alt="Podcast Studio"
-                  className="w-full rounded-2xl"
-                />
-              </div>
+              <img
+                src="https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/content/podcast/podcast-new-lg.jpg"
+                alt="Podcast Studio"
+                className="w-full rounded-2xl shadow-2xl"
+              />
             </motion.div>
           </div>
         </div>
