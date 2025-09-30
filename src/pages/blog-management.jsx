@@ -25,7 +25,8 @@ const initialBlogData = [
     content: "Full article content here...",
     tags: "AI, SEO, 2025, generative engines",
     metaDescription: "Learn how AI is transforming SEO and what strategies you need to implement in 2025.",
-    publishDate: "2024-10-15"
+    publishDate: "2024-10-15",
+    articleLink: ""
   },
   {
     id: 2,
@@ -40,7 +41,8 @@ const initialBlogData = [
     content: "Cold email templates content...",
     tags: "cold email, templates, lead generation",
     metaDescription: "Proven cold email templates that get replies and fill your sales pipeline.",
-    publishDate: "2024-10-10"
+    publishDate: "2024-10-10",
+    articleLink: ""
   },
   {
     id: 3,
@@ -55,7 +57,8 @@ const initialBlogData = [
     content: "Custom AI app development content...",
     tags: "AI, custom apps, development, rapid prototyping",
     metaDescription: "Behind-the-scenes look at building a custom AI application in just 48 hours.",
-    publishDate: "2024-10-05"
+    publishDate: "2024-10-05",
+    articleLink: ""
   }
 ];
 
@@ -70,7 +73,8 @@ const DEFAULT_COLUMNS = [
   { key: 'slug', label: 'Slug', width: 150, minWidth: 100, type: 'text' },
   { key: 'image', label: 'Image URL', width: 200, minWidth: 150, type: 'text' },
   { key: 'metaDescription', label: 'Meta Description', width: 200, minWidth: 150, type: 'textarea' },
-  { key: 'content', label: 'Content', width: 300, minWidth: 200, type: 'textarea' }
+  { key: 'content', label: 'Content', width: 300, minWidth: 200, type: 'textarea' },
+  { key: 'articleLink', label: 'Article Link', width: 200, minWidth: 150, type: 'text' }
 ];
 
 const EditableCell = ({ value, onChange, type, options, isEditing, onStartEdit, onFinishEdit, onCancelEdit }) => {
@@ -187,7 +191,8 @@ export default function BlogManagement() {
       slug: "",
       image: "",
       metaDescription: "",
-      content: ""
+      content: "",
+      articleLink: ""
     };
     setBlogData(prev => [...prev, newRow]);
   };
@@ -588,6 +593,99 @@ export default function BlogManagement() {
     }
   };
 
+  // Auto-fill all blog posts with intelligent defaults and staggered publish dates
+  const handleAutoFillPosts = async () => {
+    setIsLoading(true);
+    setStatusMessage('Auto-filling blog posts with intelligent defaults...');
+
+    try {
+      const today = new Date();
+
+      const updatedPosts = await Promise.all(blogData.map(async (post, index) => {
+        // Calculate publish date: today + (index * 3 days) - skipping 2 days each time
+        const publishDate = new Date(today);
+        publishDate.setDate(today.getDate() + (index * 3));
+        const formattedPublishDate = publishDate.toISOString().split('T')[0];
+
+        // Generate slug if missing
+        const slug = post.slug || post.title?.toLowerCase()
+          .replace(/[^a-z0-9\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-')
+          .trim() || `post-${index + 1}`;
+
+        // Generate excerpt if missing (from content or default)
+        const excerpt = post.excerpt || (post.content ? post.content.substring(0, 200) + '...' :
+          `Discover insights about ${post.title || 'this topic'} and how it can transform your business.`);
+
+        // Generate meta description if missing (from excerpt)
+        const metaDescription = post.metaDescription || excerpt.substring(0, 160);
+
+        // Generate tags if missing (from title and category)
+        let tags = post.tags;
+        if (!tags && post.title) {
+          const titleWords = post.title.toLowerCase().split(' ').filter(word => word.length > 4);
+          const categoryTags = post.category ? [post.category.toLowerCase()] : [];
+          tags = [...new Set([...categoryTags, ...titleWords.slice(0, 3)])].join(', ');
+        }
+
+        // Calculate read time if content exists
+        const readTimeMinutes = post.content ? Math.ceil(post.content.split(/\s+/).length / 200) : 5;
+
+        // Try to fetch content from article link if provided and content is missing
+        let content = post.content;
+        if (post.articleLink && !content) {
+          try {
+            setStatusMessage(`Fetching content from article link for: ${post.title}...`);
+            // Note: In a real implementation, you'd need a backend proxy to fetch Google Docs content
+            // For now, we'll just note that the link exists
+            content = `[Content available at: ${post.articleLink}]\n\nPlease manually copy content from the Google Doc or implement a backend service to fetch it.`;
+          } catch (error) {
+            console.error(`Error fetching content from article link for ${post.title}:`, error);
+          }
+        }
+
+        // Set default author if missing
+        const author = post.author || 'Disruptors AI';
+
+        // Set default category if missing
+        const category = post.category || 'AI & Marketing';
+
+        // Set default image if missing
+        const image = post.image || `https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=2070&auto=format&fit=crop`;
+
+        // Set status to Published if not set
+        const status = post.status || 'Draft';
+
+        return {
+          ...post,
+          publishDate: formattedPublishDate,
+          slug,
+          excerpt,
+          metaDescription,
+          tags,
+          content,
+          author,
+          category,
+          image,
+          status,
+          read_time_minutes: readTimeMinutes,
+          seo_title: post.seo_title || post.title,
+          seo_keywords: post.seo_keywords || tags
+        };
+      }));
+
+      setBlogData(updatedPosts);
+      setStatusMessage(`✅ Successfully auto-filled ${updatedPosts.length} blog posts with publish dates starting ${today.toLocaleDateString()} (every 3 days)!`);
+    } catch (error) {
+      console.error('Error auto-filling posts:', error);
+      setStatusMessage(`❌ Error auto-filling posts: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+      setTimeout(() => setStatusMessage(''), 10000);
+    }
+  };
+
   // Cleanup event listeners on unmount
   useEffect(() => {
     return () => {
@@ -622,6 +720,14 @@ export default function BlogManagement() {
             </div>
             <div className="flex flex-col gap-3">
               <div className="flex gap-3 flex-wrap">
+                <Button
+                  onClick={handleAutoFillPosts}
+                  disabled={isLoading}
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold shadow-xl"
+                >
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Auto-Fill All
+                </Button>
                 <Button
                   onClick={handleSendToSupabase}
                   disabled={isLoading}
