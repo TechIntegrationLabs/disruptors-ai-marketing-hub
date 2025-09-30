@@ -18,7 +18,7 @@ const service = {
     },
     {
       title: 'Repurposed Content',
-      description: 'Turn every episode into blog posts, social clips, newsletters, and more—multiplying your content ROI.'
+      description: 'Turn every episode into blog posts, social clips, newsletters, and more-multiplying your content ROI.'
     }
   ],
   cta_label: 'Start Your Podcast',

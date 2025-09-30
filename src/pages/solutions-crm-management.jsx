@@ -5,7 +5,7 @@ const service = {
   title: 'CRM Management',
   h2: 'Your CRM, Reimagined.',
   descriptivePhrase: 'Turn Your CRM into a Powerful Asset',
-  overview: 'We're experts in CRM design and builds, creating systems that actually work the way you do. Our team can integrate your CRM with the software, tools, and AI systems you rely on, turning it into a seamless and effective part of your business. The result is a streamlined hub that keeps your data, workflows, and communication aligned—so your CRM becomes an asset, not a headache.',
+  overview: 'We are experts in CRM design and builds, creating systems that actually work the way you do. Our team can integrate your CRM with the software, tools, and AI systems you rely on, turning it into a seamless and effective part of your business. The result is a streamlined hub that keeps your data, workflows, and communication aligned-so your CRM becomes an asset, not a headache.',
   image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/what-we-do-bx-3.png',
   outcomes: [
     {
@@ -18,7 +18,7 @@ const service = {
     },
     {
       title: 'Better Decisions',
-      description: 'Access real-time insights and reporting that help you understand what's working and optimize your approach.'
+      description: 'Access real-time insights and reporting that help you understand what is working and optimize your approach.'
     }
   ],
   cta_label: 'Book a Strategy Session',

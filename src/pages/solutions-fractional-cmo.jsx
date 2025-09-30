@@ -10,7 +10,7 @@ const service = {
   outcomes: [
     {
       title: 'Strategic Direction',
-      description: 'Get clear, actionable marketing strategy from someone who's built and scaled marketing departments.'
+      description: 'Get clear, actionable marketing strategy from someone who has built and scaled marketing departments.'
     },
     {
       title: 'Team Alignment',

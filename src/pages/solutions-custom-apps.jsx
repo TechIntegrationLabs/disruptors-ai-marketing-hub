@@ -5,7 +5,7 @@ const service = {
   title: 'Custom Apps',
   h2: 'Turn Your Ideas Into Tools.',
   descriptivePhrase: 'Create Custom Software & Applications',
-  overview: 'With AI, turning ideas into tools has never been faster—we can take a concept, workflow, or software idea and bring it to life quickly and effectively. From custom calculators to AI-powered content machines, and even fully functional games, we've already built tools that solve real problems. Whatever your business needs, we can create a custom app or system that makes your work easier, smarter, and more scalable.',
+  overview: 'With AI, turning ideas into tools has never been faster-we can take a concept, workflow, or software idea and bring it to life quickly and effectively. From custom calculators to AI-powered content machines, and even fully functional games, we have already built tools that solve real problems. Whatever your business needs, we can create a custom app or system that makes your work easier, smarter, and more scalable.',
   image: 'https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/after-phone-sec.png',
   outcomes: [
     {
@@ -14,7 +14,7 @@ const service = {
     },
     {
       title: 'Tailored Solutions',
-      description: 'Get exactly what your business needs—no forcing your workflow into off-the-shelf software.'
+      description: 'Get exactly what your business needs-no forcing your workflow into off-the-shelf software.'
     },
     {
       title: 'Competitive Advantage',
