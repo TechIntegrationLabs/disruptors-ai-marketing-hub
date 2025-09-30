@@ -73,7 +73,7 @@ export default function Podcast() {
       </section>
 
       {/* Studio Showcase */}
-      <section className="bg-gray-900 py-24 sm:py-32 relative">
+      <section className="bg-transparent py-24 sm:py-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -151,7 +151,7 @@ export default function Podcast() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gray-800 py-20 relative">
+      <section className="bg-transparent py-20 relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

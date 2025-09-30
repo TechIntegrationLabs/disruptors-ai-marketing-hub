@@ -15,7 +15,7 @@ export default function Home() {
       body: "We combine deep marketing expertise with cutting-edge AI systems to create flexible growth strategies that scale your business beyond current limitations.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259177/social_u4455988764_Innovation_Section_Cutting-Edge_AI_Solutions_An_a_f5059a4a-a4d2-493b-a4ce-f16bce3d9987_0_1_vza370.mp4",
       imageAlt: "AI Technology Transformation",
-      backgroundColor: "bg-gray-900 text-white backdrop-blur-md",
+      backgroundColor: "bg-transparent text-white backdrop-blur-md",
       cta: {
         label: "Start Your Transformation",
         link: "book-strategy-session"
@@ -27,7 +27,7 @@ export default function Home() {
       body: "We help companies generate leads, streamline operations, and scale using AI-powered systems—all with complete transparency so you stay in control of your growth journey.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
       imageAlt: "Growth Partnership Visualization",
-      backgroundColor: "bg-gray-800 text-white backdrop-blur-sm"
+      backgroundColor: "bg-transparent text-white backdrop-blur-sm"
     },
     {
       kicker: "INNOVATION",
@@ -43,7 +43,7 @@ export default function Home() {
       body: "Our clients see average growth increases of 300% within the first 6 months. We don't just promise results—we deliver measurable outcomes that transform businesses.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759116522/full-animation_online-video-cutter.com_zzpok1.mp4",
       imageAlt: "Business Growth Analytics",
-      backgroundColor: "bg-gray-950 text-white"
+      backgroundColor: "bg-transparent text-white"
     },
     {
       kicker: "MISSION",
@@ -67,12 +67,12 @@ export default function Home() {
       <AlternatingLayout sections={alternatingData} />
 
       {/* Client Logos Marquee */}
-      <div className="py-16 bg-black overflow-hidden">
+      <div className="py-16 bg-transparent overflow-hidden">
         <ClientLogoMarquee />
       </div>
 
       {/* Our Approach (3 Pillars) */}
-      <section className="bg-gray-800 text-white py-24 sm:py-32">
+      <section className="bg-transparent text-white py-24 sm:py-32">
         <ThreePillars />
       </section>
 
@@ -96,7 +96,7 @@ export default function Home() {
       </section>
 
       {/* CTA Block */}
-       <section className="bg-gray-800 text-white py-20">
+       <section className="bg-transparent text-white py-20">
          <DualCTABlock />
        </section>
     </div>

@@ -153,7 +153,7 @@ button:focus-visible {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-transparent text-foreground;
+    @apply bg-transparent text-black;
   }
 }
 

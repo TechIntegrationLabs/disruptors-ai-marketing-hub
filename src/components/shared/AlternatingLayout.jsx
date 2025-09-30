@@ -45,7 +45,7 @@ export default function AlternatingLayout({ sections = [] }) {
                 >
                   {section.kicker && (
                     <motion.p
-                      className="text-base font-bold uppercase tracking-widest text-indigo-300 mb-4"
+                      className={`text-base font-bold uppercase tracking-widest mb-4 ${section.textColor === 'text-black' ? 'text-gray-700' : 'text-indigo-300'}`}
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       transition={{ delay: 0.2, duration: 0.6 }}
@@ -57,7 +57,7 @@ export default function AlternatingLayout({ sections = [] }) {
 
                   {section.headline && (
                     <motion.h2
-                      className={`${section.headlineSize || 'text-3xl sm:text-4xl lg:text-5xl xl:text-6xl'} font-black leading-tight tracking-tight mb-8 text-white drop-shadow-lg`}
+                      className={`${section.headlineSize || 'text-3xl sm:text-4xl lg:text-5xl xl:text-6xl'} font-black leading-tight tracking-tight mb-8 ${section.textColor || 'text-white'} ${section.textColor === 'text-black' ? '' : 'drop-shadow-lg'}`}
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3, duration: 0.8 }}
@@ -69,7 +69,7 @@ export default function AlternatingLayout({ sections = [] }) {
 
                   {section.body && (
                     <motion.div
-                      className={`text-xl sm:text-2xl lg:text-3xl leading-relaxed font-light mb-12 text-gray-100`}
+                      className={`text-xl sm:text-2xl lg:text-3xl leading-relaxed font-light mb-12 ${section.textColor === 'text-black' ? 'text-gray-800' : 'text-gray-100'}`}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.8 }}
@@ -113,26 +113,12 @@ export default function AlternatingLayout({ sections = [] }) {
                     {/* Modern geometric clip-path container with rounded effect */}
                     <div
                       className={`relative overflow-hidden rounded-3xl ${getShapeClass(index)} transition-transform duration-700 group-hover:scale-[1.02] shadow-2xl`}
-                      onMouseEnter={(e) => {
-                        const video = e.currentTarget.querySelector('video');
-                        if (video) {
-                          video.currentTime = 0;
-                          video.playbackRate = 0.75;
-                          video.play().catch(err => console.log('Video play failed:', err));
-                        }
-                      }}
-                      onMouseLeave={(e) => {
-                        const video = e.currentTarget.querySelector('video');
-                        if (video) {
-                          video.pause();
-                          video.currentTime = 0;
-                        }
-                      }}
                     >
                       {section.video ? (
                         <video
                           src={section.video}
                           className="w-full h-full object-cover"
+                          autoPlay
                           muted
                           loop
                           playsInline

@@ -180,7 +180,7 @@ const VideoScrollScrub = ({
   return (
     <section
       ref={containerRef}
-      className={`relative w-full h-screen overflow-hidden bg-black flex items-center justify-center ${className}`}
+      className={`relative w-full h-screen overflow-hidden bg-transparent flex items-center justify-center ${className}`}
       role="region"
       aria-label="Video showcase section"
     >

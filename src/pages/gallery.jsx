@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioAssets, portfolioImages, portfolioVideos } from '@/data/portfolio-assets';
-import { X, Play, Image as ImageIcon, Video as VideoIcon, Grid3x3 } from 'lucide-react';
+import { X, Play, Image as ImageIcon, Video as VideoIcon, Grid3x3, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const FILTER_OPTIONS = [
   { id: 'all', label: 'All', icon: Grid3x3, count: portfolioAssets.length },
@@ -11,7 +11,7 @@ const FILTER_OPTIONS = [
 
 export default function Gallery() {
   const [filter, setFilter] = useState('all');
-  const [selectedAsset, setSelectedAsset] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const filteredAssets = useMemo(() => {
     switch (filter) {
@@ -102,7 +102,7 @@ export default function Gallery() {
                 >
                   <GalleryItem
                     asset={asset}
-                    onClick={() => setSelectedAsset(asset)}
+                    onClick={() => setSelectedIndex(index)}
                   />
                 </motion.div>
               ))}
@@ -123,8 +123,9 @@ export default function Gallery() {
 
       {/* Lightbox Modal */}
       <Lightbox
-        asset={selectedAsset}
-        onClose={() => setSelectedAsset(null)}
+        assets={filteredAssets}
+        selectedIndex={selectedIndex}
+        onClose={() => setSelectedIndex(null)}
       />
     </div>
   );
@@ -136,7 +137,7 @@ function GalleryItem({ asset, onClick }) {
 
   return (
     <motion.div
-      className="relative rounded-2xl overflow-hidden cursor-pointer group bg-gray-900/50 backdrop-blur-sm"
+      className="relative rounded-2xl overflow-hidden cursor-pointer group bg-transparent backdrop-blur-sm"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
@@ -160,10 +161,10 @@ function GalleryItem({ asset, onClick }) {
           className={`w-full h-auto transition-opacity duration-300 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
+          autoPlay
           loop
           muted
           playsInline
-          autoPlay={isHovered}
           onLoadedData={() => setIsLoaded(true)}
         />
       )}
@@ -208,8 +209,62 @@ function GalleryItem({ asset, onClick }) {
   );
 }
 
-function Lightbox({ asset, onClose }) {
-  if (!asset) return null;
+function Lightbox({ assets, selectedIndex, onClose }) {
+  const [currentIndex, setCurrentIndex] = useState(selectedIndex);
+
+  useEffect(() => {
+    setCurrentIndex(selectedIndex);
+  }, [selectedIndex]);
+
+  const goToNext = useCallback(() => {
+    if (assets && currentIndex !== null) {
+      setCurrentIndex((prev) => (prev + 1) % assets.length);
+    }
+  }, [assets, currentIndex]);
+
+  const goToPrevious = useCallback(() => {
+    if (assets && currentIndex !== null) {
+      setCurrentIndex((prev) => (prev - 1 + assets.length) % assets.length);
+    }
+  }, [assets, currentIndex]);
+
+  useEffect(() => {
+    if (currentIndex === null) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goToNext();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goToPrevious();
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+      }
+    };
+
+    const handleWheel = (e) => {
+      e.preventDefault();
+      if (e.deltaY > 0) {
+        goToNext();
+      } else if (e.deltaY < 0) {
+        goToPrevious();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('wheel', handleWheel, { passive: false });
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('wheel', handleWheel);
+    };
+  }, [currentIndex, goToNext, goToPrevious, onClose]);
+
+  if (currentIndex === null || !assets || !assets[currentIndex]) return null;
+
+  const asset = assets[currentIndex];
 
   return (
     <AnimatePresence>
@@ -223,13 +278,13 @@ function Lightbox({ asset, onClose }) {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all duration-200 backdrop-blur-sm border border-white/20"
+          className="absolute top-4 right-4 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all duration-200 backdrop-blur-sm border border-white/20 z-50"
         >
           <X className="w-6 h-6" />
         </button>
 
         {/* Asset Info */}
-        <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md rounded-2xl p-4 text-white border border-white/20">
+        <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md rounded-2xl p-4 text-white border border-white/20 z-50">
           <div className="flex items-center gap-3">
             {asset.type === 'video' ? (
               <VideoIcon className="w-6 h-6 text-blue-400" />
@@ -246,10 +301,35 @@ function Lightbox({ asset, onClose }) {
               </p>
             </div>
           </div>
+          <div className="mt-2 text-sm text-gray-400">
+            {currentIndex + 1} / {assets.length}
+          </div>
         </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            goToPrevious();
+          }}
+          className="absolute left-4 top-1/2 -translate-y-1/2 p-4 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all duration-200 backdrop-blur-sm border border-white/20 z-50"
+        >
+          <ChevronLeft className="w-8 h-8" />
+        </button>
+
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            goToNext();
+          }}
+          className="absolute right-4 top-1/2 -translate-y-1/2 p-4 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all duration-200 backdrop-blur-sm border border-white/20 z-50"
+        >
+          <ChevronRight className="w-8 h-8" />
+        </button>
 
         {/* Content */}
         <motion.div
+          key={currentIndex}
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}

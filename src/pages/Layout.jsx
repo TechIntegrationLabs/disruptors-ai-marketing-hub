@@ -126,7 +126,7 @@ export default function Layout({ children, currentPageName }) {
           {!isAdminAuthenticated && (
             <>
               <header className={`fixed top-0 left-0 right-0 z-50 text-white ${
-            isHomePage 
+            isHomePage
               ? `transition-all duration-500 ease-in-out ${scrolled ? 'bg-black/70 backdrop-blur-md' : 'bg-black/30 backdrop-blur-sm'}`
               : 'bg-black/70 backdrop-blur-md'
           }`}>
@@ -198,7 +198,7 @@ export default function Layout({ children, currentPageName }) {
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   className={`lg:hidden border-t border-gray-700 ${
-                    isHomePage 
+                    isHomePage
                       ? `transition-colors duration-500 ${scrolled ? 'bg-black/70 backdrop-blur-md' : 'bg-black/30 backdrop-blur-sm'}`
                       : 'bg-black/70 backdrop-blur-md'
                   }`}

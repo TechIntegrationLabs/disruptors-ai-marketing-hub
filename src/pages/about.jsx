@@ -15,17 +15,17 @@ const TeamMemberCard = ({ member, delay }) => (
     className="bg-white/20 backdrop-blur-lg rounded-3xl p-8 text-center shadow-lg border border-white/20"
   >
     <div className="w-48 h-48 mx-auto mb-6 rounded-2xl overflow-hidden border-4 border-white shadow-lg">
-      <img 
-        src={member.headshot} 
-        alt={member.name} 
-        className="w-full h-full object-cover" 
+      <img
+        src={member.headshot}
+        alt={member.name}
+        className="w-full h-full object-cover"
       />
     </div>
-    <h3 className="text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
-    <p className="text-indigo-600 font-semibold text-lg mb-4">{member.title}</p>
-    <p className="text-gray-600 text-sm leading-relaxed mb-6">{member.bio}</p>
+    <h3 className="text-2xl font-bold text-black mb-2">{member.name}</h3>
+    <p className="text-black font-semibold text-lg mb-4">{member.title}</p>
+    <p className="text-black text-sm leading-relaxed mb-6">{member.bio}</p>
     {member.social_links?.linkedin && (
-      <a href={member.social_links.linkedin} target="_blank" rel="noopener noreferrer" className="inline-block text-gray-500 hover:text-indigo-600 transition-colors">
+      <a href={member.social_links.linkedin} target="_blank" rel="noopener noreferrer" className="inline-block text-black hover:text-gray-700 transition-colors">
         <Linkedin className="w-6 h-6" />
       </a>
     )}
@@ -43,7 +43,7 @@ export default function About() {
       body: "Disruptors Media is a team of strategists, creatives, and technologists helping business owners embrace the future without losing their human touch. We're not just another marketing agency. We're a Fractional CMO and AI Infrastructure team built for business owners who want clarity, not complexity.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4",
       imageAlt: "AI empowerment visualization",
-      backgroundColor: "bg-gray-900 text-white backdrop-blur-md"
+      backgroundColor: "bg-transparent text-white backdrop-blur-md"
     },
     {
       kicker: "PARTNERSHIP",
@@ -51,7 +51,7 @@ export default function About() {
       body: "We partner with local Salt Lake City businesses and national brands alike to systematize their marketing, simplify operations, and leverage AI as a tool…not a replacement. Our secret? We teach what we build. That means every campaign, automation, and strategy we implement comes with the transparency and education needed to put you in control.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
       imageAlt: "Partnership and collaboration visualization",
-      backgroundColor: "bg-gray-800 text-white backdrop-blur-sm"
+      backgroundColor: "bg-transparent text-white backdrop-blur-sm"
     }
   ];
 
@@ -76,7 +76,7 @@ export default function About() {
   return (
     <div>
       {/* Hero Video Section */}
-      <section className="w-full bg-gray-900 overflow-hidden">
+      <section className="w-full bg-transparent overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -169,7 +169,7 @@ export default function About() {
       </section>
 
       {/* Section 4: Call to Action */}
-       <section className="bg-gray-800 text-white py-20">
+       <section className="bg-transparent text-white py-20">
          <div className="text-center mb-8">
             <h2 className="text-4xl font-bold">Work with the Disruptors</h2>
             <p className="text-lg text-gray-300 mt-2">We help you scale your business without losing its soul. Start with a free strategy session.</p>

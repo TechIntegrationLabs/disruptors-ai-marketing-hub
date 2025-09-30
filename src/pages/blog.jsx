@@ -36,12 +36,12 @@ const PostCard = ({ post, isFeatured = false }) => {
       </div>
       <div className="p-8 flex flex-col justify-between flex-grow">
           <div>
-              <p className="text-sm font-semibold text-indigo-600 mb-2">{post.category || 'Uncategorized'}</p>
-              <h3 className={`font-bold text-gray-900 mb-4 ${isFeatured ? 'text-3xl' : 'text-xl'}`}>{post.title}</h3>
-              <p className="text-gray-600 leading-relaxed mb-6 flex-grow">{post.excerpt}</p>
+              <p className="text-sm font-semibold text-black mb-2">{post.category || 'Uncategorized'}</p>
+              <h3 className={`font-bold text-black mb-4 ${isFeatured ? 'text-3xl' : 'text-xl'}`}>{post.title}</h3>
+              <p className="text-black leading-relaxed mb-6 flex-grow">{post.excerpt}</p>
           </div>
           <div>
-              <div className="flex items-center text-xs text-gray-500 mb-6">
+              <div className="flex items-center text-xs text-black mb-6">
                   <div className="flex items-center mr-4">
                     <User className="w-3 h-3 mr-1.5"/> {post.author || 'Disruptors Team'}
                   </div>
@@ -51,7 +51,7 @@ const PostCard = ({ post, isFeatured = false }) => {
               </div>
               <Link
                 to={`/blog-detail?slug=${post.slug}`}
-                className="font-semibold text-indigo-600 flex items-center group-hover:text-indigo-800"
+                className="font-semibold text-black flex items-center hover:text-gray-700"
               >
                   Read More <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
               </Link>
@@ -113,7 +113,7 @@ export default function Blog() {
   return (
     <div>
       {/* Enhanced Hero Section */}
-      <section className="bg-gray-900 text-white py-16 sm:py-24">
+      <section className="bg-transparent text-white py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
@@ -140,26 +140,12 @@ export default function Blog() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               className="relative"
-              onMouseEnter={(e) => {
-                const video = e.currentTarget.querySelector('video');
-                if (video) {
-                  video.currentTime = 0;
-                  video.playbackRate = 0.75;
-                  video.play().catch(err => console.log('Video play failed:', err));
-                }
-              }}
-              onMouseLeave={(e) => {
-                const video = e.currentTarget.querySelector('video');
-                if (video) {
-                  video.pause();
-                  video.currentTime = 0;
-                }
-              }}
             >
               <div className="rounded-3xl overflow-hidden shadow-2xl aspect-video">
                 <video
                   src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759270235/social_u4455988764_a_michealangelo_painting_of_a_decorated_and_rugge_cdd91916-0689-4b4c-8aa1-419f07eed4f4_0_eo3dgk.mp4"
                   className="w-full h-full object-cover"
+                  autoPlay
                   muted
                   loop
                   playsInline

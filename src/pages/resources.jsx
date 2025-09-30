@@ -4,7 +4,7 @@ import { Sparkles } from 'lucide-react';
 
 export default function Resources() {
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen bg-transparent">
       {/* Content */}
       <div className="flex items-center justify-center min-h-screen px-4 py-24">
         <motion.div

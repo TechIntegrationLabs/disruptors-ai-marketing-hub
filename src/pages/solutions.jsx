@@ -23,6 +23,19 @@ const iconMap = { Cpu, Share2, Search, Filter, DollarSign, Mic, AppWindow, Users
 
 const ServiceCard = ({ service, index }) => {
     const Icon = iconMap[service.icon];
+    const gradients = [
+        'from-blue-500/10 to-indigo-500/10',
+        'from-purple-500/10 to-pink-500/10',
+        'from-teal-500/10 to-cyan-500/10',
+        'from-orange-500/10 to-red-500/10',
+        'from-green-500/10 to-emerald-500/10',
+        'from-violet-500/10 to-purple-500/10',
+        'from-rose-500/10 to-pink-500/10',
+        'from-sky-500/10 to-blue-500/10',
+        'from-amber-500/10 to-yellow-500/10'
+    ];
+    const gradient = gradients[index % gradients.length];
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -31,12 +44,34 @@ const ServiceCard = ({ service, index }) => {
             viewport={{ once: true }}
         >
             <Link to={createPageUrl(service.link)} className="block group h-full">
-                <div className="bg-white/80 backdrop-blur-md rounded-3xl p-8 h-full border border-gray-200/50 hover:border-blue-500/50 hover:shadow-xl transition-all duration-300 flex flex-col">
-                    {Icon && <Icon className="w-10 h-10 text-blue-600 mb-6" />}
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                    <p className="text-gray-600 mb-6 flex-grow">{service.hook}</p>
-                    <div className="flex items-center text-blue-600 font-semibold">
-                        Learn More <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                <div className={`relative bg-gradient-to-br ${gradient} backdrop-blur-md rounded-3xl p-8 h-full border-2 border-white/40 hover:border-blue-500/60 shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col overflow-hidden group-hover:-translate-y-2`}>
+                    {/* Animated background effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-blue-500/5 group-hover:via-purple-500/5 group-hover:to-pink-500/5 transition-all duration-500"></div>
+
+                    {/* Decorative corner element */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-bl-full transform translate-x-16 -translate-y-16 group-hover:translate-x-12 group-hover:-translate-y-12 transition-transform duration-500"></div>
+
+                    <div className="relative z-10">
+                        {/* Icon container with animated background */}
+                        <div className="relative mb-6">
+                            <div className="absolute inset-0 bg-blue-500/20 blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                            <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-4 w-fit">
+                                {Icon && <Icon className="w-8 h-8 text-blue-600 group-hover:text-blue-700 transition-colors duration-300" />}
+                            </div>
+                        </div>
+
+                        <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-700 transition-colors duration-300">{service.title}</h3>
+                        <p className="text-gray-700 text-lg mb-6 flex-grow leading-relaxed">{service.hook}</p>
+
+                        {/* Enhanced CTA */}
+                        <div className="flex items-center justify-between">
+                            <span className="text-blue-600 font-bold group-hover:text-blue-700 transition-colors duration-300">
+                                Learn More
+                            </span>
+                            <div className="bg-blue-600 group-hover:bg-blue-700 text-white rounded-full p-2 transition-all duration-300 group-hover:scale-110">
+                                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </Link>
@@ -52,7 +87,8 @@ export default function Solutions() {
       body: "A complete suite of AI-powered marketing and automation services designed to drive growth, efficiency, and real business results. From automation to custom apps, we help you leverage technology to scale without losing your human touch.",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2426&q=80",
       imageAlt: "Business solutions and strategy",
-      backgroundColor: "bg-white"
+      backgroundColor: "bg-transparent",
+      textColor: "text-black"
     }
   ];
 
@@ -62,8 +98,21 @@ export default function Solutions() {
       <AlternatingLayout sections={solutionsHeroData} />
 
       {/* Services Grid */}
-      <section className="pb-24 sm:pb-32">
+      <section className="pb-24 sm:pb-32 pt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Section Header */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-center mb-16"
+            >
+                <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-3">OUR SERVICES</p>
+                <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">Choose Your Path to Growth</h2>
+                <p className="text-xl text-gray-600 max-w-3xl mx-auto">Select the services that align with your business goals. Mix and match to create your perfect growth strategy.</p>
+            </motion.div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {services.map((service, index) => (
                     <ServiceCard key={service.link} service={service} index={index} />

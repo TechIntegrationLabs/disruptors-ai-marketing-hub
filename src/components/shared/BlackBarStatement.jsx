@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function BlackBarStatement({ children }) {
   return (
-    <section className="bg-gray-900/95 backdrop-blur-sm text-white py-8 sm:py-12">
+    <section className="bg-transparent backdrop-blur-sm text-white py-8 sm:py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.p 
           className="text-lg sm:text-2xl font-medium leading-relaxed"
