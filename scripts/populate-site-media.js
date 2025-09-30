@@ -41,9 +41,47 @@ async function populateSiteMedia() {
       for (const asset of pageData.assets) {
         assetCount++;
 
+        // Extract section name from purpose field
+        let sectionName = null;
+        if (asset.purpose) {
+          // Look for common section patterns in purpose
+          const purpose = asset.purpose.toLowerCase();
+
+          if (purpose.includes('alternatinglayout section')) {
+            sectionName = 'AlternatingLayout';
+          } else if (purpose.includes('hero')) {
+            sectionName = 'Hero';
+          } else if (purpose.includes('service icon')) {
+            sectionName = 'Service Icons';
+          } else if (purpose.includes('client logo') || purpose.includes('clientlogomarquee')) {
+            sectionName = 'Client Logos';
+          } else if (purpose.includes('team member')) {
+            sectionName = 'Team';
+          } else if (purpose.includes('gallery')) {
+            sectionName = 'Gallery';
+          } else if (purpose.includes('case study') || purpose.includes('portfolio')) {
+            sectionName = 'Case Study';
+          } else if (purpose.includes('background')) {
+            sectionName = 'Background';
+          } else if (purpose.includes('header') || purpose.includes('navigation')) {
+            sectionName = 'Header';
+          } else if (purpose.includes('footer')) {
+            sectionName = 'Footer';
+          } else if (purpose.includes('blog')) {
+            sectionName = 'Blog';
+          } else {
+            // Try to extract section from pattern "Section Name - Description"
+            const dashMatch = asset.purpose.match(/^([^-]+)\s*-/);
+            if (dashMatch) {
+              sectionName = dashMatch[1].trim();
+            }
+          }
+        }
+
         // Generate a unique media_key
-        const purposeSlug = asset.purpose?.toLowerCase().replace(/[^a-z0-9]+/g, '_') || 'unknown';
-        const mediaKey = `${pageSlug}_${purposeSlug}_${asset.type}_${assetCount}`
+        const sectionSlug = sectionName?.toLowerCase().replace(/[^a-z0-9]+/g, '_') || 'general';
+        const purposeSlug = asset.purpose?.toLowerCase().replace(/[^a-z0-9]+/g, '_').substring(0, 50) || 'unknown';
+        const mediaKey = `${pageSlug}_${sectionSlug}_${asset.type}_${assetCount}`
           .toLowerCase()
           .replace(/[^a-z0-9_]/g, '_')
           .replace(/_+/g, '_')
@@ -83,7 +121,7 @@ async function populateSiteMedia() {
           media_type: asset.type === 'image' ? 'image' : 'video',
           media_url: asset.source,
           page_slug: pageSlug,
-          section_name: null, // Audit doesn't have explicit section names
+          section_name: sectionName,
           purpose: asset.purpose || null,
           alt_text: asset.alt_text || null,
           caption: null,
@@ -97,7 +135,7 @@ async function populateSiteMedia() {
           lazy_load: asset.type === 'image' && !asset.purpose?.toLowerCase().includes('hero'),
           seo_optimized: sourceType === 'cloudinary',
           accessibility_checked: Boolean(asset.alt_text),
-          tags: [pageSlug, sourceType, asset.type].filter(Boolean),
+          tags: [pageSlug, sectionName, sourceType, asset.type].filter(Boolean),
           metadata: {
             original_purpose: asset.purpose,
             location_in_code: asset.location_in_code,

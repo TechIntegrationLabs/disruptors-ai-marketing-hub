@@ -28,7 +28,21 @@ export default function AlternatingLayout({ sections = [] }) {
               section.backgroundColor || (index % 3 === 0 ? 'bg-gray-900 text-white backdrop-blur-md' : index % 3 === 1 ? 'bg-gray-800 text-white backdrop-blur-sm' : 'bg-gray-900 text-white')
             }`}
           >
-            <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 w-full">
+            {/* Background Image with Overlay */}
+            {section.backgroundImage && (
+              <>
+                <div className="absolute inset-0 z-0">
+                  <img
+                    src={section.backgroundImage}
+                    alt={section.imageAlt || 'Background pattern'}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="absolute inset-0 z-[1] bg-gray-900/70"></div>
+              </>
+            )}
+            <div className="relative z-10 max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 w-full">
               <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-24 items-center min-h-[80vh] ${
                 isReversed ? 'lg:grid-flow-col-dense' : ''
               }`}>

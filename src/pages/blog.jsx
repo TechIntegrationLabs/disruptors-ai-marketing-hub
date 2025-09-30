@@ -75,7 +75,8 @@ export default function Blog() {
       body: "Actionable insights, proven strategies, and a behind-the-scenes look at how we build AI-powered growth systems. Discover the latest trends, case studies, and expert advice to transform your business with AI.",
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80",
       imageAlt: "Content creation and blogging",
-      backgroundColor: "bg-white"
+      backgroundColor: "bg-gray-900 text-white",
+      backgroundImage: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755697042/disruptors-media/ui/backgrounds/mobile-sec-bg.jpg"
     }
   ];
 

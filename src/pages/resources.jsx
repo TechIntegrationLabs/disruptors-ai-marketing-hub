@@ -122,7 +122,28 @@ export default function Resources() {
   );
 
   return (
-    <div>
+    <div className="relative">
+      {/* Video Background - Fixed behind entire page */}
+      <div className="fixed inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source
+            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759258609/social_u4455988764_medusa_statue_up_close_ancient_roman_style_fierce_10cc5da5-851d-4c57-811b-863bf1e66786_0_sgv6md.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </div>
+
+      {/* Black Overlay - 15% opacity (85% transparency) */}
+      <div className="fixed inset-0 z-[1] bg-black/15"></div>
+
+      {/* Content - Above video and overlay */}
+      <div className="relative z-10">
       {/* Hero Section */}
       <section className="py-24 sm:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -203,7 +224,7 @@ export default function Resources() {
       {/* CTA Block */}
       <section className="relative bg-gray-800 text-white py-20">
          <GeometricSeparator type="top" className="text-white" />
-         <DualCTABlock 
+         <DualCTABlock
            title="Ready to Deploy Your AI Team?"
            cta1_text="Book a Strategy Session"
            cta1_link="book-strategy-session"
@@ -211,6 +232,7 @@ export default function Resources() {
            cta2_link="contact"
          />
       </section>
+      </div>
     </div>
   );
 }

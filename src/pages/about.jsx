@@ -43,7 +43,8 @@ export default function About() {
       body: "Disruptors Media is a team of strategists, creatives, and technologists helping business owners embrace the future without losing their human touch. We're not just another marketing agency. We're a Fractional CMO and AI Infrastructure team built for business owners who want clarity, not complexity.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4",
       imageAlt: "AI empowerment visualization",
-      backgroundColor: "bg-gray-900 text-white backdrop-blur-md"
+      backgroundColor: "bg-gray-900 text-white backdrop-blur-md",
+      backgroundImage: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268597/disruptors-ai/backgrounds/disruptors-ai/backgrounds/neural-network-blue.jpg"
     },
     {
       kicker: "PARTNERSHIP",
@@ -51,7 +52,8 @@ export default function About() {
       body: "We partner with local Salt Lake City businesses and national brands alike to systematize their marketing, simplify operations, and leverage AI as a tool…not a replacement. Our secret? We teach what we build. That means every campaign, automation, and strategy we implement comes with the transparency and education needed to put you in control.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
       imageAlt: "Partnership and collaboration visualization",
-      backgroundColor: "bg-gray-800 text-white backdrop-blur-sm"
+      backgroundColor: "bg-gray-800 text-white backdrop-blur-sm",
+      backgroundImage: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268589/disruptors-ai/backgrounds/disruptors-ai/backgrounds/blue-geometric-rectangles.jpg"
     }
   ];
 
@@ -76,8 +78,17 @@ export default function About() {
   return (
     <div>
       {/* Hero Video Section */}
-      <section className="relative w-full bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <section className="relative w-full bg-gray-900 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268586/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-structure-black.jpg"
+            alt="Abstract geometric background"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-gray-900/70"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -169,18 +180,29 @@ export default function About() {
       </section>
 
       {/* Section 4: Call to Action */}
-       <section className="relative bg-gray-800 text-white py-20">
+       <section className="relative bg-gray-800 text-white py-20 overflow-hidden">
+         <div className="absolute inset-0 z-0">
+           <img
+             src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268600/disruptors-ai/backgrounds/disruptors-ai/backgrounds/dark-abstract-polygon.jpg"
+             alt="Abstract geometric background"
+             className="w-full h-full object-cover"
+             loading="lazy"
+           />
+         </div>
+         <div className="absolute inset-0 z-[1] bg-gray-800/70"></div>
+         <div className="relative z-10">
          <div className="text-center mb-8">
             <h2 className="text-4xl font-bold">Work with the Disruptors</h2>
             <p className="text-lg text-gray-300 mt-2">We help you scale your business without losing its soul. Start with a free strategy session.</p>
          </div>
-         <DualCTABlock 
+         <DualCTABlock
           title=""
           cta1_text="Book a Free Strategy Session"
           cta1_link="book-strategy-session"
           cta2_text="Get a Free Business Audit"
           cta2_link="free-business-audit"
          />
+         </div>
       </section>
     </div>
   );

@@ -77,7 +77,7 @@ const VideoScrollScrub = ({
         start: "top bottom",
         end: "bottom top",
         scrub: 1, // Smooth scrubbing with 1-second lag
-        markers: true, // DEBUG: Show scroll trigger markers
+        markers: false, // Production: Hide scroll trigger markers
         onUpdate: (self) => {
           // Calculate video progress based on scroll progress
           const progress = self.progress;

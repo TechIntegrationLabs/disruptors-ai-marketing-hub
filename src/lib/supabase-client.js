@@ -50,4 +50,8 @@ if (!isDevelopment && supabaseUrl && !supabaseUrl.includes('127.0.0.1')) {
   console.info('Supabase: Connected to production instance:', supabaseUrl)
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    storageKey: 'supabase-auth', // Unique storage key
+  }
+})

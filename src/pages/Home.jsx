@@ -1,5 +1,6 @@
 import React from 'react';
 import Hero from '../components/shared/Hero';
+import VideoScrollScrub from '../components/shared/VideoScrollScrub';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import ClientLogoMarquee from '../components/shared/ClientLogoMarquee';
 import ThreePillars from '../components/shared/ThreePillars';
@@ -16,6 +17,7 @@ export default function Home() {
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259177/social_u4455988764_Innovation_Section_Cutting-Edge_AI_Solutions_An_a_f5059a4a-a4d2-493b-a4ce-f16bce3d9987_0_1_vza370.mp4",
       imageAlt: "AI Technology Transformation",
       backgroundColor: "bg-gray-900 text-white backdrop-blur-md",
+      backgroundImage: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268586/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-structure-black.jpg",
       cta: {
         label: "Start Your Transformation",
         link: "book-strategy-session"
@@ -27,7 +29,8 @@ export default function Home() {
       body: "We help companies generate leads, streamline operations, and scale using AI-powered systems—all with complete transparency so you stay in control of your growth journey.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
       imageAlt: "Growth Partnership Visualization",
-      backgroundColor: "bg-gray-800 text-white backdrop-blur-sm"
+      backgroundColor: "bg-gray-800 text-white backdrop-blur-sm",
+      backgroundImage: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268589/disruptors-ai/backgrounds/disruptors-ai/backgrounds/blue-geometric-rectangles.jpg"
     },
     {
       kicker: "INNOVATION",
@@ -35,7 +38,8 @@ export default function Home() {
       body: "From automated lead generation to intelligent customer insights, we deploy the latest AI technologies to give your business a competitive edge in the digital marketplace.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4",
       imageAlt: "AI Innovation Technology",
-      backgroundColor: "bg-gray-900 text-white"
+      backgroundColor: "bg-gray-900 text-white",
+      backgroundImage: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268594/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-minimalist.jpg"
     },
     {
       kicker: "RESULTS",
@@ -43,7 +47,8 @@ export default function Home() {
       body: "Our clients see average growth increases of 300% within the first 6 months. We don't just promise results—we deliver measurable outcomes that transform businesses.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759116522/full-animation_online-video-cutter.com_zzpok1.mp4",
       imageAlt: "Business Growth Analytics",
-      backgroundColor: "bg-gray-950 text-white"
+      backgroundColor: "bg-gray-950 text-white",
+      backgroundImage: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268597/disruptors-ai/backgrounds/disruptors-ai/backgrounds/neural-network-blue.jpg"
     },
     {
       kicker: "MISSION",
@@ -52,6 +57,7 @@ export default function Home() {
       image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/hand-robot.png",
       imageAlt: "Human-AI Partnership",
       backgroundColor: "bg-gray-900 text-white",
+      backgroundImage: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268600/disruptors-ai/backgrounds/disruptors-ai/backgrounds/dark-abstract-polygon.jpg",
       cta: {
         label: "Partner With Us",
         link: "book-strategy-session"
@@ -63,17 +69,45 @@ export default function Home() {
     <div className="text-gray-800">
       <Hero />
 
+      {/* Video Scroll Scrub Section */}
+      <VideoScrollScrub
+        title="AI-Powered Marketing Innovation"
+        description="Watch how we transform businesses with cutting-edge AI solutions"
+      />
+
       {/* Modern Alternating Layout Sections */}
       <AlternatingLayout sections={alternatingData} />
 
       {/* Client Logos Marquee */}
-      <div className="relative py-16 bg-black">
-        <ClientLogoMarquee />
+      <div className="relative py-16 bg-black overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268586/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-structure-black.jpg"
+            alt="Abstract geometric background"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-black/70"></div>
+        <div className="relative z-10">
+          <ClientLogoMarquee />
+        </div>
       </div>
 
       {/* Our Approach (3 Pillars) */}
-      <section className="relative bg-gray-800 text-white py-24 sm:py-32">
-        <ThreePillars />
+      <section className="relative bg-gray-800 text-white py-24 sm:py-32 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268594/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-minimalist.jpg"
+            alt="Abstract geometric background"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-gray-800/70"></div>
+        <div className="relative z-10">
+          <ThreePillars />
+        </div>
       </section>
 
       {/* Reviews */}
@@ -83,8 +117,19 @@ export default function Home() {
       <ServiceScroller />
 
       {/* CTA Block */}
-       <section className="relative bg-gray-800 text-white py-20">
-         <DualCTABlock />
+       <section className="relative bg-gray-800 text-white py-20 overflow-hidden">
+         <div className="absolute inset-0 z-0">
+           <img
+             src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268600/disruptors-ai/backgrounds/disruptors-ai/backgrounds/dark-abstract-polygon.jpg"
+             alt="Abstract geometric background"
+             className="w-full h-full object-cover"
+             loading="lazy"
+           />
+         </div>
+         <div className="absolute inset-0 z-[1] bg-gray-800/70"></div>
+         <div className="relative z-10">
+           <DualCTABlock />
+         </div>
        </section>
     </div>
   );
