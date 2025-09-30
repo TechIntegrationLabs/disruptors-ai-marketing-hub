@@ -19,6 +19,7 @@ export default function SolutionPageLayout({ service }) {
         descriptivePhrase,
         overview,
         image,
+        outcomes = [],
         cta_label = 'Book a Strategy Session',
         cta_link = 'book-strategy-session'
     } = service;
@@ -86,21 +87,30 @@ export default function SolutionPageLayout({ service }) {
                 </div>
             </section>
             
-            {/* Outcomes (Placeholder) */}
-            <section className="py-16 sm:py-24">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-bold mb-12 text-white">Expected Outcomes</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {[1, 2, 3].map(i => (
-                            <div key={i} className="bg-gray-900/90 backdrop-blur-md p-8 rounded-3xl shadow-lg border border-gray-700">
-                                <CheckCircle className="w-8 h-8 text-yellow-400 mx-auto mb-4" />
-                                <h3 className="font-bold text-lg mb-2 text-white">Placeholder Outcome {i}</h3>
-                                <p className="text-gray-100 text-sm">[Outcome description to be added]</p>
-                            </div>
-                        ))}
+            {/* Outcomes */}
+            {outcomes.length > 0 && (
+                <section className="py-16 sm:py-24">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                        <h2 className="text-3xl font-bold mb-12 text-white">Expected Outcomes</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {outcomes.map((outcome, i) => (
+                                <motion.div
+                                    key={i}
+                                    className="bg-gray-900/90 backdrop-blur-md p-8 rounded-3xl shadow-lg border border-gray-700"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                                    viewport={{ once: true }}
+                                >
+                                    <CheckCircle className="w-8 h-8 text-yellow-400 mx-auto mb-4" />
+                                    <h3 className="font-bold text-lg mb-2 text-white">{outcome.title}</h3>
+                                    <p className="text-gray-100 text-sm">{outcome.description}</p>
+                                </motion.div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
 
             {/* CTA */}
             <section className="relative bg-gray-800 text-white py-20">

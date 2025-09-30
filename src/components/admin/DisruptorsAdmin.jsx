@@ -20,6 +20,7 @@ import {
 import AIMediaGenerator from '@/components/shared/AIMediaGenerator';
 import MarketingImageBatchGenerator from './MarketingImageBatchGenerator';
 import AIBatchPlanner from './AIBatchPlanner';
+import DataManager from './DataManager';
 
 const DisruptorsAdmin = ({ username, onLogout }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -42,6 +43,13 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
 
   const adminTabs = [
     {
+      id: 'database',
+      label: 'Data Manager',
+      icon: Database,
+      description: 'Manage all Supabase database tables',
+      color: 'from-green-500 to-teal-500'
+    },
+    {
       id: 'media',
       label: 'AI Media Generator',
       icon: Image,
@@ -54,13 +62,6 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
       icon: Zap,
       description: 'Batch generate all marketing website images',
       color: 'from-cyan-500 to-purple-500'
-    },
-    {
-      id: 'database',
-      label: 'Neural Database',
-      icon: Database,
-      description: 'Manage data connections and storage',
-      color: 'from-green-500 to-teal-500'
     },
     {
       id: 'analytics',
@@ -182,7 +183,7 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
         </Card>
 
         {/* Admin Tabs */}
-        <Tabs defaultValue="media" className="w-full">
+        <Tabs defaultValue="database" className="w-full">
 
           {/* Tab Navigation */}
           <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 bg-black/50 border border-green-400/30 mb-8">
@@ -260,30 +261,9 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
             </Card>
           </TabsContent>
 
-          {/* Database Tab */}
+          {/* Database Tab - Data Manager */}
           <TabsContent value="database" className="space-y-6">
-            <Card className="bg-black/50 border-green-400/30">
-              <CardHeader>
-                <div className="flex items-center space-x-2">
-                  <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${adminTabs[1].color} flex items-center justify-center`}>
-                    <Database className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-green-400">Neural Database Interface</CardTitle>
-                    <CardDescription className="text-green-400/60">
-                      Manage data streams and quantum storage systems
-                    </CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-center py-12 text-green-400/60">
-                  <Database className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                  <p>DATABASE INTERFACE</p>
-                  <p className="text-sm">Coming soon to the neural network...</p>
-                </div>
-              </CardContent>
-            </Card>
+            <DataManager />
           </TabsContent>
 
           {/* Analytics Tab */}
@@ -360,7 +340,7 @@ const DisruptorsAdmin = ({ username, onLogout }) => {
       </div>
 
       {/* Custom Matrix Styling */}
-      <style jsx>{`
+      <style>{`
         /* Matrix-style glow effects */
         .glow-green {
           box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00;

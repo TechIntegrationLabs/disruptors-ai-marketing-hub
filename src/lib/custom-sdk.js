@@ -744,6 +744,7 @@ function shouldUseServiceRole(entityName) {
   const serviceRoleEntities = [
     "user",
     "post",  // Blog posts need service role for admin operations
+    "service",  // Services need service role for admin operations
     "transaction",
     "usermembership",
     "payment",

@@ -7,6 +7,16 @@ import { createPageUrl } from '@/utils';
 export default function AlternatingLayout({ sections = [] }) {
   return (
     <div className="relative">
+      {/* Background Image Layer */}
+      <div className="fixed inset-0 z-0 opacity-10 pointer-events-none">
+        <img
+          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/backgrounds/hero-background.jpg"
+          alt="Abstract AI neural network background"
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+
       {sections.map((section, index) => {
         const isEven = index % 2 === 0;
         const isReversed = !isEven;
@@ -14,7 +24,7 @@ export default function AlternatingLayout({ sections = [] }) {
         return (
           <section
             key={index}
-            className={`min-h-screen flex items-center py-8 sm:py-12 ${
+            className={`relative min-h-screen flex items-center py-8 sm:py-12 ${
               section.backgroundColor || (index % 3 === 0 ? 'bg-gray-900 text-white backdrop-blur-md' : index % 3 === 1 ? 'bg-gray-800 text-white backdrop-blur-sm' : 'bg-gray-900 text-white')
             }`}
           >
@@ -100,10 +110,28 @@ export default function AlternatingLayout({ sections = [] }) {
                   viewport={{ once: true, margin: "-10%" }}
                 >
                   <div className="relative group">
-                    {/* Modern geometric clip-path container */}
-                    <div className={`relative overflow-hidden ${getShapeClass(index)} transition-transform duration-700 group-hover:scale-[1.02]`}>
+                    {/* Modern geometric clip-path container with rounded effect */}
+                    <div className={`relative overflow-hidden rounded-3xl ${getShapeClass(index)} transition-transform duration-700 group-hover:scale-[1.02] shadow-2xl`}>
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-teal-600/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      {section.image ? (
+                      {section.video ? (
+                        <video
+                          src={section.video}
+                          className="w-full h-full object-cover"
+                          muted
+                          loop
+                          playsInline
+                          preload="auto"
+                          onMouseEnter={(e) => {
+                            e.currentTarget.currentTime = 0;
+                            e.currentTarget.play();
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.pause();
+                            e.currentTarget.currentTime = 0;
+                          }}
+                          aria-label={section.imageAlt || section.headline || 'Section video'}
+                        />
+                      ) : section.image ? (
                         <img
                           src={section.image}
                           alt={section.imageAlt || section.headline || 'Section image'}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Download, Upload, Plus, Trash2, Edit2, Check, X, AlertCircle, TestTube, Settings, Wrench, Send, RefreshCw, Image, Sparkles, FileText, Eye } from 'lucide-react';
+import { Download, Upload, Plus, Trash2, Edit2, Check, X, AlertCircle, TestTube, Settings, Wrench, Send, RefreshCw, Image, Sparkles, Eye, PenTool } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -10,6 +10,7 @@ import { testGoogleSheetsConnection } from '@/utils/test-google-sheets';
 import { runFullDiagnostics } from '@/utils/google-sheets-diagnostics';
 import ColumnMappingConfig from '@/components/shared/ColumnMappingConfig';
 import { customClient } from '@/lib/custom-sdk';
+import { batchGenerateArticles } from '@/lib/anthropic-blog-writer';
 
 const initialBlogData = [
   {
@@ -21,7 +22,7 @@ const initialBlogData = [
     image: "https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=2070&auto=format&fit=crop",
     category: "SEO & GEO",
     slug: "ai-powered-seo-2025",
-    status: "Published",
+    is_published: true,
     content: "Full article content here...",
     tags: "AI, SEO, 2025, generative engines",
     metaDescription: "Learn how AI is transforming SEO and what strategies you need to implement in 2025.",
@@ -37,7 +38,7 @@ const initialBlogData = [
     image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=2070&auto=format&fit=crop",
     category: "Lead Generation",
     slug: "cold-email-templates",
-    status: "Published",
+    is_published: true,
     content: "Cold email templates content...",
     tags: "cold email, templates, lead generation",
     metaDescription: "Proven cold email templates that get replies and fill your sales pipeline.",
@@ -53,7 +54,7 @@ const initialBlogData = [
     image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop",
     category: "Custom Apps",
     slug: "building-ai-app",
-    status: "Draft",
+    is_published: false,
     content: "Custom AI app development content...",
     tags: "AI, custom apps, development, rapid prototyping",
     metaDescription: "Behind-the-scenes look at building a custom AI application in just 48 hours.",
@@ -66,7 +67,7 @@ const DEFAULT_COLUMNS = [
   { key: 'title', label: 'Title', width: 200, minWidth: 100, type: 'text' },
   { key: 'author', label: 'Author', width: 120, minWidth: 80, type: 'text' },
   { key: 'category', label: 'Category', width: 120, minWidth: 80, type: 'text' },
-  { key: 'status', label: 'Status', width: 100, minWidth: 80, type: 'select', options: ['Draft', 'Published', 'Archived'] },
+  { key: 'is_published', label: 'Published', width: 100, minWidth: 80, type: 'select', options: ['true', 'false'] },
   { key: 'publishDate', label: 'Publish Date', width: 120, minWidth: 100, type: 'date' },
   { key: 'excerpt', label: 'Excerpt', width: 250, minWidth: 150, type: 'textarea' },
   { key: 'tags', label: 'Tags', width: 150, minWidth: 100, type: 'text' },
@@ -158,6 +159,8 @@ export default function BlogManagement() {
   const [columns, setColumns] = useState(DEFAULT_COLUMNS);
   const [isResizing, setIsResizing] = useState(false);
   const [resizeData, setResizeData] = useState({ columnKey: null, startX: 0, startWidth: 0 });
+  const [isGeneratingArticles, setIsGeneratingArticles] = useState(false);
+  const [generationProgress, setGenerationProgress] = useState({ current: 0, total: 0 });
 
   const handleCellChange = (rowId, columnKey, newValue) => {
     setBlogData(prev => prev.map(row =>
@@ -184,7 +187,7 @@ export default function BlogManagement() {
       title: "New Blog Post",
       author: "",
       category: "",
-      status: "Draft",
+      is_published: false,
       publishDate: new Date().toISOString().split('T')[0],
       excerpt: "",
       tags: "",
@@ -361,7 +364,7 @@ export default function BlogManagement() {
       const post = blogData.find(p => p.id === postId);
       if (post) {
         // Update status to Published
-        handleCellChange(postId, 'status', 'Published');
+        handleCellChange(postId, 'is_published', true);
 
         // Set publish date to today if not already set
         if (!post.publishDate) {
@@ -382,7 +385,7 @@ export default function BlogManagement() {
       const post = blogData.find(p => p.id === postId);
       if (post) {
         // Update status to needs revision
-        handleCellChange(postId, 'status', 'Draft');
+        handleCellChange(postId, 'is_published', false);
 
         console.log(`Rewrite requested for post "${post.title}"`);
         // TODO: Implement actual rewrite request workflow (notifications, comments, etc.)
@@ -499,10 +502,10 @@ export default function BlogManagement() {
               ? (typeof post.tags === 'string' ? post.tags.split(',').map(t => t.trim()) : Array.isArray(post.tags) ? post.tags : [post.tags])
               : [],
 
-            // Publishing
-            is_published: post.status === 'Published',
+            // Publishing - FIXED: Use is_published directly as boolean
+            is_published: post.is_published === true || post.is_published === 'true',
             is_featured: false, // Can be enhanced later
-            published_at: post.publishDate && post.status === 'Published'
+            published_at: post.publishDate && (post.is_published === true || post.is_published === 'true')
               ? new Date(post.publishDate).toISOString()
               : null,
 
@@ -575,7 +578,7 @@ export default function BlogManagement() {
           imageUrl: post.featured_image || '',
           category: post.category || '',
           slug: post.slug,
-          status: post.is_published ? 'Published' : 'Draft',
+          is_published: post.is_published || false,
           content: post.content || '',
           tags: Array.isArray(post.tags) ? post.tags.join(', ') : post.tags || '',
           metaDescription: post.seo_description || '',
@@ -596,6 +599,81 @@ export default function BlogManagement() {
     } finally {
       setIsLoading(false);
       setTimeout(() => setStatusMessage(''), 8000);
+    }
+  };
+
+  // Write Articles using Anthropic API
+  const handleWriteArticles = async () => {
+    if (!import.meta.env.VITE_ANTHROPIC_API_KEY) {
+      setStatusMessage('❌ VITE_ANTHROPIC_API_KEY not configured. Please add it to your .env file.');
+      return;
+    }
+
+    const postsToGenerate = blogData.filter(post => {
+      // Only generate for posts that have minimal content or no content
+      const hasContent = post.content && post.content.length > 200;
+      return !hasContent;
+    });
+
+    if (postsToGenerate.length === 0) {
+      setStatusMessage('ℹ️ All posts already have content. Clear content to regenerate articles.');
+      setTimeout(() => setStatusMessage(''), 5000);
+      return;
+    }
+
+    const confirmGenerate = window.confirm(
+      `Generate ${postsToGenerate.length} article(s) using AI?\n\n` +
+      `This will use the Anthropic API and may take several minutes.\n\n` +
+      `Posts with existing content will be skipped.\n\n` +
+      `Continue?`
+    );
+
+    if (!confirmGenerate) return;
+
+    setIsGeneratingArticles(true);
+    setIsLoading(true);
+    setGenerationProgress({ current: 0, total: postsToGenerate.length });
+    setStatusMessage(`🤖 Generating articles for ${postsToGenerate.length} posts...`);
+
+    try {
+      const results = await batchGenerateArticles(postsToGenerate, (current, total, result) => {
+        setGenerationProgress({ current, total });
+        setStatusMessage(`🤖 Generating articles: ${current}/${total} - ${result.title}`);
+      });
+
+      // Update blog data with generated content
+      const updatedBlogData = blogData.map(post => {
+        const result = results.find(r => r.postId === post.id);
+        if (result && result.success) {
+          return {
+            ...post,
+            content: result.content,
+            // Update read time based on new content
+            read_time_minutes: Math.ceil(result.content.split(/\s+/).length / 200)
+          };
+        }
+        return post;
+      });
+
+      setBlogData(updatedBlogData);
+
+      const successCount = results.filter(r => r.success).length;
+      const failCount = results.filter(r => !r.success).length;
+
+      if (failCount === 0) {
+        setStatusMessage(`✅ Successfully generated ${successCount} articles! Review and send to Supabase when ready.`);
+      } else {
+        setStatusMessage(`⚠️ Generated ${successCount} articles, ${failCount} failed. Check console for details.`);
+        console.error('Failed articles:', results.filter(r => !r.success));
+      }
+    } catch (error) {
+      console.error('Error generating articles:', error);
+      setStatusMessage(`❌ Error generating articles: ${error.message}`);
+    } finally {
+      setIsGeneratingArticles(false);
+      setIsLoading(false);
+      setGenerationProgress({ current: 0, total: 0 });
+      setTimeout(() => setStatusMessage(''), 10000);
     }
   };
 
@@ -660,8 +738,8 @@ export default function BlogManagement() {
         // Set default image if missing
         const image = post.image || `https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=2070&auto=format&fit=crop`;
 
-        // Set status to Published if not set
-        const status = post.status || 'Draft';
+        // Set is_published to false if not set (default to draft)
+        const is_published = post.is_published === true || post.is_published === 'true' ? true : false;
 
         return {
           ...post,
@@ -674,7 +752,7 @@ export default function BlogManagement() {
           author,
           category,
           image,
-          status,
+          is_published,
           read_time_minutes: readTimeMinutes,
           seo_title: post.seo_title || post.title,
           seo_keywords: post.seo_keywords || tags
@@ -726,6 +804,16 @@ export default function BlogManagement() {
             </div>
             <div className="flex flex-col gap-3">
               <div className="flex gap-3 flex-wrap">
+                <Button
+                  onClick={handleWriteArticles}
+                  disabled={isLoading || isGeneratingArticles}
+                  className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold shadow-xl"
+                >
+                  <PenTool className="w-4 h-4 mr-2" />
+                  {isGeneratingArticles
+                    ? `Writing ${generationProgress.current}/${generationProgress.total}...`
+                    : 'Write Articles'}
+                </Button>
                 <Button
                   onClick={handleAutoFillPosts}
                   disabled={isLoading}
@@ -972,13 +1060,13 @@ export default function BlogManagement() {
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-green-600">
-                  {blogData.filter(post => post.status === 'Published').length}
+                  {blogData.filter(post => post.is_published === true || post.is_published === 'true').length}
                 </div>
                 <div className="text-sm text-gray-600">Published</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-yellow-600">
-                  {blogData.filter(post => post.status === 'Draft').length}
+                  {blogData.filter(post => post.is_published === false || post.is_published === 'false').length}
                 </div>
                 <div className="text-sm text-gray-600">Drafts</div>
               </div>

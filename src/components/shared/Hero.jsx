@@ -6,10 +6,20 @@ export default function Hero({
   lead = "We combine deep marketing expertise with cutting-edge AI systems to create flexible growth strategies tailored to your business needs.",
 }) {
   return (
-    <section className="relative min-h-screen overflow-hidden flex items-center justify-center bg-[#F5F1E8]">
-      {/* Content Container */}
-      <div className="relative z-10 max-w-full mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        {/* Text Content */}
+    <section className="relative min-h-screen overflow-hidden flex items-center justify-center bg-transparent py-12">
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 z-0 opacity-15">
+        <img
+          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/backgrounds/hero-background.jpg"
+          alt="Abstract AI neural network background"
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Content Container - Constrained Width */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        {/* Text Content - Same Width as Video */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -19,19 +29,19 @@ export default function Hero({
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-black mb-6">
             {h1}
           </h1>
-          <p className="text-lg sm:text-xl text-gray-800 leading-relaxed max-w-4xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-800 leading-relaxed mx-auto">
             {lead}
           </p>
         </motion.div>
 
-        {/* Video Container with Centered Logo */}
+        {/* Video Container with Centered Logo and Irregular Shape */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative max-w-7xl mx-auto"
+          className="relative w-full"
         >
-          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/10">
+          <div className="relative hero-video-shape overflow-hidden shadow-2xl rounded-3xl">
             <video
               src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4"
               autoPlay
@@ -58,6 +68,11 @@ export default function Hero({
         }
         .text-shadow {
           text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+        }
+        .hero-video-shape {
+          clip-path: polygon(0% 0%, 90% 0%, 100% 20%, 100% 100%, 10% 100%, 0% 80%);
+          aspect-ratio: 16/9;
+          min-height: 400px;
         }
       `}</style>
     </section>

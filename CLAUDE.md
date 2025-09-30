@@ -96,6 +96,26 @@ The application implements a distinctive routing architecture managed in `src/pa
 - **Intelligent Model Selection**: Context-aware selection based on quality, budget, specialization
 - **Brand Consistency**: Automatic enforcement of brand guidelines across generations
 
+**AutoBlog System** (`src/lib/anthropic-blog-writer.js`):
+- **AI-Powered Content**: Claude Sonnet 4.5 generates full SEO-optimized blog articles
+- **System Prompt Engineering**: 1,200+ word articles with Answer Boxes, FAQs, and schema hints
+- **Brand Voice**: Disruptors & Co tone - bold, contrarian, no-fluff content for skilled trades
+- **Keyword Optimization**: Primary/secondary keyword targeting with AIO & GEO optimization
+- **Batch Processing**: Generate multiple articles with rate limiting and progress tracking
+- **Blog Management UI**: "Write Articles" button in `/blog-management` interface
+- **Smart Filtering**: Only generates for posts without existing content (<200 chars)
+- **See**: `docs/AUTOBLOG_SYSTEM.md` for complete documentation
+
+**Keyword Research System** (`src/lib/dataforseo-client.js`, `src/components/admin/`):
+- **DataForSEO Integration**: Real keyword data (volume, difficulty, CPC, trends)
+- **Smart Scoring**: Opportunity score algorithm balancing volume vs. competition
+- **Multi-Select UI**: Visual keyword selection with stats dashboard
+- **Individual Post Generation**: Generate/edit single posts with keyword targeting
+- **BlogManagementDashboard**: Unified interface with 4 tabs (Research, Generate, Manage, Edit)
+- **Database Schema**: Extended `posts` table with keyword fields (primary_keyword, secondary_keywords, keyword_data)
+- **Workflow**: Research → Select → Generate → Edit → Publish
+- **See**: `docs/KEYWORD_RESEARCH_SYSTEM.md` for complete documentation
+
 ### MCP (Model Context Protocol) Ecosystem
 
 Extensive integration with 23+ MCP servers across:
@@ -130,7 +150,7 @@ Extensive integration with 23+ MCP servers across:
   - GSAP 3.13.0 for advanced scroll-based and timeline animations
   - Spline 3D (`@splinetool/react-spline`) for 3D interactive content
 - **Database**: Supabase with custom SDK wrapper
-- **AI Services**: OpenAI gpt-image-1, Google Gemini 2.5 Flash Image, Replicate, ElevenLabs integration
+- **AI Services**: OpenAI gpt-image-1, Google Gemini 2.5 Flash Image, Replicate, ElevenLabs, Anthropic Claude Sonnet 4.5 (AutoBlog system)
 - **Deployment**: Netlify with SPA routing, CSP headers, optimized caching
 
 ### File Organization & Patterns
@@ -165,10 +185,13 @@ VITE_OPENAI_API_KEY=your_openai_key          # gpt-image-1 ONLY (NOT DALL-E)
 VITE_GEMINI_API_KEY=your_gemini_key          # gemini-2.5-flash-image-preview (Nano Banana)
 VITE_REPLICATE_API_TOKEN=your_replicate_token
 VITE_ELEVENLABS_API_KEY=your_elevenlabs_key
+VITE_ANTHROPIC_API_KEY=your_anthropic_key    # AutoBlog system (Claude Sonnet 4.5)
 
 # CRITICAL: Only approved models - DALL-E usage will throw runtime errors
-# - OpenAI: gpt-image-1
-# - Google: gemini-2.5-flash-image-preview
+# - OpenAI: gpt-image-1 (image generation)
+# - Google: gemini-2.5-flash-image-preview (Nano Banana)
+# - Anthropic: Claude Sonnet 4.5 (AutoBlog article generation, writing assistance)
+# - Anthropic: Claude Opus 4.1 (advanced reasoning, complex content)
 ```
 
 #### MCP Integration
@@ -229,7 +252,7 @@ CLOUDINARY_API_SECRET=your_cloudinary_secret
 **UI & Styling**: `tailwindcss@^3.4.17`, `@radix-ui/*` (20+ packages), `framer-motion@^12.4.7`
 **Animation**: `gsap@^3.13.0`, `@splinetool/react-spline@^4.1.0`, `@splinetool/runtime@^1.10.71`
 **Data & API**: `@supabase/supabase-js@^2.57.4`, `@base44/sdk@^0.1.2`
-**AI Services**: `openai@^5.23.0`, `@google/generative-ai@^0.24.1`, `replicate@^1.2.0`
+**AI Services**: `openai@^5.23.0`, `@google/generative-ai@^0.24.1`, `replicate@^1.2.0`, `@anthropic-ai/sdk@^0.64.0`
 
 ## Important Development Notes
 

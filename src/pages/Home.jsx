@@ -13,7 +13,7 @@ export default function Home() {
       kicker: "REVOLUTION",
       headline: "Transform Your Business with AI",
       body: "We combine deep marketing expertise with cutting-edge AI systems to create flexible growth strategies that scale your business beyond current limitations.",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=80",
+      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259177/social_u4455988764_Innovation_Section_Cutting-Edge_AI_Solutions_An_a_f5059a4a-a4d2-493b-a4ce-f16bce3d9987_0_1_vza370.mp4",
       imageAlt: "AI Technology Transformation",
       backgroundColor: "bg-gray-900 text-white backdrop-blur-md",
       cta: {
@@ -25,7 +25,7 @@ export default function Home() {
       kicker: "PARTNERSHIP",
       headline: "More Than an Agency. Your Growth Partner.",
       body: "We help companies generate leads, streamline operations, and scale using AI-powered systems—all with complete transparency so you stay in control of your growth journey.",
-      image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/what-we-do-abt.png",
+      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
       imageAlt: "Growth Partnership Visualization",
       backgroundColor: "bg-gray-800 text-white backdrop-blur-sm"
     },
@@ -33,7 +33,7 @@ export default function Home() {
       kicker: "INNOVATION",
       headline: "Cutting-Edge AI Solutions",
       body: "From automated lead generation to intelligent customer insights, we deploy the latest AI technologies to give your business a competitive edge in the digital marketplace.",
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80",
+      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4",
       imageAlt: "AI Innovation Technology",
       backgroundColor: "bg-gray-900 text-white"
     },
@@ -41,7 +41,7 @@ export default function Home() {
       kicker: "RESULTS",
       headline: "Proven Success Stories",
       body: "Our clients see average growth increases of 300% within the first 6 months. We don't just promise results—we deliver measurable outcomes that transform businesses.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2426&q=80",
+      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/dmsite/portfolio/social_u4455988764_A_harbor_scene_h7hqe5.mp4",
       imageAlt: "Business Growth Analytics",
       backgroundColor: "bg-gray-950 text-white"
     },
@@ -80,9 +80,7 @@ export default function Home() {
       <ReviewsCarousel />
 
       {/* Services / Solutions */}
-      <div className="relative py-16">
-        <ServiceScroller />
-      </div>
+      <ServiceScroller />
 
       {/* CTA Block */}
        <section className="relative bg-gray-800 text-white py-20">

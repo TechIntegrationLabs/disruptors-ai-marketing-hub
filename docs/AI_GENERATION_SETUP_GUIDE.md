@@ -7,7 +7,7 @@ This guide provides step-by-step instructions for setting up all AI generation c
 ### 1. Install Required Dependencies
 
 ```bash
-npm install replicate openai @google/generative-ai
+npm install replicate openai @google/generative-ai @anthropic-ai/sdk
 ```
 
 ### 2. Configure Environment Variables
@@ -26,6 +26,7 @@ VITE_OPENAI_API_KEY=your_openai_api_key_here
 VITE_GEMINI_API_KEY=your_gemini_api_key_here
 VITE_REPLICATE_API_TOKEN=your_replicate_api_token_here
 VITE_ELEVENLABS_API_KEY=your_elevenlabs_api_key_here
+VITE_ANTHROPIC_API_KEY=your_anthropic_api_key_here
 
 # Optional: Google Cloud for Vertex AI Veo access
 GOOGLE_CLOUD_PROJECT_ID=your_project_id
@@ -75,6 +76,29 @@ GOOGLE_CLOUD_CREDENTIALS=your_credentials_json
 - 23-language text-to-speech
 - Emotion control and expression
 - Low latency (<400ms) synthesis
+
+#### Anthropic Claude API Key
+1. Visit [Anthropic Console](https://console.anthropic.com/settings/keys)
+2. Create a new API key
+3. Add it to your `.env` as `VITE_ANTHROPIC_API_KEY`
+
+**Models Available:**
+- `claude-sonnet-4-5` - Best for agents, coding, and computer use (September 2025)
+- `claude-opus-4-1` - State-of-the-art performance for complex tasks
+- `claude-haiku` - Fast, efficient responses for simpler tasks
+
+**Features Available:**
+- Advanced text generation and writing assistance
+- Long-context processing (200K+ tokens)
+- Streaming responses
+- Tool use and function calling
+- Code execution capabilities
+- Up to 90% cost savings with prompt caching
+
+**Pricing:**
+- $3-15 per million tokens depending on model and tier
+- Input/output token pricing varies by model
+- Significant savings available with prompt caching
 
 ## 📋 Platform Capabilities Overview
 
@@ -133,6 +157,34 @@ GOOGLE_CLOUD_CREDENTIALS=your_credentials_json
 - **MiniMax Speech-02 HD**: High-quality TTS
 - **Dia TTS**: Dialog voice cloning
 
+### Anthropic Claude
+
+#### Text Generation & Writing
+- **Claude Sonnet 4.5**: Best-in-class for agents, coding, reasoning (September 2025)
+- **Claude Opus 4.1**: Exceptional performance for complex, long-horizon tasks
+- **Claude Haiku**: Fast, efficient responses for simpler tasks
+
+**Key Features:**
+- **Long Context**: Process up to 200K+ tokens in a single request
+- **Streaming**: Real-time token-by-token response streaming
+- **Tool Use**: Function calling and code execution capabilities
+- **Prompt Caching**: Up to 90% cost savings on repeated context
+- **Vision**: Analyze images and extract information
+- **Safety**: Built-in safety guardrails and content filtering
+
+**Use Cases:**
+- Content generation and copywriting
+- Technical documentation and code generation
+- Complex reasoning and analysis
+- Long-form writing and editing
+- Research summarization and synthesis
+- Interactive chatbots and assistants
+
+**Pricing (Sonnet 4.5):**
+- Input: $3 per million tokens
+- Output: $15 per million tokens
+- Prompt caching: 90% reduction on cached tokens
+
 ## 🛠️ Usage Examples
 
 ### Basic Image Generation
@@ -182,6 +234,45 @@ const audio = await aiOrchestrator.generateAudio(
     specialization: 'conversation'
   }
 );
+```
+
+### Text Generation with Claude
+
+```javascript
+import Anthropic from '@anthropic-ai/sdk';
+
+const anthropic = new Anthropic({
+  apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY,
+  dangerouslyAllowBrowser: true // Only for client-side usage
+});
+
+// Generate blog post content
+const message = await anthropic.messages.create({
+  model: "claude-sonnet-4-5",
+  max_tokens: 4096,
+  messages: [{
+    role: "user",
+    content: "Write a compelling 500-word blog post about the future of AI in marketing"
+  }]
+});
+
+console.log(message.content[0].text);
+
+// Streaming response for real-time feedback
+const stream = await anthropic.messages.stream({
+  model: "claude-sonnet-4-5",
+  max_tokens: 4096,
+  messages: [{
+    role: "user",
+    content: "Generate a marketing email for our new AI automation service"
+  }]
+});
+
+for await (const chunk of stream) {
+  if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {
+    process.stdout.write(chunk.delta.text);
+  }
+}
 ```
 
 ### Batch Generation

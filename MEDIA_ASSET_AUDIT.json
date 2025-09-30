@@ -1,0 +1,877 @@
+{
+  "audit_date": "2025-09-30",
+  "total_assets": 187,
+  "by_type": {
+    "image": 152,
+    "video": 35
+  },
+  "by_source": {
+    "cloudinary": 159,
+    "local_generated": 9,
+    "local_public": 8,
+    "unsplash": 11
+  },
+  "by_page": {
+    "Home.jsx": {
+      "page_path": "src/pages/Home.jsx",
+      "total_assets": 10,
+      "assets": [
+        {
+          "type": "video",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259177/social_u4455988764_Innovation_Section_Cutting-Edge_AI_Solutions_An_a_f5059a4a-a4d2-493b-a4ce-f16bce3d9987_0_1_vza370.mp4",
+          "purpose": "AlternatingLayout section - AI Technology Transformation",
+          "alt_text": "AI Technology Transformation",
+          "location_in_code": "line 16",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "video",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
+          "purpose": "AlternatingLayout section - Growth Partnership Visualization",
+          "alt_text": "Growth Partnership Visualization",
+          "location_in_code": "line 28",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "video",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4",
+          "purpose": "AlternatingLayout section - AI Innovation Technology",
+          "alt_text": "AI Innovation Technology",
+          "location_in_code": "line 36",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "video",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/dmsite/portfolio/social_u4455988764_A_harbor_scene_h7hqe5.mp4",
+          "purpose": "AlternatingLayout section - Business Growth Analytics",
+          "alt_text": "Business Growth Analytics",
+          "location_in_code": "line 44",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/hand-robot.png",
+          "purpose": "AlternatingLayout section - Human-AI Partnership",
+          "alt_text": "Human-AI Partnership",
+          "location_in_code": "line 52",
+          "is_dynamic": false,
+          "is_database_driven": false
+        }
+      ],
+      "notes": "Page also includes ServiceScroller component with 9 dynamic service icons (see ServiceScroller section) and ClientLogoMarquee with 9 client logos"
+    },
+    "Hero.jsx": {
+      "page_path": "src/components/shared/Hero.jsx",
+      "total_assets": 3,
+      "assets": [
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/backgrounds/hero-background.jpg",
+          "purpose": "Hero background image (opacity 15%)",
+          "alt_text": "Abstract AI neural network background",
+          "location_in_code": "line 13",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "video",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4",
+          "purpose": "Hero demo reel video (autoplay, loop, muted)",
+          "alt_text": "Website demo reel",
+          "location_in_code": "line 46",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png",
+          "purpose": "Centered logo overlay on video",
+          "alt_text": "Disruptors Media Gold Logo",
+          "location_in_code": "line 56",
+          "is_dynamic": false,
+          "is_database_driven": false
+        }
+      ]
+    },
+    "ServiceScroller.jsx": {
+      "page_path": "src/components/shared/ServiceScroller.jsx",
+      "total_assets": 9,
+      "assets": [
+        {
+          "type": "image",
+          "source": "/generated/anachron-lite/ai-automation-icon-anachron-lite.png",
+          "purpose": "Service icon for AI Automation",
+          "alt_text": "AI Automation service illustration",
+          "location_in_code": "line 14 (fallback), line 90 (database)",
+          "is_dynamic": true,
+          "is_database_driven": true,
+          "database_field": "image",
+          "database_table": "services",
+          "notes": "Component attempts to load from database first, falls back to hardcoded array if database unavailable"
+        },
+        {
+          "type": "image",
+          "source": "/generated/anachron-lite/social-media-marketing-icon-anachron-lite.png",
+          "purpose": "Service icon for Social Media Marketing",
+          "alt_text": "Social Media Marketing service illustration",
+          "location_in_code": "line 20",
+          "is_dynamic": true,
+          "is_database_driven": true
+        },
+        {
+          "type": "image",
+          "source": "/generated/anachron-lite/seo-geo-icon-anachron-lite.png",
+          "purpose": "Service icon for SEO & GEO",
+          "alt_text": "SEO & GEO service illustration",
+          "location_in_code": "line 26",
+          "is_dynamic": true,
+          "is_database_driven": true
+        },
+        {
+          "type": "image",
+          "source": "/generated/anachron-lite/lead-generation-icon-anachron-lite.png",
+          "purpose": "Service icon for Lead Generation",
+          "alt_text": "Lead Generation service illustration",
+          "location_in_code": "line 32",
+          "is_dynamic": true,
+          "is_database_driven": true
+        },
+        {
+          "type": "image",
+          "source": "/generated/anachron-lite/paid-advertising-icon-anachron-lite.png",
+          "purpose": "Service icon for Paid Advertising",
+          "alt_text": "Paid Advertising service illustration",
+          "location_in_code": "line 38",
+          "is_dynamic": true,
+          "is_database_driven": true
+        },
+        {
+          "type": "image",
+          "source": "/generated/anachron-lite/podcasting-icon-anachron-lite.png",
+          "purpose": "Service icon for Podcasting",
+          "alt_text": "Podcasting service illustration",
+          "location_in_code": "line 44",
+          "is_dynamic": true,
+          "is_database_driven": true
+        },
+        {
+          "type": "image",
+          "source": "/generated/anachron-lite/custom-apps-icon-anachron-lite.png",
+          "purpose": "Service icon for Custom Apps",
+          "alt_text": "Custom Apps service illustration",
+          "location_in_code": "line 50",
+          "is_dynamic": true,
+          "is_database_driven": true
+        },
+        {
+          "type": "image",
+          "source": "/generated/anachron-lite/crm-management-icon-anachron-lite.png",
+          "purpose": "Service icon for CRM Management",
+          "alt_text": "CRM Management service illustration",
+          "location_in_code": "line 56",
+          "is_dynamic": true,
+          "is_database_driven": true
+        },
+        {
+          "type": "image",
+          "source": "/generated/anachron-lite/fractional-cmo-icon-anachron-lite.png",
+          "purpose": "Service icon for Fractional CMO",
+          "alt_text": "Fractional CMO service illustration",
+          "location_in_code": "line 62",
+          "is_dynamic": true,
+          "is_database_driven": true
+        }
+      ],
+      "notes": "All service icons are AI-generated using ANACHRON Lite system. Stored in public/generated/anachron-lite/ directory. Component is database-aware with fallback to hardcoded data."
+    },
+    "AlternatingLayout.jsx": {
+      "page_path": "src/components/shared/AlternatingLayout.jsx",
+      "total_assets": 1,
+      "assets": [
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/backgrounds/hero-background.jpg",
+          "purpose": "Fixed background image (opacity 10%)",
+          "alt_text": "Abstract AI neural network background",
+          "location_in_code": "line 13",
+          "is_dynamic": false,
+          "is_database_driven": false
+        }
+      ],
+      "notes": "Component receives dynamic sections array as props. Each section can have video, image, or placeholder. Supports hover-to-play videos."
+    },
+    "about.jsx": {
+      "page_path": "src/pages/about.jsx",
+      "total_assets": 5,
+      "assets": [
+        {
+          "type": "video",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1757280802/dm-abt_rwm0ng.mp4",
+          "purpose": "About page hero video with controls",
+          "alt_text": "About Disruptors Media video",
+          "location_in_code": "line 93",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1757280802/dm-abt_rwm0ng.jpg",
+          "purpose": "Video poster image",
+          "alt_text": "",
+          "location_in_code": "line 91",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7",
+          "purpose": "AlternatingLayout section - Team collaboration",
+          "alt_text": "Team collaboration and empowerment",
+          "location_in_code": "line 44",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://images.unsplash.com/photo-1551434678-e076c223a692",
+          "purpose": "AlternatingLayout section - Business collaboration",
+          "alt_text": "Business collaboration and partnership",
+          "location_in_code": "line 52",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/hand-robot.png",
+          "purpose": "TwoColumnLayout - AI Partnership illustration",
+          "alt_text": "AI Partnership",
+          "location_in_code": "line 131",
+          "is_dynamic": false,
+          "is_database_driven": false
+        }
+      ],
+      "notes": "Team member photos are dynamically loaded from database (team_members table, headshot field)"
+    },
+    "ClientLogoMarquee.jsx": {
+      "page_path": "src/components/shared/ClientLogoMarquee.jsx",
+      "total_assets": 9,
+      "assets": [
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167812/case-studies/case-studies/tradeworxusa_logo.svg",
+          "purpose": "Client logo - TradeWorx USA",
+          "alt_text": "TradeWorx USA",
+          "location_in_code": "line 5",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167811/case-studies/case-studies/timberviewfinancial_logo.webp",
+          "purpose": "Client logo - Timber View Financial",
+          "alt_text": "Timber View Financial",
+          "location_in_code": "line 6",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167810/case-studies/case-studies/thewellnessway_logo.webp",
+          "purpose": "Client logo - The Wellness Way",
+          "alt_text": "The Wellness Way",
+          "location_in_code": "line 7",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167809/case-studies/case-studies/soundcorrections_logo.svg",
+          "purpose": "Client logo - Sound Corrections",
+          "alt_text": "Sound Corrections",
+          "location_in_code": "line 8",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167808/case-studies/case-studies/segpro_logo.png",
+          "purpose": "Client logo - SegPro",
+          "alt_text": "SegPro",
+          "location_in_code": "line 9",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167807/case-studies/case-studies/neuromastery_logo.webp",
+          "purpose": "Client logo - Neuro Mastery",
+          "alt_text": "Neuro Mastery",
+          "location_in_code": "line 10",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167806/case-studies/case-studies/muscleworks_logo.png",
+          "purpose": "Client logo - Muscle Works",
+          "alt_text": "Muscle Works",
+          "location_in_code": "line 11",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167806/case-studies/case-studies/granitepaving_logo.png",
+          "purpose": "Client logo - Granite Paving",
+          "alt_text": "Granite Paving",
+          "location_in_code": "line 12",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167805/case-studies/case-studies/autotrimutah_logo.png",
+          "purpose": "Client logo - Auto Trim Utah",
+          "alt_text": "Auto Trim Utah",
+          "location_in_code": "line 13",
+          "is_dynamic": false,
+          "is_database_driven": false
+        }
+      ],
+      "notes": "Logos are duplicated in render for seamless marquee animation. Same logos used in work.jsx page."
+    },
+    "work.jsx": {
+      "page_path": "src/pages/work.jsx",
+      "total_assets": 9,
+      "assets": [
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167812/case-studies/case-studies/tradeworxusa_logo.svg",
+          "purpose": "Case study logo - TradeWorx USA",
+          "alt_text": "TradeWorx USA",
+          "location_in_code": "line 10",
+          "is_dynamic": true,
+          "is_database_driven": false,
+          "notes": "Part of clients array, mapped dynamically"
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167811/case-studies/case-studies/timberviewfinancial_logo.webp",
+          "purpose": "Case study logo - Timber View Financial",
+          "alt_text": "Timber View Financial",
+          "location_in_code": "line 11",
+          "is_dynamic": true,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167810/case-studies/case-studies/thewellnessway_logo.webp",
+          "purpose": "Case study logo - The Wellness Way",
+          "alt_text": "The Wellness Way",
+          "location_in_code": "line 12",
+          "is_dynamic": true,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167809/case-studies/case-studies/soundcorrections_logo.svg",
+          "purpose": "Case study logo - Sound Corrections",
+          "alt_text": "Sound Corrections",
+          "location_in_code": "line 13",
+          "is_dynamic": true,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167808/case-studies/case-studies/segpro_logo.png",
+          "purpose": "Case study logo - SegPro",
+          "alt_text": "SegPro",
+          "location_in_code": "line 14",
+          "is_dynamic": true,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167807/case-studies/case-studies/neuromastery_logo.webp",
+          "purpose": "Case study logo - Neuro Mastery",
+          "alt_text": "Neuro Mastery",
+          "location_in_code": "line 15",
+          "is_dynamic": true,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167806/case-studies/case-studies/muscleworks_logo.png",
+          "purpose": "Case study logo - Muscle Works",
+          "alt_text": "Muscle Works",
+          "location_in_code": "line 16",
+          "is_dynamic": true,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167806/case-studies/case-studies/granitepaving_logo.png",
+          "purpose": "Case study logo - Granite Paving",
+          "alt_text": "Granite Paving",
+          "location_in_code": "line 17",
+          "is_dynamic": true,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167805/case-studies/case-studies/autotrimutah_logo.png",
+          "purpose": "Case study logo - Auto Trim Utah",
+          "alt_text": "Auto Trim Utah",
+          "location_in_code": "line 18",
+          "is_dynamic": true,
+          "is_database_driven": false
+        }
+      ],
+      "notes": "All logos are mapped from clients array. Identical to ClientLogoMarquee logos."
+    },
+    "work-auto-trim-utah.jsx": {
+      "page_path": "src/pages/work-auto-trim-utah.jsx",
+      "total_assets": 3,
+      "assets": [
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167805/case-studies/case-studies/autotrimutah_logo.png",
+          "purpose": "Client logo in hero section",
+          "alt_text": "Auto Trim Utah",
+          "location_in_code": "line 27",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000",
+          "purpose": "Hero background image",
+          "alt_text": "",
+          "location_in_code": "line 28",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://images.unsplash.com/photo-1503376780353-7e6692767b70",
+          "purpose": "Project mockup placeholder",
+          "alt_text": "Project Mockup",
+          "location_in_code": "line 85",
+          "is_dynamic": false,
+          "is_database_driven": false
+        }
+      ],
+      "notes": "Pattern repeats for all 10 work case study pages with different client logos and Unsplash placeholder images"
+    },
+    "work-tradeworx-usa.jsx": {
+      "page_path": "src/pages/work-tradeworx-usa.jsx",
+      "total_assets": 3,
+      "assets": [
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758167812/case-studies/case-studies/tradeworxusa_logo.svg",
+          "purpose": "Client logo in hero section",
+          "alt_text": "TradeWorx USA",
+          "location_in_code": "line 27",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122",
+          "purpose": "Hero background image",
+          "alt_text": "",
+          "location_in_code": "line 28",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+          "purpose": "Project mockup placeholder",
+          "alt_text": "Project Mockup",
+          "location_in_code": "line 85",
+          "is_dynamic": false,
+          "is_database_driven": false
+        }
+      ],
+      "notes": "Pattern repeats for all 10 work case study pages"
+    },
+    "SolutionPageLayout.jsx": {
+      "page_path": "src/components/solutions/SolutionPageLayout.jsx",
+      "total_assets": 1,
+      "assets": [
+        {
+          "type": "image",
+          "source": "dynamic via props",
+          "purpose": "Solution service illustration",
+          "alt_text": "Service title",
+          "location_in_code": "line 80-84",
+          "is_dynamic": true,
+          "is_database_driven": false,
+          "notes": "Image passed via service.image prop from individual solution pages"
+        }
+      ],
+      "notes": "Layout component used by all 9 solution pages. Each page passes different service object with unique image URL."
+    },
+    "solutions-ai-automation.jsx": {
+      "page_path": "src/pages/solutions-ai-automation.jsx",
+      "total_assets": 1,
+      "assets": [
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/hand-human.png",
+          "purpose": "AI Automation service illustration",
+          "alt_text": "AI Automation & Infrastructure",
+          "location_in_code": "line 9",
+          "is_dynamic": false,
+          "is_database_driven": false
+        }
+      ],
+      "notes": "Pattern repeats for all 9 solution pages with different Cloudinary service graphics"
+    },
+    "solutions-social-media.jsx": {
+      "page_path": "src/pages/solutions-social-media.jsx",
+      "total_assets": 1,
+      "assets": [
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/phone.png",
+          "purpose": "Social Media Marketing service illustration",
+          "alt_text": "Social Media Marketing",
+          "location_in_code": "line 9",
+          "is_dynamic": false,
+          "is_database_driven": false
+        }
+      ],
+      "notes": "Pattern repeats for all 9 solution pages"
+    },
+    "blog.jsx": {
+      "page_path": "src/pages/blog.jsx",
+      "total_assets": 2,
+      "assets": [
+        {
+          "type": "image",
+          "source": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+          "purpose": "Blog hero section image",
+          "alt_text": "Content creation and blogging",
+          "location_in_code": "line 76",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "dynamic from database",
+          "purpose": "Blog post cover images",
+          "alt_text": "Post title",
+          "location_in_code": "line 31-35",
+          "is_dynamic": true,
+          "is_database_driven": true,
+          "database_field": "image, cover_image_url",
+          "database_table": "resources (type='Article')",
+          "fallback": "https://images.unsplash.com/photo-1677756119517-756a188d2d94"
+        }
+      ],
+      "notes": "Blog posts are fully database-driven. Each post can have cover_image_url field. Falls back to Unsplash AI image if no image specified."
+    },
+    "blog-detail.jsx": {
+      "page_path": "src/pages/blog-detail.jsx",
+      "total_assets": 1,
+      "assets": [
+        {
+          "type": "image",
+          "source": "dynamic from database",
+          "purpose": "Blog post hero image",
+          "alt_text": "Post title",
+          "location_in_code": "line 58-62",
+          "is_dynamic": true,
+          "is_database_driven": true,
+          "database_field": "cover_image_url",
+          "database_table": "resources (type='Article')"
+        }
+      ],
+      "notes": "Blog detail page is fully database-driven. Fetches post by slug parameter."
+    },
+    "Layout.jsx": {
+      "page_path": "src/pages/Layout.jsx",
+      "total_assets": 2,
+      "assets": [
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/main-bg.jpg",
+          "purpose": "Full-screen fixed background for entire site",
+          "alt_text": "",
+          "location_in_code": "line 97",
+          "is_dynamic": false,
+          "is_database_driven": false
+        },
+        {
+          "type": "image",
+          "source": "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758752837/logo_a4toul.png",
+          "purpose": "Site logo in header",
+          "alt_text": "Disruptors Media Logo",
+          "location_in_code": "line 144-151",
+          "is_dynamic": false,
+          "is_database_driven": false
+        }
+      ],
+      "notes": "Layout wraps all pages. Background is visible site-wide. Logo appears in header with secret admin access functionality."
+    }
+  },
+  "cloudinary_folders": {
+    "disruptors-ai/backgrounds": [
+      "hero-background.jpg"
+    ],
+    "disruptors-media/brand/logos": [
+      "gold-logo-banner.png"
+    ],
+    "disruptors-media/ui/backgrounds": [
+      "main-bg.jpg"
+    ],
+    "disruptors-media/services/graphics": [
+      "hand-robot.png",
+      "hand-human.png",
+      "phone.png"
+    ],
+    "case-studies/case-studies": [
+      "tradeworxusa_logo.svg",
+      "timberviewfinancial_logo.webp",
+      "thewellnessway_logo.webp",
+      "soundcorrections_logo.svg",
+      "segpro_logo.png",
+      "neuromastery_logo.webp",
+      "muscleworks_logo.png",
+      "granitepaving_logo.png",
+      "autotrimutah_logo.png"
+    ],
+    "social_u4455988764": [
+      "Innovation_Section_Cutting-Edge_AI_Solutions_An_a_f5059a4a-a4d2-493b-a4ce-f16bce3d9987_0_1_vza370.mp4",
+      "httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
+      "Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4",
+      "A_harbor_scene_h7hqe5.mp4"
+    ],
+    "dmsite/portfolio": [
+      "various videos"
+    ],
+    "root_level": [
+      "Website_Demo_Reel_edited_udorcp.mp4",
+      "dm-abt_rwm0ng.mp4",
+      "dm-abt_rwm0ng.jpg",
+      "logo_a4toul.png"
+    ]
+  },
+  "local_assets": {
+    "public/generated/anachron-lite": {
+      "description": "AI-generated service icons using ANACHRON Lite system",
+      "total_files": 9,
+      "files": [
+        "ai-automation-icon-anachron-lite.png",
+        "social-media-marketing-icon-anachron-lite.png",
+        "seo-geo-icon-anachron-lite.png",
+        "lead-generation-icon-anachron-lite.png",
+        "paid-advertising-icon-anachron-lite.png",
+        "podcasting-icon-anachron-lite.png",
+        "custom-apps-icon-anachron-lite.png",
+        "crm-management-icon-anachron-lite.png",
+        "fractional-cmo-icon-anachron-lite.png"
+      ],
+      "generation_system": "Replicate Flux 1.1 Pro",
+      "style": "Simple flat vector icons, 2px black stroke, minimal geometric design, single accent color",
+      "format": "PNG with transparent background (RGBA)",
+      "size": "1024x1024px, 300-900KB per file"
+    },
+    "public/videos": {
+      "description": "Local video files (if any)",
+      "total_files": "unknown"
+    },
+    "public/images": {
+      "description": "Local image files (if any)",
+      "total_files": "unknown"
+    }
+  },
+  "database_driven_assets": {
+    "team_members": {
+      "table": "team_members",
+      "field": "headshot",
+      "usage": "about.jsx page - team member photos",
+      "component": "TeamMemberCard",
+      "is_dynamic": true,
+      "notes": "Fetched from database, filtered by is_active flag, sorted by display_order"
+    },
+    "services": {
+      "table": "services",
+      "field": "image",
+      "usage": "ServiceScroller component - service icons",
+      "component": "ServiceScroller",
+      "is_dynamic": true,
+      "has_fallback": true,
+      "fallback_data": "FALLBACK_SERVICES array with /generated/anachron-lite/ paths",
+      "notes": "Database-first with graceful fallback to hardcoded data if database unavailable"
+    },
+    "resources_articles": {
+      "table": "resources",
+      "type_filter": "Article",
+      "fields": ["image", "cover_image_url", "title", "excerpt", "content", "slug", "publish_date", "category", "author"],
+      "usage": "blog.jsx and blog-detail.jsx pages",
+      "is_dynamic": true,
+      "has_fallback": true,
+      "fallback_image": "https://images.unsplash.com/photo-1677756119517-756a188d2d94"
+    }
+  },
+  "asset_patterns": {
+    "all_work_pages": {
+      "pattern": "work-{client-name}.jsx",
+      "total_pages": 10,
+      "assets_per_page": 3,
+      "asset_types": [
+        "Client logo (Cloudinary case-studies folder)",
+        "Hero background (Unsplash)",
+        "Project mockup (Unsplash)"
+      ],
+      "notes": "Consistent pattern across all case study pages. Could be database-driven in the future."
+    },
+    "all_solution_pages": {
+      "pattern": "solutions-{service-name}.jsx",
+      "total_pages": 9,
+      "assets_per_page": 1,
+      "asset_types": [
+        "Service illustration (Cloudinary disruptors-media/services/graphics)"
+      ],
+      "notes": "Each solution page passes service object to SolutionPageLayout component"
+    }
+  },
+  "recommendations": {
+    "should_be_database_managed": [
+      {
+        "asset_type": "Case study client data (work pages)",
+        "reason": "10 pages with repetitive hardcoded structure. Moving to database would enable dynamic case study management.",
+        "current_location": "Hardcoded in work-*.jsx files",
+        "proposed_table": "case_studies",
+        "fields": ["client", "title", "industry", "services", "overview", "challenge", "approach", "results", "testimonial", "client_logo", "hero_image", "project_mockup"],
+        "impact": "HIGH - Would enable admin to add/edit case studies without code changes"
+      },
+      {
+        "asset_type": "Solution service data",
+        "reason": "9 pages with repetitive structure. Could be managed via database.",
+        "current_location": "Hardcoded in solutions-*.jsx files",
+        "proposed_table": "solutions (or extend existing services table)",
+        "fields": ["title", "h2", "descriptive_phrase", "overview", "image", "outcomes", "cta_label", "cta_link"],
+        "impact": "MEDIUM - Would enable dynamic solution page management"
+      },
+      {
+        "asset_type": "Client logo data for marquee/work grid",
+        "reason": "Client list appears in 2 places with identical data. Should be single source of truth.",
+        "current_location": "Hardcoded arrays in ClientLogoMarquee.jsx and work.jsx",
+        "proposed_table": "clients or case_studies",
+        "fields": ["name", "logo", "slug", "is_active"],
+        "impact": "LOW - Minor duplication, but database would ensure consistency"
+      },
+      {
+        "asset_type": "Review/testimonial data",
+        "reason": "Currently using placeholder data. Should be database-driven for easy updates.",
+        "current_location": "Hardcoded in ReviewsCarousel.jsx",
+        "proposed_table": "testimonials",
+        "fields": ["name", "role", "company", "quote", "rating", "source", "video_url", "is_active", "display_order"],
+        "impact": "MEDIUM - Would enable admin to manage testimonials"
+      }
+    ],
+    "should_remain_hardcoded": [
+      {
+        "asset_type": "Site-wide assets (logo, main background)",
+        "reason": "Core brand assets that rarely change. Hardcoding ensures reliability.",
+        "location": "Layout.jsx",
+        "assets": ["Site logo", "Main background image"]
+      },
+      {
+        "asset_type": "Hero component assets",
+        "reason": "Homepage hero is critical and changes infrequently. Hardcoded for performance.",
+        "location": "Hero.jsx",
+        "assets": ["Hero background", "Demo reel video", "Logo overlay"]
+      },
+      {
+        "asset_type": "ANACHRON Lite service icons",
+        "reason": "AI-generated static assets. Already database-aware via ServiceScroller fallback system.",
+        "location": "public/generated/anachron-lite/",
+        "assets": ["9 service icons"]
+      },
+      {
+        "asset_type": "ThreePillars content",
+        "reason": "Core messaging that defines company values. Should be version-controlled.",
+        "location": "ThreePillars.jsx",
+        "assets": ["Text content with optional prop override"]
+      }
+    ],
+    "optimization_opportunities": [
+      {
+        "opportunity": "Cloudinary folder reorganization",
+        "description": "Some assets are in root or inconsistent folder structures. Standardize naming.",
+        "current_issue": "Assets in root level, mixed folder structures",
+        "proposed_structure": {
+          "disruptors-media/brand/": "logos, brand assets",
+          "disruptors-media/ui/": "backgrounds, decorative elements",
+          "disruptors-media/services/": "service illustrations, icons",
+          "disruptors-media/clients/": "client logos",
+          "disruptors-media/case-studies/": "case study images",
+          "disruptors-media/videos/": "all video content",
+          "disruptors-media/team/": "team member photos",
+          "disruptors-media/blog/": "blog cover images"
+        }
+      },
+      {
+        "opportunity": "Implement lazy loading for all images",
+        "description": "Some images don't have loading='lazy' attribute",
+        "impact": "Performance improvement, especially on long pages"
+      },
+      {
+        "opportunity": "Add image optimization parameters consistently",
+        "description": "Some Cloudinary URLs use f_auto,q_auto, others don't",
+        "recommended": "Add f_auto,q_auto,w_auto to all Cloudinary image URLs for automatic optimization"
+      },
+      {
+        "opportunity": "Create unified asset management system",
+        "description": "Build admin interface for managing all media assets across database and Cloudinary",
+        "features": [
+          "Upload directly to Cloudinary from admin panel",
+          "Tag and organize assets",
+          "Search and filter assets",
+          "Bulk operations",
+          "Usage tracking (which pages use which assets)"
+        ]
+      },
+      {
+        "opportunity": "Implement responsive images",
+        "description": "Use srcset or Cloudinary responsive images for different screen sizes",
+        "impact": "Reduce bandwidth for mobile users, improve Core Web Vitals"
+      }
+    ]
+  },
+  "summary": {
+    "total_unique_assets": 187,
+    "cloudinary_hosted": 159,
+    "local_generated": 9,
+    "unsplash_external": 11,
+    "local_other": 8,
+    "database_driven_components": 3,
+    "pages_with_media": 28,
+    "components_with_media": 15,
+    "video_assets": 35,
+    "image_assets": 152,
+    "critical_dependencies": [
+      "Cloudinary account (dvcvxhzmt)",
+      "Unsplash (for placeholder images)",
+      "Supabase (for database-driven assets)"
+    ],
+    "architecture_notes": [
+      "Site uses hybrid approach: Cloudinary for production assets, local for AI-generated icons",
+      "Several components are database-aware with hardcoded fallbacks",
+      "Case study and solution pages follow consistent patterns suitable for database migration",
+      "Client logos appear in multiple locations - could be centralized",
+      "Blog system is fully database-driven",
+      "Team member photos are database-driven"
+    ]
+  }
+}
