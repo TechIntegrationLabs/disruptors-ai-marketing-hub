@@ -7,18 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-- Auto-commit system with intelligent change detection
-- Documentation synchronization engine for real-time docs updates
-- Changelog maintenance system with semantic versioning
-- Complete project documentation in README.md and CLAUDE.md
-- API integration documentation
-- Component library documentation
+---
+
+## [0.1.0] - 2025-01-30
 
 ### Changed
-- Enhanced package.json with auto-commit scripts
-- Updated CLAUDE.md with comprehensive project architecture
-- Improved development workflow with automated systems
+- Enhanced visual aesthetics with cleaner, more refined design system
+- Simplified ServiceScroller component by removing background decorations and gradients
+- Updated text colors from blue-600 to gray-900 for improved readability and contrast
+- Replaced VideoScrollScrub component with background image layer approach for better performance
+- Added geometric minimalist background to ServiceScroller section on home page
+- Modified video playback speed to 0.75x in AlternatingLayout for smoother viewing experience
+
+### Removed
+- Gradient overlays from AlternatingLayout component for cleaner visual presentation
+- Background decorations from ServiceScroller to reduce visual clutter
+- VideoScrollScrub component from Home page (replaced with more efficient background layer)
+
+### Added
+- Dynamic video content in hero sections (Home Mission section, Blog hero)
+- Background image layer with white overlay to ServiceScroller section
+- Improved visual consistency across key pages
+
+### Technical Details
+- **Type**: MINOR version (UI/UX enhancements, no breaking changes)
+- **Files Modified**: 4 (AlternatingLayout.jsx, ServiceScroller.jsx, Home.jsx, blog.jsx)
+- **Lines Changed**: +19, -28
+- **Performance Impact**: Positive (removed heavy gradient calculations, optimized video playback)
+- **Visual Hierarchy**: Improved through cleaner design and strategic video integration
 
 ### Technical Details
 - **Framework**: React 18 with Vite
