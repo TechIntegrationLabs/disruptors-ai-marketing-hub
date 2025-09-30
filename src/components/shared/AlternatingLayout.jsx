@@ -117,6 +117,7 @@ export default function AlternatingLayout({ sections = [] }) {
                         const video = e.currentTarget.querySelector('video');
                         if (video) {
                           video.currentTime = 0;
+                          video.playbackRate = 0.75;
                           video.play().catch(err => console.log('Video play failed:', err));
                         }
                       }}
@@ -128,7 +129,6 @@ export default function AlternatingLayout({ sections = [] }) {
                         }
                       }}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-teal-600/20 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       {section.video ? (
                         <video
                           src={section.video}

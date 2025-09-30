@@ -1,6 +1,5 @@
 import React from 'react';
 import Hero from '../components/shared/Hero';
-import VideoScrollScrub from '../components/shared/VideoScrollScrub';
 import AlternatingLayout from '../components/shared/AlternatingLayout';
 import ClientLogoMarquee from '../components/shared/ClientLogoMarquee';
 import ThreePillars from '../components/shared/ThreePillars';
@@ -50,7 +49,7 @@ export default function Home() {
       kicker: "MISSION",
       headline: "Your Partner in AI Excellence",
       body: "Technology should free you from repetitive tasks. We leverage AI to eliminate monotony so you can focus on what only you can do: connect with the people you serve and grow your impact.",
-      image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/services/graphics/hand-robot.png",
+      video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259174/social_u4455988764_httpss.mj.runf65BhPN_EZo_make_the_clouds_slowly_s_3321fb69-fe0e-43bf-91c7-01e7551a7e85_0_f4rib5.mp4",
       imageAlt: "Human-AI Partnership",
       backgroundColor: "bg-gray-900 text-white",
       cta: {
@@ -63,12 +62,6 @@ export default function Home() {
   return (
     <div className="text-gray-800">
       <Hero />
-
-      {/* Video Scroll Scrub Section */}
-      <VideoScrollScrub
-        title="AI-Powered Marketing Innovation"
-        description="Watch how we transform businesses with cutting-edge AI solutions"
-      />
 
       {/* Modern Alternating Layout Sections */}
       <AlternatingLayout sections={alternatingData} />
@@ -87,7 +80,20 @@ export default function Home() {
       <ReviewsCarousel />
 
       {/* Services / Solutions */}
-      <ServiceScroller />
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268594/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-minimalist.jpg"
+            alt="Abstract geometric background"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div className="absolute inset-0 z-[1] bg-white/40"></div>
+        <div className="relative z-10">
+          <ServiceScroller />
+        </div>
+      </section>
 
       {/* CTA Block */}
        <section className="bg-gray-800 text-white py-20">

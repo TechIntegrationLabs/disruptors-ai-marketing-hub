@@ -119,10 +119,7 @@ export default function ServiceScroller({
     );
   }
   return (
-    <section className="relative py-24 sm:py-32 bg-gradient-to-b from-gray-50 via-white to-gray-50 overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-100/30 via-transparent to-transparent"></div>
-
+    <section className="relative py-24 sm:py-32 overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 sm:mb-20">
@@ -133,7 +130,7 @@ export default function ServiceScroller({
             viewport={{ once: true }}
             className="inline-block mb-4"
           >
-            <span className="text-blue-600 text-sm sm:text-base font-bold uppercase tracking-wider">
+            <span className="text-gray-900 text-sm sm:text-base font-bold uppercase tracking-wider">
               Comprehensive Solutions
             </span>
           </motion.div>
@@ -149,7 +146,7 @@ export default function ServiceScroller({
           </motion.h2>
 
           <motion.p
-            className="text-gray-600 text-lg sm:text-xl max-w-2xl mx-auto"
+            className="text-gray-900 text-lg sm:text-xl max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar, User, Loader2 } from 'lucide-react';
-import AlternatingLayout from '../components/shared/AlternatingLayout';
 import DualCTABlock from "@/components/shared/DualCTABlock";
 import GeometricSeparator from "@/components/shared/WavySeparator";
 import { customClient } from '@/lib/custom-sdk';
@@ -67,17 +66,6 @@ export default function Blog() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const blogHeroData = [
-    {
-      kicker: "INSIGHTS",
-      headline: "The Disruptors Blog",
-      body: "Actionable insights, proven strategies, and a behind-the-scenes look at how we build AI-powered growth systems. Discover the latest trends, case studies, and expert advice to transform your business with AI.",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80",
-      imageAlt: "Content creation and blogging",
-      backgroundColor: "bg-gray-900 text-white"
-    }
-  ];
 
   useEffect(() => {
     const fetchBlogPosts = async () => {
