@@ -33,6 +33,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Release**: `npm run changelog:release` - Create release from changelog
 - **Status**: `npm run changelog:status` - Check changelog status
 
+### Deployment Management
+- **Deploy status**: `npm run deploy:status` - Show deployment status and history
+- **Deploy Supabase**: `npm run deploy:supabase` - Deploy database migrations
+- **Deploy Netlify**: `npm run deploy:netlify` - Deploy to Netlify (preview)
+- **Deploy production**: `npm run deploy:prod` - Full-stack production deployment
+- **Rollback**: `npm run deploy:rollback <id>` - Rollback to previous deployment
+- **Watch mode**: `npm run deploy:watch` - Auto-deploy on changes
+- **Sync env**: `npm run deploy:sync-env` - Sync environment variables to Netlify
+
 ### Database Setup
 - **Setup database**: `npm run db:setup` - Initialize database schema and configuration
 

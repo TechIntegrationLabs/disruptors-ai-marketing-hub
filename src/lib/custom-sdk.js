@@ -719,6 +719,7 @@ function entityNameToTableName(entityName) {
   const specialMappings = {
     'TeamMember': 'team_members',
     'CaseStudy': 'case_study',
+    'Post': 'posts',  // Blog posts table is plural
     // Add other special mappings as needed
   };
 
@@ -742,6 +743,7 @@ function entityNameToTableName(entityName) {
 function shouldUseServiceRole(entityName) {
   const serviceRoleEntities = [
     "user",
+    "post",  // Blog posts need service role for admin operations
     "transaction",
     "usermembership",
     "payment",

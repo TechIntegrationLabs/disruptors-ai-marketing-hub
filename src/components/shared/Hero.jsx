@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function Hero({ 
+export default function Hero({
   h1 = "AI-Powered Marketing Agency",
   lead = "We combine deep marketing expertise with cutting-edge AI systems to create flexible growth strategies tailored to your business needs.",
 }) {
   return (
-    <section className="relative min-h-screen overflow-hidden flex items-center justify-center bg-transparent">
+    <section className="relative min-h-screen overflow-hidden flex items-center justify-center bg-[#F5F1E8]">
       {/* Content Container */}
       <div className="relative z-10 max-w-full mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Text Content */}
@@ -16,20 +16,15 @@ export default function Hero({
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <img
-            src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
-            alt="Disruptors Media Gold Logo"
-            className="h-20 sm:h-24 md:h-28 mb-8 mx-auto"
-          />
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 text-shadow-lg">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-black mb-6">
             {h1}
           </h1>
-          <p className="text-lg sm:text-xl text-gray-200 leading-relaxed max-w-4xl mx-auto text-shadow">
+          <p className="text-lg sm:text-xl text-gray-800 leading-relaxed max-w-4xl mx-auto">
             {lead}
           </p>
         </motion.div>
 
-        {/* Video Container - Larger Width */}
+        {/* Video Container with Centered Logo */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -45,6 +40,14 @@ export default function Hero({
               playsInline
               className="w-full h-full object-cover"
             />
+            {/* Centered Logo Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <img
+                src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1755696782/disruptors-media/brand/logos/gold-logo-banner.png"
+                alt="Disruptors Media Gold Logo"
+                className="h-32 sm:h-40 md:h-48 lg:h-56"
+              />
+            </div>
           </div>
         </motion.div>
       </div>

@@ -486,14 +486,18 @@ export default function BlogManagement() {
 
             // Media fields
             featured_image: post.image || post.imageUrl || null,
-            gallery_images: post.gallery_images || null, // Array of image URLs
+            gallery_images: post.gallery_images
+              ? (typeof post.gallery_images === 'string' ? post.gallery_images.split(',').map(t => t.trim()) : Array.isArray(post.gallery_images) ? post.gallery_images : [post.gallery_images])
+              : [],
 
             // Author (will need to link to actual user ID in production)
             author_id: null, // TODO: Map author name to user ID
 
             // Categorization
             category: post.category || null,
-            tags: post.tags ? (typeof post.tags === 'string' ? post.tags.split(',').map(t => t.trim()) : post.tags) : null,
+            tags: post.tags
+              ? (typeof post.tags === 'string' ? post.tags.split(',').map(t => t.trim()) : Array.isArray(post.tags) ? post.tags : [post.tags])
+              : [],
 
             // Publishing
             is_published: post.status === 'Published',
@@ -505,7 +509,9 @@ export default function BlogManagement() {
             // SEO fields (auto-generate if missing)
             seo_title: post.seo_title || post.title || null,
             seo_description: post.metaDescription || post.excerpt?.substring(0, 160) || null,
-            seo_keywords: post.seo_keywords || (post.tags ? (typeof post.tags === 'string' ? post.tags.split(',').map(t => t.trim()) : post.tags) : null),
+            seo_keywords: post.seo_keywords
+              ? (typeof post.seo_keywords === 'string' ? post.seo_keywords.split(',').map(t => t.trim()) : Array.isArray(post.seo_keywords) ? post.seo_keywords : [post.seo_keywords])
+              : (post.tags ? (typeof post.tags === 'string' ? post.tags.split(',').map(t => t.trim()) : Array.isArray(post.tags) ? post.tags : [post.tags]) : []),
 
             // Metadata
             read_time_minutes: post.read_time_minutes || (post.content ? Math.ceil(post.content.split(/\s+/).length / 200) : null)
