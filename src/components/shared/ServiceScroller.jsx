@@ -65,10 +65,10 @@ export default function ServiceScroller({
   title = "A Solution for Every Challenge"
 }) {
   return (
-    <section className="py-20 sm:py-28 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+    <section className="py-20 sm:py-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
-          className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900"
+          className="text-4xl sm:text-5xl lg:text-6xl font-black text-center tracking-tight text-white drop-shadow-lg mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -76,71 +76,63 @@ export default function ServiceScroller({
         >
           {title}
         </motion.h2>
-      </div>
 
-      <div className="relative">
-        <div className="flex overflow-x-auto pb-8 scrollbar-hide -mx-4 px-4">
-          <div className="flex space-x-8 pl-4 sm:pl-6 lg:pl-8">
-            {services.map((service, index) => {
-              return (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex-shrink-0 w-80"
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
+          {services.map((service, index) => {
+            const row = Math.floor(index / 5);
+            const col = index % 5;
+            // For second row with 4 items, offset by 0.5 column width
+            const isSecondRow = row === 1;
+
+            return (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className={`flex flex-col items-center text-center group ${
+                  isSecondRow && col === 4 ? 'lg:col-start-2' : ''
+                }`}
+                style={isSecondRow && index === 5 ? { gridColumnStart: 2 } : {}}
+              >
+                <Link
+                  to={createPageUrl(service.link)}
+                  className="flex flex-col items-center"
                 >
-                  <Link
-                    to={createPageUrl(service.link)}
-                    className="block group h-full"
-                  >
-                    <div className="bg-white rounded-xl shadow-lg border border-gray-200/50 hover:border-blue-500/50 hover:shadow-2xl transition-all duration-300 p-8 h-full flex flex-col justify-between">
-                      <div>
-                        <div className="mb-6 relative overflow-hidden rounded-lg p-6 flex items-center justify-center" style={{ aspectRatio: '1/1' }}>
-                          <img
-                            src={service.image}
-                            alt={`${service.title} service illustration`}
-                            className="w-full h-full object-contain"
-                            style={{ imageRendering: 'crisp-edges' }}
-                            loading="lazy"
-                            onError={(e) => {
-                              // Fallback to gradient background with initials if image fails to load
-                              e.target.style.display = 'none';
-                              e.target.nextElementSibling.style.display = 'flex';
-                            }}
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-blue-200 hidden items-center justify-center">
-                            <div className="text-2xl text-blue-600 font-bold">
-                              {service.title.split(' ').map(word => word[0]).join('')}
-                            </div>
-                          </div>
-                        </div>
-                        <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 mb-2">
-                          {service.title}
-                        </h3>
-                        <p className="text-gray-600">
-                          {service.hook}
-                        </p>
+                  <div className="mb-6 relative flex items-center justify-center w-32 h-32 sm:w-40 sm:h-40 group-hover:scale-110 transition-transform duration-300">
+                    <img
+                      src={service.image}
+                      alt={`${service.title} service illustration`}
+                      className="w-full h-full object-contain filter drop-shadow-lg"
+                      style={{ imageRendering: 'crisp-edges' }}
+                      loading="lazy"
+                      onError={(e) => {
+                        // Fallback to gradient background with initials if image fails to load
+                        e.target.style.display = 'none';
+                        e.target.nextElementSibling.style.display = 'flex';
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full hidden items-center justify-center">
+                      <div className="text-3xl text-blue-600 font-black">
+                        {service.title.split(' ').map(word => word[0]).join('')}
                       </div>
                     </div>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
+                  </div>
+
+                  <h3 className="text-lg sm:text-xl font-black text-white group-hover:text-blue-400 transition-colors duration-300 mb-2 uppercase tracking-tight">
+                    {service.title}
+                  </h3>
+
+                  <p className="text-sm text-gray-300 font-medium">
+                    {service.hook}
+                  </p>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
-
-      <style>{`
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </section>
   );
 }

@@ -24,7 +24,7 @@ export default function SolutionPageLayout({ service }) {
     } = service;
 
     return (
-        <div className="text-gray-900">
+        <div className="text-white">
             {/* Hero Section */}
             <section className="py-24 sm:py-32">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,10 +33,10 @@ export default function SolutionPageLayout({ service }) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
-                            className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-white/20"
+                            className="bg-gray-900/90 backdrop-blur-md rounded-3xl p-8 border border-gray-700"
                         >
-                            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight mb-6">{title}</h1>
-                            {h2 && <p className="text-2xl text-gray-700">{h2}</p>}
+                            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight mb-6 text-white">{title}</h1>
+                            {h2 && <p className="text-2xl text-gray-100">{h2}</p>}
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
@@ -61,10 +61,10 @@ export default function SolutionPageLayout({ service }) {
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.7 }}
                             viewport={{ once: true }}
-                            className="bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-white/20"
+                            className="bg-gray-900/90 backdrop-blur-md rounded-3xl p-8 border border-gray-700"
                         >
-                            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900">{descriptivePhrase}</h2>
-                            <p className="text-lg text-gray-600 leading-relaxed mb-8">{overview}</p>
+                            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">{descriptivePhrase}</h2>
+                            <p className="text-lg text-gray-100 leading-relaxed mb-8">{overview}</p>
                             <Button asChild size="lg" className="bg-yellow-400 text-black hover:bg-yellow-300 font-semibold">
                                 <Link to={createPageUrl(cta_link)}>{cta_label}</Link>
                             </Button>
@@ -89,13 +89,13 @@ export default function SolutionPageLayout({ service }) {
             {/* Outcomes (Placeholder) */}
             <section className="py-16 sm:py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-bold mb-12 text-gray-900">Expected Outcomes</h2>
+                    <h2 className="text-3xl font-bold mb-12 text-white">Expected Outcomes</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[1, 2, 3].map(i => (
-                            <div key={i} className="bg-white/80 backdrop-blur-md p-8 rounded-3xl shadow-lg border border-white/20">
+                            <div key={i} className="bg-gray-900/90 backdrop-blur-md p-8 rounded-3xl shadow-lg border border-gray-700">
                                 <CheckCircle className="w-8 h-8 text-yellow-400 mx-auto mb-4" />
-                                <h3 className="font-bold text-lg mb-2">Placeholder Outcome {i}</h3>
-                                <p className="text-gray-600 text-sm">[Outcome description to be added]</p>
+                                <h3 className="font-bold text-lg mb-2 text-white">Placeholder Outcome {i}</h3>
+                                <p className="text-gray-100 text-sm">[Outcome description to be added]</p>
                             </div>
                         ))}
                     </div>

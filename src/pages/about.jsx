@@ -12,7 +12,7 @@ const TeamMemberCard = ({ member, delay }) => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay }}
     viewport={{ once: true }}
-    className="bg-white/80 backdrop-blur-md rounded-3xl p-8 text-center shadow-lg"
+    className="bg-white/20 backdrop-blur-lg rounded-3xl p-8 text-center shadow-lg border border-white/20"
   >
     <div className="w-48 h-48 mx-auto mb-6 rounded-2xl overflow-hidden border-4 border-white shadow-lg">
       <img 
@@ -43,7 +43,7 @@ export default function About() {
       body: "Disruptors Media is a team of strategists, creatives, and technologists helping business owners embrace the future without losing their human touch. We're not just another marketing agency. We're a Fractional CMO and AI Infrastructure team built for business owners who want clarity, not complexity.",
       image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=80",
       imageAlt: "Team collaboration and empowerment",
-      backgroundColor: "bg-white"
+      backgroundColor: "bg-gray-900 text-white backdrop-blur-md"
     },
     {
       kicker: "PARTNERSHIP",
@@ -51,7 +51,7 @@ export default function About() {
       body: "We partner with local Salt Lake City businesses and national brands alike to systematize their marketing, simplify operations, and leverage AI as a tool…not a replacement. Our secret? We teach what we build. That means every campaign, automation, and strategy we implement comes with the transparency and education needed to put you in control.",
       image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80",
       imageAlt: "Business collaboration and partnership",
-      backgroundColor: "bg-gray-50"
+      backgroundColor: "bg-gray-800 text-white backdrop-blur-sm"
     }
   ];
 

@@ -14,7 +14,7 @@ export default function ClientLogoMarquee() {
   );
 
   return (
-    <div className="py-12 bg-white overflow-hidden">
+    <div className="py-12 bg-transparent overflow-hidden">
       <div className="relative flex overflow-x-hidden">
         <div className="animate-marquee whitespace-nowrap">
           {marqueeContent}

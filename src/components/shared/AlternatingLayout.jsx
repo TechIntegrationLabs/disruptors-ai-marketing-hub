@@ -15,7 +15,7 @@ export default function AlternatingLayout({ sections = [] }) {
           <section
             key={index}
             className={`min-h-screen flex items-center py-8 sm:py-12 ${
-              section.backgroundColor || (index % 3 === 0 ? 'bg-white' : index % 3 === 1 ? 'bg-gray-50' : 'bg-gray-900 text-white')
+              section.backgroundColor || (index % 3 === 0 ? 'bg-gray-900 text-white backdrop-blur-md' : index % 3 === 1 ? 'bg-gray-800 text-white backdrop-blur-sm' : 'bg-gray-900 text-white')
             }`}
           >
             <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 w-full">
@@ -35,7 +35,7 @@ export default function AlternatingLayout({ sections = [] }) {
                 >
                   {section.kicker && (
                     <motion.p
-                      className="text-base font-bold uppercase tracking-widest text-indigo-600 mb-4"
+                      className="text-base font-bold uppercase tracking-widest text-indigo-300 mb-4"
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       transition={{ delay: 0.2, duration: 0.6 }}
@@ -47,9 +47,7 @@ export default function AlternatingLayout({ sections = [] }) {
 
                   {section.headline && (
                     <motion.h2
-                      className={`text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tight mb-8 ${
-                        section.backgroundColor?.includes('gray-900') ? 'text-white' : 'text-gray-900'
-                      }`}
+                      className={`text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tight mb-8 text-white drop-shadow-lg`}
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3, duration: 0.8 }}
@@ -61,9 +59,7 @@ export default function AlternatingLayout({ sections = [] }) {
 
                   {section.body && (
                     <motion.div
-                      className={`text-xl sm:text-2xl lg:text-3xl leading-relaxed font-light mb-12 ${
-                        section.backgroundColor?.includes('gray-900') ? 'text-gray-300' : 'text-gray-700'
-                      }`}
+                      className={`text-xl sm:text-2xl lg:text-3xl leading-relaxed font-light mb-12 text-gray-100`}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.8 }}

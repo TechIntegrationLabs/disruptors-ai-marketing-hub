@@ -57,7 +57,7 @@ export default function ReviewsCarousel({
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">{title}</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white drop-shadow-lg tracking-tight">{title}</h2>
         </motion.div>
 
         <div className="relative min-h-[300px]">
@@ -81,13 +81,13 @@ export default function ReviewsCarousel({
                     ))}
                   </div>
                   
-                  <blockquote className="text-lg sm:text-xl text-gray-700 font-medium leading-relaxed mb-8 max-w-2xl mx-auto">
+                  <blockquote className="text-lg sm:text-xl text-gray-100 font-medium leading-relaxed mb-8 max-w-2xl mx-auto">
                     "{reviews[currentIndex].quote}"
                   </blockquote>
-                  
+
                   <div className="flex flex-col items-center">
-                    <div className="font-semibold text-gray-900">{reviews[currentIndex].name}</div>
-                    <div className="text-gray-600">{reviews[currentIndex].role}, {reviews[currentIndex].company}</div>
+                    <div className="font-semibold text-white">{reviews[currentIndex].name}</div>
+                    <div className="text-gray-200">{reviews[currentIndex].role}, {reviews[currentIndex].company}</div>
                   </div>
                 </div>
               ) : (
@@ -103,13 +103,13 @@ export default function ReviewsCarousel({
             <>
               <button
                 onClick={goToPrev}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-all text-gray-600"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white/20 backdrop-blur-md rounded-full p-2 shadow-md hover:bg-white/30 transition-all text-white border border-white/20"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={goToNext}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition-all text-gray-600"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white/20 backdrop-blur-md rounded-full p-2 shadow-md hover:bg-white/30 transition-all text-white border border-white/20"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>

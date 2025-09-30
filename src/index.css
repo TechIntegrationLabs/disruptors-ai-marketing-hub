@@ -153,6 +153,21 @@ button:focus-visible {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-transparent text-foreground;
+  }
+}
+
+@layer utilities {
+  .bg-glass {
+    @apply bg-white/10 backdrop-blur-md;
+  }
+  .bg-glass-light {
+    @apply bg-white/5 backdrop-blur-sm;
+  }
+  .bg-glass-heavy {
+    @apply bg-white/20 backdrop-blur-lg;
+  }
+  .bg-glass-dark {
+    @apply bg-black/30 backdrop-blur-md;
   }
 }

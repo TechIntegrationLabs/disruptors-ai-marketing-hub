@@ -21,7 +21,7 @@ export default function CaseStudyPageLayout({
   relatedCases = []
 }) {
   return (
-    <div className="bg-white text-gray-900">
+    <div className="bg-transparent text-white">
       {/* Hero */}
       <section className="relative py-20 sm:py-32 bg-gray-900 text-white">
         {hero_media && (
@@ -68,10 +68,10 @@ export default function CaseStudyPageLayout({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="bg-red-50 p-8 rounded-2xl"
+              className="bg-red-500/10 backdrop-blur-sm border border-red-400/20 p-8 rounded-2xl"
             >
-              <h2 className="text-2xl font-bold mb-4 text-red-900">Challenge</h2>
-              <p className="text-red-800 leading-relaxed">{challenge}</p>
+              <h2 className="text-2xl font-bold mb-4 text-red-200">Challenge</h2>
+              <p className="text-red-100 leading-relaxed">{challenge}</p>
             </motion.div>
             
             <motion.div
@@ -79,10 +79,10 @@ export default function CaseStudyPageLayout({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-blue-50 p-8 rounded-2xl"
+              className="bg-blue-500/10 backdrop-blur-sm border border-blue-400/20 p-8 rounded-2xl"
             >
-              <h2 className="text-2xl font-bold mb-4 text-blue-900">Approach</h2>
-              <p className="text-blue-800 leading-relaxed">{approach}</p>
+              <h2 className="text-2xl font-bold mb-4 text-blue-200">Approach</h2>
+              <p className="text-blue-100 leading-relaxed">{approach}</p>
             </motion.div>
             
             <motion.div
@@ -90,20 +90,20 @@ export default function CaseStudyPageLayout({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="bg-green-50 p-8 rounded-2xl"
+              className="bg-green-500/10 backdrop-blur-sm border border-green-400/20 p-8 rounded-2xl"
             >
-              <h2 className="text-2xl font-bold mb-4 text-green-900">Outcome</h2>
-              <p className="text-green-800 leading-relaxed">{outcome}</p>
+              <h2 className="text-2xl font-bold mb-4 text-green-200">Outcome</h2>
+              <p className="text-green-100 leading-relaxed">{outcome}</p>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Gallery / Video Section */}
-      <section className="py-16 sm:py-24 bg-gray-50">
+      <section className="py-16 sm:py-24 bg-white/5 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2 
-            className="text-3xl font-bold text-center mb-12"
+          <motion.h2
+            className="text-3xl font-bold text-center mb-12 text-white"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -111,10 +111,10 @@ export default function CaseStudyPageLayout({
           >
             Project Gallery
           </motion.h2>
-          <div className="bg-gray-200 border-2 border-dashed border-gray-300 rounded-2xl aspect-video flex items-center justify-center">
+          <div className="bg-white/10 backdrop-blur-sm border-2 border-dashed border-white/20 rounded-2xl aspect-video flex items-center justify-center">
             <div className="text-center">
               <div className="text-6xl mb-4">🎬</div>
-              <p className="text-xs font-mono text-gray-500">[PROJECT GALLERY/VIDEO]</p>
+              <p className="text-xs font-mono text-gray-300">[PROJECT GALLERY/VIDEO]</p>
             </div>
           </div>
         </div>
@@ -129,7 +129,7 @@ export default function CaseStudyPageLayout({
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-indigo-600 text-white p-12 rounded-3xl text-center relative"
+              className="bg-indigo-500/20 backdrop-blur-md border border-indigo-400/30 text-white p-12 rounded-3xl text-center relative"
             >
               <Quote className="w-12 h-12 mx-auto mb-6 opacity-50" />
               <blockquote className="text-xl sm:text-2xl font-medium mb-6 leading-relaxed">
@@ -143,10 +143,10 @@ export default function CaseStudyPageLayout({
 
       {/* Related Cases */}
       {relatedCases.length > 0 && (
-        <section className="py-16 sm:py-24 bg-gray-50">
+        <section className="py-16 sm:py-24 bg-white/5 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.h2 
-              className="text-3xl font-bold text-center mb-12"
+            <motion.h2
+              className="text-3xl font-bold text-center mb-12 text-white"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -163,19 +163,19 @@ export default function CaseStudyPageLayout({
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Link 
+                  <Link
                     to={createPageUrl(`work-${relatedCase.slug}`)}
-                    className="block group bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg transition-all"
+                    className="block group bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl overflow-hidden hover:shadow-lg transition-all"
                   >
-                    <div className="aspect-video bg-gray-100 border-b-2 border-dashed border-gray-300 flex items-center justify-center">
+                    <div className="aspect-video bg-white/5 border-b-2 border-dashed border-white/20 flex items-center justify-center">
                       <div className="text-center">
                         <div className="text-2xl mb-1">📊</div>
-                        <span className="text-xs font-mono text-gray-400">[THUMBNAIL]</span>
+                        <span className="text-xs font-mono text-gray-300">[THUMBNAIL]</span>
                       </div>
                     </div>
                     <div className="p-6">
-                      <h3 className="font-bold mb-2 group-hover:text-indigo-600">{relatedCase.title}</h3>
-                      <p className="text-sm text-gray-600">{relatedCase.outcome}</p>
+                      <h3 className="font-bold mb-2 text-white group-hover:text-indigo-300">{relatedCase.title}</h3>
+                      <p className="text-sm text-gray-200">{relatedCase.outcome}</p>
                     </div>
                   </Link>
                 </motion.div>
