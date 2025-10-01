@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioAssets, portfolioImages, portfolioVideos } from '@/data/portfolio-assets';
-import { X, Play, Image as ImageIcon, Video as VideoIcon, Grid3x3, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Play, Image as ImageIcon, Video as VideoIcon, Grid3x3, ChevronLeft, ChevronRight, Presentation } from 'lucide-react';
 
 const FILTER_OPTIONS = [
   { id: 'all', label: 'All', icon: Grid3x3, count: portfolioAssets.length },
@@ -211,6 +211,7 @@ function GalleryItem({ asset, onClick }) {
 
 function Lightbox({ assets, selectedIndex, onClose }) {
   const [currentIndex, setCurrentIndex] = useState(selectedIndex);
+  const [isScreensaver, setIsScreensaver] = useState(false);
 
   useEffect(() => {
     setCurrentIndex(selectedIndex);
@@ -240,7 +241,11 @@ function Lightbox({ assets, selectedIndex, onClose }) {
         goToPrevious();
       } else if (e.key === 'Escape') {
         e.preventDefault();
-        onClose();
+        if (isScreensaver) {
+          setIsScreensaver(false);
+        } else {
+          onClose();
+        }
       }
     };
 
@@ -260,7 +265,18 @@ function Lightbox({ assets, selectedIndex, onClose }) {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('wheel', handleWheel);
     };
-  }, [currentIndex, goToNext, goToPrevious, onClose]);
+  }, [currentIndex, goToNext, goToPrevious, onClose, isScreensaver]);
+
+  // Screensaver auto-advance
+  useEffect(() => {
+    if (!isScreensaver || currentIndex === null) return;
+
+    const interval = setInterval(() => {
+      goToNext();
+    }, 4000); // Change slide every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [isScreensaver, currentIndex, goToNext]);
 
   if (currentIndex === null || !assets || !assets[currentIndex]) return null;
 
@@ -273,18 +289,44 @@ function Lightbox({ assets, selectedIndex, onClose }) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl"
-        onClick={onClose}
+        onClick={isScreensaver ? () => setIsScreensaver(false) : onClose}
       >
         {/* Close Button */}
-        <button
+        <motion.button
+          initial={{ opacity: 1 }}
+          animate={{ opacity: isScreensaver ? 0 : 1 }}
+          transition={{ duration: 0.3 }}
           onClick={onClose}
           className="absolute top-4 right-4 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all duration-200 backdrop-blur-sm border border-white/20 z-50"
+          style={{ pointerEvents: isScreensaver ? 'none' : 'auto' }}
         >
           <X className="w-6 h-6" />
-        </button>
+        </motion.button>
+
+        {/* Screensaver Button */}
+        <motion.button
+          initial={{ opacity: 1 }}
+          animate={{ opacity: isScreensaver ? 0 : 1 }}
+          transition={{ duration: 0.3 }}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsScreensaver(true);
+          }}
+          className="absolute top-4 right-20 p-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white transition-all duration-200 backdrop-blur-sm border border-blue-500/50 z-50 shadow-lg shadow-blue-600/50"
+          style={{ pointerEvents: isScreensaver ? 'none' : 'auto' }}
+          title="Start Screensaver"
+        >
+          <Presentation className="w-6 h-6" />
+        </motion.button>
 
         {/* Asset Info */}
-        <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-md rounded-2xl p-4 text-white border border-white/20 z-50">
+        <motion.div
+          initial={{ opacity: 1 }}
+          animate={{ opacity: isScreensaver ? 0 : 1 }}
+          transition={{ duration: 0.3 }}
+          className="absolute top-4 left-4 bg-white/10 backdrop-blur-md rounded-2xl p-4 text-white border border-white/20 z-50"
+          style={{ pointerEvents: isScreensaver ? 'none' : 'auto' }}
+        >
           <div className="flex items-center gap-3">
             {asset.type === 'video' ? (
               <VideoIcon className="w-6 h-6 text-blue-400" />
@@ -304,44 +346,52 @@ function Lightbox({ assets, selectedIndex, onClose }) {
           <div className="mt-2 text-sm text-gray-400">
             {currentIndex + 1} / {assets.length}
           </div>
-        </div>
+        </motion.div>
 
         {/* Navigation Arrows */}
-        <button
+        <motion.button
+          initial={{ opacity: 1 }}
+          animate={{ opacity: isScreensaver ? 0 : 1 }}
+          transition={{ duration: 0.3 }}
           onClick={(e) => {
             e.stopPropagation();
             goToPrevious();
           }}
           className="absolute left-4 top-1/2 -translate-y-1/2 p-4 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all duration-200 backdrop-blur-sm border border-white/20 z-50"
+          style={{ pointerEvents: isScreensaver ? 'none' : 'auto' }}
         >
           <ChevronLeft className="w-8 h-8" />
-        </button>
+        </motion.button>
 
-        <button
+        <motion.button
+          initial={{ opacity: 1 }}
+          animate={{ opacity: isScreensaver ? 0 : 1 }}
+          transition={{ duration: 0.3 }}
           onClick={(e) => {
             e.stopPropagation();
             goToNext();
           }}
           className="absolute right-4 top-1/2 -translate-y-1/2 p-4 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all duration-200 backdrop-blur-sm border border-white/20 z-50"
+          style={{ pointerEvents: isScreensaver ? 'none' : 'auto' }}
         >
           <ChevronRight className="w-8 h-8" />
-        </button>
+        </motion.button>
 
         {/* Content */}
         <motion.div
           key={currentIndex}
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="max-w-6xl max-h-[90vh] overflow-auto"
+          initial={isScreensaver ? { scale: 1.1, opacity: 0, rotateY: -10 } : { scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1, rotateY: 0 }}
+          exit={isScreensaver ? { scale: 0.9, opacity: 0, rotateY: 10 } : { scale: 0.9, opacity: 0 }}
+          transition={isScreensaver ? { duration: 0.8, ease: "easeInOut" } : { duration: 0.3 }}
+          className="w-full h-full flex items-center justify-center"
           onClick={(e) => e.stopPropagation()}
         >
           {asset.type === 'image' ? (
             <img
               src={asset.url}
               alt="Portfolio item"
-              className="w-full h-auto rounded-2xl shadow-2xl"
+              className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
             />
           ) : (
             <video
@@ -349,7 +399,7 @@ function Lightbox({ assets, selectedIndex, onClose }) {
               controls
               autoPlay
               loop
-              className="w-full h-auto rounded-2xl shadow-2xl"
+              className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
             />
           )}
         </motion.div>

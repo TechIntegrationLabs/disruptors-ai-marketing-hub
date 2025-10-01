@@ -174,7 +174,7 @@ SELECT
   p.*,
   tm.name as author_name,
   tm.email as author_email,
-  tm.role as author_role,
+  tm.title as author_title,
   a.name as agent_name,
   a.id as agent_id
 FROM posts p

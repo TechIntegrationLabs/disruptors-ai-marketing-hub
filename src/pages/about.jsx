@@ -79,7 +79,7 @@ export default function About() {
     <div>
       {/* Hero Video Section */}
       <section className="w-full bg-transparent overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -89,6 +89,10 @@ export default function About() {
             <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
               <video
                 className="absolute top-0 left-0 w-full h-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
                 controls
                 poster="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1757280802/dm-abt_rwm0ng.jpg"
               >

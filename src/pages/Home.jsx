@@ -75,7 +75,7 @@ export default function Home() {
       <AlternatingLayout sections={alternatingData} />
 
       {/* Client Logos Marquee */}
-      <div className="py-16 bg-gray-900 overflow-hidden">
+      <div className="py-8 bg-gray-900 overflow-hidden">
         <ClientLogoMarquee />
       </div>
 
