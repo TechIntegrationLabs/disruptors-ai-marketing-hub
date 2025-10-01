@@ -6,6 +6,19 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Admin Nexus Functions Configuration
+[[functions]]
+  name = "ai_invoke"
+  node_bundler = "esbuild"
+
+[[functions]]
+  name = "agent_train-background"
+  node_bundler = "esbuild"
+
+[[functions]]
+  name = "ingest_dispatch-background"
+  node_bundler = "esbuild"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
