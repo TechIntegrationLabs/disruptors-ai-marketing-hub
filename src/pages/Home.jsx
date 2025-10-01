@@ -68,6 +68,9 @@ export default function Home() {
     <div className="text-gray-800">
       <Hero />
 
+      {/* Reviews - Modern Horizontal Auto-Scroll Carousel */}
+      <ReviewsCarousel />
+
       {/* Modern Alternating Layout Sections */}
       <AlternatingLayout sections={alternatingData} />
 
@@ -80,9 +83,6 @@ export default function Home() {
       <section className="bg-gray-900 text-white py-24 sm:py-32">
         <ThreePillars />
       </section>
-
-      {/* Reviews */}
-      <ReviewsCarousel />
 
       {/* Services / Solutions */}
       <section className="relative overflow-hidden">

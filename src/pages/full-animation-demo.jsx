@@ -65,7 +65,7 @@ export default function FullAnimationDemo() {
           <div className="space-y-6 text-gray-300">
             <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-800">
               <h3 className="text-xl font-bold text-white mb-4">
-                🎯 Scene Details
+                Scene Details
               </h3>
               <ul className="space-y-2">
                 <li><strong>Scene URL:</strong> https://prod.spline.design/lylivpxHMsRXq3dw/scene.splinecode</li>
@@ -77,7 +77,7 @@ export default function FullAnimationDemo() {
 
             <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-800">
               <h3 className="text-xl font-bold text-white mb-4">
-                🎨 Available Presets
+                Available Presets
               </h3>
               <p className="mb-4">Try different animation styles by changing the <code className="bg-gray-800 px-2 py-1 rounded">animationPreset</code> prop:</p>
               <ul className="space-y-2 list-disc list-inside">
@@ -91,7 +91,7 @@ export default function FullAnimationDemo() {
 
             <div className="bg-gray-900/50 p-6 rounded-lg border border-gray-800">
               <h3 className="text-xl font-bold text-white mb-4">
-                🚀 Next Steps
+                Next Steps
               </h3>
               <ol className="space-y-2 list-decimal list-inside">
                 <li>Scroll up and down to see the animation respond to your scroll position</li>

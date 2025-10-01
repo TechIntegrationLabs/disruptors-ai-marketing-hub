@@ -122,9 +122,9 @@ export default function About() {
                 <p>Marketing shouldn’t feel like manipulation.</p>
                 <p className="font-bold text-gray-800">We believe:</p>
                 <ul className="space-y-2">
-                    <li>🔹 Authentic connection is the greatest marketing advantage</li>
-                    <li>🔹 Technology exists to expand your capacity</li>
-                    <li>🔹 Your brand is a movement, not a machine</li>
+                    <li>Authentic connection is the greatest marketing advantage</li>
+                    <li>Technology exists to expand your capacity</li>
+                    <li>Your brand is a movement, not a machine</li>
                 </ul>
                 <p>When you partner with Disruptors Media, you're not outsourcing your growth. You’re gaining a team that aligns with your purpose and executes with precision.</p>
             </div>
@@ -152,7 +152,6 @@ export default function About() {
           
           {loading ? (
             <div className="bg-white/80 backdrop-blur-md rounded-3xl p-12 text-center max-w-md mx-auto">
-              <div className="text-4xl mb-4">⏳</div>
               <p className="text-gray-600">Loading team members...</p>
             </div>
           ) : team.length > 0 ? (
@@ -163,7 +162,6 @@ export default function About() {
             </div>
           ) : (
             <div className="bg-white/80 backdrop-blur-md rounded-3xl p-12 text-center max-w-md mx-auto">
-              <div className="text-4xl mb-4">👥</div>
               <p className="text-gray-600">No team members available at this time.</p>
             </div>
           )}

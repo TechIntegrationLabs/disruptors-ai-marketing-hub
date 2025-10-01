@@ -1,7 +1,7 @@
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Star, Quote } from 'lucide-react';
 
 const placeholderReviews = [
   {
@@ -15,7 +15,7 @@ const placeholderReviews = [
   },
   {
     name: "Michael Chen",
-    role: "Marketing Director", 
+    role: "Marketing Director",
     company: "GrowthCo",
     quote: "Their AI automation saved us countless hours on repetitive tasks. The team is incredibly knowledgeable and responsive.",
     rating: 5,
@@ -30,26 +30,89 @@ const placeholderReviews = [
     rating: 5,
     source: "Google",
     videoUrl: null
+  },
+  {
+    name: "David Park",
+    role: "VP of Marketing",
+    company: "InnovateTech",
+    quote: "The ROI we've seen from their AI-powered campaigns has exceeded all expectations. Truly transformative work.",
+    rating: 5,
+    source: "LinkedIn",
+    videoUrl: null
+  },
+  {
+    name: "Lisa Martinez",
+    role: "Founder & CEO",
+    company: "NextGen Solutions",
+    quote: "Finally, an agency that actually understands both marketing and technology. Their strategic approach is unmatched.",
+    rating: 5,
+    source: "Google",
+    videoUrl: null
   }
 ];
 
-export default function ReviewsCarousel({ 
+export default function ReviewsCarousel({
   reviews = placeholderReviews,
-  title = "What Our Clients Say" 
+  title = "What Our Clients Say"
 }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollContainerRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % reviews.length);
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (isPaused || !scrollContainerRef.current) return;
+
+    const scrollInterval = setInterval(() => {
+      const container = scrollContainerRef.current;
+      const cardWidth = container.querySelector('.testimonial-card')?.offsetWidth || 0;
+      const gap = 24; // 1.5rem gap
+      const scrollAmount = cardWidth + gap;
+
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      const nextScroll = container.scrollLeft + scrollAmount;
+
+      if (nextScroll >= maxScroll) {
+        // Reset to start with smooth scroll
+        container.scrollTo({ left: 0, behavior: 'smooth' });
+        setActiveIndex(0);
+      } else {
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        setActiveIndex(prev => Math.min(prev + 1, reviews.length - 1));
+      }
+    }, 4000); // Auto-scroll every 4 seconds
+
+    return () => clearInterval(scrollInterval);
+  }, [isPaused, reviews.length]);
+
+  // Update active index on manual scroll
+  const handleScroll = () => {
+    if (!scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    const cardWidth = container.querySelector('.testimonial-card')?.offsetWidth || 0;
+    const gap = 24;
+    const newIndex = Math.round(container.scrollLeft / (cardWidth + gap));
+    setActiveIndex(newIndex);
   };
 
-  const goToPrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+  const scrollToIndex = (index) => {
+    if (!scrollContainerRef.current) return;
+    const container = scrollContainerRef.current;
+    const cardWidth = container.querySelector('.testimonial-card')?.offsetWidth || 0;
+    const gap = 24;
+    container.scrollTo({
+      left: index * (cardWidth + gap),
+      behavior: 'smooth'
+    });
+    setActiveIndex(index);
   };
 
   return (
-    <section className="relative py-24 sm:py-32">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-20 sm:py-28 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+      {/* Background gradient accent */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-50/30 via-purple-50/20 to-pink-50/30 pointer-events-none"></div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,66 +120,99 @@ export default function ReviewsCarousel({
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-black tracking-tight">{title}</h2>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
+            {title}
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Don't just take our word for it. Here's what our clients have to say about working with us.
+          </p>
         </motion.div>
 
-        <div className="relative min-h-[300px]">
-          <AnimatePresence mode="wait">
+        {/* Horizontal scroll carousel */}
+        <div
+          ref={scrollContainerRef}
+          onScroll={handleScroll}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 scrollbar-hide"
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
+          {reviews.map((review, index) => (
             <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              transition={{ duration: 0.4 }}
-              className="text-center"
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="testimonial-card flex-shrink-0 w-[85vw] sm:w-[450px] snap-center"
             >
-              {reviews.length > 0 ? (
-                <div>
-                  <div className="flex justify-center mb-6">
+              <div className="h-full bg-white/80 backdrop-blur-xl rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-gray-100/50 relative overflow-hidden">
+                {/* Decorative gradient */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+
+                {/* Quote icon */}
+                <div className="mb-6 flex items-start justify-between">
+                  <Quote className="w-10 h-10 text-blue-500/30" />
+                  <div className="flex gap-1">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`w-5 h-5 ${i < reviews[currentIndex].rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+                        className={`w-4 h-4 ${i < review.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
                       />
                     ))}
                   </div>
+                </div>
 
-                  <blockquote className="text-lg sm:text-xl text-black font-medium leading-relaxed mb-8 max-w-2xl mx-auto">
-                    "{reviews[currentIndex].quote}"
-                  </blockquote>
+                {/* Quote */}
+                <blockquote className="text-gray-700 text-lg leading-relaxed mb-6 relative z-10 min-h-[120px]">
+                  "{review.quote}"
+                </blockquote>
 
-                  <div className="flex flex-col items-center">
-                    <div className="font-semibold text-black">{reviews[currentIndex].name}</div>
-                    <div className="text-gray-800">{reviews[currentIndex].role}, {reviews[currentIndex].company}</div>
+                {/* Author info */}
+                <div className="flex items-center gap-4 pt-6 border-t border-gray-100">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+                    {review.name.charAt(0)}
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-semibold text-gray-900">{review.name}</div>
+                    <div className="text-sm text-gray-600">{review.role}</div>
+                    <div className="text-sm text-gray-500">{review.company}</div>
+                  </div>
+                  <div className="text-xs text-gray-400 font-medium px-3 py-1 bg-gray-100 rounded-full">
+                    {review.source}
                   </div>
                 </div>
-              ) : (
-                 <div className="text-center py-12 text-gray-500">
-                    Loading reviews...
-                  </div>
-              )}
+              </div>
             </motion.div>
-          </AnimatePresence>
+          ))}
+        </div>
 
-          {/* Navigation */}
-          {reviews.length > 1 && (
-            <>
-              <button
-                onClick={goToPrev}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white/20 backdrop-blur-md rounded-full p-2 shadow-md hover:bg-white/30 transition-all text-white border border-white/20"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button
-                onClick={goToNext}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white/20 backdrop-blur-md rounded-full p-2 shadow-md hover:bg-white/30 transition-all text-white border border-white/20"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </>
-          )}
+        {/* Progress indicators */}
+        <div className="flex justify-center gap-2 mt-8">
+          {reviews.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollToIndex(index)}
+              className={`transition-all duration-300 rounded-full ${
+                index === activeIndex
+                  ? 'w-8 h-2 bg-blue-600'
+                  : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+              }`}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
+
+      <style jsx>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 }

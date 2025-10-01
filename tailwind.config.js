@@ -4,6 +4,10 @@ module.exports = {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
+  		fontFamily: {
+  			'supply': ['"PP Supply Mono"', 'monospace'],
+  			'mono': ['"PP Supply Mono"', 'monospace'],
+  		},
   		screens: {
   			'xs': '475px',
   			'3xl': '1920px',

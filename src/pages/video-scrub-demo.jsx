@@ -46,7 +46,7 @@ export default function VideoScrubDemo() {
           <div className="space-y-6 text-gray-300">
             <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
               <h3 className="text-xl font-bold text-white mb-4">
-                🎬 Scroll-Based Video Scrubbing
+                Scroll-Based Video Scrubbing
               </h3>
               <ul className="space-y-3">
                 <li><strong>Video:</strong> /videos/full-animation-scrub.mp4</li>
@@ -58,7 +58,7 @@ export default function VideoScrubDemo() {
 
             <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
               <h3 className="text-xl font-bold text-white mb-4">
-                ⚙️ How Scroll Scrubbing Works
+                How Scroll Scrubbing Works
               </h3>
               <ol className="space-y-3 list-decimal list-inside">
                 <li>As you scroll, GSAP calculates scroll progress (0 to 1)</li>
@@ -70,7 +70,7 @@ export default function VideoScrubDemo() {
 
             <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
               <h3 className="text-xl font-bold text-white mb-4">
-                🎨 Customization Options
+                Customization Options
               </h3>
               <p className="mb-4">Edit the <code className="bg-gray-900 px-2 py-1 rounded">scrollTriggerOptions</code> prop:</p>
               <pre className="bg-gray-900 p-4 rounded overflow-x-auto text-sm">
@@ -87,7 +87,7 @@ export default function VideoScrubDemo() {
 
             <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700">
               <h3 className="text-xl font-bold text-white mb-4">
-                🚀 Integration
+                Integration
               </h3>
               <p className="mb-4">To use this on any page:</p>
               <pre className="bg-gray-900 p-4 rounded overflow-x-auto text-sm">

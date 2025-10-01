@@ -92,10 +92,10 @@ export default function Work() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button asChild size="lg" className="text-lg px-8 py-3">
-                <Link to={createPageUrl("book-strategy-session")}>📅 Book a Free Strategy Session</Link>
+                <Link to={createPageUrl("book-strategy-session")}>Book a Free Strategy Session</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3">
-                <Link to={createPageUrl("free-business-audit")}>🔍 Get a Free Business Audit</Link>
+                <Link to={createPageUrl("free-business-audit")}>Get a Free Business Audit</Link>
               </Button>
             </div>
           </motion.div>

@@ -210,7 +210,6 @@ export default function SplineDemo() {
           {hasError && (
             <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
               <div className="text-center px-4">
-                <div className="text-6xl mb-4">⚠️</div>
                 <h2 className="text-2xl font-bold mb-2">Unable to Load 3D Scene</h2>
                 <p className="text-gray-400 mb-6">The Spline viewer failed to initialize</p>
                 <Link
@@ -300,7 +299,6 @@ export default function SplineDemo() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Feature 1 */}
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <div className="text-4xl mb-4">🎨</div>
               <h3 className="text-2xl font-bold mb-4">Native Web Components</h3>
               <p className="text-gray-400">
                 Using spline-viewer web component for optimal performance and
@@ -310,7 +308,6 @@ export default function SplineDemo() {
 
             {/* Feature 2 */}
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <div className="text-4xl mb-4">✨</div>
               <h3 className="text-2xl font-bold mb-4">Scroll Animations</h3>
               <p className="text-gray-400">
                 GSAP ScrollTrigger powers smooth 3D rotations and transformations
@@ -320,7 +317,6 @@ export default function SplineDemo() {
 
             {/* Feature 3 */}
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <div className="text-4xl mb-4">⚡</div>
               <h3 className="text-2xl font-bold mb-4">Optimized Performance</h3>
               <p className="text-gray-400">
                 Lazy loading, reduced motion support, and efficient rendering

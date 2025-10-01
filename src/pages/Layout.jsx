@@ -10,6 +10,10 @@ import LoadingScreen from "@/components/shared/LoadingScreen";
 import MatrixLogin from "@/components/admin/MatrixLogin";
 import DisruptorsAdmin from "@/components/admin/DisruptorsAdmin";
 import { useSecretAccess } from "@/hooks/useSecretAccess";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
@@ -68,6 +72,43 @@ export default function Layout({ children, currentPageName }) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Animate footer separator lines with scroll-mapped GSAP
+  React.useEffect(() => {
+    const footerContainer = document.getElementById('footer-lines-container');
+    if (!footerContainer) return;
+
+    // Define final Y positions for each line (spread out vertically)
+    const finalPositions = [0, 8, 18, 32, 50, 70];
+    const startPosition = 70; // All lines start stacked at the bottom
+
+    // Animate each line from bottom (stacked) UP to their final positions
+    finalPositions.forEach((finalY, index) => {
+      const line = footerContainer.querySelector(`.sep-line-${index + 1}`);
+      if (!line) return;
+
+      gsap.fromTo(
+        line,
+        { y: startPosition }, // Start: all lines stacked at bottom
+        {
+          y: finalY, // End: spread UP to final positions
+          ease: "none",
+          scrollTrigger: {
+            trigger: footerContainer,
+            start: "top bottom", // When footer enters viewport
+            end: "bottom bottom", // When page is scrolled to bottom
+            scrub: 1, // Smooth scrubbing - maps directly to scroll
+            markers: false, // Set to true for debugging
+          }
+        }
+      );
+    });
+
+    // Cleanup
+    return () => {
+      ScrollTrigger.getAll().forEach(st => st.kill());
+    };
+  }, [location]);
 
   React.useEffect(() => {
     const hasLoadedBefore = sessionStorage.getItem('hasLoaded');
@@ -243,30 +284,30 @@ export default function Layout({ children, currentPageName }) {
             <div className="max-w-7xl mx-auto relative">
 
               {/* Logo emboss watermark */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[800px] lg:w-[906px] opacity-5 pointer-events-none">
+              <div className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[800px] lg:w-[906px] xl:w-[1000px] opacity-[0.08] pointer-events-none z-0">
                 <img src="/assets/footer/logo-emboss.png" alt="" className="w-full h-auto" />
               </div>
 
               {/* Get a free quote section */}
               <div className="relative flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12 sm:mb-16 md:mb-20">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[65px] font-black uppercase text-[#2b2b2b] leading-tight tracking-tight" style={{fontFamily: "'PP Supply Mono', monospace"}}>
+                <h2 className="font-supply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[65px] font-black uppercase text-[#2b2b2b] leading-tight tracking-tight">
                   Get a free Quote
                 </h2>
-                <p className="text-sm sm:text-base text-[#2b2b2b] max-w-[393px] text-justify" style={{fontFamily: "'PP Supply Mono', monospace", lineHeight: "21px"}}>
+                <p className="font-supply text-sm sm:text-base text-[#2b2b2b] max-w-[393px] text-justify leading-[21px]">
                   Think you need something but not sure what? That's what we're here for. Get in touch!
                 </p>
               </div>
 
               {/* Animated lines + Book a call CTA */}
-              <div className="relative mb-16 sm:mb-20 md:mb-32 lg:mb-40">
+              <div className="relative mb-16 sm:mb-20 md:mb-32 lg:mb-40" id="footer-lines-container">
                 {/* Animated horizontal lines */}
-                <div className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 mb-4 sm:mb-5">
-                  <div className="h-[1px] bg-[#2b2b2b]"></div>
-                  <div className="h-[2px] bg-[#2b2b2b]"></div>
-                  <div className="h-[4px] bg-[#2b2b2b]"></div>
-                  <div className="h-[7px] bg-[#2b2b2b]"></div>
-                  <div className="h-[9px] bg-[#2b2b2b]"></div>
-                  <div className="h-[11px] bg-[#2b2b2b]"></div>
+                <div className="relative h-[70px] sm:h-[80px] md:h-[90px] mb-4 sm:mb-5">
+                  <div className="sep-line sep-line-1"></div>
+                  <div className="sep-line sep-line-2"></div>
+                  <div className="sep-line sep-line-3"></div>
+                  <div className="sep-line sep-line-4"></div>
+                  <div className="sep-line sep-line-5"></div>
+                  <div className="sep-line sep-line-6"></div>
                 </div>
 
                 {/* Book a call button */}
@@ -274,7 +315,7 @@ export default function Layout({ children, currentPageName }) {
                   to={createPageUrl('book-strategy-session')}
                   className="group flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 md:py-6 bg-[#2b2b2b] text-[#f1ede9] hover:bg-black transition-colors min-h-[60px] sm:min-h-[70px] md:min-h-[80px] touch-manipulation"
                 >
-                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight" style={{fontFamily: "'PP Supply Mono', monospace"}}>
+                  <span className="font-supply text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight">
                     Book a call
                   </span>
                   <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform group-hover:translate-x-2 flex-shrink-0 ml-4 rotate-[-90deg]" />
@@ -287,8 +328,7 @@ export default function Layout({ children, currentPageName }) {
                   <Link
                     key={link.name}
                     to={createPageUrl(link.path)}
-                    className="text-xs sm:text-sm font-normal uppercase tracking-widest text-[#2b2b2b] hover:opacity-60 transition-opacity min-h-[44px] flex items-center touch-manipulation"
-                    style={{fontFamily: "'PP Supply Mono', monospace", lineHeight: "28px"}}
+                    className="font-supply text-xs sm:text-sm font-normal uppercase tracking-widest text-[#2b2b2b] hover:opacity-60 transition-opacity min-h-[44px] flex items-center touch-manipulation leading-[28px]"
                   >
                     {link.name}
                   </Link>
@@ -298,7 +338,7 @@ export default function Layout({ children, currentPageName }) {
               {/* Bottom section with social icons and info */}
               <div className="relative flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 pb-8 sm:pb-10">
                 {/* Left: Copyright & address */}
-                <div className="text-center md:text-left order-2 md:order-1" style={{fontFamily: "'PP Supply Mono', monospace"}}>
+                <div className="font-supply text-center md:text-left order-2 md:order-1">
                   <p className="text-xs sm:text-sm uppercase text-[#2b2b2b]">
                     ©{new Date().getFullYear()} Disruptors Media inc.
                   </p>
@@ -324,7 +364,7 @@ export default function Layout({ children, currentPageName }) {
                 </div>
 
                 {/* Right: Coordinates & load address */}
-                <div className="text-center md:text-right order-3 hidden sm:block" style={{fontFamily: "'PP Supply Mono', monospace"}}>
+                <div className="font-supply text-center md:text-right order-3 hidden sm:block">
                   <p className="text-xs sm:text-sm uppercase text-[#2b2b2b]">
                     40.853400, -111.911790
                   </p>

@@ -162,25 +162,25 @@ export default function SplineHandPreview() {
     <div className="min-h-screen bg-gray-900">
       {/* Control Panel */}
       <div className="fixed top-0 left-0 w-96 h-full bg-black/90 text-white p-6 overflow-y-auto z-50 border-r border-gray-700">
-        <h1 className="text-2xl font-bold mb-4">🎨 Spline Hand Preview</h1>
+        <h1 className="text-2xl font-bold mb-4">Spline Hand Preview</h1>
 
         <div className="mb-6">
           <div className="text-sm text-gray-400 mb-2">Scene Status</div>
           <div className={`px-3 py-2 rounded ${sceneInfo.loaded ? 'bg-green-900/50 text-green-300' : 'bg-yellow-900/50 text-yellow-300'}`}>
-            {sceneInfo.loaded ? '✅ Loaded' : '⏳ Loading...'}
+            {sceneInfo.loaded ? 'Loaded' : 'Loading...'}
           </div>
         </div>
 
         {sceneInfo.error && (
           <div className="mb-6 p-4 bg-red-900/50 text-red-300 rounded">
-            <div className="font-bold mb-2">❌ Error</div>
+            <div className="font-bold mb-2">Error</div>
             <div className="text-sm">{sceneInfo.error}</div>
           </div>
         )}
 
         {/* Scene Objects */}
         <div className="mb-6">
-          <h2 className="text-lg font-bold mb-3">📦 Scene Objects ({sceneInfo.objects.length})</h2>
+          <h2 className="text-lg font-bold mb-3">Scene Objects ({sceneInfo.objects.length})</h2>
           <div className="space-y-2 max-h-64 overflow-y-auto">
             {sceneInfo.objects.length === 0 && sceneInfo.loaded && (
               <div className="text-sm text-gray-500 italic">No named objects found. Check console for scene structure.</div>
@@ -201,7 +201,7 @@ export default function SplineHandPreview() {
         {/* Selected Object Details */}
         {sceneInfo.selectedObject && (
           <div className="mb-6">
-            <h2 className="text-lg font-bold mb-3">🔍 Object Details</h2>
+            <h2 className="text-lg font-bold mb-3">Object Details</h2>
             <div className="bg-gray-800 rounded p-4 text-xs font-mono">
               <div className="mb-2">
                 <span className="text-blue-400">name:</span> {sceneInfo.selectedObject.name}
@@ -248,14 +248,14 @@ export default function SplineHandPreview() {
               onClick={() => testObjectAnimation(sceneInfo.selectedObject.name)}
               className="mt-3 w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded font-medium transition-colors"
             >
-              🎬 Test Animation
+              Test Animation
             </button>
           </div>
         )}
 
         {/* Event Testing */}
         <div className="mb-6">
-          <h2 className="text-lg font-bold mb-3">🎪 Test Events</h2>
+          <h2 className="text-lg font-bold mb-3">Test Events</h2>
           <div className="grid grid-cols-2 gap-2">
             <button
               onClick={() => testSplineEvent('mouseDown')}
@@ -286,7 +286,7 @@ export default function SplineHandPreview() {
 
         {/* Instructions */}
         <div className="text-xs text-gray-500 border-t border-gray-700 pt-4">
-          <div className="font-bold mb-2">💡 Instructions</div>
+          <div className="font-bold mb-2">Instructions</div>
           <ul className="list-disc list-inside space-y-1">
             <li>Check browser console for detailed logs</li>
             <li>Click objects to view details</li>

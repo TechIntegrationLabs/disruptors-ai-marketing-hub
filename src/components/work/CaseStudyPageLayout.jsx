@@ -113,7 +113,6 @@ export default function CaseStudyPageLayout({
           </motion.h2>
           <div className="bg-white/10 backdrop-blur-sm border-2 border-dashed border-white/20 rounded-2xl aspect-video flex items-center justify-center">
             <div className="text-center">
-              <div className="text-6xl mb-4">🎬</div>
               <p className="text-xs font-mono text-gray-300">[PROJECT GALLERY/VIDEO]</p>
             </div>
           </div>
@@ -169,7 +168,6 @@ export default function CaseStudyPageLayout({
                   >
                     <div className="aspect-video bg-white/5 border-b-2 border-dashed border-white/20 flex items-center justify-center">
                       <div className="text-center">
-                        <div className="text-2xl mb-1">📊</div>
                         <span className="text-xs font-mono text-gray-300">[THUMBNAIL]</span>
                       </div>
                     </div>

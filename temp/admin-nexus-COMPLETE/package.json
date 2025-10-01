@@ -1,0 +1,32 @@
+{
+  "name": "admin-nexus-complete",
+  "version": "1.0.0",
+  "description": "Complete Admin Nexus implementation with all dependencies",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.4",
+    "@anthropic-ai/sdk": "^0.64.0",
+    "openai": "^5.23.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.28.0",
+    "lucide-react": "^0.344.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  },
+  "peerDependencies": {
+    "jsdom": "^24.0.0",
+    "@mozilla/readability": "^0.5.0"
+  },
+  "notes": {
+    "installation": "npm install @supabase/supabase-js @anthropic-ai/sdk openai react-router-dom lucide-react jsdom @mozilla/readability",
+    "required_for": {
+      "auth": "@supabase/supabase-js",
+      "llm": "@anthropic-ai/sdk, openai",
+      "routing": "react-router-dom",
+      "icons": "lucide-react",
+      "scraping": "jsdom, @mozilla/readability"
+    }
+  }
+}
