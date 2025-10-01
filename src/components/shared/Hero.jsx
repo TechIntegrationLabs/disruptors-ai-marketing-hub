@@ -5,8 +5,8 @@ import { customClient } from '@/lib/custom-sdk';
 // Fallback hardcoded media (used if database fetch fails)
 const FALLBACK_MEDIA = {
   background: {
-    url: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268586/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-structure-black.jpg",
-    alt: "Abstract geometric background"
+    url: "",
+    alt: ""
   },
   video: {
     url: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4",

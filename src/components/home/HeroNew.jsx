@@ -9,11 +9,12 @@ export default function HeroNew() {
       <div className="absolute inset-0 z-0 opacity-10">
         <img
           src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/backgrounds/hero-background.jpg"
-          alt="Abstract AI neural network background"
+          alt=""
           className="w-full h-full object-cover"
           loading="lazy"
         />
       </div>
+      <div className="absolute inset-0 z-[5] bg-black/70"></div>
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white drop-shadow-lg">
           AI-Powered Marketing Agency
