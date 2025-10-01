@@ -19,7 +19,8 @@
       "Bash(npx netlify deploy:*)",
       "Bash(curl:*)",
       "WebFetch(domain:dm4.wjwelsh.com)",
-      "WebFetch(domain:app.netlify.com)"
+      "WebFetch(domain:app.netlify.com)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
