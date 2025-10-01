@@ -130,24 +130,24 @@ export default function Layout({ children, currentPageName }) {
               ? `transition-all duration-500 ease-in-out ${scrolled ? 'bg-black/70 backdrop-blur-md' : 'bg-black/30 backdrop-blur-sm'}`
               : 'bg-black/70 backdrop-blur-md'
           }`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
               <div className={`flex justify-between items-center ${
-                isHomePage 
-                  ? `transition-all duration-500 ease-in-out ${scrolled ? 'h-20' : 'h-32'}`
-                  : 'h-20'
+                isHomePage
+                  ? `transition-all duration-500 ease-in-out ${scrolled ? 'h-16 sm:h-20' : 'h-20 sm:h-24 md:h-28 lg:h-32'}`
+                  : 'h-16 sm:h-20'
               }`}>
-                <Link to={createPageUrl('')}>
+                <Link to={createPageUrl('')} className="flex-shrink-0">
                   <div
                     onClick={handleLogoClick}
-                    className="relative cursor-pointer"
+                    className="relative cursor-pointer touch-manipulation"
                   >
                     <img
                       src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1758752837/logo_a4toul.png"
                       alt="Disruptors Media Logo"
                       className={`object-contain w-auto transition-all duration-500 ease-in-out ${
                         isHomePage
-                          ? `${scrolled ? 'h-10' : 'h-12'}`
-                          : 'h-10'
+                          ? `${scrolled ? 'h-8 sm:h-10' : 'h-10 sm:h-12'}`
+                          : 'h-8 sm:h-10'
                       } ${isTimerActive ? 'animate-pulse' : ''}`}
                     />
 
@@ -163,12 +163,12 @@ export default function Layout({ children, currentPageName }) {
                   </div>
                 </Link>
 
-                <nav className="hidden lg:flex items-center space-x-8">
+                <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
                   {navItems.map((item) => (
                     <Link
                       key={item.name}
                       to={createPageUrl(item.path)}
-                      className="text-xs font-semibold uppercase tracking-widest transition-colors hover:text-gray-300"
+                      className="text-xs font-semibold uppercase tracking-widest transition-colors hover:text-gray-300 py-2"
                     >
                       {item.name}
                     </Link>
@@ -176,15 +176,17 @@ export default function Layout({ children, currentPageName }) {
                 </nav>
 
                 <div className="hidden lg:flex items-center">
-                   <Link to={createPageUrl('book-strategy-session')} className="group relative inline-flex items-center justify-center h-10 px-6 text-xs font-bold text-white uppercase bg-transparent border border-white" style={{clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)'}}>
+                   <Link to={createPageUrl('book-strategy-session')} className="group relative inline-flex items-center justify-center h-10 px-4 xl:px-6 text-xs font-bold text-white uppercase bg-transparent border border-white touch-manipulation" style={{clipPath: 'polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%)'}}>
                       <span>Book a Call</span>
                       <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                    </Link>
                 </div>
 
                 <button
-                  className="lg:hidden p-2 text-white"
+                  className="lg:hidden p-3 -m-1 text-white touch-manipulation"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                  aria-expanded={mobileMenuOpen}
                 >
                   {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                 </button>
@@ -199,21 +201,21 @@ export default function Layout({ children, currentPageName }) {
                   exit={{ opacity: 0, height: 0 }}
                   className={`lg:hidden border-t border-gray-700 ${
                     isHomePage
-                      ? `transition-colors duration-500 ${scrolled ? 'bg-black/70 backdrop-blur-md' : 'bg-black/30 backdrop-blur-sm'}`
-                      : 'bg-black/70 backdrop-blur-md'
+                      ? `transition-colors duration-500 ${scrolled ? 'bg-black/90 backdrop-blur-md' : 'bg-black/80 backdrop-blur-sm'}`
+                      : 'bg-black/90 backdrop-blur-md'
                   }`}
                 >
-                  <div className="px-4 py-6 space-y-4">
+                  <div className="px-4 py-6 space-y-1 max-h-[calc(100vh-5rem)] overflow-y-auto">
                     {navItems.map((item) => (
                       <Link
                         key={item.name}
                         to={createPageUrl(item.path)}
-                        className="block text-base font-medium text-white hover:text-gray-300 transition-colors"
+                        className="block text-base font-medium text-white hover:text-gray-300 transition-colors py-3 px-2 -mx-2 rounded touch-manipulation min-h-[48px] flex items-center"
                       >
                         {item.name}
                       </Link>
                     ))}
-                     <Button asChild className="w-full mt-4 bg-white text-black hover:bg-gray-200">
+                     <Button asChild className="w-full mt-4 bg-white text-black hover:bg-gray-200 h-12 text-base touch-manipulation">
                         <Link to={createPageUrl('book-strategy-session')}>Book a Call</Link>
                      </Button>
                   </div>
@@ -222,7 +224,7 @@ export default function Layout({ children, currentPageName }) {
             </AnimatePresence>
           </header>
           
-          <div className={`${!isHomePage && 'pt-20'}`}>
+          <div className={`${!isHomePage && 'pt-16 sm:pt-20'}`}>
             <AnimatePresence mode="wait">
               <motion.main
                 key={currentPageName}
@@ -237,46 +239,36 @@ export default function Layout({ children, currentPageName }) {
             </AnimatePresence>
           </div>
 
-          <footer className="bg-gray-900/95 backdrop-blur-sm text-white pt-20 pb-8 px-4 sm:px-6 lg:px-8">
+          <footer className="bg-gray-900/95 backdrop-blur-sm text-white pt-12 sm:pt-20 pb-8 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
-              {/* Top Section */}
-              <div className="grid md:grid-cols-2 gap-8 items-center mb-16">
-                <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter">Get a free quote</h2>
-                <p className="text-gray-300">Think you need something but not sure what? That's what we're here for. Get in touch!</p>
-              </div>
-              
-              {/* Decorative lines */}
-              <div className="space-y-1.5 my-16">
-                  {Array.from({length: 8}).map((_, i) => <div key={i} className="h-0.5 bg-white/50 w-full"></div>)}
-              </div>
 
               {/* Book a call bar */}
-              <Link to={createPageUrl('book-strategy-session')} className="group flex items-center justify-between p-8 bg-[#212121] text-white hover:bg-black transition-colors mb-20">
-                  <span className="text-5xl md:text-6xl font-black uppercase tracking-tighter">Book a call</span>
-                  <ArrowRight className="w-12 h-12 md:w-16 md:h-16 transition-transform group-hover:translate-x-4" />
+              <Link to={createPageUrl('book-strategy-session')} className="group flex items-center justify-between p-4 sm:p-6 md:p-8 bg-[#212121] text-white hover:bg-black transition-colors mb-12 sm:mb-20 min-h-[60px] touch-manipulation">
+                  <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black uppercase tracking-tighter">Book a call</span>
+                  <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 transition-transform group-hover:translate-x-2 sm:group-hover:translate-x-4 flex-shrink-0 ml-4" />
               </Link>
 
               {/* Footer nav */}
-              <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-16">
+              <nav className="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-3 sm:gap-y-2 mb-12 sm:mb-16">
                   {footerLinks.map(link => (
-                      <Link key={link.name} to={createPageUrl(link.path)} className="text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-white transition-colors">{link.name}</Link>
+                      <Link key={link.name} to={createPageUrl(link.path)} className="text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-white transition-colors min-h-[44px] flex items-center touch-manipulation">{link.name}</Link>
                   ))}
               </nav>
 
               {/* Bottom bar */}
-              <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-xs text-gray-500 font-mono tracking-wider">
-                  <div className="text-center md:text-left">
+              <div className="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8 text-[10px] sm:text-xs text-gray-500 font-mono tracking-wider">
+                  <div className="text-center md:text-left order-2 md:order-1">
                       <p>&copy;{new Date().getFullYear()} DISRUPTORS MEDIA INC.</p>
-                      <p>82924 N MAIN ST, NORTH SALT LAKE, UT 84054</p>
+                      <p className="mt-1 text-[9px] sm:text-[10px]">82924 N MAIN ST, NORTH SALT LAKE, UT 84054</p>
                   </div>
-                  <div className="flex items-center gap-6">
-                      <a href="#" className="hover:text-white"><Twitter className="w-5 h-5" /></a>
-                      <a href="#" className="hover:text-white"><Youtube className="w-5 h-5" /></a>
-                      <a href="#" className="hover:text-white"><Instagram className="w-5 h-5" /></a>
+                  <div className="flex items-center gap-6 sm:gap-8 order-1 md:order-2">
+                      <a href="#" className="hover:text-white p-2 -m-2 touch-manipulation" aria-label="Twitter"><Twitter className="w-5 h-5 sm:w-6 sm:h-6" /></a>
+                      <a href="#" className="hover:text-white p-2 -m-2 touch-manipulation" aria-label="YouTube"><Youtube className="w-5 h-5 sm:w-6 sm:h-6" /></a>
+                      <a href="#" className="hover:text-white p-2 -m-2 touch-manipulation" aria-label="Instagram"><Instagram className="w-5 h-5 sm:w-6 sm:h-6" /></a>
                   </div>
-                  <div className="text-center md:text-right">
+                  <div className="text-center md:text-right order-3 hidden sm:block">
                       <p>40.853490, -111.911790</p>
-                      <p>LOAD ADDRESS: 034520-01, ISCXX COMPRESSED</p>
+                      <p className="mt-1 text-[9px] sm:text-[10px]">LOAD ADDRESS: 034520-01, ISCXX COMPRESSED</p>
                   </div>
               </div>
 

@@ -28,10 +28,11 @@ const caseData = {
 
 export default function WorkTheWellnessWay() {
   return (
-    <div className="bg-transparent text-white min-h-screen">
+    <div className="bg-transparent text-black min-h-screen">
       {/* Hero */}
       <div className="relative bg-transparent py-24 sm:py-32 -mt-20">
         <img src={caseData.heroImage} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20" />
+        <div className="absolute inset-0 bg-black/70"></div>
         <div className="mx-auto max-w-5xl px-6 lg:px-8 text-center relative pt-20">
           <motion.div initial={{ opacity: 0, y:20 }} animate={{ opacity: 1, y:0 }} transition={{ duration: 0.6 }}>
             <img src={caseData.clientLogo} alt={caseData.client} className="h-16 mx-auto mb-6 filter brightness-0 invert" />

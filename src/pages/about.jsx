@@ -169,7 +169,7 @@ export default function About() {
       </section>
 
       {/* Section 4: Call to Action */}
-       <section className="bg-transparent text-white py-20">
+       <section className="bg-gray-900 text-white py-20">
          <div className="text-center mb-8">
             <h2 className="text-4xl font-bold">Work with the Disruptors</h2>
             <p className="text-lg text-gray-300 mt-2">We help you scale your business without losing its soul. Start with a free strategy session.</p>

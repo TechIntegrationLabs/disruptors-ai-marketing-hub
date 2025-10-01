@@ -67,6 +67,7 @@ const ResourcesAiSuitcaseTermsDecoded = lazy(() => import('./resources-ai-suitca
 const ScrollAnimationDemo = lazy(() => import('../components/examples/ScrollAnimationExamples.jsx'));
 const FullAnimationDemo = lazy(() => import('./full-animation-demo.jsx'));
 const SplineDemo = lazy(() => import('./spline-demo.jsx'));
+const SplineHandPreview = lazy(() => import('./spline-hand-preview.jsx'));
 const VideoScrubDemo = lazy(() => import('./video-scrub-demo.jsx'));
 
 const PAGES = {
@@ -152,6 +153,8 @@ const PAGES = {
     "full-animation": FullAnimationDemo,
 
     "spline-demo": SplineDemo,
+
+    "spline-hand-preview": SplineHandPreview,
 
     "video-scrub-demo": VideoScrubDemo,
 
@@ -264,6 +267,8 @@ function PagesContent() {
                 <Route path="/full-animation" element={<FullAnimationDemo />} />
 
                 <Route path="/spline-demo" element={<SplineDemo />} />
+
+                <Route path="/spline-hand-preview" element={<SplineHandPreview />} />
 
                 <Route path="/video-scrub-demo" element={<VideoScrubDemo />} />
 

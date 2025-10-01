@@ -67,12 +67,12 @@ export default function Home() {
       <AlternatingLayout sections={alternatingData} />
 
       {/* Client Logos Marquee */}
-      <div className="py-16 bg-transparent overflow-hidden">
+      <div className="py-16 bg-gray-900 overflow-hidden">
         <ClientLogoMarquee />
       </div>
 
       {/* Our Approach (3 Pillars) */}
-      <section className="bg-transparent text-white py-24 sm:py-32">
+      <section className="bg-gray-900 text-white py-24 sm:py-32">
         <ThreePillars />
       </section>
 
@@ -96,7 +96,7 @@ export default function Home() {
       </section>
 
       {/* CTA Block */}
-       <section className="bg-transparent text-white py-20">
+       <section className="bg-gray-900 text-white py-20">
          <DualCTABlock />
        </section>
     </div>

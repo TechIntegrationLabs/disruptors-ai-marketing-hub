@@ -4,6 +4,20 @@ module.exports = {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
+  		screens: {
+  			'xs': '475px',
+  			'3xl': '1920px',
+  		},
+  		spacing: {
+  			'safe-top': 'env(safe-area-inset-top)',
+  			'safe-bottom': 'env(safe-area-inset-bottom)',
+  			'safe-left': 'env(safe-area-inset-left)',
+  			'safe-right': 'env(safe-area-inset-right)',
+  		},
+  		minHeight: {
+  			'screen-safe': 'calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom))',
+  			'svh': '100svh',
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

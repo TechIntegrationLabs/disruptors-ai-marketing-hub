@@ -103,7 +103,9 @@ export default function Work() {
       </section>
 
       {/* Final CTA Block */}
-      <DualCTABlock />
+      <section className="bg-gray-900 text-white py-20">
+        <DualCTABlock />
+      </section>
     </div>
   );
 }

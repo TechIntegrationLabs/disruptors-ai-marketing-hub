@@ -83,7 +83,7 @@ export default function Hero({
     }
   }
   return (
-    <section className="relative min-h-screen overflow-hidden flex items-center justify-center bg-transparent py-12">
+    <section className="relative min-h-[100svh] overflow-hidden flex items-center justify-center bg-transparent py-8 sm:py-12 md:py-16">
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0 opacity-15">
         <img
@@ -95,18 +95,18 @@ export default function Hero({
       </div>
 
       {/* Content Container - Constrained Width */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 w-full">
         {/* Text Content - Same Width as Video */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-6 sm:mb-8 md:mb-12"
         >
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-black mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-black mb-4 sm:mb-6 px-2">
             {h1}
           </h1>
-          <p className="text-lg sm:text-xl text-gray-800 leading-relaxed mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-800 leading-relaxed mx-auto max-w-3xl px-4">
             {lead}
           </p>
         </motion.div>
@@ -118,7 +118,7 @@ export default function Hero({
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative w-full"
         >
-          <div className="relative hero-video-shape overflow-hidden shadow-2xl rounded-3xl">
+          <div className="relative hero-video-shape overflow-hidden shadow-2xl rounded-2xl sm:rounded-3xl">
             <video
               src={media.video.url}
               autoPlay
@@ -128,11 +128,11 @@ export default function Hero({
               className="w-full h-full object-cover"
             />
             {/* Centered Logo Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-4">
               <img
                 src={media.logo.url}
                 alt={media.logo.alt}
-                className="h-32 sm:h-40 md:h-48 lg:h-56"
+                className="h-20 sm:h-28 md:h-36 lg:h-48 xl:h-56 w-auto object-contain"
               />
             </div>
           </div>
@@ -149,7 +149,22 @@ export default function Hero({
         .hero-video-shape {
           clip-path: polygon(0% 0%, 90% 0%, 100% 20%, 100% 100%, 10% 100%, 0% 80%);
           aspect-ratio: 16/9;
-          min-height: 400px;
+          min-height: 250px;
+        }
+        @media (min-width: 640px) {
+          .hero-video-shape {
+            min-height: 300px;
+          }
+        }
+        @media (min-width: 768px) {
+          .hero-video-shape {
+            min-height: 350px;
+          }
+        }
+        @media (min-width: 1024px) {
+          .hero-video-shape {
+            min-height: 400px;
+          }
         }
       `}</style>
     </section>

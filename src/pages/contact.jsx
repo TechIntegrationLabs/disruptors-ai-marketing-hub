@@ -35,36 +35,36 @@ export default function Contact() {
       {/* Enhanced Hero Section */}
       <AlternatingLayout sections={contactHeroData} />
 
-      <div className="bg-white py-16 sm:py-24">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-white py-8 sm:py-12 md:py-16 lg:py-24">
+        <div className="max-w-3xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8">
+            <div className="bg-gray-50 border border-gray-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
             {isSubmitted ? (
-              <div className="text-center py-12 flex flex-col items-center justify-center min-h-[300px]">
-                <CheckCircle className="w-16 h-16 text-green-500 mb-4" />
-                <h3 className="text-2xl font-bold text-black mb-2">Thank you!</h3>
-                <p className="text-black">Your message has been sent. We'll get back to you shortly.</p>
+              <div className="text-center py-8 sm:py-12 flex flex-col items-center justify-center min-h-[250px] sm:min-h-[300px]">
+                <CheckCircle className="w-12 h-12 sm:w-16 sm:h-16 text-green-500 mb-3 sm:mb-4" />
+                <h3 className="text-xl sm:text-2xl font-bold text-black mb-2">Thank you!</h3>
+                <p className="text-sm sm:text-base text-black px-4">Your message has been sent. We'll get back to you shortly.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div>
-                  <Label htmlFor="name" className="font-semibold text-black">Full Name</Label>
-                  <Input id="name" type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="mt-2" placeholder="John Doe" />
+                  <Label htmlFor="name" className="font-semibold text-black text-sm sm:text-base">Full Name</Label>
+                  <Input id="name" type="text" required value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="mt-2 h-11 sm:h-12 text-base touch-manipulation" placeholder="John Doe" />
                 </div>
                 <div>
-                  <Label htmlFor="email" className="font-semibold text-black">Email Address</Label>
-                  <Input id="email" type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="mt-2" placeholder="you@company.com" />
+                  <Label htmlFor="email" className="font-semibold text-black text-sm sm:text-base">Email Address</Label>
+                  <Input id="email" type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="mt-2 h-11 sm:h-12 text-base touch-manipulation" placeholder="you@company.com" />
                 </div>
                 <div>
-                  <Label htmlFor="message" className="font-semibold text-black">Message</Label>
-                  <Textarea id="message" required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} className="mt-2" placeholder="How can we help?" rows={5}/>
+                  <Label htmlFor="message" className="font-semibold text-black text-sm sm:text-base">Message</Label>
+                  <Textarea id="message" required value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})} className="mt-2 text-base touch-manipulation min-h-[120px] sm:min-h-[140px]" placeholder="How can we help?" rows={5}/>
                 </div>
-                <div className="pt-4">
-                  <Button type="submit" className="w-full text-lg py-6">Send Message</Button>
+                <div className="pt-2 sm:pt-4">
+                  <Button type="submit" className="w-full text-base sm:text-lg py-5 sm:py-6 h-auto touch-manipulation">Send Message</Button>
                 </div>
               </form>
             )}
