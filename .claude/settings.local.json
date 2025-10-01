@@ -20,7 +20,8 @@
       "Bash(curl:*)",
       "WebFetch(domain:dm4.wjwelsh.com)",
       "WebFetch(domain:app.netlify.com)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(npm --version)"
     ],
     "deny": [],
     "ask": []
