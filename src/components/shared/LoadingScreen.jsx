@@ -39,14 +39,6 @@ export default function LoadingScreen({ onComplete }) {
           transition={{ duration: 0.5 }}
           className="fixed inset-0 z-[100] bg-gray-100 flex items-center justify-center overflow-hidden"
         >
-          {/* Background Image */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
-            style={{
-              backgroundImage: 'url(https://res.cloudinary.com/dvcvxhzmt/image/upload/f_auto,q_auto/disruptors-media/ui/backgrounds/loader-lft.jpg)',
-              filter: 'grayscale(100%)'
-            }}
-          />
 
           {/* Grid Overlay */}
           <div className="absolute inset-0 opacity-20">

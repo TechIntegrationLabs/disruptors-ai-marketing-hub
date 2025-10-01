@@ -7,16 +7,6 @@ import { createPageUrl } from '@/utils';
 export default function AlternatingLayout({ sections = [] }) {
   return (
     <div className="relative">
-      {/* Background Image Layer */}
-      <div className="fixed inset-0 z-0 opacity-10 pointer-events-none">
-        <img
-          src="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1737579300/disruptors-ai/backgrounds/hero-background.jpg"
-          alt="Abstract AI neural network background"
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-      </div>
-
       {sections.map((section, index) => {
         const isEven = index % 2 === 0;
         const isReversed = !isEven;

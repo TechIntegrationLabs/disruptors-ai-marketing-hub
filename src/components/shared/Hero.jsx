@@ -128,12 +128,21 @@ export default function Hero({
               className="w-full h-full object-cover"
             />
             {/* Centered Logo Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none p-4">
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none p-4 gap-4 sm:gap-6">
               <img
                 src={media.logo.url}
                 alt={media.logo.alt}
                 className="h-20 sm:h-28 md:h-36 lg:h-48 xl:h-56 w-auto object-contain"
               />
+              {/* Text Overlay Below Logo */}
+              <div className="text-center text-white max-w-2xl px-4">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 drop-shadow-lg">
+                  AI-Powered Marketing Agency
+                </h2>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl drop-shadow-md">
+                  We combine deep marketing expertise with cutting-edge AI systems to create flexible growth strategies tailored to your business needs.
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>
