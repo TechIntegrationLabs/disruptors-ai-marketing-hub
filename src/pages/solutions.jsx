@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Cpu, Share2, Search, Filter, DollarSign, Mic, AppWindow, Users, Briefcase, ArrowRight } from 'lucide-react';
-import AlternatingLayout from '../components/shared/AlternatingLayout';
+import ServicesHandScroll from '../components/shared/ServicesHandScroll';
 import DualCTABlock from '../components/shared/DualCTABlock';
 
 const services = [
@@ -80,22 +80,13 @@ const ServiceCard = ({ service, index }) => {
 };
 
 export default function Solutions() {
-  const solutionsHeroData = [
-    {
-      kicker: "SOLUTIONS",
-      headline: "AI-Powered Marketing Solutions",
-      body: "A complete suite of AI-powered marketing and automation services designed to drive growth, efficiency, and real business results. From automation to custom apps, we help you leverage technology to scale without losing your human touch.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2426&q=80",
-      imageAlt: "Business solutions and strategy",
-      backgroundColor: "bg-transparent",
-      textColor: "text-black"
-    }
-  ];
-
   return (
     <div>
-      {/* Enhanced Hero Section */}
-      <AlternatingLayout sections={solutionsHeroData} />
+      {/* Interactive 3D Hero Section with Scroll Animation */}
+      <ServicesHandScroll
+        title="AI-Powered Marketing Solutions"
+        description="Transform your business with cutting-edge automation and intelligent marketing strategies"
+      />
 
       {/* Services Grid */}
       <section className="pb-24 sm:pb-32 pt-12">
