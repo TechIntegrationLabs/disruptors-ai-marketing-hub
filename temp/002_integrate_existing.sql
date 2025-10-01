@@ -175,8 +175,7 @@ SELECT
   tm.name as author_name,
   tm.email as author_email,
   tm.title as author_title,
-  a.name as agent_name,
-  a.id as agent_id
+  a.name as agent_name
 FROM posts p
 LEFT JOIN team_members tm ON p.author_member_id = tm.id
 LEFT JOIN agents a ON p.agent_id = a.id;

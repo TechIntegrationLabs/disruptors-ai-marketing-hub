@@ -12,7 +12,14 @@
       "WebSearch",
       "Bash(node:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nfeat: UI enhancements, 3D performance optimizations, and migration tooling\n\n**UI/UX Improvements:**\n- Enhanced ClientLogoMarquee with drag-to-scroll and clickable client links\n- Tripled logo array for smoother infinite scroll experience\n- Added hover states and scale transitions on client logos\n- Larger logo display (96px → 192px) for better visibility\n\n**Performance Optimizations:**\n- Optimized ServicesHandScroll 3D animations with GSAP tweens\n- Increased scrub values (1→2 desktop, 2→3 mobile) for smoother performance\n- Added hardware acceleration (force3D, willChange, backfaceVisibility)\n- Implemented requestAnimationFrame for 60fps 3D updates\n- Fixed services image opacity to prevent disappearing\n\n**Database Migration Tooling:**\n- Added migration execution scripts for Admin Nexus integration\n- Created MIGRATION_EXECUTION_GUIDE.md with step-by-step instructions\n- Added pg (PostgreSQL) dependency for direct database operations\n- Migration scripts: apply-admin-nexus-migrations.js, run-migrations.js\n\n**Visual Updates:**\n- Updated favicon from .ico to .svg format\n- Enhanced favicon with transparent background\n\n**Configuration:**\n- Extended Claude Code permissions for automation workflows\n- Minor documentation formatting updates\n\n**Files Changed:**\n- Modified: 13 files (components, pages, configs, docs)\n- Added: 7 files (migration scripts, favicon, guides)\n- Dependencies: +1 (pg@^8.16.3)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git log:*)",
+      "Bash(npx netlify status:*)",
+      "Bash(npx netlify deploys:list:*)",
+      "Bash(npx netlify deploy:*)",
+      "Bash(curl:*)",
+      "WebFetch(domain:dm4.wjwelsh.com)",
+      "WebFetch(domain:app.netlify.com)"
     ],
     "deny": [],
     "ask": []
