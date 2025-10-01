@@ -15,7 +15,8 @@ export default function Home() {
       body: "We combine deep marketing expertise with cutting-edge AI systems to create flexible growth strategies that scale your business beyond current limitations.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259177/social_u4455988764_Innovation_Section_Cutting-Edge_AI_Solutions_An_a_f5059a4a-a4d2-493b-a4ce-f16bce3d9987_0_1_vza370.mp4",
       imageAlt: "AI Technology Transformation",
-      backgroundColor: "bg-transparent text-white backdrop-blur-md",
+      backgroundColor: "bg-transparent backdrop-blur-md",
+      textColor: "text-black",
       cta: {
         label: "Start Your Transformation",
         link: "book-strategy-session"
@@ -27,7 +28,8 @@ export default function Home() {
       body: "We help companies generate leads, streamline operations, and scale using AI-powered systems—all with complete transparency so you stay in control of your growth journey.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4",
       imageAlt: "Growth Partnership Visualization",
-      backgroundColor: "bg-transparent text-white backdrop-blur-sm"
+      backgroundColor: "bg-transparent backdrop-blur-sm",
+      textColor: "text-black"
     },
     {
       kicker: "INNOVATION",
@@ -35,7 +37,8 @@ export default function Home() {
       body: "From automated lead generation to intelligent customer insights, we deploy the latest AI technologies to give your business a competitive edge in the digital marketplace.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4",
       imageAlt: "AI Innovation Technology",
-      backgroundColor: "bg-gray-900 text-white"
+      backgroundColor: "bg-gray-900",
+      textColor: "text-white"
     },
     {
       kicker: "RESULTS",
@@ -43,7 +46,8 @@ export default function Home() {
       body: "Our clients see average growth increases of 300% within the first 6 months. We don't just promise results—we deliver measurable outcomes that transform businesses.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759116522/full-animation_online-video-cutter.com_zzpok1.mp4",
       imageAlt: "Business Growth Analytics",
-      backgroundColor: "bg-transparent text-white"
+      backgroundColor: "bg-transparent",
+      textColor: "text-black"
     },
     {
       kicker: "MISSION",
@@ -51,7 +55,8 @@ export default function Home() {
       body: "Technology should free you from repetitive tasks. We leverage AI to eliminate monotony so you can focus on what only you can do: connect with the people you serve and grow your impact.",
       video: "https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259174/social_u4455988764_httpss.mj.runf65BhPN_EZo_make_the_clouds_slowly_s_3321fb69-fe0e-43bf-91c7-01e7551a7e85_0_f4rib5.mp4",
       imageAlt: "Human-AI Partnership",
-      backgroundColor: "bg-gray-900 text-white",
+      backgroundColor: "bg-gray-900",
+      textColor: "text-white",
       cta: {
         label: "Partner With Us",
         link: "book-strategy-session"
