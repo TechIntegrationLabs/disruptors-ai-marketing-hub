@@ -55,3 +55,6 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     storageKey: 'supabase-auth', // Unique storage key
   }
 })
+
+// Export as supabaseClient for backward compatibility
+export const supabaseClient = supabase
