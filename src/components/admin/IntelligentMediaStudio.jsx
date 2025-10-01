@@ -27,6 +27,9 @@ import {
   Zap
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Anthropic from '@anthropic-ai/sdk';
+import AIMediaOrchestrator from '@/lib/ai-orchestrator';
+import { supabaseClient } from '@/lib/supabase-client';
 
 /**
  * Intelligent Media Studio
@@ -103,44 +106,72 @@ const IntelligentMediaStudio = () => {
     setError(null);
 
     try {
-      // TODO: Call Claude API to analyze request and generate prompts
-      // For now, simulating with example
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      const anthropic = new Anthropic({
+        apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY,
+        dangerouslyAllowBrowser: true
+      });
 
-      const mockAnalysis = {
-        understanding: `You need a ${context.purpose} image for ${context.section || 'your site'}.`,
-        brandAlignment: 'High - matches Disruptors AI brand voice',
-        technicalRequirements: '1024x1024, professional quality, modern aesthetic',
-        recommendations: [
-          'Use Flux 1.1 Pro for highest quality',
-          'Consider 2-3 variations for A/B testing',
-          'Maintain brand colors: green, black, white'
-        ]
-      };
+      const systemPrompt = `You are an expert AI image prompt engineer for Disruptors AI, a premium marketing agency.
 
-      const mockPrompts = [
-        {
-          model: 'flux-pro',
-          prompt: `Professional marketing image: ${userRequest}. Modern, clean design with Disruptors AI brand aesthetic. High-quality, photorealistic, dramatic lighting. Green and black color scheme.`,
-          style: 'Professional Marketing',
-          reasoning: 'Optimized for Flux Pro model with brand-specific details'
-        },
-        {
-          model: 'flux-pro',
-          prompt: `Minimalist tech illustration: ${userRequest}. Flat design, geometric shapes, green accent color on black background. Modern, sleek, professional.`,
-          style: 'Minimalist Tech',
-          reasoning: 'Alternative style for variety'
-        },
-        {
-          model: 'gpt-image',
-          prompt: `High-fidelity photograph: ${userRequest}. Natural lighting, professional setup, clean composition. Suitable for ${context.purpose}.`,
-          style: 'Photorealistic',
-          reasoning: 'Natural, authentic look using GPT Image 1'
-        }
-      ];
+Brand Identity:
+- Colors: Dark sophisticated (black/gray) with premium gold accents (#d4af37)
+- Style: Professional, modern, technology-focused with timeless elegance
+- Aesthetic: High-tech, AI-forward, business-professional with premium feel
 
-      setAnalysisResult(mockAnalysis);
-      setGeneratedPrompts(mockPrompts);
+Your task: Analyze the user's image request and generate 3 optimized prompts for different AI models:
+1. Flux 1.1 Pro (Replicate) - Professional creative, best quality
+2. GPT Image 1 (OpenAI) - High fidelity, natural scenes
+3. Gemini 2.5 Flash (Google) - Fast, budget-friendly
+
+Return JSON only in this format:
+{
+  "understanding": "Brief summary of what they need",
+  "brandAlignment": "How well this aligns with brand",
+  "technicalRequirements": "Image specs and requirements",
+  "recommendations": ["recommendation 1", "recommendation 2", "recommendation 3"],
+  "prompts": [
+    {
+      "model": "flux-pro",
+      "prompt": "Detailed prompt optimized for Flux Pro",
+      "style": "Style name",
+      "reasoning": "Why this approach"
+    },
+    {
+      "model": "gpt-image",
+      "prompt": "Detailed prompt optimized for GPT Image",
+      "style": "Style name",
+      "reasoning": "Why this approach"
+    },
+    {
+      "model": "gemini-image",
+      "prompt": "Detailed prompt optimized for Gemini",
+      "style": "Style name",
+      "reasoning": "Why this approach"
+    }
+  ]
+}`;
+
+      const message = await anthropic.messages.create({
+        model: 'claude-sonnet-4-5-20250929',
+        max_tokens: 2000,
+        system: systemPrompt,
+        messages: [{
+          role: 'user',
+          content: `User request: ${userRequest}\n\nContext:\n- Purpose: ${context.purpose}\n- Section: ${context.section || 'Not specified'}\n- Technical details: ${context.technicalDetails || 'None'}\n- Brand voice: ${context.brandVoice ? 'Match Disruptors AI brand' : 'Generic'}\n\nGenerate optimized prompts.`
+        }]
+      });
+
+      const responseText = message.content[0].text;
+      const analysisData = JSON.parse(responseText);
+
+      setAnalysisResult({
+        understanding: analysisData.understanding,
+        brandAlignment: analysisData.brandAlignment,
+        technicalRequirements: analysisData.technicalRequirements,
+        recommendations: analysisData.recommendations
+      });
+
+      setGeneratedPrompts(analysisData.prompts);
       setStep('analyze');
     } catch (err) {
       console.error('Analysis error:', err);
@@ -159,25 +190,37 @@ const IntelligentMediaStudio = () => {
 
     try {
       const selectedPrompt = generatedPrompts[promptIndex];
+      const orchestrator = new AIMediaOrchestrator();
 
-      // TODO: Call appropriate image generation API based on model
-      // For now, simulating with placeholder
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      // Map model IDs
+      const modelMap = {
+        'flux-pro': { specialization: 'professional_creative' },
+        'gpt-image': {},
+        'gemini-image': { budget: 'low' }
+      };
 
-      const mockImage = {
-        url: `https://via.placeholder.com/1024x1024/1a1a1a/00ff00?text=${encodeURIComponent(selectedPrompt.style)}`,
+      const options = modelMap[selectedPrompt.model] || {};
+
+      const result = await orchestrator.generateImage(selectedPrompt.prompt, {
+        ...options,
+        width: 1024,
+        height: 1024
+      });
+
+      const generatedImage = {
+        url: result.url || result.output || result[0],
         prompt: selectedPrompt.prompt,
         model: selectedPrompt.model,
         style: selectedPrompt.style,
         timestamp: new Date().toISOString(),
         metadata: {
-          seed: Math.floor(Math.random() * 1000000),
-          steps: 50,
-          guidance: 7.5
+          provider: result.provider || 'unknown',
+          modelUsed: result.model || selectedPrompt.model,
+          ...result.metadata
         }
       };
 
-      setGeneratedImages(prev => [...prev, mockImage]);
+      setGeneratedImages(prev => [...prev, generatedImage]);
       setStep('review');
     } catch (err) {
       console.error('Generation error:', err);
@@ -192,10 +235,29 @@ const IntelligentMediaStudio = () => {
    */
   const handleSaveToDatabase = async (image) => {
     try {
-      // TODO: Save to Supabase site_media table
-      console.log('Saving to database:', image);
-      alert('Image saved to database (TODO: implement Supabase save)');
+      const { data, error } = await supabaseClient
+        .from('site_media')
+        .insert({
+          url: image.url,
+          type: 'ai_generated_image',
+          category: context.purpose,
+          section: context.section || 'general',
+          alt_text: userRequest.substring(0, 255),
+          prompt: image.prompt,
+          model: image.model,
+          style: image.style,
+          metadata: image.metadata,
+          created_at: new Date().toISOString()
+        })
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      alert(`Image saved successfully! ID: ${data.id}`);
+      console.log('Saved to database:', data);
     } catch (err) {
+      console.error('Save error:', err);
       setError(`Save failed: ${err.message}`);
     }
   };

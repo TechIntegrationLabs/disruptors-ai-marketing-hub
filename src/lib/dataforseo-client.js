@@ -13,8 +13,8 @@
 
 class DataForSEOClient {
   constructor() {
-    this.username = import.meta.env.DATAFORSEO_USERNAME;
-    this.password = import.meta.env.DATAFORSEO_PASSWORD;
+    this.username = import.meta.env.VITE_DATAFORSEO_USERNAME;
+    this.password = import.meta.env.VITE_DATAFORSEO_PASSWORD;
     this.baseURL = 'https://api.dataforseo.com/v3';
 
     if (!this.username || !this.password) {
