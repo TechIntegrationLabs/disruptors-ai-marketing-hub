@@ -5,7 +5,8 @@
  * Run with: node test-admin-panel.js
  */
 
-const { chromium } = require('playwright');
+import { chromium } from 'playwright';
+import fs from 'fs';
 
 const SITE_URL = 'https://dm4.wjwelsh.com';
 const ADMIN_PASSWORD = 'DMadmin';
@@ -348,7 +349,6 @@ async function runDiagnostics() {
     }
 
     // Save detailed report
-    const fs = require('fs');
     const reportPath = './admin-panel-diagnostic-report.json';
     fs.writeFileSync(reportPath, JSON.stringify(report, null, 2));
     console.log(`\nDetailed report saved to: ${reportPath}\n`);
