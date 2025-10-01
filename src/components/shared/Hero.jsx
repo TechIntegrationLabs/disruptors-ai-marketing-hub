@@ -85,14 +85,16 @@ export default function Hero({
   return (
     <section className="relative min-h-[100svh] overflow-hidden flex items-center justify-center bg-transparent py-8 sm:py-12 md:py-16">
       {/* Background Image Layer */}
-      <div className="absolute inset-0 z-0 opacity-15">
-        <img
-          src={media.background.url}
-          alt={media.background.alt}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-      </div>
+      {media.background.url && (
+        <div className="absolute inset-0 z-0 opacity-15">
+          <img
+            src={media.background.url}
+            alt={media.background.alt}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      )}
 
       {/* Content Container - Constrained Width */}
       <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 w-full">

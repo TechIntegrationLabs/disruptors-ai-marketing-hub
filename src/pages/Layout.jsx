@@ -239,37 +239,99 @@ export default function Layout({ children, currentPageName }) {
             </AnimatePresence>
           </div>
 
-          <footer className="bg-gray-900/95 backdrop-blur-sm text-white pt-12 sm:pt-20 pb-8 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
+          <footer className="relative pt-12 sm:pt-16 md:pt-20 pb-8 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <div className="max-w-7xl mx-auto relative">
 
-              {/* Book a call bar */}
-              <Link to={createPageUrl('book-strategy-session')} className="group flex items-center justify-between p-4 sm:p-6 md:p-8 bg-[#212121] text-white hover:bg-black transition-colors mb-12 sm:mb-20 min-h-[60px] touch-manipulation">
-                  <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black uppercase tracking-tighter">Book a call</span>
-                  <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 transition-transform group-hover:translate-x-2 sm:group-hover:translate-x-4 flex-shrink-0 ml-4" />
-              </Link>
+              {/* Logo emboss watermark */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[800px] lg:w-[906px] opacity-5 pointer-events-none">
+                <img src="/assets/footer/logo-emboss.png" alt="" className="w-full h-auto" />
+              </div>
 
-              {/* Footer nav */}
-              <nav className="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-3 sm:gap-y-2 mb-12 sm:mb-16">
-                  {footerLinks.map(link => (
-                      <Link key={link.name} to={createPageUrl(link.path)} className="text-xs font-semibold uppercase tracking-widest text-gray-400 hover:text-white transition-colors min-h-[44px] flex items-center touch-manipulation">{link.name}</Link>
-                  ))}
+              {/* Get a free quote section */}
+              <div className="relative flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12 sm:mb-16 md:mb-20">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[65px] font-black uppercase text-[#2b2b2b] leading-tight tracking-tight" style={{fontFamily: "'PP Supply Mono', monospace"}}>
+                  Get a free Quote
+                </h2>
+                <p className="text-sm sm:text-base text-[#2b2b2b] max-w-[393px] text-justify" style={{fontFamily: "'PP Supply Mono', monospace", lineHeight: "21px"}}>
+                  Think you need something but not sure what? That's what we're here for. Get in touch!
+                </p>
+              </div>
+
+              {/* Animated lines + Book a call CTA */}
+              <div className="relative mb-16 sm:mb-20 md:mb-32 lg:mb-40">
+                {/* Animated horizontal lines */}
+                <div className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 mb-4 sm:mb-5">
+                  <div className="h-[1px] bg-[#2b2b2b]"></div>
+                  <div className="h-[2px] bg-[#2b2b2b]"></div>
+                  <div className="h-[4px] bg-[#2b2b2b]"></div>
+                  <div className="h-[7px] bg-[#2b2b2b]"></div>
+                  <div className="h-[9px] bg-[#2b2b2b]"></div>
+                  <div className="h-[11px] bg-[#2b2b2b]"></div>
+                </div>
+
+                {/* Book a call button */}
+                <Link
+                  to={createPageUrl('book-strategy-session')}
+                  className="group flex items-center justify-between px-4 sm:px-6 py-4 sm:py-5 md:py-6 bg-[#2b2b2b] text-[#f1ede9] hover:bg-black transition-colors min-h-[60px] sm:min-h-[70px] md:min-h-[80px] touch-manipulation"
+                >
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight" style={{fontFamily: "'PP Supply Mono', monospace"}}>
+                    Book a call
+                  </span>
+                  <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform group-hover:translate-x-2 flex-shrink-0 ml-4 rotate-[-90deg]" />
+                </Link>
+              </div>
+
+              {/* Footer navigation */}
+              <nav className="relative flex flex-wrap justify-center gap-x-6 sm:gap-x-8 gap-y-3 mb-16 sm:mb-24 md:mb-32 lg:mb-40">
+                {footerLinks.map(link => (
+                  <Link
+                    key={link.name}
+                    to={createPageUrl(link.path)}
+                    className="text-xs sm:text-sm font-normal uppercase tracking-widest text-[#2b2b2b] hover:opacity-60 transition-opacity min-h-[44px] flex items-center touch-manipulation"
+                    style={{fontFamily: "'PP Supply Mono', monospace", lineHeight: "28px"}}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
               </nav>
 
-              {/* Bottom bar */}
-              <div className="flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8 text-[10px] sm:text-xs text-gray-500 font-mono tracking-wider">
-                  <div className="text-center md:text-left order-2 md:order-1">
-                      <p>&copy;{new Date().getFullYear()} DISRUPTORS MEDIA INC.</p>
-                      <p className="mt-1 text-[9px] sm:text-[10px]">82924 N MAIN ST, NORTH SALT LAKE, UT 84054</p>
-                  </div>
-                  <div className="flex items-center gap-6 sm:gap-8 order-1 md:order-2">
-                      <a href="#" className="hover:text-white p-2 -m-2 touch-manipulation" aria-label="Twitter"><Twitter className="w-5 h-5 sm:w-6 sm:h-6" /></a>
-                      <a href="#" className="hover:text-white p-2 -m-2 touch-manipulation" aria-label="YouTube"><Youtube className="w-5 h-5 sm:w-6 sm:h-6" /></a>
-                      <a href="#" className="hover:text-white p-2 -m-2 touch-manipulation" aria-label="Instagram"><Instagram className="w-5 h-5 sm:w-6 sm:h-6" /></a>
-                  </div>
-                  <div className="text-center md:text-right order-3 hidden sm:block">
-                      <p>40.853490, -111.911790</p>
-                      <p className="mt-1 text-[9px] sm:text-[10px]">LOAD ADDRESS: 034520-01, ISCXX COMPRESSED</p>
-                  </div>
+              {/* Bottom section with social icons and info */}
+              <div className="relative flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 pb-8 sm:pb-10">
+                {/* Left: Copyright & address */}
+                <div className="text-center md:text-left order-2 md:order-1" style={{fontFamily: "'PP Supply Mono', monospace"}}>
+                  <p className="text-xs sm:text-sm uppercase text-[#2b2b2b]">
+                    ©{new Date().getFullYear()} Disruptors Media inc.
+                  </p>
+                  <p className="text-xs sm:text-sm uppercase text-[#2b2b2b] mt-2">
+                    650 N Main St, North Salt Lake, UT 84054
+                  </p>
+                </div>
+
+                {/* Center: Social icons */}
+                <div className="flex items-center gap-6 sm:gap-8 order-1 md:order-2">
+                  <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="Facebook">
+                    <img src="/assets/footer/facebook.png" alt="Facebook" className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </a>
+                  <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="YouTube">
+                    <Youtube className="w-5 h-5 sm:w-6 sm:h-6 text-[#2b2b2b]" />
+                  </a>
+                  <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="Instagram">
+                    <img src="/assets/footer/instagram.svg" alt="Instagram" className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </a>
+                  <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="Twitter">
+                    <img src="/assets/footer/twitter.webp" alt="Twitter" className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </a>
+                </div>
+
+                {/* Right: Coordinates & load address */}
+                <div className="text-center md:text-right order-3 hidden sm:block" style={{fontFamily: "'PP Supply Mono', monospace"}}>
+                  <p className="text-xs sm:text-sm uppercase text-[#2b2b2b]">
+                    40.853400, -111.911790
+                  </p>
+                  <p className="text-xs sm:text-sm uppercase text-[#2b2b2b] mt-2">
+                    Load Address: 034526-01, IScxx compressed
+                  </p>
+                </div>
               </div>
 
             </div>

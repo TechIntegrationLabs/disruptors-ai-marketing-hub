@@ -113,7 +113,7 @@ export default function Blog() {
   return (
     <div>
       {/* Enhanced Hero Section */}
-      <section className="bg-transparent text-white py-16 sm:py-24">
+      <section className="bg-transparent py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text Content */}
@@ -123,13 +123,13 @@ export default function Blog() {
               transition={{ duration: 0.8 }}
               className="space-y-6"
             >
-              <p className="text-base font-bold uppercase tracking-widest text-indigo-300">
+              <p className="text-base font-bold uppercase tracking-widest text-black">
                 INSIGHTS
               </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-black">
                 The Disruptors Blog
               </h1>
-              <p className="text-xl sm:text-2xl leading-relaxed text-gray-100">
+              <p className="text-xl sm:text-2xl leading-relaxed text-black">
                 Actionable insights, proven strategies, and a behind-the-scenes look at how we build AI-powered growth systems. Discover the latest trends, case studies, and expert advice to transform your business with AI.
               </p>
             </motion.div>
