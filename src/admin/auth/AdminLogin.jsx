@@ -1,46 +1,33 @@
 /**
  * Admin Login Component
- * Matrix-style authentication interface matching existing secret admin aesthetic
+ * Simple password-based authentication (password: "nexus")
  */
 
 import React, { useState } from 'react'
-import { loginAdmin, requestAdminRole } from '../../api/auth'
+
+const ADMIN_PASSWORD = 'nexus'
 
 export default function AdminLogin({ onSuccess }) {
-  const [mode, setMode] = useState('login') // 'login' | 'secret'
-  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [secretKey, setSecretKey] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault()
     setError('')
     setLoading(true)
 
-    try {
-      const data = await loginAdmin(email, password)
-      onSuccess(data)
-    } catch (err) {
-      setError(err.message)
-    } finally {
+    // Simple password check
+    if (password === ADMIN_PASSWORD) {
+      // Success - grant access
+      setTimeout(() => {
+        onSuccess({ authenticated: true })
+      }, 500)
+    } else {
+      // Wrong password
+      setError('Invalid password')
       setLoading(false)
-    }
-  }
-
-  const handleSecretAccess = async (e) => {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
-
-    try {
-      const data = await requestAdminRole(secretKey)
-      onSuccess(data)
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
+      setPassword('')
     }
   }
 
@@ -64,32 +51,6 @@ export default function AdminLogin({ onSuccess }) {
             </p>
           </div>
 
-          {/* Mode toggle */}
-          <div className="flex gap-2 mb-6">
-            <button
-              type="button"
-              onClick={() => setMode('login')}
-              className={`flex-1 py-2 px-4 font-mono text-sm transition-colors ${
-                mode === 'login'
-                  ? 'bg-green-500 text-black'
-                  : 'bg-gray-800 text-green-500 border border-green-500/30'
-              }`}
-            >
-              LOGIN
-            </button>
-            <button
-              type="button"
-              onClick={() => setMode('secret')}
-              className={`flex-1 py-2 px-4 font-mono text-sm transition-colors ${
-                mode === 'secret'
-                  ? 'bg-green-500 text-black'
-                  : 'bg-gray-800 text-green-500 border border-green-500/30'
-              }`}
-            >
-              SECRET_KEY
-            </button>
-          </div>
-
           {/* Error display */}
           {error && (
             <div className="mb-4 p-3 bg-red-900/30 border border-red-500/50 rounded">
@@ -97,80 +58,32 @@ export default function AdminLogin({ onSuccess }) {
             </div>
           )}
 
-          {/* Login form */}
-          {mode === 'login' && (
-            <form onSubmit={handleLogin} className="space-y-4">
-              <div>
-                <label className="block text-green-500 text-sm font-mono mb-2">
-                  EMAIL
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-black border border-green-500/30 text-green-400 px-4 py-2 font-mono focus:border-green-500 focus:outline-none"
-                  placeholder="admin@disruptors.co"
-                  required
-                  disabled={loading}
-                />
-              </div>
-
-              <div>
-                <label className="block text-green-500 text-sm font-mono mb-2">
-                  PASSWORD
-                </label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-black border border-green-500/30 text-green-400 px-4 py-2 font-mono focus:border-green-500 focus:outline-none"
-                  placeholder="••••••••"
-                  required
-                  disabled={loading}
-                />
-              </div>
-
-              <button
-                type="submit"
+          {/* Simple password form */}
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div>
+              <label className="block text-green-500 text-sm font-mono mb-2">
+                ACCESS PASSWORD
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full bg-black border border-green-500/30 text-green-400 px-4 py-2 font-mono focus:border-green-500 focus:outline-none"
+                placeholder="Enter password..."
+                required
                 disabled={loading}
-                className="w-full bg-green-500 hover:bg-green-400 text-black font-mono py-3 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? 'AUTHENTICATING...' : 'ACCESS SYSTEM'}
-              </button>
-            </form>
-          )}
+                autoFocus
+              />
+            </div>
 
-          {/* Secret key form */}
-          {mode === 'secret' && (
-            <form onSubmit={handleSecretAccess} className="space-y-4">
-              <div>
-                <label className="block text-green-500 text-sm font-mono mb-2">
-                  SECRET_ACCESS_KEY
-                </label>
-                <input
-                  type="password"
-                  value={secretKey}
-                  onChange={(e) => setSecretKey(e.target.value)}
-                  className="w-full bg-black border border-green-500/30 text-green-400 px-4 py-2 font-mono focus:border-green-500 focus:outline-none"
-                  placeholder="Enter secret key..."
-                  required
-                  disabled={loading}
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-green-500 hover:bg-green-400 text-black font-mono py-3 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? 'VERIFYING...' : 'GRANT ACCESS'}
-              </button>
-
-              <p className="text-green-500/50 text-xs font-mono text-center mt-4">
-                Requires admin authorization key
-              </p>
-            </form>
-          )}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-green-500 hover:bg-green-400 text-black font-mono py-3 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? 'AUTHENTICATING...' : 'ACCESS SYSTEM'}
+            </button>
+          </form>
 
           {/* Footer */}
           <div className="mt-8 pt-6 border-t border-green-500/20">
