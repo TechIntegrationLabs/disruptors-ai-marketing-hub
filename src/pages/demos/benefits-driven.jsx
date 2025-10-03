@@ -12,52 +12,60 @@ export default function BenefitsDrivenDemo() {
 
   const benefits = [
     {
-      icon: Zap,
-      title: "Lightning Fast Automation",
-      description: "Deploy AI systems that work 24/7, processing tasks in milliseconds instead of hours",
-      stat: "10x faster"
+      icon: Target,
+      title: "Expert Digital Marketing",
+      description: "Proven strategies across SEO, social media, paid ads, and content to drive qualified traffic",
+      stat: "Multi-channel",
+      service: "Marketing"
     },
     {
-      icon: Target,
-      title: "Precision Targeting",
-      description: "Reach your ideal customers with AI-powered audience segmentation and personalization",
-      stat: "85% accuracy"
+      icon: Zap,
+      title: "AI Automation",
+      description: "Deploy intelligent systems that work 24/7, processing tasks in milliseconds instead of hours",
+      stat: "10x faster",
+      service: "AI"
     },
     {
       icon: TrendingUp,
-      title: "Exponential Growth",
-      description: "Scale your operations without scaling your team through intelligent automation",
-      stat: "300% ROI"
-    },
-    {
-      icon: Shield,
-      title: "Enterprise Security",
-      description: "Bank-level encryption and compliance with SOC 2, GDPR, and industry standards",
-      stat: "99.99% uptime"
-    },
-    {
-      icon: Clock,
-      title: "Time Savings",
-      description: "Reclaim 20+ hours per week by automating repetitive marketing tasks",
-      stat: "20+ hrs/week"
+      title: "Conversion Optimization",
+      description: "Data-driven campaigns designed to turn visitors into customers and maximize ROI",
+      stat: "300% ROI",
+      service: "Marketing"
     },
     {
       icon: Users,
-      title: "Customer Insights",
-      description: "Understand your audience better with AI-powered analytics and predictions",
-      stat: "360° view"
+      title: "Predictive Analytics",
+      description: "AI-powered insights that predict customer behavior and optimize your marketing spend",
+      stat: "Smart insights",
+      service: "AI"
     },
     {
       icon: BarChart3,
-      title: "Real-Time Analytics",
-      description: "Track performance metrics and optimize campaigns with live dashboards",
-      stat: "Live data"
+      title: "Performance Tracking",
+      description: "Real-time dashboards showing exactly what's working and what needs adjustment",
+      stat: "Live data",
+      service: "Marketing"
     },
     {
       icon: Sparkles,
-      title: "AI-Powered Content",
-      description: "Generate high-quality marketing content that converts at scale",
-      stat: "100+ pieces/day"
+      title: "Content at Scale",
+      description: "AI generates high-quality marketing content that converts, from ads to blog posts",
+      stat: "100+ pieces/day",
+      service: "AI"
+    },
+    {
+      icon: Shield,
+      title: "Lead Generation",
+      description: "Systematic approach to filling your pipeline with qualified prospects ready to buy",
+      stat: "Qualified leads",
+      service: "Marketing"
+    },
+    {
+      icon: Clock,
+      title: "Marketing Automation",
+      description: "AI handles repetitive tasks, freeing your team to focus on strategy and relationships",
+      stat: "20+ hrs saved",
+      service: "AI"
     }
   ];
 
@@ -87,18 +95,18 @@ export default function BenefitsDrivenDemo() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-block px-4 py-2 bg-[#FFD700]/20 border border-[#FFD700] rounded-full text-[#FFD700] text-sm font-semibold mb-6">
-              BENEFITS-DRIVEN APPROACH
+              DIGITAL MARKETING × AI SOLUTIONS
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-              Stop Struggling with Marketing.
+              Marketing Strategies That Work.
               <br />
-              <span className="text-[#FFD700]">Start Dominating.</span>
+              <span className="text-[#FFD700]">AI That Scales Them.</span>
             </h1>
             <p className="text-xl text-[#EAEAEA] max-w-3xl mx-auto mb-8">
-              Transform your business with AI-powered marketing that delivers measurable results
+              We combine expert digital marketing with intelligent automation to deliver measurable, scalable results
             </p>
             <button className="bg-[#FFD700] hover:bg-[#E0B200] text-black px-10 py-4 rounded-full text-lg font-bold transition-all hover:scale-105">
-              Get Started Free
+              Get Digital Marketing + AI
             </button>
           </motion.div>
         </div>
@@ -139,8 +147,11 @@ export default function BenefitsDrivenDemo() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-gray-50 rounded-2xl p-6 hover:shadow-xl transition-shadow"
+                  className="bg-gray-50 rounded-2xl p-6 hover:shadow-xl transition-shadow relative"
                 >
+                  <div className="absolute top-4 right-4 text-xs font-bold px-2 py-1 rounded-full bg-[#FFD700] text-black">
+                    {benefit.service}
+                  </div>
                   <div className="w-12 h-12 bg-[#FFD700] rounded-xl flex items-center justify-center mb-4">
                     <Icon className="w-6 h-6 text-black" />
                   </div>

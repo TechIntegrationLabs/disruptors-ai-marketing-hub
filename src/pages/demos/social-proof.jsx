@@ -98,15 +98,15 @@ export default function SocialProofDemo() {
             transition={{ duration: 0.6 }}
           >
             <div className="inline-block px-4 py-2 bg-[#FFD700]/20 border border-[#FFD700] rounded-full text-[#FFD700] text-sm font-semibold mb-6">
-              TRUSTED BY 500+ COMPANIES
+              DIGITAL MARKETING × AI SOLUTIONS
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-              Join the Companies Already
+              Proven Results from
               <br />
-              <span className="text-[#FFD700]">Dominating Their Markets</span>
+              <span className="text-[#FFD700]">Marketing + AI</span>
             </h1>
             <p className="text-xl text-[#EAEAEA] max-w-3xl mx-auto mb-12">
-              See why industry leaders trust Disruptors AI to power their growth
+              See how we combine digital marketing expertise with AI automation to transform businesses like yours
             </p>
           </motion.div>
         </div>
@@ -298,7 +298,7 @@ export default function SocialProofDemo() {
             See why industry leaders choose Disruptors AI
           </p>
           <button className="bg-[#FFD700] hover:bg-[#E0B200] text-black px-12 py-5 rounded-full text-xl font-bold transition-all hover:scale-105 shadow-2xl">
-            Start Your Success Story
+            Get Digital Marketing + AI Solutions
           </button>
           <p className="text-[#C7C7C7] mt-6 text-sm">
             No credit card required • Free 14-day trial • Cancel anytime

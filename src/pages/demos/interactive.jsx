@@ -129,9 +129,9 @@ export default function InteractiveDemo() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4 }}
           >
-            Marketing That
+            Digital Marketing.
             <br />
-            <span className="text-[#FFD700]">Tells Your Story</span>
+            <span className="text-[#FFD700]">AI Automation.</span>
           </motion.h1>
           <motion.p
             className="text-xl sm:text-2xl text-[#EAEAEA] max-w-3xl mx-auto"
@@ -139,7 +139,7 @@ export default function InteractiveDemo() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
           >
-            Scroll to explore how AI transforms your business
+            Scroll to see how we combine proven marketing with intelligent automation
           </motion.p>
         </motion.div>
 

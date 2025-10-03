@@ -85,10 +85,10 @@ export default function ConversionDemo() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-block px-4 py-2 bg-[#FFD700] text-black rounded-full text-sm font-bold mb-6">
-                ⚡ EXCLUSIVE OFFER - TODAY ONLY
+                ⚡ DIGITAL MARKETING × AI SOLUTIONS
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-                Double Your Leads in
+                Marketing + AI =
                 <br />
                 <span className="text-[#FFD700]">90 Days or Less</span>
               </h1>
