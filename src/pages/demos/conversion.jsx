@@ -308,15 +308,15 @@ export default function ConversionDemo() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-gray-50 rounded-2xl p-8 border-2 border-gray-200"
+                className="bg-white rounded-2xl p-8 border-2 border-[#0E0E0E] shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="text-yellow-600 font-bold text-sm mb-2">{item.value}</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{item.title}</h3>
+                <div className="inline-block bg-[#FFD700] text-black font-bold text-sm px-3 py-1 rounded-full mb-3">{item.value}</div>
+                <h3 className="text-2xl font-bold text-[#0E0E0E] mb-6">{item.title}</h3>
                 <ul className="space-y-3">
                   {item.features.map((feature, j) => (
                     <li key={j} className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-[#FFD700] flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700">{feature}</span>
+                      <span className="text-gray-800 font-medium">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -325,9 +325,9 @@ export default function ConversionDemo() {
           </div>
 
           <div className="text-center mt-12">
-            <div className="inline-block bg-[#FFD700] text-black px-8 py-4 rounded-2xl">
-              <div className="text-sm font-semibold mb-1">Total Value: $23,000+</div>
-              <div className="text-3xl font-bold">Your Investment: $4,997</div>
+            <div className="inline-block bg-[#0E0E0E] text-white px-12 py-6 rounded-2xl border-4 border-[#FFD700] shadow-2xl">
+              <div className="text-sm font-semibold mb-2 text-[#C7C7C7]">Total Value: $23,000+</div>
+              <div className="text-4xl font-bold text-[#FFD700]">Your Investment: $4,997</div>
             </div>
           </div>
         </div>
