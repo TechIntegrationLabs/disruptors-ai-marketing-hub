@@ -70,6 +70,15 @@ const SplineDemo = lazy(() => import('./spline-demo.jsx'));
 const SplineHandPreview = lazy(() => import('./spline-hand-preview.jsx'));
 const VideoScrubDemo = lazy(() => import('./video-scrub-demo.jsx'));
 
+// Landing page demos - lazy loaded
+const DemosIndex = lazy(() => import('./demos/index.jsx'));
+const DemoHeroFocus = lazy(() => import('./demos/hero-focus.jsx'));
+const DemoBenefitsDriven = lazy(() => import('./demos/benefits-driven.jsx'));
+const DemoSocialProof = lazy(() => import('./demos/social-proof.jsx'));
+const DemoInteractive = lazy(() => import('./demos/interactive.jsx'));
+const DemoConversion = lazy(() => import('./demos/conversion.jsx'));
+const DemoBestOfAll = lazy(() => import('./demos/best-of-all.jsx'));
+
 const PAGES = {
     
     Home: Home,
@@ -157,6 +166,15 @@ const PAGES = {
     "spline-hand-preview": SplineHandPreview,
 
     "video-scrub-demo": VideoScrubDemo,
+
+    // Landing page demos
+    "demos": DemosIndex,
+    "demos-hero-focus": DemoHeroFocus,
+    "demos-benefits-driven": DemoBenefitsDriven,
+    "demos-social-proof": DemoSocialProof,
+    "demos-interactive": DemoInteractive,
+    "demos-conversion": DemoConversion,
+    "demos-best-of-all": DemoBestOfAll,
 
 }
 
@@ -271,6 +289,15 @@ function PagesContent() {
                 <Route path="/spline-hand-preview" element={<SplineHandPreview />} />
 
                 <Route path="/video-scrub-demo" element={<VideoScrubDemo />} />
+
+                {/* Landing page demos */}
+                <Route path="/demos" element={<DemosIndex />} />
+                <Route path="/demos/hero-focus" element={<DemoHeroFocus />} />
+                <Route path="/demos/benefits-driven" element={<DemoBenefitsDriven />} />
+                <Route path="/demos/social-proof" element={<DemoSocialProof />} />
+                <Route path="/demos/interactive" element={<DemoInteractive />} />
+                <Route path="/demos/conversion" element={<DemoConversion />} />
+                <Route path="/demos/best-of-all" element={<DemoBestOfAll />} />
 
                 {/* Catch-all route for 404 pages */}
                 <Route path="*" element={<NotFound />} />
