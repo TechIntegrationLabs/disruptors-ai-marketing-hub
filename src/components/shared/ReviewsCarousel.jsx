@@ -5,46 +5,55 @@ import { Star, Quote } from 'lucide-react';
 
 const placeholderReviews = [
   {
-    name: "Sarah Johnson",
+    name: "John Smith",
     role: "CEO",
-    company: "TechCorp Inc.",
-    quote: "Disruptors Media transformed our lead generation process, bringing in a significant increase in qualified leads within the first quarter.",
+    company: "TradeWorx USA",
+    quote: "Working with Disruptors AI completely transformed our lead generation. We went from chasing cold leads to having qualified prospects reach out to us daily. The AI automation handles everything while we focus on closing deals.",
     rating: 5,
     source: "Google",
     videoUrl: null
   },
   {
-    name: "Michael Chen",
-    role: "Marketing Director",
-    company: "GrowthCo",
-    quote: "Their AI automation saved us countless hours on repetitive tasks. The team is incredibly knowledgeable and responsive.",
+    name: "Dr. Sarah Williams",
+    role: "Practice Owner",
+    company: "The Wellness Way",
+    quote: "Before Disruptors AI, we were spending 35+ hours a week on marketing tasks. Now it runs itself. We've added 500+ new patients in 6 months and our cost per acquisition dropped by 60%. This is the future of healthcare marketing.",
     rating: 5,
-    source: "LinkedIn",
+    source: "Google",
     videoUrl: null
   },
   {
-    name: "Emily Rodriguez",
+    name: "Mike Johnson",
+    role: "Owner",
+    company: "SegPro Construction",
+    quote: "We secured $2M in new contracts in the first 6 months. The AI knows our ideal customer better than we do - 92% of our leads are now qualified, and our close rate jumped to 45%. Best investment we've ever made.",
+    rating: 5,
+    source: "Google",
+    videoUrl: null
+  },
+  {
+    name: "Jennifer Martinez",
+    role: "Owner",
+    company: "Granite Paving",
+    quote: "The level of personalization in our campaigns is incredible. Every piece of content speaks directly to our customers' pain points. Our engagement rates tripled and revenue is up 250%. This isn't just marketing - it's a growth engine.",
+    rating: 5,
+    source: "Google",
+    videoUrl: null
+  },
+  {
+    name: "David Chen",
+    role: "President",
+    company: "Auto Trim Utah",
+    quote: "I was skeptical about AI marketing, but the results speak for themselves. Our pipeline is consistently full of qualified leads, our conversion rates doubled, and we're scaling faster than ever. The ROI is undeniable.",
+    rating: 5,
+    source: "Google",
+    videoUrl: null
+  },
+  {
+    name: "Lisa Thompson",
     role: "Founder",
-    company: "StartupXYZ",
-    quote: "Working with Disruptors Media was a game-changer. They don't just implement solutions, they truly understand your business.",
-    rating: 5,
-    source: "Google",
-    videoUrl: null
-  },
-  {
-    name: "David Park",
-    role: "VP of Marketing",
-    company: "InnovateTech",
-    quote: "The ROI we've seen from their AI-powered campaigns has exceeded all expectations. Truly transformative work.",
-    rating: 5,
-    source: "LinkedIn",
-    videoUrl: null
-  },
-  {
-    name: "Lisa Martinez",
-    role: "Founder & CEO",
-    company: "NextGen Solutions",
-    quote: "Finally, an agency that actually understands both marketing and technology. Their strategic approach is unmatched.",
+    company: "Sound Corrections",
+    quote: "What impressed me most is how the Disruptors team understands our industry. They built a system that captures our unique voice while automating all the tedious work. We're seeing 10x the results with half the effort.",
     rating: 5,
     source: "Google",
     videoUrl: null

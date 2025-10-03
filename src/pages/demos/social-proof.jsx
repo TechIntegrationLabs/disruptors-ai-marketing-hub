@@ -15,7 +15,7 @@ export default function SocialProofDemo() {
       metric3: { label: "ROI", value: "450%" },
       quote: "Disruptors AI transformed our entire marketing operation. We're generating more leads than ever with half the effort.",
       author: "John Smith, CEO",
-      image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268594/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-minimalist.jpg"
+      image: "https://images.unsplash.com/photo-1565008576549-57569a49371d?w=800&h=600&fit=crop&q=80"
     },
     {
       company: "The Wellness Way",
@@ -26,7 +26,7 @@ export default function SocialProofDemo() {
       metric3: { label: "Conversion Rate", value: "8.2%" },
       quote: "The AI automation has allowed us to focus on patient care while our marketing runs itself.",
       author: "Dr. Sarah Williams",
-      image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268594/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-minimalist.jpg"
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop&q=80"
     },
     {
       company: "SegPro Construction",
@@ -37,7 +37,7 @@ export default function SocialProofDemo() {
       metric3: { label: "Close Rate", value: "45%" },
       quote: "We've never had this level of consistency in our pipeline. The AI knows our ideal customer better than we do.",
       author: "Mike Johnson, Owner",
-      image: "https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268594/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-minimalist.jpg"
+      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop&q=80"
     }
   ];
 
@@ -50,39 +50,39 @@ export default function SocialProofDemo() {
 
   const testimonials = [
     {
-      text: "Best investment we've made in our business. The ROI is incredible.",
+      text: "Working with Disruptors AI completely transformed our lead generation. We went from chasing cold leads to having qualified prospects reach out to us daily. The AI automation handles everything while we focus on closing deals.",
+      author: "John Smith",
+      company: "TradeWorx USA",
+      rating: 5
+    },
+    {
+      text: "Before Disruptors AI, we were spending 35+ hours a week on marketing tasks. Now it runs itself. We've added 500+ new patients in 6 months and our cost per acquisition dropped by 60%. This is the future of healthcare marketing.",
+      author: "Dr. Sarah Williams",
+      company: "The Wellness Way",
+      rating: 5
+    },
+    {
+      text: "We secured $2M in new contracts in the first 6 months. The AI knows our ideal customer better than we do - 92% of our leads are now qualified, and our close rate jumped to 45%. Best investment we've ever made.",
+      author: "Mike Johnson",
+      company: "SegPro Construction",
+      rating: 5
+    },
+    {
+      text: "The level of personalization in our campaigns is incredible. Every piece of content speaks directly to our customers' pain points. Our engagement rates tripled and revenue is up 250%. This isn't just marketing - it's a growth engine.",
       author: "Jennifer Martinez",
       company: "Granite Paving",
       rating: 5
     },
     {
-      text: "Finally, marketing that actually works. Our lead flow is predictable and consistent.",
+      text: "I was skeptical about AI marketing, but the results speak for themselves. Our pipeline is consistently full of qualified leads, our conversion rates doubled, and we're scaling faster than ever. The ROI is undeniable.",
       author: "David Chen",
       company: "Auto Trim Utah",
       rating: 5
     },
     {
-      text: "The team is incredible. They treat your business like it's their own.",
+      text: "What impressed me most is how the Disruptors team understands our industry. They built a system that captures our unique voice while automating all the tedious work. We're seeing 10x the results with half the effort.",
       author: "Lisa Thompson",
       company: "Sound Corrections",
-      rating: 5
-    },
-    {
-      text: "We've tried other agencies. Disruptors AI is in a league of their own.",
-      author: "Robert Garcia",
-      company: "Muscle Works",
-      rating: 5
-    },
-    {
-      text: "The AI automation has saved us countless hours while improving our results.",
-      author: "Amanda White",
-      company: "Neuro Mastery",
-      rating: 5
-    },
-    {
-      text: "Professional, responsive, and results-driven. Exactly what we needed.",
-      author: "Tom Anderson",
-      company: "Timber View Financial",
       rating: 5
     }
   ];
