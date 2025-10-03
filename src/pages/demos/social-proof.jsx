@@ -97,15 +97,15 @@ export default function SocialProofDemo() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-block px-4 py-2 bg-yellow-500/20 border border-yellow-500 rounded-full text-yellow-500 text-sm font-semibold mb-6">
+            <div className="inline-block px-4 py-2 bg-[#FFD700]/20 border border-[#FFD700] rounded-full text-[#FFD700] text-sm font-semibold mb-6">
               TRUSTED BY 500+ COMPANIES
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
               Join the Companies Already
               <br />
-              <span className="text-yellow-500">Dominating Their Markets</span>
+              <span className="text-[#FFD700]">Dominating Their Markets</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+            <p className="text-xl text-[#EAEAEA] max-w-3xl mx-auto mb-12">
               See why industry leaders trust Disruptors AI to power their growth
             </p>
           </motion.div>
@@ -113,9 +113,9 @@ export default function SocialProofDemo() {
       </section>
 
       {/* Client Logo Marquee */}
-      <section className="bg-gray-900 py-12 overflow-hidden">
+      <section className="bg-[#0E0E0E] py-12 overflow-hidden">
         <div className="mb-8 text-center">
-          <p className="text-gray-400 text-sm font-semibold tracking-wide uppercase">
+          <p className="text-[#C7C7C7] text-sm font-semibold tracking-wide uppercase">
             Trusted by Industry Leaders
           </p>
         </div>
@@ -129,7 +129,7 @@ export default function SocialProofDemo() {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               What Our Clients Say
             </h2>
-            <div className="flex items-center justify-center gap-2 text-yellow-500 mb-2">
+            <div className="flex items-center justify-center gap-2 text-[#FFD700] mb-2">
               {[1, 2, 3, 4, 5].map((i) => (
                 <Star key={i} className="w-6 h-6 fill-current" />
               ))}
@@ -160,17 +160,17 @@ export default function SocialProofDemo() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="bg-gray-900 rounded-3xl overflow-hidden shadow-2xl"
+                className="bg-[#0E0E0E] rounded-3xl overflow-hidden shadow-2xl"
               >
                 <div className="grid md:grid-cols-2 gap-0">
                   <div className="p-12">
-                    <div className="text-yellow-500 text-sm font-bold mb-2">
+                    <div className="text-[#FFD700] text-sm font-bold mb-2">
                       {study.industry.toUpperCase()}
                     </div>
                     <h3 className="text-3xl font-bold text-white mb-4">
                       {study.company}
                     </h3>
-                    <div className="text-2xl font-bold text-yellow-500 mb-6">
+                    <div className="text-2xl font-bold text-[#FFD700] mb-6">
                       {study.result}
                     </div>
 
@@ -180,7 +180,7 @@ export default function SocialProofDemo() {
                         <div className="text-3xl font-bold text-white mb-1">
                           {study.metric1.value}
                         </div>
-                        <div className="text-sm text-gray-400">
+                        <div className="text-sm text-[#C7C7C7]">
                           {study.metric1.label}
                         </div>
                       </div>
@@ -188,7 +188,7 @@ export default function SocialProofDemo() {
                         <div className="text-3xl font-bold text-white mb-1">
                           {study.metric2.value}
                         </div>
-                        <div className="text-sm text-gray-400">
+                        <div className="text-sm text-[#C7C7C7]">
                           {study.metric2.label}
                         </div>
                       </div>
@@ -196,16 +196,16 @@ export default function SocialProofDemo() {
                         <div className="text-3xl font-bold text-white mb-1">
                           {study.metric3.value}
                         </div>
-                        <div className="text-sm text-gray-400">
+                        <div className="text-sm text-[#C7C7C7]">
                           {study.metric3.label}
                         </div>
                       </div>
                     </div>
 
-                    <blockquote className="text-lg text-gray-300 italic mb-4 border-l-4 border-yellow-500 pl-4">
+                    <blockquote className="text-lg text-[#EAEAEA] italic mb-4 border-l-4 border-[#FFD700] pl-4">
                       "{study.quote}"
                     </blockquote>
-                    <div className="text-gray-400">
+                    <div className="text-[#C7C7C7]">
                       — {study.author}
                     </div>
                   </div>
@@ -248,7 +248,7 @@ export default function SocialProofDemo() {
               >
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />
+                    <Star key={i} className="w-5 h-5 text-[#FFD700] fill-current" />
                   ))}
                 </div>
                 <p className="text-gray-700 mb-4">
@@ -272,7 +272,7 @@ export default function SocialProofDemo() {
               const Icon = badge.icon;
               return (
                 <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-[#FFD700] rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Icon className="w-8 h-8 text-black" />
                   </div>
                   <div className="font-bold text-xl text-gray-900 mb-1">
@@ -294,13 +294,13 @@ export default function SocialProofDemo() {
           <h2 className="text-4xl sm:text-5xl font-bold mb-6">
             Join 500+ Successful Companies
           </h2>
-          <p className="text-xl text-gray-300 mb-8">
+          <p className="text-xl text-[#EAEAEA] mb-8">
             See why industry leaders choose Disruptors AI
           </p>
-          <button className="bg-yellow-500 hover:bg-yellow-400 text-black px-12 py-5 rounded-full text-xl font-bold transition-all hover:scale-105 shadow-2xl">
+          <button className="bg-[#FFD700] hover:bg-[#E0B200] text-black px-12 py-5 rounded-full text-xl font-bold transition-all hover:scale-105 shadow-2xl">
             Start Your Success Story
           </button>
-          <p className="text-gray-400 mt-6 text-sm">
+          <p className="text-[#C7C7C7] mt-6 text-sm">
             No credit card required • Free 14-day trial • Cancel anytime
           </p>
         </div>

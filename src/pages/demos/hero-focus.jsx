@@ -4,7 +4,7 @@ import { ArrowRight, Play } from 'lucide-react';
 
 export default function HeroFocusDemo() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[#0E0E0E] text-white">
       {/* Full-Screen Hero with Video Background */}
       <section className="relative h-screen overflow-hidden flex items-center justify-center">
         {/* Background Video */}
@@ -40,16 +40,16 @@ export default function HeroFocusDemo() {
             <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold mb-6 tracking-tight">
               The Future of Marketing
               <br />
-              <span className="text-yellow-500">Powered by AI</span>
+              <span className="text-[#FFD700]">Powered by AI</span>
             </h1>
 
-            <p className="text-xl sm:text-2xl lg:text-3xl text-gray-300 mb-12 max-w-3xl mx-auto font-light">
+            <p className="text-xl sm:text-2xl lg:text-3xl text-[#EAEAEA] mb-12 max-w-3xl mx-auto font-light">
               Transform your business with intelligent automation that drives real results
             </p>
 
             {/* Single Prominent CTA */}
             <motion.button
-              className="group relative inline-flex items-center gap-3 bg-yellow-500 hover:bg-yellow-400 text-black px-12 py-6 rounded-full text-xl font-bold transition-all duration-300 shadow-2xl hover:shadow-yellow-500/50 hover:scale-105"
+              className="group relative inline-flex items-center gap-3 bg-[#FFD700] hover:bg-[#E0B200] text-black px-12 py-6 rounded-full text-xl font-bold transition-all duration-300 shadow-2xl hover:shadow-[#FFD700]/50 hover:scale-105"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -59,7 +59,7 @@ export default function HeroFocusDemo() {
 
             {/* Secondary Action */}
             <div className="mt-8">
-              <button className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+              <button className="inline-flex items-center gap-2 text-[#C7C7C7] hover:text-white transition-colors">
                 <Play className="w-5 h-5" />
                 Watch Demo
               </button>
@@ -80,9 +80,9 @@ export default function HeroFocusDemo() {
       </section>
 
       {/* Social Proof Ticker */}
-      <section className="bg-gray-900 py-8 border-t border-gray-800">
+      <section className="bg-[#0E0E0E] py-8 border-t border-[#2A2A2A]">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-gray-400 text-sm">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-[#C7C7C7] text-sm">
             <motion.div
               className="text-center"
               initial={{ opacity: 0, y: 20 }}
@@ -90,7 +90,7 @@ export default function HeroFocusDemo() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div className="text-3xl sm:text-4xl font-bold text-yellow-500 mb-2">500+</div>
+              <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">500+</div>
               <div className="text-xs sm:text-sm">Clients Transformed</div>
             </motion.div>
             <motion.div
@@ -100,7 +100,7 @@ export default function HeroFocusDemo() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="text-3xl sm:text-4xl font-bold text-yellow-500 mb-2">300%</div>
+              <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">300%</div>
               <div className="text-xs sm:text-sm">Average Growth</div>
             </motion.div>
             <motion.div
@@ -110,7 +110,7 @@ export default function HeroFocusDemo() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <div className="text-3xl sm:text-4xl font-bold text-yellow-500 mb-2">24/7</div>
+              <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">24/7</div>
               <div className="text-xs sm:text-sm">AI-Powered Support</div>
             </motion.div>
             <motion.div
@@ -120,7 +120,7 @@ export default function HeroFocusDemo() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <div className="text-3xl sm:text-4xl font-bold text-yellow-500 mb-2">$50M+</div>
+              <div className="text-3xl sm:text-4xl font-bold text-[#FFD700] mb-2">$50M+</div>
               <div className="text-xs sm:text-sm">Revenue Generated</div>
             </motion.div>
           </div>
@@ -128,15 +128,15 @@ export default function HeroFocusDemo() {
       </section>
 
       {/* Minimal Content Section */}
-      <section className="py-24 bg-black">
+      <section className="py-24 bg-[#0E0E0E]">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl sm:text-5xl font-bold mb-6">
             Stop Wasting Time on Manual Tasks
           </h2>
-          <p className="text-xl text-gray-400 mb-12">
+          <p className="text-xl text-[#C7C7C7] mb-12">
             Let AI handle the repetitive work while you focus on growing your business
           </p>
-          <button className="inline-flex items-center gap-2 border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black px-8 py-4 rounded-full font-semibold transition-all">
+          <button className="inline-flex items-center gap-2 border-2 border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-black px-8 py-4 rounded-full font-semibold transition-all">
             See How It Works
             <ArrowRight className="w-5 h-5" />
           </button>

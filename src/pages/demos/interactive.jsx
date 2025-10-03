@@ -16,28 +16,28 @@ export default function InteractiveDemo() {
       icon: Zap,
       title: "AI Automation",
       description: "Intelligent systems that work while you sleep",
-      color: "bg-blue-500",
+      color: "bg-[#FFD700]",
       image: "/generated/anachron-lite/ai-automation-icon-anachron-lite.png"
     },
     {
       icon: TrendingUp,
       title: "Growth Strategy",
       description: "Data-driven plans that scale your business",
-      color: "bg-purple-500",
+      color: "bg-[#FFD700]",
       image: "/generated/anachron-lite/seo-geo-icon-anachron-lite.png"
     },
     {
       icon: Users,
       title: "Lead Generation",
       description: "Fill your pipeline with qualified prospects",
-      color: "bg-green-500",
+      color: "bg-[#FFD700]",
       image: "/generated/anachron-lite/lead-generation-icon-anachron-lite.png"
     },
     {
       icon: Sparkles,
       title: "Content Creation",
       description: "AI-powered content that converts",
-      color: "bg-yellow-500",
+      color: "bg-[#FFD700]",
       image: "/generated/anachron-lite/social-media-marketing-icon-anachron-lite.png"
     }
   ];
@@ -95,20 +95,20 @@ export default function InteractiveDemo() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden" ref={containerRef}>
+    <div className="min-h-screen bg-[#0E0E0E] text-white overflow-x-hidden" ref={containerRef}>
       {/* Hero with Parallax */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Parallax Background Layers */}
+        {/* Video Background */}
         <div className="absolute inset-0 z-0">
-          <div
-            className="parallax-bg absolute inset-0 opacity-20"
-            data-speed="0.5"
-            style={{
-              backgroundImage: 'url(https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268594/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-minimalist.jpg)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
-            }}
-          ></div>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-20"
+            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/c_fill,ar_4:3,g_auto/v1759259179/social_u4455988764_httpss.mj.runEsrFEq0BgZA_make_the_hands_coming_to_2f5e7702-c919-4da3-812d-ebd2789c493e_0_bpisoz.mp4"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
         </div>
 
         <motion.div
@@ -131,10 +131,10 @@ export default function InteractiveDemo() {
           >
             Marketing That
             <br />
-            <span className="text-yellow-500">Tells Your Story</span>
+            <span className="text-[#FFD700]">Tells Your Story</span>
           </motion.h1>
           <motion.p
-            className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto"
+            className="text-xl sm:text-2xl text-[#EAEAEA] max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
@@ -149,8 +149,8 @@ export default function InteractiveDemo() {
           animate={{ y: [0, 15, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="w-6 h-10 border-2 border-yellow-500 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-yellow-500 rounded-full"></div>
+          <div className="w-6 h-10 border-2 border-[#FFD700] rounded-full flex items-start justify-center p-2">
+            <div className="w-1 h-3 bg-[#FFD700] rounded-full"></div>
           </div>
         </motion.div>
       </section>
@@ -158,13 +158,13 @@ export default function InteractiveDemo() {
       {/* Story Section 1: The Problem */}
       <section className="py-32 relative">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="story-card bg-gradient-to-r from-red-900/40 to-transparent border-l-4 border-red-500 p-12 rounded-2xl">
+          <div className="story-card bg-gradient-to-r from-red-900/40 to-transparent border-l-4 border-[#FFD700] p-12 rounded-2xl">
             <div className="max-w-3xl">
-              <div className="text-red-500 text-sm font-bold mb-4">CHAPTER 1: THE STRUGGLE</div>
+              <div className="text-[#FFD700] text-sm font-bold mb-4">CHAPTER 1: THE STRUGGLE</div>
               <h2 className="text-4xl sm:text-5xl font-bold mb-6">
                 You're Working Too Hard
               </h2>
-              <p className="text-xl text-gray-300 leading-relaxed">
+              <p className="text-xl text-[#EAEAEA] leading-relaxed">
                 Every day starts the same. You're buried in tasks that should be automated.
                 Your marketing feels like guesswork. You know there's a better way,
                 but you're too busy to find it.
@@ -179,11 +179,11 @@ export default function InteractiveDemo() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="story-card bg-gradient-to-l from-blue-900/40 to-transparent border-r-4 border-blue-500 p-12 rounded-2xl ml-auto">
             <div className="max-w-3xl ml-auto text-right">
-              <div className="text-blue-500 text-sm font-bold mb-4">CHAPTER 2: THE BREAKTHROUGH</div>
+              <div className="text-[#FFD700] text-sm font-bold mb-4">CHAPTER 2: THE BREAKTHROUGH</div>
               <h2 className="text-4xl sm:text-5xl font-bold mb-6">
                 What If AI Could Do It All?
               </h2>
-              <p className="text-xl text-gray-300 leading-relaxed">
+              <p className="text-xl text-[#EAEAEA] leading-relaxed">
                 Imagine waking up to new leads in your inbox. Campaigns running themselves.
                 Content created while you sleep. This isn't fantasy—it's what AI automation
                 makes possible today.
@@ -200,7 +200,7 @@ export default function InteractiveDemo() {
             <h2 className="text-4xl sm:text-6xl font-bold mb-6">
               The Tools That Power Your Story
             </h2>
-            <p className="text-xl text-gray-400">
+            <p className="text-xl text-[#C7C7C7]">
               Hover to explore each service
             </p>
           </div>
@@ -211,7 +211,7 @@ export default function InteractiveDemo() {
               return (
                 <motion.div
                   key={index}
-                  className="service-card group relative bg-gray-900 rounded-3xl p-8 overflow-hidden cursor-pointer"
+                  className="service-card group relative bg-[#0E0E0E] rounded-3xl p-8 overflow-hidden cursor-pointer"
                   whileHover={{ scale: 1.05, rotateY: 5 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -223,11 +223,11 @@ export default function InteractiveDemo() {
                       <Icon className="w-8 h-8 text-white" />
                     </div>
 
-                    <h3 className="text-3xl font-bold mb-4 group-hover:text-yellow-500 transition-colors">
+                    <h3 className="text-3xl font-bold mb-4 group-hover:text-[#FFD700] transition-colors">
                       {service.title}
                     </h3>
 
-                    <p className="text-gray-400 text-lg mb-6">
+                    <p className="text-[#C7C7C7] text-lg mb-6">
                       {service.description}
                     </p>
 
@@ -253,13 +253,13 @@ export default function InteractiveDemo() {
       {/* Story Section 3: The Transformation */}
       <section className="py-32 relative bg-gradient-to-b from-green-900/20 to-transparent">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="story-card bg-gradient-to-r from-green-900/40 to-transparent border-l-4 border-green-500 p-12 rounded-2xl">
+          <div className="story-card bg-gradient-to-r from-green-900/40 to-transparent border-l-4 border-[#FFD700] p-12 rounded-2xl">
             <div className="max-w-3xl">
-              <div className="text-green-500 text-sm font-bold mb-4">CHAPTER 3: THE RESULTS</div>
+              <div className="text-[#FFD700] text-sm font-bold mb-4">CHAPTER 3: THE RESULTS</div>
               <h2 className="text-4xl sm:text-5xl font-bold mb-6">
                 Your Business, Transformed
               </h2>
-              <p className="text-xl text-gray-300 leading-relaxed mb-8">
+              <p className="text-xl text-[#EAEAEA] leading-relaxed mb-8">
                 Three months from now, you're not the same business owner. Your marketing
                 runs itself. Your leads are qualified. Your growth is predictable.
                 You finally have time to focus on what matters.
@@ -268,16 +268,16 @@ export default function InteractiveDemo() {
               {/* Results Grid */}
               <div className="grid grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="text-5xl font-bold text-green-500 mb-2">300%</div>
-                  <div className="text-gray-400">Growth</div>
+                  <div className="text-5xl font-bold text-[#FFD700] mb-2">300%</div>
+                  <div className="text-[#C7C7C7]">Growth</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-5xl font-bold text-green-500 mb-2">20+</div>
-                  <div className="text-gray-400">Hours Saved</div>
+                  <div className="text-5xl font-bold text-[#FFD700] mb-2">20+</div>
+                  <div className="text-[#C7C7C7]">Hours Saved</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-5xl font-bold text-green-500 mb-2">$2M+</div>
-                  <div className="text-gray-400">Revenue</div>
+                  <div className="text-5xl font-bold text-[#FFD700] mb-2">$2M+</div>
+                  <div className="text-[#C7C7C7]">Revenue</div>
                 </div>
               </div>
             </div>
@@ -297,13 +297,13 @@ export default function InteractiveDemo() {
             <h2 className="text-5xl sm:text-6xl font-bold mb-8">
               Ready to Write Your
               <br />
-              <span className="text-yellow-500">Success Story?</span>
+              <span className="text-[#FFD700]">Success Story?</span>
             </h2>
-            <p className="text-xl text-gray-400 mb-12">
+            <p className="text-xl text-[#C7C7C7] mb-12">
               Join 500+ companies already transforming their marketing with AI
             </p>
             <motion.button
-              className="bg-yellow-500 hover:bg-yellow-400 text-black px-16 py-6 rounded-full text-2xl font-bold shadow-2xl"
+              className="bg-[#FFD700] hover:bg-[#E0B200] text-black px-16 py-6 rounded-full text-2xl font-bold shadow-2xl"
               whileHover={{ scale: 1.1, boxShadow: "0 0 40px rgba(234, 179, 8, 0.5)" }}
               whileTap={{ scale: 0.95 }}
             >

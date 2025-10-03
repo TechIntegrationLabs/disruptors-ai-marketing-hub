@@ -86,18 +86,18 @@ export default function BenefitsDrivenDemo() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-block px-4 py-2 bg-yellow-500/20 border border-yellow-500 rounded-full text-yellow-500 text-sm font-semibold mb-6">
+            <div className="inline-block px-4 py-2 bg-[#FFD700]/20 border border-[#FFD700] rounded-full text-[#FFD700] text-sm font-semibold mb-6">
               BENEFITS-DRIVEN APPROACH
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
               Stop Struggling with Marketing.
               <br />
-              <span className="text-yellow-500">Start Dominating.</span>
+              <span className="text-[#FFD700]">Start Dominating.</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-[#EAEAEA] max-w-3xl mx-auto mb-8">
               Transform your business with AI-powered marketing that delivers measurable results
             </p>
-            <button className="bg-yellow-500 hover:bg-yellow-400 text-black px-10 py-4 rounded-full text-lg font-bold transition-all hover:scale-105">
+            <button className="bg-[#FFD700] hover:bg-[#E0B200] text-black px-10 py-4 rounded-full text-lg font-bold transition-all hover:scale-105">
               Get Started Free
             </button>
           </motion.div>
@@ -141,7 +141,7 @@ export default function BenefitsDrivenDemo() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="bg-gray-50 rounded-2xl p-6 hover:shadow-xl transition-shadow"
                 >
-                  <div className="w-12 h-12 bg-yellow-500 rounded-xl flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-[#FFD700] rounded-xl flex items-center justify-center mb-4">
                     <Icon className="w-6 h-6 text-black" />
                   </div>
                   <div className="text-sm font-bold text-yellow-600 mb-2">
@@ -174,10 +174,10 @@ export default function BenefitsDrivenDemo() {
 
           <div className="overflow-x-auto">
             <table className="w-full bg-white rounded-2xl shadow-xl overflow-hidden">
-              <thead className="bg-gray-900 text-white">
+              <thead className="bg-[#0E0E0E] text-white">
                 <tr>
                   <th className="px-6 py-4 text-left">Feature</th>
-                  <th className="px-6 py-4 text-center bg-yellow-500 text-black">
+                  <th className="px-6 py-4 text-center bg-[#FFD700] text-black">
                     <div className="font-bold text-lg">Disruptors AI</div>
                     <div className="text-sm font-normal opacity-80">AI-Powered</div>
                   </th>
@@ -210,13 +210,13 @@ export default function BenefitsDrivenDemo() {
                   >
                     <td className="px-6 py-4 font-medium text-gray-900">{row.feature}</td>
                     <td className="px-6 py-4 text-center bg-yellow-50">
-                      {row.us ? <Check className="w-6 h-6 text-green-600 mx-auto" /> : <X className="w-6 h-6 text-gray-300 mx-auto" />}
+                      {row.us ? <Check className="w-6 h-6 text-[#FFD700] mx-auto" /> : <X className="w-6 h-6 text-[#EAEAEA] mx-auto" />}
                     </td>
                     <td className="px-6 py-4 text-center">
-                      {row.agency ? <Check className="w-6 h-6 text-green-600 mx-auto" /> : <X className="w-6 h-6 text-gray-300 mx-auto" />}
+                      {row.agency ? <Check className="w-6 h-6 text-[#FFD700] mx-auto" /> : <X className="w-6 h-6 text-[#EAEAEA] mx-auto" />}
                     </td>
                     <td className="px-6 py-4 text-center">
-                      {row.inhouse ? <Check className="w-6 h-6 text-green-600 mx-auto" /> : <X className="w-6 h-6 text-gray-300 mx-auto" />}
+                      {row.inhouse ? <Check className="w-6 h-6 text-[#FFD700] mx-auto" /> : <X className="w-6 h-6 text-[#EAEAEA] mx-auto" />}
                     </td>
                   </motion.tr>
                 ))}
@@ -225,7 +225,7 @@ export default function BenefitsDrivenDemo() {
           </div>
 
           <div className="mt-8 text-center">
-            <button className="bg-yellow-500 hover:bg-yellow-400 text-black px-10 py-4 rounded-full text-lg font-bold transition-all hover:scale-105">
+            <button className="bg-[#FFD700] hover:bg-[#E0B200] text-black px-10 py-4 rounded-full text-lg font-bold transition-all hover:scale-105">
               See Full Comparison
             </button>
           </div>
@@ -257,7 +257,7 @@ export default function BenefitsDrivenDemo() {
                     type="number"
                     value={roiInputs.currentLeads}
                     onChange={(e) => setRoiInputs({...roiInputs, currentLeads: parseInt(e.target.value) || 0})}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-yellow-500 focus:outline-none text-gray-900"
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#FFD700] focus:outline-none text-gray-900"
                   />
                 </div>
                 <div>
@@ -268,7 +268,7 @@ export default function BenefitsDrivenDemo() {
                     type="number"
                     value={roiInputs.conversionRate}
                     onChange={(e) => setRoiInputs({...roiInputs, conversionRate: parseInt(e.target.value) || 0})}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-yellow-500 focus:outline-none text-gray-900"
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#FFD700] focus:outline-none text-gray-900"
                   />
                 </div>
                 <div>
@@ -279,14 +279,14 @@ export default function BenefitsDrivenDemo() {
                     type="number"
                     value={roiInputs.avgDealValue}
                     onChange={(e) => setRoiInputs({...roiInputs, avgDealValue: parseInt(e.target.value) || 0})}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-yellow-500 focus:outline-none text-gray-900"
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#FFD700] focus:outline-none text-gray-900"
                   />
                 </div>
               </div>
             </div>
 
             {/* ROI Results */}
-            <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 text-black rounded-2xl p-8">
+            <div className="bg-gradient-to-br from-[#FFD700] to-yellow-600 text-black rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-6">With Disruptors AI</h3>
               <div className="space-y-6">
                 <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
@@ -309,7 +309,7 @@ export default function BenefitsDrivenDemo() {
                   <div className="text-sm opacity-80">Projected 12-month value</div>
                 </div>
               </div>
-              <button className="w-full mt-6 bg-black hover:bg-gray-900 text-white px-8 py-4 rounded-xl font-bold transition-all hover:scale-105">
+              <button className="w-full mt-6 bg-[#0E0E0E] hover:bg-[#0E0E0E] text-white px-8 py-4 rounded-xl font-bold transition-all hover:scale-105">
                 Get Your Custom ROI Report
               </button>
             </div>
@@ -318,13 +318,13 @@ export default function BenefitsDrivenDemo() {
       </section>
 
       {/* Video Demo Section */}
-      <section className="py-24 bg-gray-900 text-white">
+      <section className="py-24 bg-[#0E0E0E] text-white">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
               See It In Action
             </h2>
-            <p className="text-xl text-gray-400">
+            <p className="text-xl text-[#C7C7C7]">
               Watch how Disruptors AI transforms marketing operations in 90 seconds
             </p>
           </div>
@@ -334,7 +334,7 @@ export default function BenefitsDrivenDemo() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative rounded-3xl overflow-hidden shadow-2xl aspect-video bg-gradient-to-br from-yellow-500/20 to-purple-500/20"
+            className="relative rounded-3xl overflow-hidden shadow-2xl aspect-video bg-gradient-to-br from-[#FFD700]/20 to-[#E0B200]/20"
           >
             <video
               className="w-full h-full object-cover"
@@ -343,7 +343,7 @@ export default function BenefitsDrivenDemo() {
               src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4"
             />
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="bg-yellow-500 rounded-full p-6 shadow-2xl">
+              <div className="bg-[#FFD700] rounded-full p-6 shadow-2xl">
                 <Play className="w-12 h-12 text-black" />
               </div>
             </div>
@@ -351,16 +351,16 @@ export default function BenefitsDrivenDemo() {
 
           <div className="mt-12 grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-yellow-500 mb-2">90 sec</div>
-              <div className="text-gray-400">Quick overview</div>
+              <div className="text-4xl font-bold text-[#FFD700] mb-2">90 sec</div>
+              <div className="text-[#C7C7C7]">Quick overview</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-yellow-500 mb-2">Real</div>
-              <div className="text-gray-400">Actual client results</div>
+              <div className="text-4xl font-bold text-[#FFD700] mb-2">Real</div>
+              <div className="text-[#C7C7C7]">Actual client results</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-yellow-500 mb-2">Live</div>
-              <div className="text-gray-400">Platform walkthrough</div>
+              <div className="text-4xl font-bold text-[#FFD700] mb-2">Live</div>
+              <div className="text-[#C7C7C7]">Platform walkthrough</div>
             </div>
           </div>
         </div>
@@ -380,7 +380,7 @@ export default function BenefitsDrivenDemo() {
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-yellow-500 to-green-500"></div>
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#FFD700] to-green-500"></div>
 
             {/* Timeline items */}
             {[
@@ -427,7 +427,7 @@ export default function BenefitsDrivenDemo() {
                       <p className="text-gray-600">{step.description}</p>
                     </div>
                   </div>
-                  <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center shadow-xl z-10">
+                  <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-16 h-16 bg-[#FFD700] rounded-full flex items-center justify-center shadow-xl z-10">
                     <Icon className="w-8 h-8 text-black" />
                   </div>
                   <div className="flex-1"></div>
@@ -437,7 +437,7 @@ export default function BenefitsDrivenDemo() {
           </div>
 
           <div className="mt-16 text-center">
-            <button className="bg-yellow-500 hover:bg-yellow-400 text-black px-12 py-5 rounded-full text-xl font-bold transition-all hover:scale-105 shadow-xl">
+            <button className="bg-[#FFD700] hover:bg-[#E0B200] text-black px-12 py-5 rounded-full text-xl font-bold transition-all hover:scale-105 shadow-xl">
               Start Your 14-Day Transformation
             </button>
           </div>
@@ -499,7 +499,7 @@ export default function BenefitsDrivenDemo() {
                   {openFaq === index ? (
                     <ChevronUp className="w-6 h-6 text-yellow-600 flex-shrink-0" />
                   ) : (
-                    <ChevronDown className="w-6 h-6 text-gray-400 flex-shrink-0" />
+                    <ChevronDown className="w-6 h-6 text-[#C7C7C7] flex-shrink-0" />
                   )}
                 </button>
                 {openFaq === index && (
@@ -514,22 +514,22 @@ export default function BenefitsDrivenDemo() {
       </section>
 
       {/* Before/After Comparison */}
-      <section className="py-24 bg-gray-900 text-white">
+      <section className="py-24 bg-[#0E0E0E] text-white">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
               Before & After Disruptors AI
             </h2>
-            <p className="text-xl text-gray-400">
+            <p className="text-xl text-[#C7C7C7]">
               See the transformation our clients experience
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Before */}
-            <div className="bg-red-900/20 border-2 border-red-500 rounded-2xl p-8">
+            <div className="bg-red-900/20 border-2 border-[#FFD700] rounded-2xl p-8">
               <div className="text-center mb-6">
-                <div className="inline-block px-4 py-2 bg-red-500 text-white rounded-full font-bold mb-4">
+                <div className="inline-block px-4 py-2 bg-[#FFD700] text-white rounded-full font-bold mb-4">
                   Before
                 </div>
                 <h3 className="text-2xl font-bold">The Old Way</h3>
@@ -537,17 +537,17 @@ export default function BenefitsDrivenDemo() {
               <ul className="space-y-4">
                 {beforeAfter.before.map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <span className="text-red-500 text-xl mt-1">✗</span>
-                    <span className="text-gray-300">{item}</span>
+                    <span className="text-[#FFD700] text-xl mt-1">✗</span>
+                    <span className="text-[#EAEAEA]">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* After */}
-            <div className="bg-green-900/20 border-2 border-green-500 rounded-2xl p-8">
+            <div className="bg-green-900/20 border-2 border-[#FFD700] rounded-2xl p-8">
               <div className="text-center mb-6">
-                <div className="inline-block px-4 py-2 bg-green-500 text-white rounded-full font-bold mb-4">
+                <div className="inline-block px-4 py-2 bg-[#FFD700] text-white rounded-full font-bold mb-4">
                   After
                 </div>
                 <h3 className="text-2xl font-bold">The Disruptors Way</h3>
@@ -555,8 +555,8 @@ export default function BenefitsDrivenDemo() {
               <ul className="space-y-4">
                 {beforeAfter.after.map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <span className="text-green-500 text-xl mt-1">✓</span>
-                    <span className="text-gray-300">{item}</span>
+                    <span className="text-[#FFD700] text-xl mt-1">✓</span>
+                    <span className="text-[#EAEAEA]">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -588,7 +588,7 @@ export default function BenefitsDrivenDemo() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-r from-yellow-500 to-yellow-600">
+      <section className="py-20 bg-gradient-to-r from-[#FFD700] to-yellow-600">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-4xl sm:text-5xl font-bold text-black mb-6">
             Ready to Transform Your Business?
@@ -596,7 +596,7 @@ export default function BenefitsDrivenDemo() {
           <p className="text-xl text-black/80 mb-8">
             Join 500+ companies already growing with Disruptors AI
           </p>
-          <button className="bg-black hover:bg-gray-900 text-white px-12 py-5 rounded-full text-xl font-bold transition-all hover:scale-105 shadow-2xl">
+          <button className="bg-[#0E0E0E] hover:bg-[#0E0E0E] text-white px-12 py-5 rounded-full text-xl font-bold transition-all hover:scale-105 shadow-2xl">
             Start Your Free Trial
           </button>
         </div>

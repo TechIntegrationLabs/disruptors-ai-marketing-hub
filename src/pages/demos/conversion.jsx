@@ -54,7 +54,7 @@ export default function ConversionDemo() {
   return (
     <div className="min-h-screen bg-white">
       {/* Sticky Urgency Bar */}
-      <div className="sticky top-0 z-50 bg-red-600 text-white py-3 px-4">
+      <div className="sticky top-0 z-50 bg-[#FFD700] text-white py-3 px-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Clock className="w-5 h-5" />
@@ -68,19 +68,31 @@ export default function ConversionDemo() {
       </div>
 
       {/* Hero Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-gray-900 to-black text-white">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative py-16 px-4 bg-gradient-to-br from-gray-900 to-black text-white overflow-hidden">
+        {/* Athena Background Video */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-15"
+            src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759259181/social_u4455988764_Inside_a_grand_marble_hall_scholars_tend_to_cryst_b343eebf-1f3d-4deb-a5be-912076e91fe1_0_soeuwu.mp4"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black"></div>
+        </div>
+        <div className="relative z-10 max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-block px-4 py-2 bg-yellow-500 text-black rounded-full text-sm font-bold mb-6">
+              <div className="inline-block px-4 py-2 bg-[#FFD700] text-black rounded-full text-sm font-bold mb-6">
                 ⚡ EXCLUSIVE OFFER - TODAY ONLY
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
                 Double Your Leads in
                 <br />
-                <span className="text-yellow-500">90 Days or Less</span>
+                <span className="text-[#FFD700]">90 Days or Less</span>
               </h1>
-              <p className="text-xl text-gray-300 mb-8">
+              <p className="text-xl text-[#EAEAEA] mb-8">
                 Join 500+ businesses using AI to generate predictable, scalable growth
               </p>
 
@@ -93,27 +105,27 @@ export default function ConversionDemo() {
                   "24/7 support and optimization"
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-6 h-6 text-green-500 flex-shrink-0" />
+                    <CheckCircle2 className="w-6 h-6 text-[#FFD700] flex-shrink-0" />
                     <span className="text-lg">{item}</span>
                   </div>
                 ))}
               </div>
 
               {/* Social Proof */}
-              <div className="flex items-center gap-6 pt-6 border-t border-gray-700">
+              <div className="flex items-center gap-6 pt-6 border-t border-[#2A2A2A]">
                 <div>
                   <div className="text-3xl font-bold">4.9/5</div>
-                  <div className="text-sm text-gray-400">500+ Reviews</div>
+                  <div className="text-sm text-[#C7C7C7]">500+ Reviews</div>
                 </div>
                 <div className="h-12 w-px bg-gray-700"></div>
                 <div>
                   <div className="text-3xl font-bold">$50M+</div>
-                  <div className="text-sm text-gray-400">Client Revenue</div>
+                  <div className="text-sm text-[#C7C7C7]">Client Revenue</div>
                 </div>
                 <div className="h-12 w-px bg-gray-700"></div>
                 <div>
                   <div className="text-3xl font-bold">300%</div>
-                  <div className="text-sm text-gray-400">Avg Growth</div>
+                  <div className="text-sm text-[#C7C7C7]">Avg Growth</div>
                 </div>
               </div>
             </div>
@@ -134,7 +146,7 @@ export default function ConversionDemo() {
                     <div
                       key={step}
                       className={`h-2 flex-1 rounded-full ${
-                        step <= formStep ? 'bg-yellow-500' : 'bg-gray-200'
+                        step <= formStep ? 'bg-[#FFD700]' : 'bg-gray-200'
                       }`}
                     ></div>
                   ))}
@@ -151,7 +163,7 @@ export default function ConversionDemo() {
                       <input
                         type="text"
                         required
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-yellow-500 focus:outline-none text-gray-900"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#FFD700] focus:outline-none text-gray-900"
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
                         placeholder="John Smith"
@@ -164,7 +176,7 @@ export default function ConversionDemo() {
                       <input
                         type="email"
                         required
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-yellow-500 focus:outline-none text-gray-900"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#FFD700] focus:outline-none text-gray-900"
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
                         placeholder="john@company.com"
@@ -182,7 +194,7 @@ export default function ConversionDemo() {
                       <input
                         type="text"
                         required
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-yellow-500 focus:outline-none text-gray-900"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#FFD700] focus:outline-none text-gray-900"
                         value={formData.company}
                         onChange={(e) => setFormData({...formData, company: e.target.value})}
                         placeholder="Your Company Inc."
@@ -194,7 +206,7 @@ export default function ConversionDemo() {
                       </label>
                       <select
                         required
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-yellow-500 focus:outline-none text-gray-900"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#FFD700] focus:outline-none text-gray-900"
                         value={formData.revenue}
                         onChange={(e) => setFormData({...formData, revenue: e.target.value})}
                       >
@@ -217,7 +229,7 @@ export default function ConversionDemo() {
                       <textarea
                         required
                         rows={5}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-yellow-500 focus:outline-none text-gray-900 resize-none"
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#FFD700] focus:outline-none text-gray-900 resize-none"
                         value={formData.challenge}
                         onChange={(e) => setFormData({...formData, challenge: e.target.value})}
                         placeholder="Tell us about your current situation..."
@@ -228,7 +240,7 @@ export default function ConversionDemo() {
 
                 <button
                   type="submit"
-                  className="w-full mt-6 bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 rounded-xl transition-all hover:scale-105 flex items-center justify-center gap-2"
+                  className="w-full mt-6 bg-[#FFD700] hover:bg-[#E0B200] text-black font-bold py-4 rounded-xl transition-all hover:scale-105 flex items-center justify-center gap-2"
                 >
                   {formStep < 3 ? 'Continue' : 'Get My Free Strategy Session'}
                   <ArrowRight className="w-5 h-5" />
@@ -245,7 +257,7 @@ export default function ConversionDemo() {
       </section>
 
       {/* Scarcity Section */}
-      <section className="py-12 bg-yellow-50 border-y-4 border-yellow-500">
+      <section className="py-12 bg-yellow-50 border-y-4 border-[#FFD700]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -254,7 +266,7 @@ export default function ConversionDemo() {
             <p className="text-lg text-gray-700">
               Due to high demand, we're limiting new clients to ensure quality delivery.
               <br />
-              <span className="font-bold text-red-600">Don't miss this opportunity.</span>
+              <span className="font-bold text-[#FFD700]">Don't miss this opportunity.</span>
             </p>
           </div>
         </div>
@@ -303,7 +315,7 @@ export default function ConversionDemo() {
                 <ul className="space-y-3">
                   {item.features.map((feature, j) => (
                     <li key={j} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-5 h-5 text-[#FFD700] flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{feature}</span>
                     </li>
                   ))}
@@ -313,7 +325,7 @@ export default function ConversionDemo() {
           </div>
 
           <div className="text-center mt-12">
-            <div className="inline-block bg-yellow-500 text-black px-8 py-4 rounded-2xl">
+            <div className="inline-block bg-[#FFD700] text-black px-8 py-4 rounded-2xl">
               <div className="text-sm font-semibold mb-1">Total Value: $23,000+</div>
               <div className="text-3xl font-bold">Your Investment: $4,997</div>
             </div>
@@ -324,7 +336,7 @@ export default function ConversionDemo() {
       {/* Guarantee */}
       <section className="py-16 bg-green-50">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="w-24 h-24 bg-[#FFD700] rounded-full flex items-center justify-center mx-auto mb-6">
             <Shield className="w-12 h-12 text-white" />
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -343,13 +355,13 @@ export default function ConversionDemo() {
           <h2 className="text-4xl sm:text-5xl font-bold mb-6">
             Ready to Transform Your Marketing?
           </h2>
-          <p className="text-xl text-gray-300 mb-8">
+          <p className="text-xl text-[#EAEAEA] mb-8">
             Join 500+ companies generating predictable growth with AI
           </p>
-          <button className="bg-yellow-500 hover:bg-yellow-400 text-black px-16 py-6 rounded-full text-2xl font-bold transition-all hover:scale-105 shadow-2xl">
+          <button className="bg-[#FFD700] hover:bg-[#E0B200] text-black px-16 py-6 rounded-full text-2xl font-bold transition-all hover:scale-105 shadow-2xl">
             Claim Your Strategy Session
           </button>
-          <p className="text-gray-400 mt-6 text-sm">
+          <p className="text-[#C7C7C7] mt-6 text-sm">
             💳 No credit card required • 🔒 100% secure • ⏰ Offer expires in {formatTime(timeLeft)}
           </p>
         </div>
@@ -362,7 +374,7 @@ export default function ConversionDemo() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-[#0E0E0E]/80 z-50 flex items-center justify-center p-4"
             onClick={() => setShowExitIntent(false)}
           >
             <motion.div
@@ -374,7 +386,7 @@ export default function ConversionDemo() {
             >
               <button
                 onClick={() => setShowExitIntent(false)}
-                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+                className="absolute top-4 right-4 text-[#C7C7C7] hover:text-gray-600"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -387,7 +399,7 @@ export default function ConversionDemo() {
                   Get 50% off your first month when you schedule today
                 </p>
 
-                <div className="bg-yellow-50 border-2 border-yellow-500 rounded-2xl p-6 mb-6">
+                <div className="bg-yellow-50 border-2 border-[#FFD700] rounded-2xl p-6 mb-6">
                   <div className="text-4xl font-bold text-gray-900 mb-2">
                     Save $2,498
                   </div>
@@ -396,7 +408,7 @@ export default function ConversionDemo() {
                   </div>
                 </div>
 
-                <button className="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-4 rounded-xl transition-all hover:scale-105 mb-4">
+                <button className="w-full bg-[#FFD700] hover:bg-[#E0B200] text-black font-bold py-4 rounded-xl transition-all hover:scale-105 mb-4">
                   Claim 50% Discount Now
                 </button>
 

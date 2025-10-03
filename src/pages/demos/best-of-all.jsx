@@ -23,28 +23,28 @@ export default function BestOfAllDemo() {
       title: "AI Automation",
       description: "Systems that work 24/7 while you focus on growth",
       stat: "10x faster",
-      color: "bg-blue-500"
+      color: "bg-[#FFD700]"
     },
     {
       icon: Target,
       title: "Precision Targeting",
       description: "Reach your ideal customers with AI-powered segmentation",
       stat: "85% accuracy",
-      color: "bg-purple-500"
+      color: "bg-[#FFD700]"
     },
     {
       icon: TrendingUp,
       title: "Predictable Growth",
       description: "Scale operations without scaling your team",
       stat: "300% ROI",
-      color: "bg-green-500"
+      color: "bg-[#FFD700]"
     },
     {
       icon: Shield,
       title: "Enterprise Security",
       description: "Bank-level encryption and compliance",
       stat: "99.99% uptime",
-      color: "bg-red-500"
+      color: "bg-[#FFD700]"
     }
   ];
 
@@ -137,7 +137,7 @@ export default function BestOfAllDemo() {
       </div>
 
       {/* Hero Section (from Hero-First) */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black text-white">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0E0E0E] text-white">
         {/* Video Background */}
         <div className="absolute inset-0 z-0">
           <video
@@ -172,11 +172,11 @@ export default function BestOfAllDemo() {
           >
             Transform Your Business with
             <br />
-            <span className="text-yellow-500">AI-Powered Marketing</span>
+            <span className="text-[#FFD700]">AI-Powered Marketing</span>
           </motion.h1>
 
           <motion.p
-            className="text-xl sm:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto"
+            className="text-xl sm:text-2xl text-[#EAEAEA] mb-12 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -191,11 +191,11 @@ export default function BestOfAllDemo() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <button className="group bg-yellow-500 hover:bg-yellow-400 text-black px-12 py-5 rounded-full text-xl font-bold transition-all hover:scale-105 shadow-2xl hover:shadow-yellow-500/50 flex items-center gap-3">
+            <button className="group bg-[#FFD700] hover:bg-[#E0B200] text-black px-12 py-5 rounded-full text-xl font-bold transition-all hover:scale-105 shadow-2xl hover:shadow-[#FFD700]/50 flex items-center gap-3">
               Start Your Transformation
               <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
             </button>
-            <button className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+            <button className="flex items-center gap-2 text-[#EAEAEA] hover:text-white transition-colors">
               <Play className="w-5 h-5" />
               Watch Demo
             </button>
@@ -214,8 +214,8 @@ export default function BestOfAllDemo() {
               { value: "$50M+", label: "Revenue" }
             ].map((stat, i) => (
               <div key={i} className="text-center">
-                <div className="text-4xl font-bold text-yellow-500 mb-2">{stat.value}</div>
-                <div className="text-gray-400">{stat.label}</div>
+                <div className="text-4xl font-bold text-[#FFD700] mb-2">{stat.value}</div>
+                <div className="text-[#C7C7C7]">{stat.label}</div>
               </div>
             ))}
           </motion.div>
@@ -227,16 +227,16 @@ export default function BestOfAllDemo() {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          <div className="w-6 h-10 border-2 border-yellow-500 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-yellow-500 rounded-full"></div>
+          <div className="w-6 h-10 border-2 border-[#FFD700] rounded-full flex items-start justify-center p-2">
+            <div className="w-1 h-3 bg-[#FFD700] rounded-full"></div>
           </div>
         </motion.div>
       </section>
 
       {/* Client Logos (from Social Proof) */}
-      <section className="bg-gray-900 py-12 overflow-hidden">
+      <section className="bg-[#0E0E0E] py-12 overflow-hidden">
         <div className="mb-6 text-center">
-          <p className="text-gray-400 text-sm font-semibold tracking-wide uppercase">
+          <p className="text-[#C7C7C7] text-sm font-semibold tracking-wide uppercase">
             Trusted by Industry Leaders
           </p>
         </div>
@@ -258,9 +258,9 @@ export default function BestOfAllDemo() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Before */}
-            <div className="bg-white border-4 border-red-300 rounded-3xl p-8">
+            <div className="bg-white border-4 border-[#2A2A2A] rounded-3xl p-8">
               <div className="text-center mb-6">
-                <div className="inline-block px-6 py-2 bg-red-500 text-white rounded-full font-bold mb-4">
+                <div className="inline-block px-6 py-2 bg-[#FFD700] text-white rounded-full font-bold mb-4">
                   The Old Way
                 </div>
               </div>
@@ -272,7 +272,7 @@ export default function BestOfAllDemo() {
                   "Inconsistent results"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="text-red-500 text-2xl">✗</span>
+                    <span className="text-[#FFD700] text-2xl">✗</span>
                     <span className="text-gray-700 text-lg">{item}</span>
                   </li>
                 ))}
@@ -280,9 +280,9 @@ export default function BestOfAllDemo() {
             </div>
 
             {/* After */}
-            <div className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-3xl p-8 shadow-2xl">
+            <div className="bg-gradient-to-br from-[#FFD700] to-[#E0B200] text-white rounded-3xl p-8 shadow-2xl">
               <div className="text-center mb-6">
-                <div className="inline-block px-6 py-2 bg-white text-green-600 rounded-full font-bold mb-4">
+                <div className="inline-block px-6 py-2 bg-white text-[#FFD700] rounded-full font-bold mb-4">
                   The Disruptors Way
                 </div>
               </div>
@@ -344,18 +344,18 @@ export default function BestOfAllDemo() {
       </section>
 
       {/* Interactive Case Studies (from Interactive + Social Proof) */}
-      <section className="parallax-section py-24 bg-gray-900 text-white">
+      <section className="parallax-section py-24 bg-[#0E0E0E] text-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-4">
               Real Results from Real Companies
             </h2>
-            <div className="flex items-center justify-center gap-2 text-yellow-500 mb-4">
+            <div className="flex items-center justify-center gap-2 text-[#FFD700] mb-4">
               {[1, 2, 3, 4, 5].map((i) => (
                 <Star key={i} className="w-6 h-6 fill-current" />
               ))}
             </div>
-            <p className="text-xl text-gray-400">
+            <p className="text-xl text-[#C7C7C7]">
               4.9/5 rating from 500+ reviews
             </p>
           </div>
@@ -364,15 +364,15 @@ export default function BestOfAllDemo() {
             {caseStudies.map((study, i) => (
               <motion.div
                 key={i}
-                className="interactive-card bg-gray-800 rounded-2xl p-8 hover:bg-gray-750 transition-all"
+                className="interactive-card bg-[#1A1A1A] rounded-2xl p-8 hover:bg-gray-750 transition-all"
                 whileHover={{ y: -10, scale: 1.02 }}
               >
-                <div className="text-5xl font-bold text-yellow-500 mb-4">
+                <div className="text-5xl font-bold text-[#FFD700] mb-4">
                   {study.metric}
                 </div>
                 <h3 className="text-2xl font-bold mb-2">{study.company}</h3>
-                <div className="text-lg text-green-400 mb-4">{study.result}</div>
-                <p className="text-gray-400 italic">"{study.quote}"</p>
+                <div className="text-lg text-[#FFD700] mb-4">{study.result}</div>
+                <p className="text-[#C7C7C7] italic">"{study.quote}"</p>
               </motion.div>
             ))}
           </div>
@@ -418,7 +418,7 @@ export default function BestOfAllDemo() {
                 <ul className="space-y-3">
                   {item.features.map((feature, j) => (
                     <li key={j} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-5 h-5 text-[#FFD700] flex-shrink-0 mt-0.5" />
                       <span className="text-gray-700">{feature}</span>
                     </li>
                   ))}
@@ -428,7 +428,7 @@ export default function BestOfAllDemo() {
           </div>
 
           <div className="text-center">
-            <div className="inline-block bg-gradient-to-r from-yellow-500 to-orange-500 text-black px-12 py-6 rounded-2xl shadow-2xl">
+            <div className="inline-block bg-gradient-to-r from-[#FFD700] to-orange-500 text-black px-12 py-6 rounded-2xl shadow-2xl">
               <div className="text-sm font-semibold mb-2">Total Value: $23,000+</div>
               <div className="text-4xl font-bold">Your Investment: $4,997</div>
               <div className="text-sm mt-2 opacity-90">90-Day Money-Back Guarantee</div>
@@ -449,17 +449,17 @@ export default function BestOfAllDemo() {
             <h2 className="text-5xl sm:text-6xl font-bold mb-6">
               Ready to Transform Your Marketing?
             </h2>
-            <p className="text-2xl text-gray-300 mb-12">
+            <p className="text-2xl text-[#EAEAEA] mb-12">
               Join 500+ companies already dominating their markets with AI
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
-              <button className="bg-yellow-500 hover:bg-yellow-400 text-black px-16 py-6 rounded-full text-2xl font-bold transition-all hover:scale-105 shadow-2xl">
+              <button className="bg-[#FFD700] hover:bg-[#E0B200] text-black px-16 py-6 rounded-full text-2xl font-bold transition-all hover:scale-105 shadow-2xl">
                 Start Your Free Strategy Session
               </button>
             </div>
 
-            <div className="flex items-center justify-center gap-6 text-gray-400 text-sm">
+            <div className="flex items-center justify-center gap-6 text-[#C7C7C7] text-sm">
               <span>💳 No credit card required</span>
               <span>•</span>
               <span>🔒 100% secure</span>
@@ -470,15 +470,15 @@ export default function BestOfAllDemo() {
             {/* Trust Badges */}
             <div className="mt-16 flex items-center justify-center gap-12">
               <div className="text-center">
-                <Shield className="w-12 h-12 text-green-500 mx-auto mb-2" />
+                <Shield className="w-12 h-12 text-[#FFD700] mx-auto mb-2" />
                 <div className="text-sm">Money-Back Guarantee</div>
               </div>
               <div className="text-center">
-                <Star className="w-12 h-12 text-yellow-500 mx-auto mb-2" />
+                <Star className="w-12 h-12 text-[#FFD700] mx-auto mb-2" />
                 <div className="text-sm">4.9/5 Rating</div>
               </div>
               <div className="text-center">
-                <Sparkles className="w-12 h-12 text-blue-500 mx-auto mb-2" />
+                <Sparkles className="w-12 h-12 text-[#FFD700] mx-auto mb-2" />
                 <div className="text-sm">AI-Powered</div>
               </div>
             </div>

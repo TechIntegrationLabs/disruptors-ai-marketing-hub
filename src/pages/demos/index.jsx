@@ -11,7 +11,7 @@ export default function DemosIndex() {
       description: 'Full-screen video background with massive hero section. Minimal copy, maximum visual impact.',
       icon: Sparkles,
       color: 'from-purple-500 to-pink-500',
-      bgColor: 'bg-purple-500/10',
+      bgColor: 'bg-[#FFD700]/10',
       features: ['Full-screen video', 'Single CTA focus', 'Social proof ticker']
     },
     {
@@ -19,8 +19,8 @@ export default function DemosIndex() {
       title: 'Benefits-Driven',
       description: 'Problem/solution framework with benefits grid. Before/after comparisons that convert.',
       icon: Target,
-      color: 'from-blue-500 to-cyan-500',
-      bgColor: 'bg-blue-500/10',
+      color: 'from-[#FFD700] to-cyan-500',
+      bgColor: 'bg-[#FFD700]/10',
       features: ['8-benefit grid', 'Before/after', 'Results testimonials']
     },
     {
@@ -28,8 +28,8 @@ export default function DemosIndex() {
       title: 'Social Proof Heavy',
       description: 'Client logos, testimonials, and case studies. Build trust through demonstrated success.',
       icon: Users,
-      color: 'from-green-500 to-emerald-500',
-      bgColor: 'bg-green-500/10',
+      color: 'from-[#FFD700] to-emerald-500',
+      bgColor: 'bg-[#FFD700]/10',
       features: ['Logo marquee', 'Case studies', '500+ reviews']
     },
     {
@@ -37,8 +37,8 @@ export default function DemosIndex() {
       title: 'Interactive Storytelling',
       description: 'GSAP scroll-triggered animations tell your brand story. Engaging parallax experience.',
       icon: Zap,
-      color: 'from-yellow-500 to-orange-500',
-      bgColor: 'bg-yellow-500/10',
+      color: 'from-[#FFD700] to-orange-500',
+      bgColor: 'bg-[#FFD700]/10',
       features: ['Scroll animations', 'Interactive cards', 'Story-driven']
     },
     {
@@ -47,7 +47,7 @@ export default function DemosIndex() {
       description: 'Multi-step forms, countdown timers, and exit-intent popups. Engineered to capture leads.',
       icon: TrendingUp,
       color: 'from-red-500 to-rose-500',
-      bgColor: 'bg-red-500/10',
+      bgColor: 'bg-[#FFD700]/10',
       features: ['Multi-step form', 'Urgency elements', 'Exit intent']
     },
     {
@@ -55,7 +55,7 @@ export default function DemosIndex() {
       title: 'Perfect Hybrid',
       description: 'The best of all 5 concepts combined into one powerful landing page. Recommended starting point.',
       icon: Award,
-      color: 'from-indigo-500 to-purple-500',
+      color: 'from-indigo-500 to-[#E0B200]',
       bgColor: 'bg-indigo-500/10',
       features: ['All-in-one', 'Best practices', 'Production ready'],
       recommended: true
@@ -68,8 +68,8 @@ export default function DemosIndex() {
       <section className="relative py-20 px-4 overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#FFD700]/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#FFD700]/20 rounded-full blur-3xl"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto">
@@ -87,9 +87,9 @@ export default function DemosIndex() {
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
               Landing Page
               <br />
-              <span className="text-yellow-500">Demo Gallery</span>
+              <span className="text-[#FFD700]">Demo Gallery</span>
             </h1>
-            <p className="text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl sm:text-2xl text-[#EAEAEA] max-w-3xl mx-auto">
               Explore 6 different landing page concepts. Each designed for specific conversion goals.
             </p>
           </motion.div>
@@ -107,10 +107,10 @@ export default function DemosIndex() {
                   className="relative group"
                 >
                   <Link to={`/demos/${demo.id}`}>
-                    <div className={`relative bg-gray-800/50 backdrop-blur-xl rounded-3xl p-8 border border-gray-700 hover:border-yellow-500/50 transition-all duration-300 hover:transform hover:scale-105 ${demo.recommended ? 'ring-2 ring-yellow-500' : ''}`}>
+                    <div className={`relative bg-[#1A1A1A]/50 backdrop-blur-xl rounded-3xl p-8 border border-[#2A2A2A] hover:border-[#FFD700]/50 transition-all duration-300 hover:transform hover:scale-105 ${demo.recommended ? 'ring-2 ring-yellow-500' : ''}`}>
                       {/* Recommended Badge */}
                       {demo.recommended && (
-                        <div className="absolute -top-3 -right-3 bg-yellow-500 text-black px-4 py-1 rounded-full text-sm font-bold">
+                        <div className="absolute -top-3 -right-3 bg-[#FFD700] text-black px-4 py-1 rounded-full text-sm font-bold">
                           Recommended
                         </div>
                       )}
@@ -121,10 +121,10 @@ export default function DemosIndex() {
                       </div>
 
                       {/* Content */}
-                      <h3 className="text-2xl font-bold mb-3 group-hover:text-yellow-500 transition-colors">
+                      <h3 className="text-2xl font-bold mb-3 group-hover:text-[#FFD700] transition-colors">
                         {demo.title}
                       </h3>
-                      <p className="text-gray-400 mb-6 leading-relaxed">
+                      <p className="text-[#C7C7C7] mb-6 leading-relaxed">
                         {demo.description}
                       </p>
 
@@ -140,10 +140,10 @@ export default function DemosIndex() {
 
                       {/* CTA */}
                       <div className="flex items-center justify-between">
-                        <span className="text-yellow-500 font-semibold group-hover:underline">
+                        <span className="text-[#FFD700] font-semibold group-hover:underline">
                           View Demo
                         </span>
-                        <ArrowRight className="w-5 h-5 text-yellow-500 group-hover:translate-x-2 transition-transform" />
+                        <ArrowRight className="w-5 h-5 text-[#FFD700] group-hover:translate-x-2 transition-transform" />
                       </div>
                     </div>
                   </Link>
@@ -159,16 +159,16 @@ export default function DemosIndex() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-16 text-center"
           >
-            <div className="inline-block bg-gray-800/50 backdrop-blur-xl rounded-2xl p-8 border border-gray-700">
+            <div className="inline-block bg-[#1A1A1A]/50 backdrop-blur-xl rounded-2xl p-8 border border-[#2A2A2A]">
               <h3 className="text-2xl font-bold mb-4">
                 Need a Custom Landing Page?
               </h3>
-              <p className="text-gray-400 mb-6">
+              <p className="text-[#C7C7C7] mb-6">
                 We can build a custom landing page tailored to your exact needs
               </p>
               <Link
                 to="/book-strategy-session"
-                className="inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black px-8 py-4 rounded-full font-bold transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 bg-[#FFD700] hover:bg-[#E0B200] text-black px-8 py-4 rounded-full font-bold transition-all hover:scale-105"
               >
                 Schedule a Consultation
                 <ArrowRight className="w-5 h-5" />
@@ -179,33 +179,33 @@ export default function DemosIndex() {
       </section>
 
       {/* Quick Tips Section */}
-      <section className="py-16 px-4 border-t border-gray-800">
+      <section className="py-16 px-4 border-t border-[#2A2A2A]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">
             Choosing the Right Demo
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gray-800/30 rounded-2xl p-6">
-              <h3 className="text-xl font-bold mb-3 text-yellow-500">
+            <div className="bg-[#1A1A1A]/30 rounded-2xl p-6">
+              <h3 className="text-xl font-bold mb-3 text-[#FFD700]">
                 For Visual Brands
               </h3>
-              <p className="text-gray-400">
+              <p className="text-[#C7C7C7]">
                 Choose <strong>Hero-First Focus</strong> if your brand relies on stunning visuals and video content.
               </p>
             </div>
-            <div className="bg-gray-800/30 rounded-2xl p-6">
-              <h3 className="text-xl font-bold mb-3 text-yellow-500">
+            <div className="bg-[#1A1A1A]/30 rounded-2xl p-6">
+              <h3 className="text-xl font-bold mb-3 text-[#FFD700]">
                 For Trust Building
               </h3>
-              <p className="text-gray-400">
+              <p className="text-[#C7C7C7]">
                 Choose <strong>Social Proof Heavy</strong> if you have strong testimonials and case studies to showcase.
               </p>
             </div>
-            <div className="bg-gray-800/30 rounded-2xl p-6">
-              <h3 className="text-xl font-bold mb-3 text-yellow-500">
+            <div className="bg-[#1A1A1A]/30 rounded-2xl p-6">
+              <h3 className="text-xl font-bold mb-3 text-[#FFD700]">
                 For Lead Generation
               </h3>
-              <p className="text-gray-400">
+              <p className="text-[#C7C7C7]">
                 Choose <strong>Conversion Optimized</strong> if your primary goal is capturing as many leads as possible.
               </p>
             </div>
