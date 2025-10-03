@@ -281,7 +281,14 @@ export const BrandRuleAPI = {
       .select('*')
       .order('category', { ascending: true })
 
-    if (error) throw error
+    if (error) {
+      // Handle missing table gracefully
+      if (error.code === '42P01' || error.message?.includes('does not exist')) {
+        console.warn('brand_rules table does not exist, returning empty array')
+        return []
+      }
+      throw error
+    }
     return data || []
   },
 
@@ -292,7 +299,13 @@ export const BrandRuleAPI = {
       .eq('id', id)
       .single()
 
-    if (error) throw error
+    if (error) {
+      if (error.code === '42P01' || error.message?.includes('does not exist')) {
+        console.warn('brand_rules table does not exist')
+        return null
+      }
+      throw error
+    }
     return data
   },
 
@@ -303,7 +316,12 @@ export const BrandRuleAPI = {
       .select()
       .single()
 
-    if (error) throw error
+    if (error) {
+      if (error.code === '42P01' || error.message?.includes('does not exist')) {
+        throw new Error('brand_rules table does not exist. Please run migrations.')
+      }
+      throw error
+    }
     return data
   },
 
@@ -315,7 +333,12 @@ export const BrandRuleAPI = {
       .select()
       .single()
 
-    if (error) throw error
+    if (error) {
+      if (error.code === '42P01' || error.message?.includes('does not exist')) {
+        throw new Error('brand_rules table does not exist. Please run migrations.')
+      }
+      throw error
+    }
     return data
   },
 
@@ -325,6 +348,11 @@ export const BrandRuleAPI = {
       .delete()
       .eq('id', id)
 
-    if (error) throw error
+    if (error) {
+      if (error.code === '42P01' || error.message?.includes('does not exist')) {
+        throw new Error('brand_rules table does not exist. Please run migrations.')
+      }
+      throw error
+    }
   }
 }

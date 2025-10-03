@@ -1,0 +1,16 @@
+[
+  {
+    "timestamp": 1759250023756,
+    "healthyServices": 0,
+    "unhealthyServices": 0,
+    "totalServices": 0,
+    "healthPercentage": null
+  },
+  {
+    "timestamp": 1759250086972,
+    "healthyServices": 1,
+    "unhealthyServices": 10,
+    "totalServices": 11,
+    "healthPercentage": 9
+  }
+]

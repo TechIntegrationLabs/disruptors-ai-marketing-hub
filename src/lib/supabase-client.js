@@ -52,7 +52,10 @@ if (!isDevelopment && supabaseUrl && !supabaseUrl.includes('127.0.0.1')) {
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
-    storageKey: 'supabase-auth', // Unique storage key
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true,
+    storageKey: 'disruptors-ai-auth', // Single unique storage key for the entire app
   }
 })
 

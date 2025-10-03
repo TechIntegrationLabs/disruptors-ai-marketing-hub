@@ -46,7 +46,8 @@ const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
   auth: {
     autoRefreshToken: false,
     persistSession: false,
-    storageKey: 'supabase-admin-auth', // Unique storage key to avoid conflicts
+    detectSessionInUrl: false,
+    storageKey: 'disruptors-ai-admin-auth', // Unique storage key matching main client pattern
   },
   db: {
     schema: "public",
