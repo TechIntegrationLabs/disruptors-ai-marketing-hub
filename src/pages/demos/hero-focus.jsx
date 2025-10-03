@@ -38,13 +38,16 @@ export default function HeroFocusDemo() {
             />
 
             <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold mb-6 tracking-tight">
-              The Future of Marketing
+              Digital Marketing
               <br />
-              <span className="text-[#FFD700]">Powered by AI</span>
+              <span className="text-[#FFD700]">× AI Solutions</span>
             </h1>
 
-            <p className="text-xl sm:text-2xl lg:text-3xl text-[#EAEAEA] mb-12 max-w-3xl mx-auto font-light">
-              Transform your business with intelligent automation that drives real results
+            <p className="text-xl sm:text-2xl lg:text-3xl text-[#EAEAEA] mb-4 max-w-3xl mx-auto font-light">
+              Proven marketing strategies powered by intelligent automation
+            </p>
+            <p className="text-lg sm:text-xl text-[#C7C7C7] mb-12 max-w-2xl mx-auto">
+              We drive growth with expert digital marketing, then multiply results with AI for business
             </p>
 
             {/* Single Prominent CTA */}
@@ -53,7 +56,7 @@ export default function HeroFocusDemo() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Start Your Transformation
+              Get Digital Marketing + AI
               <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
             </motion.button>
 
@@ -127,19 +130,80 @@ export default function HeroFocusDemo() {
         </div>
       </section>
 
-      {/* Minimal Content Section */}
+      {/* What We Do Section */}
       <section className="py-24 bg-[#0E0E0E]">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            Stop Wasting Time on Manual Tasks
-          </h2>
-          <p className="text-xl text-[#C7C7C7] mb-12">
-            Let AI handle the repetitive work while you focus on growing your business
-          </p>
-          <button className="inline-flex items-center gap-2 border-2 border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-black px-8 py-4 rounded-full font-semibold transition-all">
-            See How It Works
-            <ArrowRight className="w-5 h-5" />
-          </button>
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+              Two Services. One Mission: Your Growth.
+            </h2>
+            <p className="text-xl text-[#C7C7C7] max-w-3xl mx-auto">
+              We combine proven digital marketing with cutting-edge AI to transform how you attract, convert, and scale
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* Digital Marketing */}
+            <div className="bg-[#1A1A1A] rounded-3xl p-8 border border-[#2A2A2A]">
+              <div className="text-[#FFD700] text-sm font-bold mb-3">SERVICE 1</div>
+              <h3 className="text-3xl font-bold mb-4">Digital Marketing</h3>
+              <p className="text-[#EAEAEA] text-lg mb-6">
+                Expert strategies that drive traffic, generate leads, and convert customers through proven channels
+              </p>
+              <ul className="space-y-3 text-[#C7C7C7]">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span>SEO & Content Marketing</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span>Social Media Management</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span>Paid Advertising (Google, Meta, LinkedIn)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span>Email & SMS Campaigns</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* AI Solutions */}
+            <div className="bg-[#1A1A1A] rounded-3xl p-8 border border-[#2A2A2A]">
+              <div className="text-[#FFD700] text-sm font-bold mb-3">SERVICE 2</div>
+              <h3 className="text-3xl font-bold mb-4">AI for Business</h3>
+              <p className="text-[#EAEAEA] text-lg mb-6">
+                Intelligent automation that scales your operations, personalizes experiences, and multiplies your results
+              </p>
+              <ul className="space-y-3 text-[#C7C7C7]">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span>AI-Powered Lead Generation</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span>Marketing Automation Systems</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span>Predictive Analytics & Insights</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#FFD700] mt-1">✓</span>
+                  <span>Custom AI Solutions</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <button className="inline-flex items-center gap-2 border-2 border-[#FFD700] text-[#FFD700] hover:bg-[#FFD700] hover:text-black px-8 py-4 rounded-full font-semibold transition-all">
+              See How They Work Together
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </section>
     </div>

@@ -282,7 +282,7 @@ export default function Layout({ children, currentPageName }) {
           </div>
 
           <footer className="relative pt-12 sm:pt-16 md:pt-20 pb-0 px-4 sm:px-6 lg:px-8 overflow-hidden">
-            <div className="w-4/5 mx-auto relative">
+            <div className="w-[90%] mx-auto relative">
 
               {/* Animated lines + Book a call CTA */}
               <div className="relative mb-12 sm:mb-16" id="footer-lines-container">
@@ -363,7 +363,7 @@ export default function Layout({ children, currentPageName }) {
               </div>
 
               {/* Logo emboss watermark - positioned at bottom, half cut off */}
-              <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 w-[300px] md:w-[400px] lg:w-[500px] xl:w-[600px] opacity-[0.08] pointer-events-none z-0">
+              <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 w-[400px] md:w-[500px] lg:w-[650px] xl:w-[800px] opacity-100 pointer-events-none z-0">
                 <img src="/assets/footer/logo-emboss.png" alt="" className="w-full h-auto" />
               </div>
 
