@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react'
-import { BrandRuleAPI } from '@/api/entities'
+import { BrandRuleAPI } from '@/api/entities.ts'
 import { Loader2, Plus, Edit, Trash2, Save, X, Sparkles } from 'lucide-react'
 
 const RULE_CATEGORIES = [
@@ -31,7 +31,7 @@ export default function BrandDNABuilder() {
   async function loadRules() {
     try {
       setLoading(true)
-      const data = await BrandRuleAPI.getAll()
+      const data = await BrandRuleAPI.list()
       setRules(data || [])
       setError(null)
     } catch (err) {

@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react'
-import { AgentAPI } from '@/api/entities'
+import { Agents } from '@/api/entities.ts'
 import { Loader2, Plus, Edit, Trash2, MessageSquare, Save, X } from 'lucide-react'
 
 export default function AgentBuilder() {
@@ -21,7 +21,7 @@ export default function AgentBuilder() {
   async function loadAgents() {
     try {
       setLoading(true)
-      const data = await AgentAPI.getAll()
+      const data = await Agents.list()
       setAgents(data || [])
       setError(null)
     } catch (err) {
@@ -34,7 +34,7 @@ export default function AgentBuilder() {
 
   async function handleCreate(formData) {
     try {
-      await AgentAPI.create(formData)
+      await Agents.create(formData)
       await loadAgents()
       setIsCreating(false)
       setSelectedAgent(null)
@@ -46,7 +46,7 @@ export default function AgentBuilder() {
 
   async function handleUpdate(id, formData) {
     try {
-      await AgentAPI.update(id, formData)
+      await Agents.update(id, formData)
       await loadAgents()
       setSelectedAgent(null)
     } catch (err) {
@@ -59,7 +59,7 @@ export default function AgentBuilder() {
     if (!confirm('Are you sure you want to delete this agent?')) return
 
     try {
-      await AgentAPI.delete(id)
+      await Agents.delete(id)
       await loadAgents()
     } catch (err) {
       console.error('Failed to delete agent:', err)
