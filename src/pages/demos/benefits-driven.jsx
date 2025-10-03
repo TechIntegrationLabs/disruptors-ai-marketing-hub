@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Zap, Target, TrendingUp, Shield, Clock, Users, BarChart3, Sparkles } from 'lucide-react';
+import { Zap, Target, TrendingUp, Shield, Clock, Users, BarChart3, Sparkles, Check, X, ChevronDown, ChevronUp, Play, DollarSign, Calendar } from 'lucide-react';
 
 export default function BenefitsDrivenDemo() {
+  const [openFaq, setOpenFaq] = useState(null);
+  const [roiInputs, setRoiInputs] = useState({
+    currentLeads: 100,
+    conversionRate: 2,
+    avgDealValue: 5000
+  });
+
   const benefits = [
     {
       icon: Zap,
@@ -149,6 +156,359 @@ export default function BenefitsDrivenDemo() {
                 </motion.div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Feature Comparison Table */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+              How We Compare
+            </h2>
+            <p className="text-xl text-gray-600">
+              See why leading companies choose Disruptors AI over traditional agencies
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full bg-white rounded-2xl shadow-xl overflow-hidden">
+              <thead className="bg-gray-900 text-white">
+                <tr>
+                  <th className="px-6 py-4 text-left">Feature</th>
+                  <th className="px-6 py-4 text-center bg-yellow-500 text-black">
+                    <div className="font-bold text-lg">Disruptors AI</div>
+                    <div className="text-sm font-normal opacity-80">AI-Powered</div>
+                  </th>
+                  <th className="px-6 py-4 text-center">
+                    <div className="font-bold">Traditional Agency</div>
+                  </th>
+                  <th className="px-6 py-4 text-center">
+                    <div className="font-bold">In-House Team</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {[
+                  { feature: '24/7 Automation', us: true, agency: false, inhouse: false },
+                  { feature: 'AI Lead Scoring', us: true, agency: false, inhouse: false },
+                  { feature: 'Real-Time Analytics', us: true, agency: true, inhouse: true },
+                  { feature: 'Dedicated Support', us: true, agency: true, inhouse: false },
+                  { feature: 'Custom Workflows', us: true, agency: false, inhouse: true },
+                  { feature: 'Scalable Pricing', us: true, agency: false, inhouse: false },
+                  { feature: 'Multi-Channel Integration', us: true, agency: true, inhouse: false },
+                  { feature: 'Content Generation', us: true, agency: false, inhouse: false },
+                ].map((row, index) => (
+                  <motion.tr
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="hover:bg-gray-50"
+                  >
+                    <td className="px-6 py-4 font-medium text-gray-900">{row.feature}</td>
+                    <td className="px-6 py-4 text-center bg-yellow-50">
+                      {row.us ? <Check className="w-6 h-6 text-green-600 mx-auto" /> : <X className="w-6 h-6 text-gray-300 mx-auto" />}
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      {row.agency ? <Check className="w-6 h-6 text-green-600 mx-auto" /> : <X className="w-6 h-6 text-gray-300 mx-auto" />}
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      {row.inhouse ? <Check className="w-6 h-6 text-green-600 mx-auto" /> : <X className="w-6 h-6 text-gray-300 mx-auto" />}
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-8 text-center">
+            <button className="bg-yellow-500 hover:bg-yellow-400 text-black px-10 py-4 rounded-full text-lg font-bold transition-all hover:scale-105">
+              See Full Comparison
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ROI Calculator */}
+      <section className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+              Calculate Your ROI
+            </h2>
+            <p className="text-xl text-gray-600">
+              See how much you could save with AI automation
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Calculator Inputs */}
+            <div className="bg-gray-50 rounded-2xl p-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Your Current Metrics</h3>
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Monthly Leads
+                  </label>
+                  <input
+                    type="number"
+                    value={roiInputs.currentLeads}
+                    onChange={(e) => setRoiInputs({...roiInputs, currentLeads: parseInt(e.target.value) || 0})}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-yellow-500 focus:outline-none text-gray-900"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Conversion Rate (%)
+                  </label>
+                  <input
+                    type="number"
+                    value={roiInputs.conversionRate}
+                    onChange={(e) => setRoiInputs({...roiInputs, conversionRate: parseInt(e.target.value) || 0})}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-yellow-500 focus:outline-none text-gray-900"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Average Deal Value ($)
+                  </label>
+                  <input
+                    type="number"
+                    value={roiInputs.avgDealValue}
+                    onChange={(e) => setRoiInputs({...roiInputs, avgDealValue: parseInt(e.target.value) || 0})}
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-yellow-500 focus:outline-none text-gray-900"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* ROI Results */}
+            <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 text-black rounded-2xl p-8">
+              <h3 className="text-2xl font-bold mb-6">With Disruptors AI</h3>
+              <div className="space-y-6">
+                <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
+                  <div className="text-sm font-semibold mb-1">Additional Monthly Leads</div>
+                  <div className="text-4xl font-bold">+{Math.round(roiInputs.currentLeads * 3)}</div>
+                  <div className="text-sm opacity-80">300% increase</div>
+                </div>
+                <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
+                  <div className="text-sm font-semibold mb-1">New Monthly Revenue</div>
+                  <div className="text-4xl font-bold">
+                    ${((roiInputs.currentLeads * 3) * (roiInputs.conversionRate / 100) * roiInputs.avgDealValue).toLocaleString()}
+                  </div>
+                  <div className="text-sm opacity-80">From AI automation alone</div>
+                </div>
+                <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
+                  <div className="text-sm font-semibold mb-1">Annual Revenue Impact</div>
+                  <div className="text-4xl font-bold">
+                    ${((roiInputs.currentLeads * 3) * (roiInputs.conversionRate / 100) * roiInputs.avgDealValue * 12).toLocaleString()}
+                  </div>
+                  <div className="text-sm opacity-80">Projected 12-month value</div>
+                </div>
+              </div>
+              <button className="w-full mt-6 bg-black hover:bg-gray-900 text-white px-8 py-4 rounded-xl font-bold transition-all hover:scale-105">
+                Get Your Custom ROI Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Demo Section */}
+      <section className="py-24 bg-gray-900 text-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+              See It In Action
+            </h2>
+            <p className="text-xl text-gray-400">
+              Watch how Disruptors AI transforms marketing operations in 90 seconds
+            </p>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative rounded-3xl overflow-hidden shadow-2xl aspect-video bg-gradient-to-br from-yellow-500/20 to-purple-500/20"
+          >
+            <video
+              className="w-full h-full object-cover"
+              poster="https://res.cloudinary.com/dvcvxhzmt/image/upload/v1759268594/disruptors-ai/backgrounds/disruptors-ai/backgrounds/geometric-minimalist.jpg"
+              controls
+              src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1758645813/Website_Demo_Reel_edited_udorcp.mp4"
+            />
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="bg-yellow-500 rounded-full p-6 shadow-2xl">
+                <Play className="w-12 h-12 text-black" />
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="mt-12 grid md:grid-cols-3 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold text-yellow-500 mb-2">90 sec</div>
+              <div className="text-gray-400">Quick overview</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-yellow-500 mb-2">Real</div>
+              <div className="text-gray-400">Actual client results</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-yellow-500 mb-2">Live</div>
+              <div className="text-gray-400">Platform walkthrough</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Timeline */}
+      <section className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+              Get Results in 14 Days
+            </h2>
+            <p className="text-xl text-gray-600">
+              Our proven implementation process gets you up and running fast
+            </p>
+          </div>
+
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-yellow-500 to-green-500"></div>
+
+            {/* Timeline items */}
+            {[
+              {
+                day: 'Day 1-3',
+                title: 'Discovery & Strategy',
+                description: 'We analyze your current marketing stack and identify quick wins',
+                icon: Target
+              },
+              {
+                day: 'Day 4-7',
+                title: 'Setup & Integration',
+                description: 'Connect your tools and configure AI automation workflows',
+                icon: Zap
+              },
+              {
+                day: 'Day 8-10',
+                title: 'Training & Optimization',
+                description: 'Train your team and fine-tune AI models for your business',
+                icon: Users
+              },
+              {
+                day: 'Day 11-14',
+                title: 'Launch & Scale',
+                description: 'Go live and start seeing 3x lead generation results',
+                icon: TrendingUp
+              }
+            ].map((step, index) => {
+              const Icon = step.icon;
+              const isEven = index % 2 === 0;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className={`relative flex items-center mb-16 last:mb-0 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                >
+                  <div className={`flex-1 ${isEven ? 'md:pr-16' : 'md:pl-16'} ${isEven ? 'md:text-right' : 'md:text-left'}`}>
+                    <div className="bg-gray-50 rounded-2xl p-6 inline-block max-w-md">
+                      <div className="text-yellow-600 font-bold text-sm mb-2">{step.day}</div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{step.title}</h3>
+                      <p className="text-gray-600">{step.description}</p>
+                    </div>
+                  </div>
+                  <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center shadow-xl z-10">
+                    <Icon className="w-8 h-8 text-black" />
+                  </div>
+                  <div className="flex-1"></div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="mt-16 text-center">
+            <button className="bg-yellow-500 hover:bg-yellow-400 text-black px-12 py-5 rounded-full text-xl font-bold transition-all hover:scale-105 shadow-xl">
+              Start Your 14-Day Transformation
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-xl text-gray-600">
+              Everything you need to know about Disruptors AI
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              {
+                q: 'How quickly can I see results?',
+                a: 'Most clients see a measurable increase in lead generation within the first 14 days. By 90 days, our average client experiences 3x growth in qualified leads.'
+              },
+              {
+                q: 'Do I need technical expertise?',
+                a: 'Not at all. Our team handles all technical setup and integration. We provide comprehensive training and ongoing support to ensure your team can leverage the platform effectively.'
+              },
+              {
+                q: 'What if AI automation doesn\'t work for my industry?',
+                a: 'We\'ve successfully deployed AI marketing systems across 50+ industries including construction, healthcare, finance, and more. Our AI adapts to your specific industry requirements and compliance needs.'
+              },
+              {
+                q: 'How is this different from hiring a traditional agency?',
+                a: 'Traditional agencies rely on manual processes and charge based on time. Our AI systems work 24/7, scale infinitely, and you only pay for results. Plus, you own all the data and workflows.'
+              },
+              {
+                q: 'What kind of support do you provide?',
+                a: 'Every client gets a dedicated AI strategist, 24/7 technical support, weekly optimization sessions, and access to our knowledge base with 500+ resources.'
+              },
+              {
+                q: 'Can I cancel anytime?',
+                a: 'Yes. We offer month-to-month contracts with no long-term commitments. If you\'re not seeing results, you can cancel with 30 days notice. We also offer a 90-day money-back guarantee.'
+              }
+            ].map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden"
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                >
+                  <span className="text-lg font-bold text-gray-900 pr-4">{faq.q}</span>
+                  {openFaq === index ? (
+                    <ChevronUp className="w-6 h-6 text-yellow-600 flex-shrink-0" />
+                  ) : (
+                    <ChevronDown className="w-6 h-6 text-gray-400 flex-shrink-0" />
+                  )}
+                </button>
+                {openFaq === index && (
+                  <div className="px-8 pb-6 text-gray-600 leading-relaxed">
+                    {faq.a}
+                  </div>
+                )}
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
