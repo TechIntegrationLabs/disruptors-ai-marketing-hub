@@ -50,28 +50,28 @@ export default function AdminShell() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-green-500 font-mono">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-gray-900 border-b border-green-500/30">
-        <div className="flex items-center justify-between h-full px-4">
+      <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-slate-900/80 backdrop-blur-xl border-b border-slate-800/50">
+        <div className="flex items-center justify-between h-full px-6">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-green-500 hover:text-green-400 transition-colors"
+              className="text-slate-400 hover:text-white transition-colors p-2 hover:bg-slate-800/50 rounded-lg"
             >
-              {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
+              {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
-            <h1 className="text-xl font-bold text-green-400">
-              ADMIN_NEXUS
+            <h1 className="text-lg font-semibold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              Admin Nexus
             </h1>
           </div>
 
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 px-4 py-2 bg-red-900/30 border border-red-500/50 hover:bg-red-900/50 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 hover:border-red-500/30 transition-all rounded-lg text-red-400 text-sm font-medium"
           >
             <LogOut size={16} />
-            LOGOUT
+            Logout
           </button>
         </div>
       </header>
@@ -79,12 +79,12 @@ export default function AdminShell() {
       <div className="flex pt-16">
         {/* Sidebar */}
         <aside
-          className={`fixed left-0 top-16 bottom-0 z-40 bg-gray-900 border-r border-green-500/30 transition-transform duration-300 ${
+          className={`fixed left-0 top-16 bottom-0 z-40 bg-slate-900/50 backdrop-blur-xl border-r border-slate-800/50 transition-transform duration-300 ${
             sidebarOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
-          style={{ width: '240px' }}
+          style={{ width: '260px' }}
         >
-          <nav className="p-4 space-y-2">
+          <nav className="p-4 space-y-1">
             {navigation.map((item) => {
               const isActive = location.pathname === item.href
               const Icon = item.icon
@@ -93,23 +93,23 @@ export default function AdminShell() {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`flex items-center gap-3 px-4 py-3 rounded transition-colors ${
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
                     isActive
-                      ? 'bg-green-500 text-black'
-                      : 'text-green-500 hover:bg-green-500/10'
+                      ? 'bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-white border border-blue-500/30 shadow-lg shadow-blue-500/10'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
                   }`}
                 >
                   <Icon size={18} />
-                  <span className="text-sm">{item.name}</span>
+                  <span className="text-sm font-medium">{item.name}</span>
                 </Link>
               )
             })}
           </nav>
 
           {/* Footer */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-green-500/30">
-            <div className="text-xs text-green-500/50 space-y-1">
-              <div>v1.0.0</div>
+          <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-800/50">
+            <div className="text-xs text-slate-500 space-y-1">
+              <div className="font-medium">v1.0.0</div>
               <div>Disruptors & Co</div>
             </div>
           </div>
@@ -118,47 +118,17 @@ export default function AdminShell() {
         {/* Main content */}
         <main
           className={`flex-1 min-h-screen transition-all duration-300 ${
-            sidebarOpen ? 'ml-[240px]' : 'ml-0'
+            sidebarOpen ? 'ml-[260px]' : 'ml-0'
           }`}
         >
-          <div className="p-6">
+          <div className="p-8">
             <Outlet />
           </div>
         </main>
       </div>
 
-      {/* Matrix rain effect (optional) */}
-      <div className="fixed inset-0 pointer-events-none opacity-5">
-        <div className="matrix-bg"></div>
-      </div>
-
-      <style jsx>{`
-        .matrix-bg::before {
-          content: '01010101010101010101010101010101010101010101010101010101010101010101010101010101';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          color: #00ff00;
-          font-family: monospace;
-          font-size: 14px;
-          line-height: 20px;
-          animation: matrix-fall 10s linear infinite;
-          white-space: pre-wrap;
-          word-break: break-all;
-        }
-
-        @keyframes matrix-fall {
-          0% {
-            transform: translateY(-100%);
-            opacity: 0.3;
-          }
-          100% {
-            transform: translateY(100vh);
-            opacity: 0;
-          }
-        }
-      `}</style>
+      {/* Subtle gradient overlay */}
+      <div className="fixed inset-0 pointer-events-none bg-gradient-to-tr from-blue-500/5 via-transparent to-cyan-500/5" />
     </div>
   )
 }

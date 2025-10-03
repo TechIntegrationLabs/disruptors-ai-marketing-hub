@@ -23,12 +23,12 @@ export default function MediaLibrary() {
       setLoading(true)
 
       let query = supabase
-        .from('media_with_generation')
+        .from('site_media')
         .select('*')
         .order('created_at', { ascending: false })
 
       if (filterType !== 'all') {
-        query = query.eq('type', filterType)
+        query = query.eq('media_type', filterType)
       }
 
       if (filterAI === 'ai') {
@@ -57,7 +57,7 @@ export default function MediaLibrary() {
 
     try {
       const { data, error } = await supabase
-        .from('media_with_generation')
+        .from('site_media')
         .select('*')
         .or(`alt_text.ilike.%${searchQuery}%,caption.ilike.%${searchQuery}%`)
         .order('created_at', { ascending: false })
@@ -79,8 +79,8 @@ export default function MediaLibrary() {
   const stats = {
     total: media.length,
     ai_generated: media.filter(m => m.ai_generated).length,
-    images: media.filter(m => m.type?.includes('image')).length,
-    videos: media.filter(m => m.type?.includes('video')).length
+    images: media.filter(m => m.media_type?.includes('image')).length,
+    videos: media.filter(m => m.media_type?.includes('video')).length
   }
 
   if (loading) {
@@ -231,15 +231,15 @@ export default function MediaLibrary() {
             >
               {/* Thumbnail */}
               <div className="aspect-square bg-black relative overflow-hidden">
-                {item.type?.includes('image') && item.url ? (
+                {item.media_type?.includes('image') && item.media_url ? (
                   <img
-                    src={item.url}
+                    src={item.media_url}
                     alt={item.alt_text || 'Media item'}
                     className="w-full h-full object-cover"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-green-500/30">
-                    {getMediaIcon(item.type)}
+                    {getMediaIcon(item.media_type)}
                   </div>
                 )}
 
@@ -254,7 +254,7 @@ export default function MediaLibrary() {
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                   <button
-                    onClick={() => window.open(item.url, '_blank')}
+                    onClick={() => window.open(item.media_url, '_blank')}
                     className="px-4 py-2 bg-green-500 text-black hover:bg-green-400 transition-colors"
                   >
                     VIEW

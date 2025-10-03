@@ -270,3 +270,61 @@ export const Workflows = {
     return data
   }
 }
+
+/**
+ * Brand Rules API
+ */
+export const BrandRuleAPI = {
+  async list() {
+    const { data, error } = await supabase
+      .from('brand_rules')
+      .select('*')
+      .order('category', { ascending: true })
+
+    if (error) throw error
+    return data || []
+  },
+
+  async get(id: string) {
+    const { data, error } = await supabase
+      .from('brand_rules')
+      .select('*')
+      .eq('id', id)
+      .single()
+
+    if (error) throw error
+    return data
+  },
+
+  async create(rule: any) {
+    const { data, error } = await supabase
+      .from('brand_rules')
+      .insert(rule)
+      .select()
+      .single()
+
+    if (error) throw error
+    return data
+  },
+
+  async update(id: string, updates: any) {
+    const { data, error } = await supabase
+      .from('brand_rules')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single()
+
+    if (error) throw error
+    return data
+  },
+
+  async delete(id: string) {
+    const { error } = await supabase
+      .from('brand_rules')
+      .delete()
+      .eq('id', id)
+
+    if (error) throw error
+  }
+}

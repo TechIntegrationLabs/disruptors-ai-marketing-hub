@@ -48,7 +48,7 @@ import AdminRoutes from './admin/routes'
 
 export default function AdminPortal() {
   return (
-    <BrowserRouter basename="/admin/secret">
+    <BrowserRouter>
       <AdminRoutes />
     </BrowserRouter>
   )

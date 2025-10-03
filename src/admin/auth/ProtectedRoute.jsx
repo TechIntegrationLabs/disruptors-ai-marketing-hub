@@ -33,6 +33,16 @@ export default function ProtectedRoute({ children }) {
 
   const checkAuth = async () => {
     try {
+      // Check if user authenticated via MatrixLogin with "nexus" password
+      const nexusAuth = sessionStorage.getItem('admin-nexus-authenticated')
+      if (nexusAuth === 'true') {
+        setIsAuthenticated(true)
+        setShowLogin(false)
+        setLoading(false)
+        return
+      }
+
+      // Fallback to Supabase session check
       const session = await getSession()
       if (!session) {
         setIsAuthenticated(false)

@@ -34,8 +34,8 @@ export default function AdminRoutes() {
         }
       >
         <Routes>
-          <Route path="/" element={<AdminShell />}>
-            <Route index element={<Navigate to="overview" replace />} />
+          <Route path="/admin/secret" element={<AdminShell />}>
+            <Route index element={<Navigate to="/admin/secret/overview" replace />} />
             <Route path="overview" element={<DashboardOverview />} />
             <Route path="content" element={<ContentManagement />} />
             <Route path="team" element={<TeamManagement />} />

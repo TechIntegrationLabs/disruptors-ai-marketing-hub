@@ -78,26 +78,27 @@ export default function Layout({ children, currentPageName }) {
     const footerContainer = document.getElementById('footer-lines-container');
     if (!footerContainer) return;
 
-    // Define final Y positions for each line (spread out vertically)
-    const finalPositions = [0, 8, 18, 32, 50, 70];
-    const startPosition = 70; // All lines start stacked at the bottom
+    // Bottom line (thickest) stays at bottom, others animate UP from it
+    // Equal 15px gaps between all lines (accounting for line heights: 1px, 2px, 4px, 7px, 9px, 11px)
+    const bottomPosition = 98; // Fixed position for bottom line (line 6)
+    const finalPositions = [0, 16, 33, 52, 74, 98]; // Equal 15px gaps between lines
 
-    // Animate each line from bottom (stacked) UP to their final positions
+    // Animate each line - all start at bottom, spread upward
     finalPositions.forEach((finalY, index) => {
       const line = footerContainer.querySelector(`.sep-line-${index + 1}`);
       if (!line) return;
 
       gsap.fromTo(
         line,
-        { y: startPosition }, // Start: all lines stacked at bottom
+        { y: bottomPosition }, // Start: all lines stacked at bottom
         {
-          y: finalY, // End: spread UP to final positions
+          y: finalY, // End: spread UP from bottom line
           ease: "none",
           scrollTrigger: {
             trigger: footerContainer,
-            start: "top bottom", // When footer enters viewport
+            start: "top 66%", // Start when footer is 1/3 up the page
             end: "bottom bottom", // When page is scrolled to bottom
-            scrub: 1, // Smooth scrubbing - maps directly to scroll
+            scrub: 2.5, // Slower scrubbing for smoother animation
             markers: false, // Set to true for debugging
           }
         }
@@ -280,28 +281,13 @@ export default function Layout({ children, currentPageName }) {
             </AnimatePresence>
           </div>
 
-          <footer className="relative pt-12 sm:pt-16 md:pt-20 pb-8 px-4 sm:px-6 lg:px-8 overflow-hidden">
-            <div className="max-w-7xl mx-auto relative">
-
-              {/* Logo emboss watermark */}
-              <div className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[800px] lg:w-[906px] xl:w-[1000px] opacity-[0.08] pointer-events-none z-0">
-                <img src="/assets/footer/logo-emboss.png" alt="" className="w-full h-auto" />
-              </div>
-
-              {/* Get a free quote section */}
-              <div className="relative flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12 sm:mb-16 md:mb-20">
-                <h2 className="font-supply text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[65px] font-black uppercase text-[#2b2b2b] leading-tight tracking-tight">
-                  Get a free Quote
-                </h2>
-                <p className="font-supply text-sm sm:text-base text-[#2b2b2b] max-w-[393px] text-justify leading-[21px]">
-                  Think you need something but not sure what? That's what we're here for. Get in touch!
-                </p>
-              </div>
+          <footer className="relative pt-12 sm:pt-16 md:pt-20 pb-0 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <div className="w-4/5 mx-auto relative">
 
               {/* Animated lines + Book a call CTA */}
-              <div className="relative mb-16 sm:mb-20 md:mb-32 lg:mb-40" id="footer-lines-container">
+              <div className="relative mb-12 sm:mb-16" id="footer-lines-container">
                 {/* Animated horizontal lines */}
-                <div className="relative h-[70px] sm:h-[80px] md:h-[90px] mb-4 sm:mb-5">
+                <div className="relative h-[100px] sm:h-[110px] md:h-[120px] mb-0">
                   <div className="sep-line sep-line-1"></div>
                   <div className="sep-line sep-line-2"></div>
                   <div className="sep-line sep-line-3"></div>
@@ -318,12 +304,12 @@ export default function Layout({ children, currentPageName }) {
                   <span className="font-supply text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight">
                     Book a call
                   </span>
-                  <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform group-hover:translate-x-2 flex-shrink-0 ml-4 rotate-[-90deg]" />
+                  <ArrowRight className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 transition-transform group-hover:translate-x-2 flex-shrink-0 ml-4" />
                 </Link>
               </div>
 
               {/* Footer navigation */}
-              <nav className="relative flex flex-wrap justify-center gap-x-6 sm:gap-x-8 gap-y-3 mb-16 sm:mb-24 md:mb-32 lg:mb-40">
+              <nav className="relative flex flex-wrap justify-center gap-x-6 sm:gap-x-8 gap-y-3 mb-12 sm:mb-16">
                 {footerLinks.map(link => (
                   <Link
                     key={link.name}
@@ -336,7 +322,7 @@ export default function Layout({ children, currentPageName }) {
               </nav>
 
               {/* Bottom section with social icons and info */}
-              <div className="relative flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 pb-8 sm:pb-10">
+              <div className="relative flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12 pb-8 sm:pb-10 mb-20">
                 {/* Left: Copyright & address */}
                 <div className="font-supply text-center md:text-left order-2 md:order-1">
                   <p className="text-xs sm:text-sm uppercase text-[#2b2b2b]">
@@ -349,17 +335,19 @@ export default function Layout({ children, currentPageName }) {
 
                 {/* Center: Social icons */}
                 <div className="flex items-center gap-6 sm:gap-8 order-1 md:order-2">
-                  <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="Facebook">
-                    <img src="/assets/footer/facebook.png" alt="Facebook" className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="Twitter">
+                    <Twitter className="w-5 h-5 sm:w-6 sm:h-6 text-[#2b2b2b]" />
+                  </a>
+                  <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="TikTok">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#2b2b2b]" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                    </svg>
                   </a>
                   <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="YouTube">
                     <Youtube className="w-5 h-5 sm:w-6 sm:h-6 text-[#2b2b2b]" />
                   </a>
                   <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="Instagram">
-                    <img src="/assets/footer/instagram.svg" alt="Instagram" className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </a>
-                  <a href="#" className="hover:opacity-60 transition-opacity touch-manipulation" aria-label="Twitter">
-                    <img src="/assets/footer/twitter.webp" alt="Twitter" className="w-5 h-5 sm:w-6 sm:h-6" />
+                    <Instagram className="w-5 h-5 sm:w-6 sm:h-6 text-[#2b2b2b]" />
                   </a>
                 </div>
 
@@ -372,6 +360,11 @@ export default function Layout({ children, currentPageName }) {
                     Load Address: 034526-01, IScxx compressed
                   </p>
                 </div>
+              </div>
+
+              {/* Logo emboss watermark - positioned at bottom, half cut off */}
+              <div className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 w-[300px] md:w-[400px] lg:w-[500px] xl:w-[600px] opacity-[0.08] pointer-events-none z-0">
+                <img src="/assets/footer/logo-emboss.png" alt="" className="w-full h-auto" />
               </div>
 
             </div>

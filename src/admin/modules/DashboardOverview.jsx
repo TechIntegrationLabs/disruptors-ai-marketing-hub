@@ -70,7 +70,7 @@ export default function DashboardOverview() {
   if (loading) {
     return (
       <div className="flex items-center justify-center p-12">
-        <div className="text-green-500 animate-pulse">LOADING_DASHBOARD...</div>
+        <div className="text-slate-400 animate-pulse font-medium">Loading dashboard...</div>
       </div>
     )
   }
@@ -79,124 +79,132 @@ export default function DashboardOverview() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-green-400">DASHBOARD_OVERVIEW</h1>
-        <p className="text-green-500/70 text-sm mt-1">
+        <h1 className="text-2xl font-bold text-white">Dashboard Overview</h1>
+        <p className="text-slate-400 text-sm mt-1">
           System status and recent activity
         </p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-4 gap-4">
-        <div className="bg-gray-900 border border-green-500/30 p-4">
-          <div className="flex items-center justify-between mb-2">
-            <FileText size={20} className="text-green-400" />
-            <div className="text-xs text-green-500/70">CONTENT</div>
+        <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 p-5 rounded-xl hover:border-slate-700/50 transition-all">
+          <div className="flex items-center justify-between mb-3">
+            <div className="p-2 bg-blue-500/10 rounded-lg">
+              <FileText size={20} className="text-blue-400" />
+            </div>
+            <div className="text-xs text-slate-500 font-medium">CONTENT</div>
           </div>
-          <div className="text-2xl text-green-400">{stats.total_posts}</div>
-          <div className="text-xs text-green-500/50 mt-1">
+          <div className="text-2xl font-bold text-white">{stats.total_posts}</div>
+          <div className="text-xs text-slate-500 mt-1">
             {stats.published_posts} published
           </div>
         </div>
 
-        <div className="bg-gray-900 border border-green-500/30 p-4">
-          <div className="flex items-center justify-between mb-2">
-            <Users size={20} className="text-green-400" />
-            <div className="text-xs text-green-500/70">TEAM</div>
+        <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 p-5 rounded-xl hover:border-slate-700/50 transition-all">
+          <div className="flex items-center justify-between mb-3">
+            <div className="p-2 bg-cyan-500/10 rounded-lg">
+              <Users size={20} className="text-cyan-400" />
+            </div>
+            <div className="text-xs text-slate-500 font-medium">TEAM</div>
           </div>
-          <div className="text-2xl text-green-400">{stats.team_members}</div>
-          <div className="text-xs text-green-500/50 mt-1">
+          <div className="text-2xl font-bold text-white">{stats.team_members}</div>
+          <div className="text-xs text-slate-500 mt-1">
             members
           </div>
         </div>
 
-        <div className="bg-gray-900 border border-green-500/30 p-4">
-          <div className="flex items-center justify-between mb-2">
-            <ImageIcon size={20} className="text-green-400" />
-            <div className="text-xs text-green-500/70">MEDIA</div>
+        <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 p-5 rounded-xl hover:border-slate-700/50 transition-all">
+          <div className="flex items-center justify-between mb-3">
+            <div className="p-2 bg-purple-500/10 rounded-lg">
+              <ImageIcon size={20} className="text-purple-400" />
+            </div>
+            <div className="text-xs text-slate-500 font-medium">MEDIA</div>
           </div>
-          <div className="text-2xl text-green-400">{stats.media_assets}</div>
-          <div className="text-xs text-green-500/50 mt-1">
+          <div className="text-2xl font-bold text-white">{stats.media_assets}</div>
+          <div className="text-xs text-slate-500 mt-1">
             assets
           </div>
         </div>
 
-        <div className="bg-gray-900 border border-green-500/30 p-4">
-          <div className="flex items-center justify-between mb-2">
-            <Bot size={20} className="text-green-400" />
-            <div className="text-xs text-green-500/70">AI_AGENTS</div>
+        <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 p-5 rounded-xl hover:border-slate-700/50 transition-all">
+          <div className="flex items-center justify-between mb-3">
+            <div className="p-2 bg-green-500/10 rounded-lg">
+              <Bot size={20} className="text-green-400" />
+            </div>
+            <div className="text-xs text-slate-500 font-medium">AI AGENTS</div>
           </div>
-          <div className="text-2xl text-green-400">{stats.ai_agents}</div>
-          <div className="text-xs text-green-500/50 mt-1">
+          <div className="text-2xl font-bold text-white">{stats.ai_agents}</div>
+          <div className="text-xs text-slate-500 mt-1">
             configured
           </div>
         </div>
       </div>
 
       {/* Brain Health */}
-      <div className="bg-gray-900 border border-green-500/30 p-4">
-        <h2 className="text-lg font-bold text-green-400 mb-4">BUSINESS_BRAIN_HEALTH</h2>
-        <div className="grid grid-cols-2 gap-4">
+      <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 p-6 rounded-xl">
+        <h2 className="text-lg font-bold text-white mb-4">Business Brain Health</h2>
+        <div className="grid grid-cols-2 gap-6">
           <div>
-            <div className="text-green-500/70 text-sm mb-2">Total Facts</div>
-            <div className="text-3xl text-green-400">{stats.brain_facts}</div>
+            <div className="text-slate-400 text-sm mb-2 font-medium">Total Facts</div>
+            <div className="text-3xl font-bold text-white">{stats.brain_facts}</div>
           </div>
           <div>
-            <div className="text-green-500/70 text-sm mb-2">Verified</div>
-            <div className="text-3xl text-green-400">{stats.brain_verified}%</div>
+            <div className="text-slate-400 text-sm mb-2 font-medium">Verified</div>
+            <div className="text-3xl font-bold text-white">{stats.brain_verified}%</div>
           </div>
         </div>
       </div>
 
       {/* Quick Actions */}
-      <div className="bg-gray-900 border border-green-500/30 p-4">
-        <h2 className="text-lg font-bold text-green-400 mb-4">QUICK_ACTIONS</h2>
+      <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 p-6 rounded-xl">
+        <h2 className="text-lg font-bold text-white mb-4">Quick Actions</h2>
         <div className="grid grid-cols-3 gap-4">
           <a
             href="/admin/secret/business-brain"
-            className="p-4 bg-black border border-green-500/30 hover:border-green-500 transition-colors text-center"
+            className="p-4 bg-slate-950/50 border border-slate-800/50 hover:border-blue-500/30 hover:bg-slate-950/80 transition-all rounded-lg text-center group"
           >
-            <TrendingUp size={24} className="mx-auto text-green-400 mb-2" />
-            <div className="text-green-400 text-sm">Manage Business Brain</div>
+            <TrendingUp size={24} className="mx-auto text-blue-400 mb-2 group-hover:scale-110 transition-transform" />
+            <div className="text-slate-300 text-sm font-medium">Manage Business Brain</div>
           </a>
           <a
             href="/admin/secret/agents"
-            className="p-4 bg-black border border-green-500/30 hover:border-green-500 transition-colors text-center"
+            className="p-4 bg-slate-950/50 border border-slate-800/50 hover:border-cyan-500/30 hover:bg-slate-950/80 transition-all rounded-lg text-center group"
           >
-            <Bot size={24} className="mx-auto text-green-400 mb-2" />
-            <div className="text-green-400 text-sm">Configure Agents</div>
+            <Bot size={24} className="mx-auto text-cyan-400 mb-2 group-hover:scale-110 transition-transform" />
+            <div className="text-slate-300 text-sm font-medium">Configure Agents</div>
           </a>
           <button
             onClick={() => alert('Content generation coming soon!')}
-            className="p-4 bg-black border border-green-500/30 hover:border-green-500 transition-colors text-center"
+            className="p-4 bg-slate-950/50 border border-slate-800/50 hover:border-purple-500/30 hover:bg-slate-950/80 transition-all rounded-lg text-center group"
           >
-            <FileText size={24} className="mx-auto text-green-400 mb-2" />
-            <div className="text-green-400 text-sm">Generate Content</div>
+            <FileText size={24} className="mx-auto text-purple-400 mb-2 group-hover:scale-110 transition-transform" />
+            <div className="text-slate-300 text-sm font-medium">Generate Content</div>
           </button>
         </div>
       </div>
 
       {/* Recent Activity */}
-      <div className="bg-gray-900 border border-green-500/30 p-4">
-        <h2 className="text-lg font-bold text-green-400 mb-4">RECENT_ACTIVITY</h2>
+      <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800/50 p-6 rounded-xl">
+        <h2 className="text-lg font-bold text-white mb-4">Recent Activity</h2>
         <div className="space-y-2">
           {recentActivity.length === 0 ? (
-            <div className="text-green-500/50 text-sm text-center py-8">
+            <div className="text-slate-500 text-sm text-center py-8">
               No recent activity
             </div>
           ) : (
             recentActivity.map((event, idx) => (
               <div
                 key={idx}
-                className="flex items-center justify-between p-3 bg-black border border-green-500/10 hover:border-green-500/30 transition-colors"
+                className="flex items-center justify-between p-4 bg-slate-950/50 border border-slate-800/30 hover:border-slate-700/50 transition-all rounded-lg"
               >
                 <div className="flex items-center gap-3">
-                  <Calendar size={14} className="text-green-500/50" />
+                  <Calendar size={14} className="text-slate-500" />
                   <div>
-                    <div className="text-green-400 text-sm">{event.name}</div>
-                    <div className="text-green-500/50 text-xs">{event.area}</div>
+                    <div className="text-slate-200 text-sm font-medium">{event.name}</div>
+                    <div className="text-slate-500 text-xs">{event.area}</div>
                   </div>
                 </div>
-                <div className="text-green-500/50 text-xs">
+                <div className="text-slate-500 text-xs">
                   {new Date(event.created_at).toLocaleString()}
                 </div>
               </div>

@@ -107,6 +107,11 @@ const ServicesHandScroll = ({
       services: servicesObject ? { ...servicesObject.rotation } : null
     };
 
+    // Ensure services image stays visible - it's an image plane with no material
+    if (servicesObject) {
+      servicesObject.visible = true;
+    }
+
     // Main scroll trigger with improved scrub for 3D performance
     scrollTriggerRef.current = ScrollTrigger.create({
       trigger: container,
@@ -120,40 +125,36 @@ const ServicesHandScroll = ({
         // Use requestAnimationFrame for smoother updates
         requestAnimationFrame(() => {
           try {
-            // Animate hand - smooth rotation only with hardware acceleration
+            // Animate hand - smooth rotation only
             if (handObject && initialRotations.hand) {
               gsap.to(handObject.rotation, {
                 z: initialRotations.hand.z + (progress * Math.PI * 0.5),
                 duration: 0.1,
                 ease: "none",
-                force3D: true,
                 overwrite: true
               });
             }
 
-            // Animate services image - keep visible, subtle parallax only
+            // Animate services image - KEEP IT VISIBLE, minimal movement
             if (servicesObject && initialPositions.services && initialRotations.services) {
+              // Very subtle horizontal sway only - NO vertical movement
+              const newX = initialPositions.services.x + (Math.sin(progress * Math.PI * 2) * 10);
+
               gsap.to(servicesObject.position, {
-                y: initialPositions.services.y - (progress * 80),
-                x: initialPositions.services.x + (Math.sin(progress * Math.PI * 2) * 20),
+                x: newX,
+                // y stays at initial position - don't move it down off screen!
                 duration: 0.1,
                 ease: "none",
-                force3D: true,
                 overwrite: true
               });
 
+              // Very subtle rotation
               gsap.to(servicesObject.rotation, {
-                z: initialRotations.services.z - (progress * Math.PI * 0.2),
+                z: initialRotations.services.z - (progress * Math.PI * 0.1),
                 duration: 0.1,
                 ease: "none",
-                force3D: true,
                 overwrite: true
               });
-
-              // Keep opacity high - don't let it disappear
-              if (servicesObject.material) {
-                servicesObject.material.opacity = 0.8; // Fixed opacity
-              }
             }
 
             // Animate background - slow parallax
@@ -163,7 +164,6 @@ const ServicesHandScroll = ({
                 x: initialPositions.bg.x - (progress * 30),
                 duration: 0.1,
                 ease: "none",
-                force3D: true,
                 overwrite: true
               });
             }
@@ -175,7 +175,6 @@ const ServicesHandScroll = ({
                 z: initialPositions.camera.z + (progress * 30),
                 duration: 0.1,
                 ease: "none",
-                force3D: true,
                 overwrite: true
               });
             }

@@ -1,0 +1,460 @@
+-- ========================================
+-- Admin Nexus - Existing Data Integration (SAFE VERSION)
+-- Handles already-existing objects gracefully
+-- Safe to run multiple times
+-- ========================================
+
+-- ========================================
+-- 1. Enhance team_members table
+-- ========================================
+
+-- Link team members to auth system and admin
+ALTER TABLE IF EXISTS team_members
+  ADD COLUMN IF NOT EXISTS user_id uuid REFERENCES auth.users(id) ON DELETE SET NULL,
+  ADD COLUMN IF NOT EXISTS can_write_content boolean DEFAULT false,
+  ADD COLUMN IF NOT EXISTS default_agent_id uuid,
+  ADD COLUMN IF NOT EXISTS content_permissions jsonb DEFAULT '{}'::jsonb,
+  ADD COLUMN IF NOT EXISTS admin_notes text;
+
+-- Add foreign key constraint only if it doesn't exist
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'team_members_default_agent_id_fkey'
+  ) THEN
+    ALTER TABLE team_members ADD CONSTRAINT team_members_default_agent_id_fkey
+      FOREIGN KEY (default_agent_id) REFERENCES agents(id) ON DELETE SET NULL;
+  END IF;
+END $$;
+
+-- Create index for user lookups
+CREATE INDEX IF NOT EXISTS team_members_user_id_idx ON team_members (user_id);
+
+-- ========================================
+-- 2. Enhance posts table
+-- ========================================
+
+-- Link posts to admin system
+ALTER TABLE IF EXISTS posts
+  ADD COLUMN IF NOT EXISTS status text DEFAULT 'draft',
+  ADD COLUMN IF NOT EXISTS author_member_id uuid,
+  ADD COLUMN IF NOT EXISTS agent_id uuid,
+  ADD COLUMN IF NOT EXISTS brain_snapshot jsonb,
+  ADD COLUMN IF NOT EXISTS seo jsonb DEFAULT '{}'::jsonb,
+  ADD COLUMN IF NOT EXISTS generation_metadata jsonb,
+  ADD COLUMN IF NOT EXISTS published_at timestamptz,
+  ADD COLUMN IF NOT EXISTS scheduled_for timestamptz,
+  ADD COLUMN IF NOT EXISTS word_count int,
+  ADD COLUMN IF NOT EXISTS reading_time_minutes int;
+
+-- Add constraints only if they don't exist
+DO $$
+BEGIN
+  -- Add status check constraint
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.constraint_column_usage
+    WHERE table_name = 'posts' AND constraint_name LIKE '%status%check%'
+  ) THEN
+    ALTER TABLE posts ADD CONSTRAINT posts_status_check
+      CHECK (status IN ('draft', 'review', 'published', 'archived', 'scheduled'));
+  END IF;
+
+  -- Add foreign key constraints
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'posts_author_member_id_fkey'
+  ) THEN
+    ALTER TABLE posts ADD CONSTRAINT posts_author_member_id_fkey
+      FOREIGN KEY (author_member_id) REFERENCES team_members(id) ON DELETE SET NULL;
+  END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'posts_agent_id_fkey'
+  ) THEN
+    ALTER TABLE posts ADD CONSTRAINT posts_agent_id_fkey
+      FOREIGN KEY (agent_id) REFERENCES agents(id) ON DELETE SET NULL;
+  END IF;
+END $$;
+
+-- Create indexes for common queries
+CREATE INDEX IF NOT EXISTS posts_status_published_idx ON posts (status, published_at DESC NULLS LAST);
+CREATE INDEX IF NOT EXISTS posts_author_idx ON posts (author_member_id);
+CREATE INDEX IF NOT EXISTS posts_agent_idx ON posts (agent_id);
+CREATE INDEX IF NOT EXISTS posts_scheduled_idx ON posts (scheduled_for) WHERE status = 'scheduled';
+
+-- ========================================
+-- 3. Enhance site_media table
+-- ========================================
+
+-- Link media to admin workflows and AI generation
+ALTER TABLE IF EXISTS site_media
+  ADD COLUMN IF NOT EXISTS generated_by_workflow_id uuid,
+  ADD COLUMN IF NOT EXISTS generated_by_agent_id uuid,
+  ADD COLUMN IF NOT EXISTS ai_generated boolean DEFAULT false,
+  ADD COLUMN IF NOT EXISTS generation_prompt text,
+  ADD COLUMN IF NOT EXISTS generation_metadata jsonb,
+  ADD COLUMN IF NOT EXISTS usage_rights text,
+  ADD COLUMN IF NOT EXISTS tags text[],
+  ADD COLUMN IF NOT EXISTS indexed_for_search boolean DEFAULT false;
+
+-- Add foreign key constraints only if they don't exist
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'site_media_generated_by_workflow_id_fkey'
+  ) THEN
+    ALTER TABLE site_media ADD CONSTRAINT site_media_generated_by_workflow_id_fkey
+      FOREIGN KEY (generated_by_workflow_id) REFERENCES workflows(id) ON DELETE SET NULL;
+  END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'site_media_generated_by_agent_id_fkey'
+  ) THEN
+    ALTER TABLE site_media ADD CONSTRAINT site_media_generated_by_agent_id_fkey
+      FOREIGN KEY (generated_by_agent_id) REFERENCES agents(id) ON DELETE SET NULL;
+  END IF;
+END $$;
+
+-- Create indexes
+CREATE INDEX IF NOT EXISTS site_media_ai_generated_idx ON site_media (ai_generated);
+CREATE INDEX IF NOT EXISTS site_media_tags_idx ON site_media USING gin (tags);
+CREATE INDEX IF NOT EXISTS site_media_workflow_idx ON site_media (generated_by_workflow_id);
+
+-- ========================================
+-- 4. Create junction tables (many-to-many)
+-- ========================================
+
+-- Posts ↔ Brain Facts (track which facts were used)
+CREATE TABLE IF NOT EXISTS post_brain_facts (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  post_id uuid NOT NULL,
+  brain_fact_id uuid NOT NULL REFERENCES brain_facts(id) ON DELETE CASCADE,
+  relevance_score numeric CHECK (relevance_score >= 0 AND relevance_score <= 1),
+  used_in_section text,
+  created_at timestamptz DEFAULT now(),
+  UNIQUE(post_id, brain_fact_id)
+);
+
+-- Handle posts foreign key
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'post_brain_facts_post_fk'
+  ) THEN
+    ALTER TABLE post_brain_facts ADD CONSTRAINT post_brain_facts_post_fk
+      FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE;
+  END IF;
+EXCEPTION
+  WHEN OTHERS THEN NULL;
+END $$;
+
+CREATE INDEX IF NOT EXISTS post_brain_facts_post_idx ON post_brain_facts (post_id);
+CREATE INDEX IF NOT EXISTS post_brain_facts_fact_idx ON post_brain_facts (brain_fact_id);
+
+-- Posts ↔ Site Media (track media used in posts)
+CREATE TABLE IF NOT EXISTS post_media (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  post_id uuid NOT NULL,
+  media_id uuid NOT NULL,
+  display_order int DEFAULT 0,
+  caption text,
+  alt_text text,
+  usage_context text,
+  created_at timestamptz DEFAULT now(),
+  UNIQUE(post_id, media_id)
+);
+
+-- Handle foreign keys
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'post_media_post_fk'
+  ) THEN
+    ALTER TABLE post_media ADD CONSTRAINT post_media_post_fk
+      FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE;
+  END IF;
+EXCEPTION
+  WHEN OTHERS THEN NULL;
+END $$;
+
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'post_media_media_fk'
+  ) THEN
+    ALTER TABLE post_media ADD CONSTRAINT post_media_media_fk
+      FOREIGN KEY (media_id) REFERENCES site_media(id) ON DELETE CASCADE;
+  END IF;
+EXCEPTION
+  WHEN OTHERS THEN NULL;
+END $$;
+
+CREATE INDEX IF NOT EXISTS post_media_post_idx ON post_media (post_id, display_order);
+CREATE INDEX IF NOT EXISTS post_media_media_idx ON post_media (media_id);
+
+-- Team Members ↔ Agents (authorized agents per team member)
+CREATE TABLE IF NOT EXISTS team_member_agents (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  team_member_id uuid NOT NULL REFERENCES team_members(id) ON DELETE CASCADE,
+  agent_id uuid NOT NULL REFERENCES agents(id) ON DELETE CASCADE,
+  can_use boolean DEFAULT true,
+  can_train boolean DEFAULT false,
+  usage_quota int,
+  usage_count int DEFAULT 0,
+  created_at timestamptz DEFAULT now(),
+  UNIQUE(team_member_id, agent_id)
+);
+
+CREATE INDEX IF NOT EXISTS team_member_agents_member_idx ON team_member_agents (team_member_id);
+CREATE INDEX IF NOT EXISTS team_member_agents_agent_idx ON team_member_agents (agent_id);
+
+-- ========================================
+-- 5. Create views for easy querying
+-- ========================================
+
+-- View: Posts with author details
+CREATE OR REPLACE VIEW posts_with_authors AS
+SELECT
+  p.*,
+  tm.name as author_name,
+  tm.email as author_email,
+  tm.title as author_title,
+  a.name as agent_name
+FROM posts p
+LEFT JOIN team_members tm ON p.author_member_id = tm.id
+LEFT JOIN agents a ON p.agent_id = a.id;
+
+-- View: Media with generation details
+CREATE OR REPLACE VIEW media_with_generation AS
+SELECT
+  sm.*,
+  a.name as agent_name,
+  w.name as workflow_name
+FROM site_media sm
+LEFT JOIN agents a ON sm.generated_by_agent_id = a.id
+LEFT JOIN workflows w ON sm.generated_by_workflow_id = w.id;
+
+-- View: Content calendar
+CREATE OR REPLACE VIEW content_calendar AS
+SELECT
+  p.id,
+  p.title,
+  p.status,
+  p.published_at,
+  p.scheduled_for,
+  tm.name as author_name,
+  a.name as agent_name,
+  COALESCE(p.published_at, p.scheduled_for, p.created_at) as sort_date
+FROM posts p
+LEFT JOIN team_members tm ON p.author_member_id = tm.id
+LEFT JOIN agents a ON p.agent_id = a.id
+WHERE p.status IN ('published', 'scheduled', 'review')
+ORDER BY sort_date DESC;
+
+-- ========================================
+-- 6. Create helper functions
+-- ========================================
+
+-- Function: Get posts using specific brain facts
+CREATE OR REPLACE FUNCTION get_posts_using_brain_fact(fact_id uuid)
+RETURNS TABLE (
+  post_id uuid,
+  post_title text,
+  relevance_score numeric,
+  published_at timestamptz
+) AS $$
+BEGIN
+  RETURN QUERY
+  SELECT
+    pbf.post_id,
+    p.title,
+    pbf.relevance_score,
+    p.published_at
+  FROM post_brain_facts pbf
+  JOIN posts p ON pbf.post_id = p.id
+  WHERE pbf.brain_fact_id = fact_id
+  ORDER BY pbf.relevance_score DESC NULLS LAST, p.published_at DESC NULLS LAST;
+END;
+$$ LANGUAGE plpgsql STABLE;
+
+-- Function: Get team member content stats
+CREATE OR REPLACE FUNCTION get_team_member_stats(member_id uuid)
+RETURNS jsonb AS $$
+DECLARE
+  result jsonb;
+BEGIN
+  SELECT jsonb_build_object(
+    'total_posts', COUNT(*),
+    'published_posts', COUNT(*) FILTER (WHERE status = 'published'),
+    'draft_posts', COUNT(*) FILTER (WHERE status = 'draft'),
+    'total_words', COALESCE(SUM(word_count), 0),
+    'avg_reading_time', COALESCE(AVG(reading_time_minutes), 0)
+  )
+  INTO result
+  FROM posts
+  WHERE author_member_id = member_id;
+
+  RETURN result;
+END;
+$$ LANGUAGE plpgsql STABLE;
+
+-- Function: Link post to brain facts automatically
+CREATE OR REPLACE FUNCTION link_post_brain_facts(
+  p_post_id uuid,
+  p_brain_id uuid,
+  p_relevance_threshold numeric DEFAULT 0.5
+)
+RETURNS int AS $$
+DECLARE
+  facts_linked int := 0;
+  fact_record record;
+BEGIN
+  -- Get brain snapshot from post
+  FOR fact_record IN
+    SELECT id, key, value
+    FROM brain_facts
+    WHERE brain_id = p_brain_id
+    AND id = ANY(
+      SELECT jsonb_array_elements_text(brain_snapshot->'fact_ids')::uuid
+      FROM posts
+      WHERE id = p_post_id
+    )
+  LOOP
+    INSERT INTO post_brain_facts (post_id, brain_fact_id, relevance_score)
+    VALUES (p_post_id, fact_record.id, p_relevance_threshold)
+    ON CONFLICT (post_id, brain_fact_id) DO NOTHING;
+
+    facts_linked := facts_linked + 1;
+  END LOOP;
+
+  RETURN facts_linked;
+END;
+$$ LANGUAGE plpgsql;
+
+-- ========================================
+-- 7. Add RLS policies to new tables
+-- ========================================
+
+-- Enable RLS on junction tables
+ALTER TABLE post_brain_facts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE post_media ENABLE ROW LEVEL SECURITY;
+ALTER TABLE team_member_agents ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies if they exist, then recreate
+DROP POLICY IF EXISTS admin_all_access_post_brain_facts ON post_brain_facts;
+CREATE POLICY admin_all_access_post_brain_facts ON post_brain_facts
+  FOR ALL USING (
+    coalesce(current_setting('request.jwt.claims', true)::jsonb->>'role', '') = 'admin'
+  );
+
+DROP POLICY IF EXISTS admin_all_access_post_media ON post_media;
+CREATE POLICY admin_all_access_post_media ON post_media
+  FOR ALL USING (
+    coalesce(current_setting('request.jwt.claims', true)::jsonb->>'role', '') = 'admin'
+  );
+
+DROP POLICY IF EXISTS admin_all_access_team_member_agents ON team_member_agents;
+CREATE POLICY admin_all_access_team_member_agents ON team_member_agents
+  FOR ALL USING (
+    coalesce(current_setting('request.jwt.claims', true)::jsonb->>'role', '') = 'admin'
+  );
+
+-- ========================================
+-- 8. Create audit triggers
+-- ========================================
+
+-- Audit log for content changes
+CREATE TABLE IF NOT EXISTS content_audit_log (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  table_name text NOT NULL,
+  record_id uuid NOT NULL,
+  action text NOT NULL CHECK (action IN ('INSERT', 'UPDATE', 'DELETE')),
+  changed_by uuid REFERENCES auth.users(id),
+  old_data jsonb,
+  new_data jsonb,
+  changed_fields text[],
+  created_at timestamptz DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS content_audit_log_record_idx ON content_audit_log (table_name, record_id, created_at DESC);
+
+-- Trigger function for audit logging
+CREATE OR REPLACE FUNCTION audit_content_changes()
+RETURNS TRIGGER AS $$
+DECLARE
+  changed_fields text[];
+BEGIN
+  IF TG_OP = 'UPDATE' THEN
+    -- Detect which fields changed
+    SELECT ARRAY_AGG(key)
+    INTO changed_fields
+    FROM jsonb_each(to_jsonb(NEW))
+    WHERE to_jsonb(NEW)->>key IS DISTINCT FROM to_jsonb(OLD)->>key;
+
+    INSERT INTO content_audit_log (
+      table_name, record_id, action, changed_by,
+      old_data, new_data, changed_fields
+    ) VALUES (
+      TG_TABLE_NAME,
+      NEW.id,
+      TG_OP,
+      NULLIF(current_setting('request.jwt.claims', true)::jsonb->>'sub', '')::uuid,
+      to_jsonb(OLD),
+      to_jsonb(NEW),
+      changed_fields
+    );
+  ELSIF TG_OP = 'INSERT' THEN
+    INSERT INTO content_audit_log (
+      table_name, record_id, action, changed_by, new_data
+    ) VALUES (
+      TG_TABLE_NAME,
+      NEW.id,
+      TG_OP,
+      NULLIF(current_setting('request.jwt.claims', true)::jsonb->>'sub', '')::uuid,
+      to_jsonb(NEW)
+    );
+  ELSIF TG_OP = 'DELETE' THEN
+    INSERT INTO content_audit_log (
+      table_name, record_id, action, changed_by, old_data
+    ) VALUES (
+      TG_TABLE_NAME,
+      OLD.id,
+      TG_OP,
+      NULLIF(current_setting('request.jwt.claims', true)::jsonb->>'sub', '')::uuid,
+      to_jsonb(OLD)
+    );
+  END IF;
+
+  RETURN COALESCE(NEW, OLD);
+END;
+$$ LANGUAGE plpgsql;
+
+-- Apply audit triggers to posts table
+DROP TRIGGER IF EXISTS audit_posts_changes ON posts;
+CREATE TRIGGER audit_posts_changes
+  AFTER INSERT OR UPDATE OR DELETE ON posts
+  FOR EACH ROW EXECUTE FUNCTION audit_content_changes();
+
+-- ========================================
+-- Complete!
+-- ========================================
+
+-- Verify integration
+DO $$
+BEGIN
+  RAISE NOTICE '========================================';
+  RAISE NOTICE 'Admin Nexus integration complete!';
+  RAISE NOTICE 'Enhanced tables: team_members, posts, site_media';
+  RAISE NOTICE 'Created junction tables: post_brain_facts, post_media, team_member_agents';
+  RAISE NOTICE 'Created views: posts_with_authors, media_with_generation, content_calendar';
+  RAISE NOTICE 'Created helper functions: 3 functions added';
+  RAISE NOTICE 'Audit logging enabled on posts table';
+  RAISE NOTICE '========================================';
+END $$;

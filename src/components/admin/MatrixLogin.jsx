@@ -133,6 +133,17 @@ const MatrixLogin = ({ onLogin, onClose }) => {
           onLogin(username, null); // Login without session
         }, 2000);
       }
+    } else if (password === 'nexus') {
+      // New Admin Nexus system access
+      setCurrentText(prev => prev + '•'.repeat(password.length) + '\n\nADMIN NEXUS ACCESS\nINITIATING NEURAL INTERFACE...\nREDIRECTING TO COMMAND CENTER...\n');
+      setStage('success');
+
+      // Store admin nexus session
+      sessionStorage.setItem('admin-nexus-authenticated', 'true');
+
+      setTimeout(() => {
+        window.location.href = '/admin/secret';
+      }, 1500);
     } else {
       setCurrentText(prev => prev + '•'.repeat(password.length) + '\n\nACCESS DENIED\nINVALID AUTHORIZATION CODE\n\nCONNECTION TERMINATED\n');
       setStage('denied');
@@ -157,14 +168,14 @@ const MatrixLogin = ({ onLogin, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black"
+      className="fixed inset-0 z-50 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
       onKeyDown={handleKeyPress}
       tabIndex={0}
     >
-      {/* Matrix Video Background */}
+      {/* Animated Background Video */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover opacity-30"
+        className="absolute inset-0 w-full h-full object-cover opacity-20"
         src="https://res.cloudinary.com/dvcvxhzmt/video/upload/v1759352555/airis_lk5i30.mp4"
         autoPlay
         loop
@@ -172,25 +183,19 @@ const MatrixLogin = ({ onLogin, onClose }) => {
         playsInline
       />
 
-      {/* Retro CRT Effect Overlay */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="w-full h-full bg-gradient-to-b from-transparent via-green-900/3 to-transparent animate-pulse"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-900/2 to-transparent animate-pulse"></div>
-      </div>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 via-transparent to-cyan-500/10" />
 
-      {/* Scanlines Effect */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-20"
-        style={{
-          background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, #00ff00 2px, #00ff00 4px)',
-          animation: 'scanlines 0.1s linear infinite'
-        }}
-      ></div>
+      {/* Subtle Grid Pattern */}
+      <div className="absolute inset-0 opacity-10" style={{
+        backgroundImage: 'linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px)',
+        backgroundSize: '50px 50px'
+      }} />
 
       {/* Audio Controls */}
       <button
         onClick={toggleMute}
-        className="absolute top-4 right-4 z-10 p-2 bg-black/50 border border-green-400 text-green-400 hover:bg-green-400/20 transition-colors rounded"
+        className="absolute top-6 right-6 z-10 p-3 bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 text-slate-300 hover:bg-slate-800/50 hover:border-blue-500/30 transition-all rounded-lg"
       >
         {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
       </button>
@@ -198,30 +203,32 @@ const MatrixLogin = ({ onLogin, onClose }) => {
       {/* Close Button */}
       <button
         onClick={onClose}
-        className="absolute top-4 left-4 z-10 p-2 bg-black/50 border border-red-400 text-red-400 hover:bg-red-400/20 transition-colors rounded text-xs font-mono"
+        className="absolute top-6 left-6 z-10 px-4 py-2 bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 text-slate-300 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400 transition-all rounded-lg text-sm font-medium"
       >
         ESC
       </button>
 
       {/* Terminal Interface */}
       <div className="relative z-10 h-full flex items-center justify-center p-8">
-        <div className="w-full max-w-4xl bg-black/60 border border-green-400 rounded-lg shadow-2xl shadow-green-400/20 backdrop-blur-sm">
+        <div className="w-full max-w-4xl bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl shadow-2xl overflow-hidden">
 
           {/* Terminal Header */}
-          <div className="flex items-center justify-between p-4 border-b border-green-400/30 bg-green-400/10">
+          <div className="flex items-center justify-between p-5 border-b border-slate-800/50 bg-slate-900/50">
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 bg-red-500 rounded-full"></div>
               <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
             </div>
-            <div className="text-green-400 text-sm font-mono">DISRUPTORS_NEURAL_NET v2.1.4</div>
-            <div className="text-green-400/60 text-xs font-mono">SECURE_CHANNEL</div>
+            <div className="text-sm font-medium bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              Disruptors Neural Net v2.1.4
+            </div>
+            <div className="text-slate-500 text-xs font-medium">Secure Channel</div>
           </div>
 
           {/* Terminal Content */}
-          <div className="p-6 min-h-[500px] font-mono text-green-400 bg-black/70">
+          <div className="p-8 min-h-[500px] font-mono text-slate-300 bg-slate-950/50">
 
-            {/* Matrix Output */}
+            {/* Output */}
             <div className="whitespace-pre-wrap leading-relaxed text-sm">
               {currentText}
             </div>
@@ -230,18 +237,18 @@ const MatrixLogin = ({ onLogin, onClose }) => {
             {stage === 'username' && (
               <form onSubmit={handleUsernameSubmit} className="mt-4">
                 <div className="flex items-center">
-                  <span className="text-green-400">{'>'} </span>
+                  <span className="text-blue-400">{'>'} </span>
                   <input
                     ref={inputRef}
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="bg-transparent border-none outline-none text-green-400 font-mono flex-1 ml-2"
+                    className="bg-transparent border-none outline-none text-white font-mono flex-1 ml-2 focus:ring-0"
                     autoComplete="off"
                     spellCheck="false"
                     maxLength={20}
                   />
-                  {showCursor && <span className="text-green-400 animate-pulse">█</span>}
+                  {showCursor && <span className="text-blue-400 animate-pulse">█</span>}
                 </div>
               </form>
             )}
@@ -249,66 +256,43 @@ const MatrixLogin = ({ onLogin, onClose }) => {
             {stage === 'password' && (
               <form onSubmit={handlePasswordSubmit} className="mt-4">
                 <div className="flex items-center">
-                  <span className="text-green-400">{'>'} </span>
+                  <span className="text-blue-400">{'>'} </span>
                   <input
                     ref={inputRef}
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="bg-transparent border-none outline-none text-green-400 font-mono flex-1 ml-2"
+                    className="bg-transparent border-none outline-none text-white font-mono flex-1 ml-2 focus:ring-0"
                     autoComplete="off"
                     spellCheck="false"
                     style={{ WebkitTextSecurity: 'disc' }}
                   />
-                  {showCursor && <span className="text-green-400 animate-pulse">█</span>}
+                  {showCursor && <span className="text-blue-400 animate-pulse">█</span>}
                 </div>
               </form>
             )}
 
             {(stage === 'loading' || stage === 'success') && showCursor && (
-              <span className="text-green-400 animate-pulse">█</span>
+              <span className="text-blue-400 animate-pulse">█</span>
             )}
 
           </div>
 
           {/* Terminal Footer */}
-          <div className="px-6 py-3 border-t border-green-400/30 bg-green-400/5 text-xs font-mono text-green-400/60 flex justify-between">
-            <span>ENCRYPTED CONNECTION ACTIVE</span>
-            <span>NEURAL_LINK: STABLE</span>
-            <span>UPTIME: {new Date().toLocaleTimeString()}</span>
+          <div className="px-8 py-4 border-t border-slate-800/50 bg-slate-900/30 text-xs font-mono text-slate-500 flex justify-between">
+            <span>Encrypted Connection Active</span>
+            <span>Neural Link: Stable</span>
+            <span>Uptime: {new Date().toLocaleTimeString()}</span>
           </div>
 
         </div>
       </div>
 
-      {/* Custom Styles */}
+      {/* Modern Styles */}
       <style>{`
-        @keyframes scanlines {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(4px); }
-        }
-
-        /* CRT Glow Effect */
-        .terminal-glow {
-          box-shadow:
-            0 0 20px #00ff00,
-            inset 0 0 20px #00ff0030,
-            0 0 40px #00ff0020;
-        }
-
-        /* Matrix Rain Effect - could be added later */
-        .matrix-rain {
-          background: linear-gradient(transparent, #00ff00, transparent);
-          animation: rain 3s linear infinite;
-        }
-
-        @keyframes rain {
-          to { transform: translateY(100vh); }
-        }
-
-        /* Retro Phosphor Glow */
+        /* Subtle glow on inputs */
         input {
-          text-shadow: 0 0 5px #00ff00;
+          text-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
         }
       `}</style>
     </div>
